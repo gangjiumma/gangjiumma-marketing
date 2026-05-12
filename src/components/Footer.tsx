@@ -13,7 +13,7 @@ export default function Footer() {
 
           {/* 우측: 회사 정보 */}
           <div className="flex flex-col gap-2 text-base text-ink-4">
-            <div className="font-bold text-white">(주)비타니마</div>
+            <div className="font-bold text-white">운영사:(주)비타니마(Vitanima Inc.)</div>
             <a
               href="mailto:gangjiumma@gmail.com"
               className="hover:text-white transition-colors"

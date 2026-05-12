@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://gangjiumma.kr"),
   title: {
-    default: "강쥐엄마 — 강아지에 진심인 사람들의 동네",
+    default: "강쥐엄마 — 반려견 AI",
     template: "%s | 강쥐엄마",
   },
   description:
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "펫 마케팅",
   ],
   openGraph: {
-    title: "강쥐엄마 — 강아지에 진심인 사람들의 동네",
+    title: "강쥐엄마 — 반려견 AI",
     description:
       "우리 강아지와의 시간은 생각보다 짧으니까. 매일 더 가까이, 더 오래.",
     url: "https://gangjiumma.kr",
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "강쥐엄마 — 우리 강아지와의 시간은 생각보다 짧으니까",
+        alt: "강쥐엄마 — 반려견 AI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "강쥐엄마 — 강아지에 진심인 사람들의 동네",
+    title: "강쥐엄마 — 반려견 AI",
     description:
       "우리 강아지와의 시간은 생각보다 짧으니까. 매일 더 가까이, 더 오래.",
     images: ["/og-image.png"],
