@@ -18,13 +18,13 @@ export default function BusinessPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white rounded-full shadow-soft border border-brand-tint200">
               <span>🎁</span>
               <span className="text-sm md:text-base font-bold text-brand">
-                7월 15일까지 베타 무료 운영 중
+                7월 15일까지 베타서비스 무료 운영 중
               </span>
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              강아지에 진심인 사장님과
+              강아지에 진심인 사장님께
               <br />
-              <span className="text-brand">함께 자라고 싶어요</span>
+              <span className="text-brand">진짜 강아지를 위한 서비스를 소개드립니다</span>
             </h1>
           </FadeInSection>
           <FadeInSection delay={300}>
@@ -72,7 +72,7 @@ export default function BusinessPage() {
               {
                 emoji: "💸",
                 title: "대행사 비용이 부담돼요",
-                text: "월 100~300만원, 효과는 미지수. 사장님이 직접 광고를 만들고 관리하기엔 시간도, 전문성도 부족해요.",
+                text: "월 20~100만원, 효과는 미지수. 사장님이 직접 광고를 만들고 관리하기엔 시간도, 전문성도 부족해요.",
               },
               {
                 emoji: "🤷",
@@ -203,73 +203,81 @@ export default function BusinessPage() {
 
           <FadeInSection delay={200}>
             <div className="overflow-x-auto -mx-5 md:mx-0 px-5 md:px-0">
-              <table className="w-full min-w-[800px] bg-white rounded-2xl overflow-hidden border border-line">
+              <table className="w-full min-w-[640px] bg-white rounded-2xl overflow-hidden border border-line table-fixed">
+                <colgroup>
+                  <col className="w-[16%]" />
+                  <col className="w-[20%]" />
+                  <col className="w-[16%]" />
+                  <col className="w-[16%]" />
+                  <col className="w-[16%]" />
+                  <col className="w-[16%]" />
+                </colgroup>
                 <thead>
                   <tr className="bg-ink-1 text-white">
-                    <th className="p-4 text-left text-sm md:text-base font-bold">항목</th>
-                    <th className="p-4 text-center text-sm md:text-base font-bold bg-brand">강쥐엄마</th>
-                    <th className="p-4 text-center text-sm md:text-base font-bold">인스0광고</th>
-                    <th className="p-4 text-center text-sm md:text-base font-bold">네이0광고</th>
-                    <th className="p-4 text-center text-sm md:text-base font-bold">대행0위탁</th>
-                    <th className="p-4 text-center text-sm md:text-base font-bold">펫0앱</th>
+                    <th className="px-2 py-3 md:px-3 md:py-4 text-left text-xs md:text-sm font-bold">항목</th>
+                    <th className="px-2 py-3 md:px-3 md:py-4 text-center text-xs md:text-sm font-bold bg-brand">강쥐엄마</th>
+                    <th className="px-2 py-3 md:px-3 md:py-4 text-center text-xs md:text-sm font-bold">인스0광고</th>
+                    <th className="px-2 py-3 md:px-3 md:py-4 text-center text-xs md:text-sm font-bold">네이0광고</th>
+                    <th className="px-2 py-3 md:px-3 md:py-4 text-center text-xs md:text-sm font-bold">대행0위탁</th>
+                    <th className="px-2 py-3 md:px-3 md:py-4 text-center text-xs md:text-sm font-bold">펫0앱</th>
                   </tr>
                 </thead>
-                <tbody className="text-sm md:text-base">
+                <tbody className="text-xs md:text-sm">
                   <tr className="border-b border-line">
-                    <td className="p-4 font-bold text-ink-1">월 비용</td>
-                    <td className="p-4 text-center bg-brand-tint50 font-bold text-brand">19,900원~</td>
-                    <td className="p-4 text-center text-ink-2">10~30만</td>
-                    <td className="p-4 text-center text-ink-2">100~500원/클릭</td>
-                    <td className="p-4 text-center text-ink-2">100~300만</td>
-                    <td className="p-4 text-center text-ink-2">변동</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">월 비용</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-brand whitespace-nowrap">19,900원~</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">10~30만</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">100~500원<br />/클릭</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">100~300만</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">변동</td>
                   </tr>
                   <tr className="border-b border-line bg-surface-subtle">
-                    <td className="p-4 font-bold text-ink-1">대상 고객</td>
-                    <td className="p-4 text-center bg-brand-tint50 font-bold text-ink-1">100% 강아지 보호자</td>
-                    <td className="p-4 text-center text-ink-2">비반려인 다수</td>
-                    <td className="p-4 text-center text-ink-2">검색 의도자만</td>
-                    <td className="p-4 text-center text-ink-2">위탁사 운영</td>
-                    <td className="p-4 text-center text-ink-2">펫 보호자</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">대상 고객</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-ink-1">100% 강아지<br />보호자</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">비반려인<br />다수</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">검색<br />의도자만</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">위탁사<br />운영</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">펫 보호자</td>
                   </tr>
                   <tr className="border-b border-line">
-                    <td className="p-4 font-bold text-ink-1">사용자 성향</td>
-                    <td className="p-4 text-center bg-brand-tint50 font-bold text-ink-1">강아지에 진심,<br />상품/서비스 이용률 ↑</td>
-                    <td className="p-4 text-center text-ink-2">다양</td>
-                    <td className="p-4 text-center text-ink-2">즉시 구매 의도</td>
-                    <td className="p-4 text-center text-ink-2">다양</td>
-                    <td className="p-4 text-center text-ink-2">다양</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">사용자<br />성향</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-ink-1">강아지에 진심,<br />이용률 ↑</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">다양</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">즉시<br />구매 의도</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">다양</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2">다양</td>
                   </tr>
                   <tr className="border-b border-line bg-surface-subtle">
-                    <td className="p-4 font-bold text-ink-1">노출 빈도</td>
-                    <td className="p-4 text-center bg-brand-tint50 font-bold text-ink-1">매일 (데일리 앱)</td>
-                    <td className="p-4 text-center text-ink-2">광고 시</td>
-                    <td className="p-4 text-center text-ink-2">검색 시</td>
-                    <td className="p-4 text-center text-ink-2">광고 시</td>
-                    <td className="p-4 text-center text-ink-2">검색 시</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">노출 빈도</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-ink-1 whitespace-nowrap">매일<br />(데일리 앱)</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">광고 시</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">검색 시</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">광고 시</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">검색 시</td>
                   </tr>
                   <tr className="border-b border-line">
-                    <td className="p-4 font-bold text-ink-1">효과 측정</td>
-                    <td className="p-4 text-center bg-brand-tint50 font-bold text-ink-1">앱 내 통계 제공</td>
-                    <td className="p-4 text-center text-ink-2">노출/클릭만</td>
-                    <td className="p-4 text-center text-ink-2">클릭만</td>
-                    <td className="p-4 text-center text-ink-2">한정적</td>
-                    <td className="p-4 text-center text-ink-2">한정적</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">효과 측정</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-ink-1 whitespace-nowrap">앱 내<br />통계 제공</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">노출/클릭만</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">클릭만</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">한정적</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">한정적</td>
                   </tr>
                   <tr className="border-b border-line bg-surface-subtle">
-                    <td className="p-4 font-bold text-ink-1">AI 광고 제작</td>
-                    <td className="p-4 text-center bg-brand-tint50 font-bold text-brand">✅ 일 3~20회</td>
-                    <td className="p-4 text-center text-ink-4">❌</td>
-                    <td className="p-4 text-center text-ink-4">❌</td>
-                    <td className="p-4 text-center text-ink-4">❌</td>
-                    <td className="p-4 text-center text-ink-4">❌</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">AI 광고<br />제작</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-brand whitespace-nowrap">✅ 일 3~20회</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">❌</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">❌</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">❌</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">❌</td>
                   </tr>
                   <tr>
-                    <td className="p-4 font-bold text-ink-1">추가 혜택</td>
-                    <td className="p-4 text-center bg-brand-tint50 font-bold text-ink-1">펫페어 공동 광고<br />+ Paw 보상</td>
-                    <td className="p-4 text-center text-ink-4">없음</td>
-                    <td className="p-4 text-center text-ink-4">없음</td>
-                    <td className="p-4 text-center text-ink-4">없음</td>
-                    <td className="p-4 text-center text-ink-4">없음</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">추가 혜택</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-ink-1">펫페어<br />공동 광고<br />+ Paw 보상</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">없음</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">없음</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">없음</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-4">없음</td>
                   </tr>
                 </tbody>
               </table>
@@ -558,7 +566,7 @@ export default function BusinessPage() {
                   다수 회사 창업 및 운영 경험 · 강아지 보호자
                 </p>
                 <p className="mt-4 text-sm md:text-base text-ink-2 leading-relaxed">
-                  GN로지텍(주), GN밸류홀딩스, 모시개냥(2019), (주)이지로지 외 <span className="font-bold">10개 이상의 AI 스타트업</span>에서 사업개발 경험이 있습니다.
+                  GN로지텍(주), GN밸류홀딩스(주), GN누리, 모시개냥, (주)이지로지 외 <span className="font-bold">10개 이상의 AI 스타트업</span>에서 사업개발 경험이 있습니다.
                 </p>
               </div>
               <div className="pt-8 space-y-5 text-base md:text-lg text-ink-2 leading-relaxed">
@@ -568,11 +576,7 @@ export default function BusinessPage() {
                 <p className="text-brand font-bold">제가 가장 사랑하는 강아지와 함께 만들어가는 플랫폼이니까요.</p>
                 <p className="text-right text-ink-3 mt-6">— 김훈기, (주)비타니마 대표</p>
               </div>
-              <div className="mt-8 pt-6 border-t border-line text-center">
-                <p className="text-sm text-ink-4">
-                  ✓ 인터넷에 &quot;김훈기&quot; 또는 &quot;(주)비타니마&quot; 검색 시 회사 이력 확인 가능
-                </p>
-              </div>
+              
             </div>
           </FadeInSection>
         </div>
@@ -645,7 +649,7 @@ export default function BusinessPage() {
 interface PlanCardProps {
   title: string;
   price: string;
-  badge: string;
+  badge: string;햐
   badgeColor: "brand" | "ink";
   ctaText: string;
   ctaHref?: string;
