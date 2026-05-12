@@ -397,7 +397,7 @@ export default function BusinessPage() {
               </div>
             </div>
             <div className="mt-10 space-y-2 text-base md:text-lg text-ink-2 font-medium">
-              <p>✓ 회원가입 5분 · 사업자등록증 자동 검수</p>
+              <p>✓ 회원가입 1분 · 사업자등록증 자동 검수 1분</p>
               <p>✓ AI가 광고 초안 작성 · 사장님이 검토만</p>
               <p>✓ 게시 후 실시간 노출 통계 확인</p>
             </div>
