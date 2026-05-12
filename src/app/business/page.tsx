@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import FadeInSection from "@/components/FadeInSection";
+import { ScrollDownIndicator, ScrollProgressBar } from "@/components/ScrollIndicator";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
@@ -10,6 +11,12 @@ export default function BusinessPage() {
 
   return (
     <>
+      {/* 페이지 상단 스크롤 진행 바 */}
+      <ScrollProgressBar />
+
+      {/* Hero 하단 스크롤 다운 인디케이터 */}
+      <ScrollDownIndicator />
+
       {/* 1. HERO */}
       <section className="relative bg-brand-tint50 pt-28 md:pt-36 pb-24 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/40 via-brand-tint50 to-white pointer-events-none" />

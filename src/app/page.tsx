@@ -2,12 +2,19 @@ import Link from "next/link";
 import Image from "next/image";
 import PhoneMockup from "@/components/PhoneMockup";
 import FadeInSection from "@/components/FadeInSection";
+import { ScrollDownIndicator, ScrollProgressBar } from "@/components/ScrollIndicator";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 export default function Home() {
   return (
     <>
+      {/* 페이지 상단 스크롤 진행 바 */}
+      <ScrollProgressBar />
+
+      {/* Hero 하단 스크롤 다운 인디케이터 */}
+      <ScrollDownIndicator />
+
       {/* 1. HERO */}
       <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/40 via-brand-tint50 to-white pointer-events-none" />
@@ -271,7 +278,7 @@ export default function Home() {
               <h3 className="text-2xl md:text-3xl font-black text-ink-1 mb-5 leading-snug">
                 강쥐엄마와 함께
                 <br />
-                자라고 싶어요
+                건강한 반려생활을 만들어요
               </h3>
               <span className="inline-flex items-center gap-1 text-base md:text-lg font-bold text-brand group-hover:gap-2 transition-all">
                 사장님 입점 안내 보기
