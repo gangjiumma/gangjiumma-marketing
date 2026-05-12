@@ -649,7 +649,7 @@ export default function BusinessPage() {
 interface PlanCardProps {
   title: string;
   price: string;
-  badge: string;햐
+  badge: string;
   badgeColor: "brand" | "ink";
   ctaText: string;
   ctaHref?: string;
