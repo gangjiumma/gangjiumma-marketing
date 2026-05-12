@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─────────────────────────────────────────── */
+/* 강쥐엄마 디자인 토큰 — Tailwind v4 @theme    */
+/* ─────────────────────────────────────────── */
+@theme {
+  /* 브랜드 컬러 */
+  --color-brand: #ff6b35;
+  --color-brand-primary: #ff6b35;
+  --color-brand-dark: #e55a2b;
+  --color-brand-light: #ff8a5c;
+  --color-brand-tint50: #fffbf7;
+  --color-brand-tint100: #fff4e6;
+  --color-brand-tint200: #ffe4cc;
+  --color-brand-tint300: #ffcdb8;
+
+  /* 텍스트 컬러 */
+  --color-ink-1: #111827;
+  --color-ink-2: #374151;
+  --color-ink-3: #6b7280;
+  --color-ink-4: #9ca3af;
+  --color-ink-disabled: #d1d5db;
+
+  /* 배경 컬러 */
+  --color-surface-base: #ffffff;
+  --color-surface-subtle: #f9fafb;
+  --color-surface-muted: #f3f4f6;
+
+  /* 보더 */
+  --color-line-light: #f3f4f6;
+  --color-line: #e5e7eb;
+  --color-line-medium: #d1d5db;
+  --color-line-brand: #ffe4cc;
+
+  /* 폰트 패밀리 */
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", sans-serif;
+
+  /* 폰트 사이즈 */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+  --text-2xl: 20px;
+  --text-3xl: 24px;
+  --text-4xl: 32px;
+  --text-5xl: 40px;
+  --text-6xl: 48px;
+  --text-7xl: 56px;
+
+  /* Border radius */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 28px;
+  --radius-5xl: 32px;
+
+  /* Box shadow */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-brand: 0 8px 24px rgba(255, 107, 53, 0.24);
+  --shadow-brand-soft: 0 4px 12px rgba(255, 107, 53, 0.12);
+
+  /* Letter spacing */
+  --tracking-tightest: -0.04em;
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.02em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─────────────────────────────────────────── */
+/* 전역 스타일                                  */
+/* ─────────────────────────────────────────── */
+html,
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+  color: #111827;
+  background: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* 다크모드 무시 */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background: #ffffff;
+    color: #111827;
+  }
 }
