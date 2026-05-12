@@ -36,7 +36,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>📱</span>
-                <span>강쥐엄마 만나러 가기</span>
+                <span>강쥐엄마앱 둘러보기</span>
               </a>
             </div>
           </FadeInSection>
@@ -250,7 +250,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>📱</span>
-                <span>강쥐엄마 만나러 가기</span>
+                <span>강쥐엄마앱 둘러보기</span>
               </a>
             </div>
           </FadeInSection>

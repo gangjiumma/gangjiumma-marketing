@@ -44,7 +44,7 @@ export default function BusinessPage() {
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>🐾</span>
-                <span>강쥐엄마와 함께 건강한 반려문화 만들기</span>
+                <span>강쥐엄마앱 다운로드</span>
               </a>
               <p className="text-xs md:text-sm text-ink-3 font-medium">
                 ✓ 베타 기간 Basic 무료 (Lite·Pro는 7/15 출시) <br className="md:hidden" />
@@ -529,7 +529,7 @@ export default function BusinessPage() {
                   className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
                 >
                   <span>🐾</span>
-                  <span>강쥐엄마와 함께 건강한 반려문화 만들기</span>
+                  <span>강쥐엄마앱 다운로드</span>
                 </a>
               </div>
             </div>
