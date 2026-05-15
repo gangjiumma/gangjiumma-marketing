@@ -4,7 +4,7 @@
 /* 강쥐엄마 디자인 토큰 — Tailwind v4 @theme    */
 /* ─────────────────────────────────────────── */
 @theme {
-  /* 브랜드 컬러 */
+  /* 브랜드 컬러 — 오렌지 (메인 / 메가주 페이지) */
   --color-brand: #ff6b35;
   --color-brand-primary: #ff6b35;
   --color-brand-dark: #e55a2b;
@@ -13,6 +13,15 @@
   --color-brand-tint100: #fff4e6;
   --color-brand-tint200: #ffe4cc;
   --color-brand-tint300: #ffcdb8;
+
+  /* 라임 그린 — K-PET 수원 페이지 (/kpet-suwon) — brand와 자매 톤 */
+  --color-lime: #97c459;
+  --color-lime-dark: #639922;
+  --color-lime-light: #c0dd97;
+  --color-lime-tint50: #f4fbe8;
+  --color-lime-tint100: #e5f4ca;
+  --color-lime-tint200: #c0dd97;
+  --color-lime-tint300: #97c459;
 
   /* 텍스트 컬러 */
   --color-ink-1: #111827;
@@ -31,6 +40,7 @@
   --color-line: #e5e7eb;
   --color-line-medium: #d1d5db;
   --color-line-brand: #ffe4cc;
+  --color-line-lime: #c0dd97;
 
   /* 폰트 패밀리 */
   --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -68,6 +78,8 @@
   --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.08);
   --shadow-brand: 0 8px 24px rgba(255, 107, 53, 0.24);
   --shadow-brand-soft: 0 4px 12px rgba(255, 107, 53, 0.12);
+  --shadow-lime: 0 8px 24px rgba(151, 196, 89, 0.24);
+  --shadow-lime-soft: 0 4px 12px rgba(151, 196, 89, 0.12);
 
   /* Letter spacing */
   --tracking-tightest: -0.04em;
