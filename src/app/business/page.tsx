@@ -232,7 +232,7 @@ export default function BusinessPage() {
                 <tbody className="text-xs md:text-sm">
                   <tr className="border-b border-line">
                     <td className="px-2 py-3 md:px-3 md:py-4 font-bold text-ink-1">월 비용</td>
-                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-brand whitespace-nowrap">19,900원~</td>
+                    <td className="px-2 py-3 md:px-3 md:py-4 text-center bg-brand-tint50 font-bold text-brand whitespace-nowrap">29,900원~</td>
                     <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">10~30만</td>
                     <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">100~500원<br />/클릭</td>
                     <td className="px-2 py-3 md:px-3 md:py-4 text-center text-ink-2 whitespace-nowrap">100~300만</td>
@@ -457,15 +457,15 @@ export default function BusinessPage() {
 
           {planTab === "local" && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-              <PlanCard title="Lite" price="19,900" badge="🔒 7월 15일 정식 출시" badgeColor="ink" ctaText="7월 15일 정식 출시" ctaDisabled features={["광고 게시글 주 1회 (시·도)","AI 광고 초안 (일 3회)","AI 문의 응대 (무제한)","Home / 강쥐talk / AI 검색 노출","쿠폰 발행 (시·도 노출)","Paw 수취 및 현금화"]} />
-              <PlanCard title="Basic" price="49,900" badge="🎁 베타 무료 / 추천" badgeColor="brand" ctaText="베타 무료 시작하기" ctaHref={DOWNLOAD_URL} highlight features={["광고 게시글 주 3회 (시·도)","AI 광고 초안 (일 10회)","AI 문의 응대 (무제한)","AI 추천 우선순위","매월 펫페어 공동 광고 (기본)","유저 트렌드 리포트 (기본)","쿠폰 발행 (시·도 노출)","Paw 수취 및 현금화"]} />
+              <PlanCard title="Lite" price="29,900" badge="🔒 7월 15일 정식 출시" badgeColor="ink" ctaText="7월 15일 정식 출시" ctaDisabled features={["광고 게시글 주 1회 (시·도)","AI 광고 초안 (일 3회)","AI 문의 응대 (무제한)","Home / 강쥐talk / AI 검색 노출","쿠폰 발행 (시·도 노출)","Paw 수취 및 현금화"]} />
+              <PlanCard title="Basic" price="59,900" badge="🎁 베타 무료 / 추천" badgeColor="brand" ctaText="베타 무료 시작하기" ctaHref={DOWNLOAD_URL} highlight features={["광고 게시글 주 3회 (시·도)","AI 광고 초안 (일 10회)","AI 문의 응대 (무제한)","AI 추천 우선순위","매월 펫페어 공동 광고 (기본)","유저 트렌드 리포트 (기본)","쿠폰 발행 (시·도 노출)","Paw 수취 및 현금화"]} />
               <PlanCard title="Pro" price="79,900" badge="🔒 7월 15일 정식 출시" badgeColor="ink" ctaText="7월 15일 정식 출시" ctaDisabled features={["광고 게시글 주 3회 (전국)","AI 광고 초안 (일 20회)","AI 문의 응대 (무제한)","강쥐talk 상단 고정","AI 추천 우선순위","매월 펫페어 공동 광고 (우선)","유저 트렌드 리포트 (상세)","쿠폰 발행 (전국 노출)","Paw 수취 및 현금화"]} />
             </div>
           )}
           {planTab === "online" && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-              <PlanCard title="Lite" price="19,900" badge="🔒 7월 15일 정식 출시" badgeColor="ink" ctaText="7월 15일 정식 출시" ctaDisabled features={["광고 게시글 주 1회 (전국)","AI 광고 초안 (일 3회)","AI 문의 응대 (무제한)","자사몰 상품 5개 등록","강GPT AI 추천","입점업체 페이지 소개","Paw 수취 및 현금화"]} />
-              <PlanCard title="Basic" price="49,900" badge="🎁 베타 무료 / 추천" badgeColor="brand" ctaText="베타 무료 시작하기" ctaHref={DOWNLOAD_URL} highlight features={["광고 게시글 주 3회 (전국)","AI 광고 초안 (일 10회)","AI 문의 응대 (무제한)","자사몰 상품 10개 등록","AI 추천 우선순위","매월 펫페어 공동 광고 (기본)","유저 트렌드 리포트 (기본)","입점업체 페이지 리스트업 + 전용 프로필","Paw 수취 및 현금화"]} />
+              <PlanCard title="Lite" price="29,900" badge="🔒 7월 15일 정식 출시" badgeColor="ink" ctaText="7월 15일 정식 출시" ctaDisabled features={["광고 게시글 주 1회 (전국)","AI 광고 초안 (일 3회)","AI 문의 응대 (무제한)","자사몰 상품 5개 등록","강GPT AI 추천","입점업체 페이지 소개","Paw 수취 및 현금화"]} />
+              <PlanCard title="Basic" price="59,900" badge="🎁 베타 무료 / 추천" badgeColor="brand" ctaText="베타 무료 시작하기" ctaHref={DOWNLOAD_URL} highlight features={["광고 게시글 주 3회 (전국)","AI 광고 초안 (일 10회)","AI 문의 응대 (무제한)","자사몰 상품 10개 등록","AI 추천 우선순위","매월 펫페어 공동 광고 (기본)","유저 트렌드 리포트 (기본)","입점업체 페이지 리스트업 + 전용 프로필","Paw 수취 및 현금화"]} />
               <PlanCard title="Pro" price="79,900" badge="🔒 7월 15일 정식 출시" badgeColor="ink" ctaText="7월 15일 정식 출시" ctaDisabled features={["광고 게시글 주 3회 (전국)","AI 광고 초안 (일 20회)","AI 문의 응대 (무제한)","자사몰 상품 10개 + 건강템 상위 노출","강쥐talk 상단 고정","매월 펫페어 공동 광고 (우선)","유저 트렌드 리포트 (상세)","입점업체 페이지 상위 소개","Paw 수취 및 현금화"]} />
             </div>
           )}
@@ -573,7 +573,7 @@ export default function BusinessPage() {
                   다수 회사 창업 및 운영 경험 · 강아지 보호자
                 </p>
                 <p className="mt-4 text-sm md:text-base text-ink-2 leading-relaxed">
-                  GN로지텍(주), GN밸류홀딩스(주), GN누리, 모시개냥, (주)이지로지 외 <span className="font-bold">10개 이상의 AI 스타트업</span>에서 사업개발 경험이 있습니다.
+                  GN로지텍(주), GN밸류홀딩스(주), 모시개냥, (주)이지로지 외 <span className="font-bold">10개 이상의 AI 스타트업</span>에서 사업개발 경험이 있습니다.
                 </p>
               </div>
               <div className="pt-8 space-y-5 text-base md:text-lg text-ink-2 leading-relaxed">
