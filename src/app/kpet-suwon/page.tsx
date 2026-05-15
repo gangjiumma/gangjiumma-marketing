@@ -171,7 +171,7 @@ export default function KpetSuwonPage() {
                   <div className="flex-1">
                     <p className="text-sm md:text-base text-ink-3 font-bold mb-1">일시</p>
                     <p className="text-xl md:text-3xl font-black text-ink-1 leading-tight">
-                      2026년 ○○월 ○○일 ~ ○○일
+                      2026년 06월 26일 ~ 28일
                     </p>
                     <p className="text-sm md:text-base text-ink-3 mt-1">금 · 토 · 일</p>
                   </div>
@@ -199,7 +199,7 @@ export default function KpetSuwonPage() {
                   <div className="flex-1">
                     <p className="text-sm md:text-base text-ink-3 font-bold mb-1">부스</p>
                     <p className="text-xl md:text-3xl font-black text-lime leading-tight">
-                      ○-○
+                      추후공지
                     </p>
                     <p className="text-sm md:text-base text-ink-3 mt-1">케이펫페어 수원</p>
                   </div>
