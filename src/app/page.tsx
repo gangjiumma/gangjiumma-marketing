@@ -3,7 +3,6 @@ import Image from "next/image";
 import PhoneMockup from "@/components/PhoneMockup";
 import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
-import SnapPageMount from "@/components/SnapPageMount";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
@@ -26,27 +25,19 @@ const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 export default function Home() {
   return (
     <>
-      <SnapPageMount />
       <ScrollProgressBar />
-      {/* ScrollDownIndicator 제거 — 스냅 스크롤이 더 직관적 */}
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 1. HERO — AI 비서 정체성                              */}
+      {/* 하단에 흰 그라디언트로 다음 섹션이 살짝 비치는 디자인  */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="snap-start relative bg-brand-tint50 pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/40 via-brand-tint50 to-white pointer-events-none" />
+      <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-32 md:pb-40 overflow-hidden">
+        {/* 위쪽 — 따뜻한 톤 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/50 via-brand-tint50 to-brand-tint50 pointer-events-none" />
+        {/* 아래쪽 — 흰색으로 자연스럽게 페이드 (다음 흰 섹션과 연결) */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 md:h-40 bg-gradient-to-b from-transparent to-white pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
-            {/* ✏️ Hero 상단 배지 */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white rounded-full shadow-soft border border-brand-tint200">
-              <span>🤖</span>
-              <span className="text-sm md:text-base font-bold text-brand">
-                반려견 AI 비서
-              </span>
-            </div>
-          </FadeInSection>
-
-          <FadeInSection delay={150}>
             {/* ✏️ Hero 메인 헤드라인 */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
               요새 AI 비서가
@@ -55,7 +46,7 @@ export default function Home() {
             </h1>
           </FadeInSection>
 
-          <FadeInSection delay={300}>
+          <FadeInSection delay={200}>
             {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
             <p className="mt-6 md:mt-8 text-2xl md:text-4xl lg:text-5xl font-black tracking-tightest leading-tight">
               <span className="text-ink-1">반려견 AI 비서는,</span>
@@ -64,7 +55,7 @@ export default function Home() {
             </p>
           </FadeInSection>
 
-          <FadeInSection delay={500}>
+          <FadeInSection delay={400}>
             {/* ✏️ Hero 부제 */}
             <p className="mt-8 md:mt-10 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
               매일 더 가까이, 더 오래
@@ -89,7 +80,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 2. 간단함 (NEW) — 딱 두 단계면 끝                     */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="snap-start bg-white py-20 md:py-28">
+      <section className="bg-white py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
@@ -176,7 +167,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 3. AI 데모 영상 (기존 유지)                            */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="snap-start bg-surface-subtle py-20 md:py-28 overflow-hidden">
+      <section className="bg-surface-subtle py-20 md:py-28 overflow-hidden">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
@@ -217,7 +208,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 4. AI 비서가 하는 일 (2개 큰 카드)                     */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="snap-start bg-white py-24 md:py-32">
+      <section className="bg-white py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-16 md:mb-20">
@@ -308,7 +299,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 5. AI 비서가 안내하는 곳 (3개 카드)                    */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="snap-start bg-brand-tint50 py-24 md:py-32">
+      <section className="bg-brand-tint50 py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-16 md:mb-20">
@@ -400,7 +391,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 6. Paw 포인트 (작은 띠)                                */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="snap-start bg-white py-16 md:py-20">
+      <section className="bg-white py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="bg-gradient-to-r from-brand-tint50 to-brand-tint100 rounded-3xl p-8 md:p-10 border border-brand-tint200 flex flex-col md:flex-row items-center gap-6 md:gap-8">
@@ -423,7 +414,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 7. 최종 CTA                                            */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section id="download" className="snap-start bg-surface-subtle py-24 md:py-32">
+      <section id="download" className="bg-surface-subtle py-24 md:py-32">
         <div className="max-w-4xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             {/* ✏️ Final CTA 헤드라인 */}
@@ -456,7 +447,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 8. 사장님 분기 (기존 유지)                              */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="snap-start bg-white py-20 md:py-24">
+      <section className="bg-white py-20 md:py-24">
         <div className="max-w-3xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <Link
