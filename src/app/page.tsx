@@ -1,8 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
+import {
+  Pencil,
+  MessageCircle,
+  Sparkles,
+  ClipboardList,
+  Calendar,
+  Pill,
+  UtensilsCrossed,
+  Store,
+  Dog,
+  PawPrint,
+} from "lucide-react";
 import PhoneMockup from "@/components/PhoneMockup";
 import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
+import ScrollHintDots from "@/components/ScrollHintDots";
+import { IconBox } from "@/components/IconBox";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
@@ -26,16 +40,14 @@ export default function Home() {
   return (
     <>
       <ScrollProgressBar />
+      <ScrollHintDots />
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 1. HERO — AI 비서 정체성                              */}
-      {/* 하단에 흰 그라디언트로 다음 섹션이 살짝 비치는 디자인  */}
+      {/* 하단 점 3개 인디케이터 (ScrollHintDots) + 약한 그라디언트 */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-32 md:pb-40 overflow-hidden">
-        {/* 위쪽 — 따뜻한 톤 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/50 via-brand-tint50 to-brand-tint50 pointer-events-none" />
-        {/* 아래쪽 — 흰색으로 자연스럽게 페이드 (다음 흰 섹션과 연결) */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 md:h-40 bg-gradient-to-b from-transparent to-white pointer-events-none" />
+      <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-28 md:pb-36 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/50 via-brand-tint50 to-white pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             {/* ✏️ Hero 메인 헤드라인 */}
@@ -69,7 +81,6 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>📱</span>
                 <span>강쥐엄마 둘러보기</span>
               </a>
             </div>
@@ -107,7 +118,9 @@ export default function Home() {
                 <div className="absolute -top-4 left-8 bg-brand text-white text-sm font-black px-3 py-1 rounded-full shadow-brand-soft">
                   STEP 1
                 </div>
-                <div className="text-5xl mb-5 mt-2">📝</div>
+                <div className="mb-5 mt-2">
+                  <IconBox category="paw" icon={Pencil} size="lg" />
+                </div>
                 {/* ✏️ Step 1 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">
                   우리 아이 정보 입력
@@ -127,7 +140,9 @@ export default function Home() {
                 <div className="absolute -top-4 left-8 bg-brand text-white text-sm font-black px-3 py-1 rounded-full shadow-brand-soft">
                   STEP 2
                 </div>
-                <div className="text-5xl mb-5 mt-2">💬</div>
+                <div className="mb-5 mt-2">
+                  <IconBox category="chat" icon={MessageCircle} size="lg" />
+                </div>
                 {/* ✏️ Step 2 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">
                   AI에게 물어보기
@@ -147,7 +162,9 @@ export default function Home() {
                 <div className="absolute -top-4 left-8 bg-white text-brand text-sm font-black px-3 py-1 rounded-full shadow-soft">
                   END
                 </div>
-                <div className="text-5xl mb-5 mt-2">✨</div>
+                <div className="mb-5 mt-2 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20">
+                  <Sparkles size={32} strokeWidth={2} color="#ffffff" />
+                </div>
                 {/* ✏️ End 제목 */}
                 <h3 className="text-xl md:text-2xl font-black mb-3 leading-snug">
                   끝.
@@ -269,7 +286,9 @@ export default function Home() {
             {/* 카드 2 — 알아서 챙겨주는 AI (컨셉 2) */}
             <FadeInSection delay={150}>
               <div className="bg-brand-tint50 rounded-3xl p-8 md:p-12 h-full border border-brand-tint200">
-                <div className="text-5xl mb-6">📋</div>
+                <div className="mb-6">
+                  <IconBox category="schedule" icon={ClipboardList} size="lg" />
+                </div>
                 {/* ✏️ 카드 2 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
                   알아서 챙겨주는
@@ -285,10 +304,19 @@ export default function Home() {
                   AI 비서가 먼저 알려드려요.
                 </p>
                 {/* ✏️ 예시 리스트 */}
-                <div className="mt-6 pt-6 border-t border-brand-tint200 space-y-2">
-                  <p className="text-base text-ink-2 font-medium">📅 다음 접종일이 다가왔어요</p>
-                  <p className="text-base text-ink-2 font-medium">💊 우리 아이에 맞는 영양제예요</p>
-                  <p className="text-base text-ink-2 font-medium">🥘 이 사료, 우리 아이에게 맞을까?</p>
+                <div className="mt-6 pt-6 border-t border-brand-tint200 space-y-3">
+                  <p className="flex items-center gap-3 text-base text-ink-2 font-medium">
+                    <IconBox category="schedule" icon={Calendar} size="sm" />
+                    <span>다음 접종일이 다가왔어요</span>
+                  </p>
+                  <p className="flex items-center gap-3 text-base text-ink-2 font-medium">
+                    <IconBox category="like" icon={Pill} size="sm" />
+                    <span>우리 아이에 맞는 영양제예요</span>
+                  </p>
+                  <p className="flex items-center gap-3 text-base text-ink-2 font-medium">
+                    <IconBox category="market" icon={UtensilsCrossed} size="sm" />
+                    <span>이 사료, 우리 아이에게 맞을까?</span>
+                  </p>
                 </div>
               </div>
             </FadeInSection>
@@ -320,7 +348,9 @@ export default function Home() {
             {/* 카드 ① 우리동네 (컨셉 3) */}
             <FadeInSection delay={0}>
               <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
-                <div className="text-5xl mb-6">🏪</div>
+                <div className="mb-6">
+                  <IconBox category="business" icon={Store} size="lg" />
+                </div>
                 {/* ✏️ 카드 ① 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
                   강쥐엄마가 엄선한
@@ -341,7 +371,9 @@ export default function Home() {
             {/* 카드 ② 강쥐엄마들 (컨셉 4) */}
             <FadeInSection delay={150}>
               <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
-                <div className="text-5xl mb-6">💬</div>
+                <div className="mb-6">
+                  <IconBox category="chat" icon={MessageCircle} size="lg" />
+                </div>
                 {/* ✏️ 카드 ② 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
                   강쥐엄마들이
@@ -365,7 +397,9 @@ export default function Home() {
             {/* 카드 ③ 유기견 친구들 (컨셉 5) */}
             <FadeInSection delay={300}>
               <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
-                <div className="text-5xl mb-6">🐕</div>
+                <div className="mb-6">
+                  <IconBox category="dog" icon={Dog} size="lg" />
+                </div>
                 {/* ✏️ 카드 ③ 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
                   유기견 친구들에게도
@@ -395,7 +429,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="bg-gradient-to-r from-brand-tint50 to-brand-tint100 rounded-3xl p-8 md:p-10 border border-brand-tint200 flex flex-col md:flex-row items-center gap-6 md:gap-8">
-              <div className="text-5xl md:text-6xl">🐾</div>
+              <IconBox category="paw" icon={PawPrint} size="lg" />
               <div className="flex-1 text-center md:text-left">
                 {/* ✏️ Paw 띠 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-2 leading-snug">
@@ -436,7 +470,6 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>📱</span>
                 <span>강쥐엄마 둘러보기</span>
               </a>
             </div>
