@@ -2,38 +2,74 @@ import Link from "next/link";
 import Image from "next/image";
 import PhoneMockup from "@/components/PhoneMockup";
 import FadeInSection from "@/components/FadeInSection";
-import { ScrollDownIndicator, ScrollProgressBar } from "@/components/ScrollIndicator";
+import { ScrollProgressBar } from "@/components/ScrollIndicator";
+import SnapPageMount from "@/components/SnapPageMount";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
+
+// ─────────────────────────────────────────────────────────────
+// 메인 페이지 v2 — "반려견 AI 비서" 컨셉
+//
+// 구조:
+//   1. Hero — AI 비서 정체성
+//   2. 간단함 — 딱 두 단계
+//   3. AI 데모 영상
+//   4. AI 비서가 하는 일 (2개)
+//   5. AI 비서가 안내하는 곳 (3개)
+//   6. Paw 포인트 (보조 띠)
+//   7. 최종 CTA
+//   8. 사장님 분기
+//
+// ✏️ 카피 수정 위치를 찾으려면 "✏️" 검색하세요
+// ─────────────────────────────────────────────────────────────
 
 export default function Home() {
   return (
     <>
-      {/* 페이지 상단 스크롤 진행 바 */}
+      <SnapPageMount />
       <ScrollProgressBar />
+      {/* ScrollDownIndicator 제거 — 스냅 스크롤이 더 직관적 */}
 
-      {/* Hero 하단 스크롤 다운 인디케이터 */}
-      <ScrollDownIndicator />
-
-      {/* 1. HERO */}
-      <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden">
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 1. HERO — AI 비서 정체성                              */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="snap-start relative bg-brand-tint50 pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/40 via-brand-tint50 to-white pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-ink-1 tracking-tightest leading-[1.15]">
-              우리 아이와의 시간은
-              <br />
-              생각보다 짧으니까
-            </h1>
-          </FadeInSection>
-          <FadeInSection delay={200}>
-            <div className="mt-8 md:mt-10 text-5xl md:text-7xl font-black text-brand tracking-tightest">
-              강쥐엄마
+            {/* ✏️ Hero 상단 배지 */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-white rounded-full shadow-soft border border-brand-tint200">
+              <span>🤖</span>
+              <span className="text-sm md:text-base font-bold text-brand">
+                반려견 AI 비서
+              </span>
             </div>
           </FadeInSection>
-          <FadeInSection delay={400}>
-            <p className="mt-6 md:mt-8 text-lg md:text-2xl text-ink-2 font-medium">
+
+          <FadeInSection delay={150}>
+            {/* ✏️ Hero 메인 헤드라인 */}
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
+              요새 AI 비서가
+              <br />
+              유행이라던데
+            </h1>
+          </FadeInSection>
+
+          <FadeInSection delay={300}>
+            {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
+            <p className="mt-6 md:mt-8 text-2xl md:text-4xl lg:text-5xl font-black tracking-tightest leading-tight">
+              <span className="text-ink-1">반려견 AI 비서는,</span>
+              <br className="md:hidden" />
+              <span className="text-brand"> 강쥐엄마</span>
+            </p>
+          </FadeInSection>
+
+          <FadeInSection delay={500}>
+            {/* ✏️ Hero 부제 */}
+            <p className="mt-8 md:mt-10 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
               매일 더 가까이, 더 오래
+              <br />
+              우리 아이의 일상을 챙겨주는 AI 비서
             </p>
             <div className="mt-12 md:mt-14">
               <a
@@ -43,21 +79,112 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>📱</span>
-                <span>강쥐엄마앱 둘러보기</span>
+                <span>강쥐엄마 둘러보기</span>
               </a>
             </div>
           </FadeInSection>
         </div>
       </section>
 
-      {/* 2. AI 데모 영상 */}
-      <section className="bg-white py-20 md:py-28 overflow-hidden">
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 2. 간단함 (NEW) — 딱 두 단계면 끝                     */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="snap-start bg-white py-20 md:py-28">
+        <div className="max-w-5xl mx-auto px-5 md:px-8">
+          <FadeInSection>
+            <div className="text-center mb-12 md:mb-16">
+              {/* ✏️ 섹션 라벨 */}
+              <p className="text-base md:text-lg text-brand font-bold mb-3">
+                어렵지 않아요
+              </p>
+              {/* ✏️ 섹션 헤드라인 */}
+              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
+                딱 두 단계면 끝
+              </h2>
+              {/* ✏️ 섹션 부제 */}
+              <p className="mt-6 text-base md:text-lg text-ink-3 font-medium leading-relaxed">
+                나머지는 강쥐엄마가 알아서 챙겨드려요
+              </p>
+            </div>
+          </FadeInSection>
+
+          {/* 3단 카드 — 1, 2, 끝. */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 relative">
+            {/* Step 1 */}
+            <FadeInSection delay={0}>
+              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-10 h-full border border-brand-tint200 relative">
+                <div className="absolute -top-4 left-8 bg-brand text-white text-sm font-black px-3 py-1 rounded-full shadow-brand-soft">
+                  STEP 1
+                </div>
+                <div className="text-5xl mb-5 mt-2">📝</div>
+                {/* ✏️ Step 1 제목 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">
+                  우리 아이 정보 입력
+                </h3>
+                {/* ✏️ Step 1 본문 */}
+                <p className="text-base text-ink-3 leading-relaxed">
+                  이름, 나이, 견종, 건강 정보를
+                  <br />
+                  간단히 알려주세요.
+                </p>
+              </div>
+            </FadeInSection>
+
+            {/* Step 2 */}
+            <FadeInSection delay={150}>
+              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-10 h-full border border-brand-tint200 relative">
+                <div className="absolute -top-4 left-8 bg-brand text-white text-sm font-black px-3 py-1 rounded-full shadow-brand-soft">
+                  STEP 2
+                </div>
+                <div className="text-5xl mb-5 mt-2">💬</div>
+                {/* ✏️ Step 2 제목 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">
+                  AI에게 물어보기
+                </h3>
+                {/* ✏️ Step 2 본문 */}
+                <p className="text-base text-ink-3 leading-relaxed">
+                  궁금한 거 무엇이든
+                  <br />
+                  편하게 물어보세요.
+                </p>
+              </div>
+            </FadeInSection>
+
+            {/* End — "끝." */}
+            <FadeInSection delay={300}>
+              <div className="bg-brand text-white rounded-3xl p-8 md:p-10 h-full relative shadow-brand">
+                <div className="absolute -top-4 left-8 bg-white text-brand text-sm font-black px-3 py-1 rounded-full shadow-soft">
+                  END
+                </div>
+                <div className="text-5xl mb-5 mt-2">✨</div>
+                {/* ✏️ End 제목 */}
+                <h3 className="text-xl md:text-2xl font-black mb-3 leading-snug">
+                  끝.
+                </h3>
+                {/* ✏️ End 본문 */}
+                <p className="text-base text-white/90 leading-relaxed">
+                  나머지는 강쥐엄마가 알아서
+                  <br />
+                  건강한 반려생활로 이끌어드려요.
+                </p>
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 3. AI 데모 영상 (기존 유지)                            */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="snap-start bg-surface-subtle py-20 md:py-28 overflow-hidden">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
+              {/* ✏️ 섹션 라벨 */}
               <p className="text-base md:text-lg text-brand font-bold mb-3">
-                우리 아이를 가장 잘 아는 AI
+                우리 아이를 가장 잘 아는 AI 비서
               </p>
+              {/* ✏️ 섹션 헤드라인 */}
               <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
                 궁금한 모든 것,
                 <br />
@@ -72,11 +199,13 @@ export default function Home() {
           </FadeInSection>
           <FadeInSection delay={400}>
             <div className="text-center mt-12 md:mt-16">
+              {/* ✏️ 영상 아래 강조 카피 */}
               <p className="text-lg md:text-2xl text-ink-2 font-bold leading-relaxed">
                 질문할수록
                 <span className="text-brand"> 아이에 대해 학습하는 </span>
                 나만의 AI
               </p>
+              {/* ✏️ 영상 아래 보조 카피 */}
               <p className="text-base md:text-lg text-ink-3 mt-4 font-medium">
                 사진 한 장으로도, 우리 아이에게 꼭 맞는 답을 받아보세요
               </p>
@@ -85,149 +214,182 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. 페인 포인트 */}
-      <section className="bg-surface-subtle py-24 md:py-32">
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 4. AI 비서가 하는 일 (2개 큰 카드)                     */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="snap-start bg-white py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-16 md:mb-20">
-              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                아이를 키우다보면,
-                <br />
-                궁금한 것도, 챙겨야 하는 것도 많습니다.
-              </h2>
-            </div>
-          </FadeInSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-            <FadeInSection delay={0}>
-              <div className="bg-white rounded-2xl p-8 md:p-9 h-full">
-                <div className="text-4xl mb-5">🤔</div>
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  아이가 갑자기 아프거나
-                </h3>
-                <p className="text-base text-ink-3 leading-relaxed">
-                  궁금한게 생기면 우리는 카페, 단톡방, 모임, 인별그램에 질문하거나 병원을 찾습니다.
-                  <br />
-                  AI에게 물어봐도 우리아이에 대해 잘 알지 못합니다.
-                </p>
-              </div>
-            </FadeInSection>
-            <FadeInSection delay={100}>
-              <div className="bg-white rounded-2xl p-8 md:p-9 h-full">
-                <div className="text-4xl mb-5">📣</div>
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  업체 후기는 광고
-                  <br />
-                  투성이고 못 미덥
-                </h3>
-                <p className="text-base text-ink-3 leading-relaxed">
-                  스러울 때가 많습니다. 인별그램, 카페, 인터넷 후기의 대부분은 광고 및 체험단의 글로 가득합니다.
-                  <br />
-                  진짜 후기는 찾기 어렵습니다.
-                </p>
-              </div>
-            </FadeInSection>
-            <FadeInSection delay={200}>
-              <div className="bg-white rounded-2xl p-8 md:p-9 h-full">
-                <div className="text-4xl mb-5">⏰</div>
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  바쁜 일상속
-                  <br />
-                  영양제, 약, 산책
-                </h3>
-                <p className="text-base text-ink-3 leading-relaxed">
-                  은 매번 챙기기 어렵습니다. 날짜가 지난 후 넥*가드를 먹일때가 다반수고
-                  <br />
-                  오늘의 산책을 내일로 미루게 됩니다
-                </p>
-              </div>
-            </FadeInSection>
-            <FadeInSection delay={300}>
-              <div className="bg-white rounded-2xl p-8 md:p-9 h-full">
-                <div className="text-4xl mb-5">💬</div>
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  우리 아이의 일상을 나누는 것 조차
-                </h3>
-                <p className="text-base text-ink-3 leading-relaxed">
-                  쉽지 않습니다. 카페 등업, 단톡방 참여, 모임 참여, 인별그램 부계정 생성..
-                  <br />
-                  매일의 아이 일상을 나누기 위해 할것이 많습니다.
-                </p>
-              </div>
-            </FadeInSection>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. 강쥐엄마는 */}
-      <section className="bg-brand-tint50 py-24 md:py-32">
-        <div className="max-w-6xl mx-auto px-5 md:px-8">
-          <FadeInSection>
-            <div className="text-center mb-16 md:mb-20">
+              {/* ✏️ 섹션 라벨 */}
               <p className="text-base md:text-lg text-brand font-bold mb-3">
-                그래서 강쥐엄마는 엄마,아빠들의
+                AI 비서가 하는 일
               </p>
+              {/* ✏️ 섹션 헤드라인 */}
               <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                매일을 지켜드려요
+                쓸수록 똑똑해지고,
+                <br />
+                알아서 챙겨드려요
               </h2>
             </div>
           </FadeInSection>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {/* 카드 1 — 학습하는 AI (컨셉 1) */}
             <FadeInSection delay={0}>
-              <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
+              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-12 h-full border border-brand-tint200">
                 <div className="mb-6">
                   <Image
                     src="/icons/paw.png"
-                    alt="GangGPT"
-                    width={44}
-                    height={44}
+                    alt="학습하는 AI"
+                    width={48}
+                    height={48}
                     className="rounded-xl"
                   />
                 </div>
+                {/* ✏️ 카드 1 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  24시간,
+                  쓸수록 우리 아이를
                   <br />
-                  우리 아이를 잘 아는 AI 친구
+                  더 잘 아는 AI
                 </h3>
-                <div className="space-y-2 mb-5">
-                  <p className="text-base text-ink-2 font-medium">&quot;갑자기 안 먹어요&quot;</p>
-                  <p className="text-base text-ink-2 font-medium">&quot;이 음식 먹어도 되나요?&quot;</p>
-                  <p className="text-base text-ink-2 font-medium">&quot;나만 보면 왜 짖어?&quot;</p>
-                </div>
-                <p className="text-base text-ink-3 leading-relaxed">
-                  우리 강아지를 알고 있는 AI가 일상부터 갑작스런 걱정까지 빠르게 답해요.
+                {/* ✏️ 카드 1 본문 */}
+                <p className="text-base md:text-lg text-ink-2 leading-relaxed mb-5">
+                  검색, 좋아요, 산책, 일상 기록…
+                  <br />
+                  강쥐엄마 안의 활동만으로 AI가 학습해요.
                 </p>
+                <p className="text-base text-ink-3 leading-relaxed">
+                  우리 아이가 뭘 좋아하는지, 어디가 약한지,
+                  <br />
+                  무엇을 조심해야 하는지 — AI 비서가 기억해요.
+                </p>
+                {/* ✏️ 강조 인용 */}
+                <div className="mt-6 pt-6 border-t border-brand-tint200">
+                  <p className="text-base text-brand font-bold leading-relaxed">
+                    매번 AI가 다른 답을 줘서 불편했던 경험,
+                    <br />
+                    이제 그만.
+                  </p>
+                </div>
               </div>
             </FadeInSection>
+
+            {/* 카드 2 — 알아서 챙겨주는 AI (컨셉 2) */}
             <FadeInSection delay={150}>
+              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-12 h-full border border-brand-tint200">
+                <div className="text-5xl mb-6">📋</div>
+                {/* ✏️ 카드 2 제목 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
+                  알아서 챙겨주는
+                  <br />
+                  AI 비서
+                </h3>
+                {/* ✏️ 카드 2 본문 */}
+                <p className="text-base md:text-lg text-ink-2 leading-relaxed mb-5">
+                  접종 일정, 영양제, 사료, 여행지, 용품까지
+                  <br />
+                  우리 아이에게 꼭 필요한 것만
+                  <br />
+                  AI 비서가 먼저 알려드려요.
+                </p>
+                {/* ✏️ 예시 리스트 */}
+                <div className="mt-6 pt-6 border-t border-brand-tint200 space-y-2">
+                  <p className="text-base text-ink-2 font-medium">📅 다음 접종일이 다가왔어요</p>
+                  <p className="text-base text-ink-2 font-medium">💊 우리 아이에 맞는 영양제예요</p>
+                  <p className="text-base text-ink-2 font-medium">🥘 이 사료, 우리 아이에게 맞을까?</p>
+                </div>
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 5. AI 비서가 안내하는 곳 (3개 카드)                    */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="snap-start bg-brand-tint50 py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-5 md:px-8">
+          <FadeInSection>
+            <div className="text-center mb-16 md:mb-20">
+              {/* ✏️ 섹션 라벨 */}
+              <p className="text-base md:text-lg text-brand font-bold mb-3">
+                AI 비서가 안내하는 곳
+              </p>
+              {/* ✏️ 섹션 헤드라인 */}
+              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
+                매일을 더 풍성하게,
+                <br />
+                강쥐엄마가 연결해드려요
+              </h2>
+            </div>
+          </FadeInSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            {/* 카드 ① 우리동네 (컨셉 3) */}
+            <FadeInSection delay={0}>
               <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
                 <div className="text-5xl mb-6">🏪</div>
+                {/* ✏️ 카드 ① 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  대행사 광고 없는
+                  강쥐엄마가 엄선한
                   <br />
-                  우리동네 업체
+                  우리동네
                 </h3>
+                {/* ✏️ 카드 ① 본문 */}
                 <p className="text-base text-ink-3 leading-relaxed">
-                  불필요한 광고-체험후기는 걷어내고, 아이와 매일을 함께 할 수 있는 업체, 상품을 사장님들이 직접 소개드려요
+                  행사 정보, 동반 가능 식당,
                   <br />
+                  우리동네 호텔·유치원·미용실까지.
                   <br />
-                  강아지가 좋아서, 함께하고 싶어서 개업을 하신 아이에 진심인 업체만 모집합니다.
+                  광고 후기가 아닌, 진짜 정보만.
                 </p>
               </div>
             </FadeInSection>
+
+            {/* 카드 ② 강쥐엄마들 (컨셉 4) */}
+            <FadeInSection delay={150}>
+              <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
+                <div className="text-5xl mb-6">💬</div>
+                {/* ✏️ 카드 ② 제목 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
+                  강쥐엄마들이
+                  <br />
+                  모이는 곳
+                </h3>
+                {/* ✏️ 카드 ② 본문 */}
+                <p className="text-base text-ink-3 leading-relaxed mb-3">
+                  AI가 답하기 어려운 질문은 강쥐엄마끼리.
+                  <br />
+                  &quot;우리동네 넥*가드 약국 어디?&quot;
+                  <br />
+                  &quot;다른 친구들 이번 주말에 뭐했지?&quot;
+                </p>
+                <p className="text-base text-brand font-bold leading-relaxed">
+                  익숙한 피드와 프로필로 편하게.
+                </p>
+              </div>
+            </FadeInSection>
+
+            {/* 카드 ③ 유기견 친구들 (컨셉 5) */}
             <FadeInSection delay={300}>
               <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
-                <div className="text-5xl mb-6">📅</div>
+                <div className="text-5xl mb-6">🐕</div>
+                {/* ✏️ 카드 ③ 제목 */}
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  일정관리, 행사 정보
+                  유기견 친구들에게도
                   <br />
-                  매일을 위해 챙겨야 할 것들
+                  가족을
                 </h3>
-                <p className="text-base text-ink-3 leading-relaxed mb-3">
-                  산책, 예방접종, 급여 알림까지 알아서 알려드려요. 펫페어, 지역행사, 강아지 강연.. 아이와 함께할 수 있는 일정 까지.
-                </p>
+                {/* ✏️ 카드 ③ 본문 */}
                 <p className="text-base text-ink-3 leading-relaxed">
-                  앱에서 아이와 함께할 수록{" "}
-                  <span className="text-brand font-bold">Paw(포)인트</span>가 쌓여 동네 업체, 행사, 상품구매에 사용할 수 있어요.
+                  매일 길을 잃어버린 아이들의 정보가
+                  <br />
+                  새롭게 올라와요.
+                  <br />
+                  좋은 곳에 입양될 수 있도록
+                  <br />
+                  잠깐만 관심을 주세요.
                 </p>
               </div>
             </FadeInSection>
@@ -235,15 +397,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. 최종 CTA */}
-      <section id="download" className="bg-white py-28 md:py-36">
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 6. Paw 포인트 (작은 띠)                                */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="snap-start bg-white py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-5 md:px-8">
+          <FadeInSection>
+            <div className="bg-gradient-to-r from-brand-tint50 to-brand-tint100 rounded-3xl p-8 md:p-10 border border-brand-tint200 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+              <div className="text-5xl md:text-6xl">🐾</div>
+              <div className="flex-1 text-center md:text-left">
+                {/* ✏️ Paw 띠 제목 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-2 leading-snug">
+                  활동할수록 <span className="text-brand">Paw(포)인트</span> 적립
+                </h3>
+                {/* ✏️ Paw 띠 본문 */}
+                <p className="text-base text-ink-3 leading-relaxed">
+                  동네 업체, 행사, 상품에서 할인으로 사용 가능
+                </p>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 7. 최종 CTA                                            */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section id="download" className="snap-start bg-surface-subtle py-24 md:py-32">
         <div className="max-w-4xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
+            {/* ✏️ Final CTA 헤드라인 */}
             <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tightest leading-tight">
-              우리 아이와,
+              우리 아이의
               <br />
-              <span className="text-brand">20살까지 건강하게</span>
+              <span className="text-brand">AI 비서, 강쥐엄마</span>
             </h2>
+            {/* ✏️ Final CTA 부제 */}
             <p className="mt-8 text-lg md:text-2xl text-ink-2 font-medium">
               매일 더 가까이, 더 오래
               <br />
@@ -257,15 +446,17 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>📱</span>
-                <span>강쥐엄마앱 둘러보기</span>
+                <span>강쥐엄마 둘러보기</span>
               </a>
             </div>
           </FadeInSection>
         </div>
       </section>
 
-      {/* 6. 분기 영역 — Story 카드 제거, 사장님 카드만 (가운데 배치) */}
-      <section className="bg-surface-subtle py-20 md:py-24">
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 8. 사장님 분기 (기존 유지)                              */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="snap-start bg-white py-20 md:py-24">
         <div className="max-w-3xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <Link
