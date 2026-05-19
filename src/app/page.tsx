@@ -15,7 +15,7 @@ import {
 import PhoneMockup from "@/components/PhoneMockup";
 import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
-import ScrollHintDots from "@/components/ScrollHintDots";
+import ScrollHint from "@/components/ScrollHint";
 import { IconBox } from "@/components/IconBox";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
@@ -40,13 +40,12 @@ export default function Home() {
   return (
     <>
       <ScrollProgressBar />
-      <ScrollHintDots />
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 1. HERO — AI 비서 정체성                              */}
-      {/* 하단 점 3개 인디케이터 (ScrollHintDots) + 약한 그라디언트 */}
+      {/* CTA 버튼 아래에 ScrollHint ("이어서 보기" + 화살표)    */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-28 md:pb-36 overflow-hidden">
+      <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/50 via-brand-tint50 to-white pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
@@ -83,6 +82,10 @@ export default function Home() {
               >
                 <span>강쥐엄마 둘러보기</span>
               </a>
+            </div>
+            {/* 다음 섹션으로 자연스럽게 유도하는 힌트 */}
+            <div className="mt-14 md:mt-16">
+              <ScrollHint />
             </div>
           </FadeInSection>
         </div>
