@@ -80,7 +80,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강쥐엄마 둘러보기</span>
+                <span>강쥐엄마앱 다운로드</span>
               </a>
             </div>
             {/* 다음 섹션으로 자연스럽게 유도하는 힌트 */}
@@ -100,16 +100,13 @@ export default function Home() {
             <div className="text-center mb-12 md:mb-16">
               {/* ✏️ 섹션 라벨 */}
               <p className="text-base md:text-lg text-brand font-bold mb-3">
-                어렵지 않아요
+                AI 비서? 어렵지 않아요
               </p>
               {/* ✏️ 섹션 헤드라인 */}
               <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
                 딱 두 단계면 끝
               </h2>
-              {/* ✏️ 섹션 부제 */}
-              <p className="mt-6 text-base md:text-lg text-ink-3 font-medium leading-relaxed">
-                나머지는 강쥐엄마가 알아서 챙겨드려요
-              </p>
+              
             </div>
           </FadeInSection>
 
@@ -170,13 +167,13 @@ export default function Home() {
                 </div>
                 {/* ✏️ End 제목 */}
                 <h3 className="text-xl md:text-2xl font-black mb-3 leading-snug">
-                  끝.
+                  AI 학습시작
                 </h3>
                 {/* ✏️ End 본문 */}
                 <p className="text-base text-white/90 leading-relaxed">
-                  나머지는 강쥐엄마가 알아서
+                  앱내에서의 보호자님의 활동과 검색기록을 학습해
                   <br />
-                  건강한 반려생활로 이끌어드려요.
+                  꼭 필요한 정보와 기능만 제공드려요.
                 </p>
               </div>
             </FadeInSection>
@@ -197,9 +194,8 @@ export default function Home() {
               </p>
               {/* ✏️ 섹션 헤드라인 */}
               <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                궁금한 모든 것,
-                <br />
-                물어보세요
+                궁금한 모든것,             
+                <br />편하게 물어보세요
               </h2>
             </div>
           </FadeInSection>
@@ -473,7 +469,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강쥐엄마 둘러보기</span>
+                <span>강쥐엄마앱 다운로드</span>
               </a>
             </div>
           </FadeInSection>
