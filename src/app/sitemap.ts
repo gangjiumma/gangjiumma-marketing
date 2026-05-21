@@ -13,24 +13,64 @@ import type { MetadataRoute } from "next";
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    // 메인
     {
       url: "https://www.gangjiumma.kr",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
     },
+    // 사장님 페이지 (영업 핵심)
     {
       url: "https://www.gangjiumma.kr/business",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    // 추후 페이지 추가 시 여기에:
-    // {
-    //   url: "https://www.gangjiumma.kr/story",
-    //   lastModified: new Date(),
-    //   changeFrequency: "monthly",
-    //   priority: 0.7,
-    // },
+    // 펫페어 랜딩
+    {
+      url: "https://www.gangjiumma.kr/megaz",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: "https://www.gangjiumma.kr/kpet-suwon",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    // 사장님 사용설명서 (준비중)
+    {
+      url: "https://www.gangjiumma.kr/biz-manual",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    // 법적 페이지
+    {
+      url: "https://www.gangjiumma.kr/privacy-policy",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: "https://www.gangjiumma.kr/terms-of-service",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: "https://www.gangjiumma.kr/marketing-consent",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: "https://www.gangjiumma.kr/account-delete",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }
