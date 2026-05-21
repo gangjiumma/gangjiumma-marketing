@@ -27,8 +27,8 @@ import { IconBox } from "@/components/IconBox";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
-// ✏️ 사장님용 사용설명서 URL (마음이가 만들 예정 — 일단 공란/홈)
-const MANUAL_URL = "#";
+// ✏️ 사장님용 사용설명서 — 5월 24일 정식 오픈 예정 (현재는 준비중 안내 페이지)
+const MANUAL_URL = "/biz-manual";
 
 // ─────────────────────────────────────────────────────────────
 // 사장님 페이지 v2 — "AI로 영업·광고·운영" 컨셉

@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://gangjiumma.kr"),
   title: {
-    default: "강쥐엄마 — 반려견 AI",
+    default: "강쥐엄마 — 반려견 A 비서",
     template: "%s | 강쥐엄마",
   },
   description:
-    "우리 강아지와의 시간은 생각보다 짧으니까. 강아지의 매일을 더 잘 만들고 싶은 사람들이 모이는 곳, 강쥐엄마.",
+    "우리 강쥐에 대해 스스로 학습하고, 가장 잘아는 AI",
   keywords: [
     "강쥐엄마",
     "반려견 앱",
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     "펫 마케팅",
   ],
   openGraph: {
-    title: "강쥐엄마 — 반려견 AI",
+    title: "강쥐엄마 — 반려견 AI 비서",
     description:
-      "우리 강아지와의 시간은 생각보다 짧으니까. 매일 더 가까이, 더 오래.",
+      "우리 아이를 가장 잘 아는 반려견 전용 AI",
     url: "https://gangjiumma.kr",
     siteName: "강쥐엄마",
     locale: "ko_KR",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "강쥐엄마 — 반려견 AI",
     description:
-      "우리 강아지와의 시간은 생각보다 짧으니까. 매일 더 가까이, 더 오래.",
+      "우리 아이를 가장 잘 아는 반려견 전용 AI",
     images: ["/og-image.png"],
   },
   robots: {
