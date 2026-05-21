@@ -80,7 +80,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강쥐엄마앱 다운로드</span>
+                <span>강쥐엄마 둘러보기</span>
               </a>
             </div>
             {/* 다음 섹션으로 자연스럽게 유도하는 힌트 */}
@@ -100,13 +100,16 @@ export default function Home() {
             <div className="text-center mb-12 md:mb-16">
               {/* ✏️ 섹션 라벨 */}
               <p className="text-base md:text-lg text-brand font-bold mb-3">
-                AI 비서? 어렵지 않아요
+                어렵지 않아요
               </p>
               {/* ✏️ 섹션 헤드라인 */}
               <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
                 딱 두 단계면 끝
               </h2>
-              
+              {/* ✏️ 섹션 부제 */}
+              <p className="mt-6 text-base md:text-lg text-ink-3 font-medium leading-relaxed">
+                나머지는 강쥐엄마가 알아서 챙겨드려요
+              </p>
             </div>
           </FadeInSection>
 
@@ -167,13 +170,13 @@ export default function Home() {
                 </div>
                 {/* ✏️ End 제목 */}
                 <h3 className="text-xl md:text-2xl font-black mb-3 leading-snug">
-                  AI 학습시작
+                  끝.
                 </h3>
                 {/* ✏️ End 본문 */}
                 <p className="text-base text-white/90 leading-relaxed">
-                  앱내에서의 보호자님의 활동과 검색기록을 학습해
+                  나머지는 강쥐엄마가 알아서
                   <br />
-                  꼭 필요한 정보와 기능만 제공드려요.
+                  건강한 반려생활로 이끌어드려요.
                 </p>
               </div>
             </FadeInSection>
@@ -194,8 +197,9 @@ export default function Home() {
               </p>
               {/* ✏️ 섹션 헤드라인 */}
               <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                궁금한 모든것,             
-                <br />편하게 물어보세요
+                궁금한 모든 것,
+                <br />
+                물어보세요
               </h2>
             </div>
           </FadeInSection>
@@ -304,18 +308,18 @@ export default function Home() {
                 </p>
                 {/* ✏️ 예시 리스트 */}
                 <div className="mt-6 pt-6 border-t border-brand-tint200 space-y-3">
-                  <p className="flex items-center gap-3 text-base text-ink-2 font-medium">
+                  <div className="flex items-center gap-3 text-base text-ink-2 font-medium">
                     <IconBox category="schedule" icon={Calendar} size="sm" />
                     <span>다음 접종일이 다가왔어요</span>
-                  </p>
-                  <p className="flex items-center gap-3 text-base text-ink-2 font-medium">
+                  </div>
+                  <div className="flex items-center gap-3 text-base text-ink-2 font-medium">
                     <IconBox category="like" icon={Pill} size="sm" />
                     <span>우리 아이에 맞는 영양제예요</span>
-                  </p>
-                  <p className="flex items-center gap-3 text-base text-ink-2 font-medium">
+                  </div>
+                  <div className="flex items-center gap-3 text-base text-ink-2 font-medium">
                     <IconBox category="market" icon={UtensilsCrossed} size="sm" />
                     <span>이 사료, 우리 아이에게 맞을까?</span>
-                  </p>
+                  </div>
                 </div>
               </div>
             </FadeInSection>
@@ -469,7 +473,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강쥐엄마앱 다운로드</span>
+                <span>강쥐엄마 둘러보기</span>
               </a>
             </div>
           </FadeInSection>
