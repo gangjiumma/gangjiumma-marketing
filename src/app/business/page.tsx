@@ -60,8 +60,9 @@ export default function BusinessPage() {
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 우측 상단 — 사용 설명서 버튼 (사장님 페이지 한정)       */}
+      {/* Header의 '사장님 입점' 버튼 아래에 별도 라인으로 배치   */}
       {/* ═════════════════════════════════════════════════════ */}
-      <div className="fixed top-4 md:top-6 right-4 md:right-6 z-50">
+      <div className="fixed top-20 md:top-24 right-4 md:right-6 z-50">
         <Link
           href={MANUAL_URL}
           className="inline-flex items-center gap-1.5 px-3.5 md:px-4 py-2 md:py-2.5 bg-white text-biz font-bold text-xs md:text-sm rounded-full shadow-card border border-biz-tint200 hover:bg-biz-tint50 transition-colors"
