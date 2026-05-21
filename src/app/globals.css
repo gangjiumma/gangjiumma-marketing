@@ -23,6 +23,19 @@
   --color-lime-tint200: #c0dd97;
   --color-lime-tint300: #97c459;
 
+  /* 비즈니스 블루 — 사장님 페이지 (/business) — 앱 businessMode와 동일 */
+  --color-biz: #3b82f6;
+  --color-biz-dark: #2563eb;
+  --color-biz-light: #60a5fa;
+  --color-biz-tint50: #eff6ff;
+  --color-biz-tint100: #dbeafe;
+  --color-biz-tint200: #bfdbfe;
+  --color-biz-tint300: #93c5fd;
+
+  /* 사장님 모드 살짝 푸른빛 배경 */
+  --color-biz-bg: #f1f5f9;
+  --color-biz-bg-subtle: #e2e8f0;
+
   /* 텍스트 컬러 */
   --color-ink-1: #111827;
   --color-ink-2: #374151;
@@ -80,6 +93,8 @@
   --shadow-brand-soft: 0 4px 12px rgba(255, 107, 53, 0.12);
   --shadow-lime: 0 8px 24px rgba(151, 196, 89, 0.24);
   --shadow-lime-soft: 0 4px 12px rgba(151, 196, 89, 0.12);
+  --shadow-biz: 0 8px 24px rgba(59, 130, 246, 0.24);
+  --shadow-biz-soft: 0 4px 12px rgba(59, 130, 246, 0.12);
 
   /* Letter spacing */
   --tracking-tightest: -0.04em;
@@ -117,23 +132,4 @@ body {
     background: #ffffff;
     color: #111827;
   }
-}
-
-/* ─────────────────────────────────────────── */
-/* 스냅 스크롤 (proximity) — 메인 페이지 전용   */
-/*                                              */
-/* .snap-page 클래스가 붙은 페이지에만 적용     */
-/* 모바일에서만 활성화 (md 이상은 자유 스크롤)  */
-/* proximity = 가까울 때만 자석처럼 끌어당김    */
-/* ─────────────────────────────────────────── */
-@media (max-width: 767px) {
-  html.snap-page {
-    scroll-snap-type: y proximity;
-  }
-}
-
-/* 각 섹션 — snap-start 클래스가 붙은 곳에 적용 */
-.snap-start {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
 }
