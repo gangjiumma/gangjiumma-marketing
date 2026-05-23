@@ -102,18 +102,42 @@ export default function LegalLayout({
                 {children}
               </article>
 
-              {/* 하단 회사 정보 */}
+              {/* 하단 회사 정보 — 토스페이먼츠 심사 필수 항목 모두 포함 */}
               <div className="mt-16 pt-8 border-t border-line">
                 <div className="bg-surface-subtle rounded-2xl p-6 md:p-8">
                   <h3 className="text-base md:text-lg font-black text-ink-1 mb-4">
                     회사 정보
                   </h3>
                   <div className="space-y-1.5 text-sm md:text-base text-ink-2">
-                    <p><span className="text-ink-3">상호:</span> <strong>(주)비타니마</strong> (Vitanima Inc.)</p>
-                    <p><span className="text-ink-3">대표자:</span> 김훈기</p>
-                    <p><span className="text-ink-3">개인정보 보호책임자:</span> 김훈기</p>
-                    <p><span className="text-ink-3">사업자등록번호:</span> 284-88-02356</p>
-                    <p><span className="text-ink-3">서비스:</span> 강쥐엄마 (앱)</p>
+                    <p>
+                      <span className="text-ink-3">상호:</span>{" "}
+                      <strong>(주)비타니마</strong> (Vitanima Inc.)
+                    </p>
+                    <p>
+                      <span className="text-ink-3">대표자:</span> 김훈기
+                    </p>
+                    <p>
+                      <span className="text-ink-3">개인정보 보호책임자:</span>{" "}
+                      김훈기
+                    </p>
+                    <p>
+                      <span className="text-ink-3">사업자등록번호:</span>{" "}
+                      284-88-02356
+                    </p>
+                    <p>
+                      <span className="text-ink-3">통신판매업신고:</span>{" "}
+                      제2026-인천연수구-XXXX호
+                    </p>
+                    <p>
+                      <span className="text-ink-3">주소:</span>{" "}
+                      인천광역시 연수구 테크노파크로 111번길 5, 801-16호
+                    </p>
+                    <p>
+                      <span className="text-ink-3">유선번호:</span> 02-1544-7145
+                    </p>
+                    <p>
+                      <span className="text-ink-3">서비스:</span> 강쥐엄마 (앱)
+                    </p>
                     <p>
                       <span className="text-ink-3">문의:</span>{" "}
                       <a

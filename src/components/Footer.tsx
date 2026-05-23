@@ -10,22 +10,27 @@ export default function Footer() {
             <div className="text-2xl font-black text-brand">강쥐엄마</div>
             <p className="text-ink-4 text-base">매일 더 가까이, 더 오래</p>
           </div>
-          <div className="flex flex-col gap-2 text-base text-ink-4">
-            <div className="font-bold text-white">(주)비타니마</div>
+
+          {/* 회사 정보 — 토스페이먼츠 심사 필수 6항목 모두 노출 */}
+          <div className="flex flex-col gap-1.5 text-sm text-ink-4 md:text-right">
+            <div className="font-bold text-white text-base mb-1">(주)비타니마</div>
+            <div>대표 김훈기 | 개인정보관리책임자 김훈기</div>
+            <div>사업자등록번호 284-88-02356</div>
+            <div>통신판매업신고 제2026-인천연수구-XXXX호</div>
+            <div>인천광역시 연수구 테크노파크로 111번길 5, 801-16호</div>
+            <div>유선번호 02-1544-7145</div>
             <a
               href="mailto:cs@gangjiumma.kr"
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors mt-1"
             >
-              📧 cs@gangjiumma.kr
+              cs@gangjiumma.kr
             </a>
-            <div className="text-sm">사업자등록번호: 284-88-02356</div>
-            <div className="text-sm">대표 : 김훈기 l 개인정보관리책임자 : 김훈기</div>
           </div>
         </div>
 
-        {/* 중간 — 약관 링크 */}
+        {/* 중간 — 약관 / 정책 링크 */}
         <div className="mt-10 pt-8 border-t border-ink-2/40">
-          <nav className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink-4">
+          <nav className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-ink-4">
             <Link
               href="/privacy-policy"
               className="hover:text-white transition-colors font-bold"
@@ -38,6 +43,20 @@ export default function Footer() {
               className="hover:text-white transition-colors"
             >
               이용약관
+            </Link>
+            <span className="text-ink-2/40">|</span>
+            <Link
+              href="/refund-policy"
+              className="hover:text-white transition-colors"
+            >
+              환불정책
+            </Link>
+            <span className="text-ink-2/40">|</span>
+            <Link
+              href="/plans"
+              className="hover:text-white transition-colors"
+            >
+              정기결제 안내
             </Link>
             <span className="text-ink-2/40">|</span>
             <Link
