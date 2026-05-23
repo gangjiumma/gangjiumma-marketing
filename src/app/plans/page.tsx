@@ -289,9 +289,7 @@ export default function PlansPage() {
               <div>
                 <span className="text-ink-3">사업자등록번호:</span> 284-88-02356
               </div>
-              <div>
-                <span className="text-ink-3">통신판매업신고:</span> 제2026-인천연수구-XXXX호
-              </div>
+             
               <div className="md:col-span-2">
                 <span className="text-ink-3">주소:</span> 인천광역시 연수구 테크노파크로 111번길 5, 801-16호
               </div>
