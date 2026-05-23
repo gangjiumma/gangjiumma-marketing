@@ -16,7 +16,7 @@ export default function Footer() {
             <div className="font-bold text-white text-base mb-1">(주)비타니마</div>
             <div>대표 김훈기 | 개인정보관리책임자 김훈기</div>
             <div>사업자등록번호 284-88-02356</div>
-            <div>통신판매업신고 제2026-인천연수구-XXXX호</div>
+           
             <div>인천광역시 연수구 테크노파크로 111번길 5, 801-16호</div>
             <div>유선번호 02-1544-7145</div>
             <a
