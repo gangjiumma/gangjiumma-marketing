@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ManualDetailLayout from '@/components/ManualDetailLayout';
 import InteractiveDemo, { DemoStep } from '@/components/InteractiveDemo';
-import Highlight from '@/components/Highlight';
 
 export const metadata: Metadata = {
   title: '가입부터 입점 승인까지 — 강쥐엄마 사장님 메뉴얼',
@@ -23,18 +22,6 @@ const STEPS: DemoStep[] = [
         눌러 휴대폰 번호와 비밀번호로 가입하세요. 별도 인증 메일이나 SNS 연동이 필요 없어요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={45}
-        width={92}
-        height={4}
-        shape="rect"
-        label="휴대폰 번호 = 아이디"
-        labelPosition="top"
-        variant="biz"
-      />
-    ),
     tip: '휴대폰 번호가 아이디 역할을 해요. 사장님 본인 번호로 가입하시면 돼요.',
   },
   {
@@ -46,19 +33,6 @@ const STEPS: DemoStep[] = [
         필수 약관에 동의하고 <strong>"가입하고 시작하기"</strong>를 탭하세요.
         마케팅 정보 수신은 선택이지만, 동의해주시면 강쥐엄마 사장님 혜택을 가장 먼저 받으실 수 있어요.
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={87}
-        width={92}
-        height={6}
-        shape="pill"
-        label="여기 탭하면 가입 완료"
-        labelPosition="top"
-        variant="biz"
-        pulse
-      />
     ),
   },
   {
@@ -72,18 +46,6 @@ const STEPS: DemoStep[] = [
         빠르게 넘어가도 돼요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={89}
-        y={4}
-        width={20}
-        height={4}
-        shape="pill"
-        label="건너뛰기 가능"
-        labelPosition="bottom"
-        variant="biz"
-      />
-    ),
     tip: '강쥐 키우는 사장님이시면 본인 강쥐 정보를 채워두시는 게 좋아요. 강쥐엄마 사용자 입장에서 사장님이 더 친근하게 느껴져요.',
   },
   {
@@ -95,19 +57,6 @@ const STEPS: DemoStep[] = [
         가입이 완료되면 일반 회원 화면이 보여요. 하단의 <strong>MY 탭</strong>으로 가서
         <strong> "사장님 입점 신청"</strong> 카드를 탭하세요.
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={67}
-        width={92}
-        height={10}
-        shape="rect"
-        label="여기를 탭"
-        labelPosition="top"
-        variant="biz"
-        pulse
-      />
     ),
     tip: '"지금 가입하면 베타 기간 무료" 안내가 보이면 잘 찾으신 거예요.',
   },
@@ -122,20 +71,6 @@ const STEPS: DemoStep[] = [
         강쥐동반(애견카페·놀이터·동반식당·동반숙소) 중 선택하세요.
       </>
     ),
-    overlay: (
-      <>
-        <Highlight
-          x={50}
-          y={20}
-          width={92}
-          height={14}
-          shape="rect"
-          label="매장 있음/없음 선택"
-          labelPosition="right"
-          variant="biz"
-        />
-      </>
-    ),
     tip: '"지역 매장"은 가입 후 변경할 수 없어요. 매장 위치가 있다면 꼭 "지역 매장"을 선택하세요.',
   },
   {
@@ -147,18 +82,6 @@ const STEPS: DemoStep[] = [
         사업자등록증을 또렷하게, <strong>전체가 보이도록</strong> 찍어서 업로드하세요.
         AI가 자동으로 검토해드려요. 사장님 정보가 일치하면 즉시 승인돼요.
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={43}
-        width={92}
-        height={50}
-        shape="rect"
-        label="또렷하게, 전체"
-        labelPosition="bottom"
-        variant="biz"
-      />
     ),
     tip: '사진이 흐릿하거나 잘리면 다시 요청드릴 수 있어요. 햇빛 좋은 곳에서 한 번에 찍어주세요.',
   },
@@ -172,19 +95,6 @@ const STEPS: DemoStep[] = [
         통과하면 즉시 <strong>"베타버전 사장님"</strong>으로 가입돼요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={89}
-        width={92}
-        height={6}
-        shape="pill"
-        label="다음 → 약관 동의로"
-        labelPosition="top"
-        variant="biz"
-        pulse
-      />
-    ),
     tip: 'AI 자동 검수가 통과 안 되면 운영팀(마음이)이 직접 확인해드려요. 보통 1~24시간 안에 처리됩니다.',
   },
   {
@@ -197,19 +107,6 @@ const STEPS: DemoStep[] = [
         <strong className="text-biz"> "무료로 시작하기"</strong>를 탭하세요.
         축하해요, 강쥐엄마 사장님이 되셨어요! 🎉
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={97}
-        width={92}
-        height={6}
-        shape="pill"
-        label="여기 탭하면 시작!"
-        labelPosition="top"
-        variant="primary"
-        pulse
-      />
     ),
     tip: '7월 28일까지 모든 기능 무료. 7월 15일~28일 사이 결제 카드를 등록하시면 정식 출시 후에도 그대로 사용 가능해요.',
   },

@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ManualDetailLayout from '@/components/ManualDetailLayout';
 import InteractiveDemo, { DemoStep } from '@/components/InteractiveDemo';
-import Highlight, { Arrow } from '@/components/Highlight';
 
 export const metadata: Metadata = {
   title: 'AI로 광고 만들기 — 강쥐엄마 사장님 메뉴얼',
@@ -12,9 +11,6 @@ export const metadata: Metadata = {
     '몇 가지 선택만 하면 AI가 광고 문구를 작성해드려요. 사진까지 한 번에, 5분이면 첫 광고 완성.',
 };
 
-// ────────────────────────────────────────────
-// 데모 단계 정의
-// ────────────────────────────────────────────
 const STEPS: DemoStep[] = [
   {
     title: '사장님 홈에서 "AI로 광고 만들기" 진입',
@@ -26,18 +22,6 @@ const STEPS: DemoStep[] = [
         광고 섹션에 <strong>"AI로 광고 만들기"</strong> 카드가 보여요.
         탭하면 작성 화면이 열려요.
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={51}
-        width={92}
-        height={6}
-        shape="rect"
-        label="여기를 탭"
-        labelPosition="top"
-        variant="biz"
-      />
     ),
     tip: (
       <>
@@ -69,20 +53,6 @@ const STEPS: DemoStep[] = [
         </ul>
       </>
     ),
-    overlay: (
-      <>
-        <Highlight
-          x={50}
-          y={12}
-          width={50}
-          height={4}
-          shape="pill"
-          label="모든 항목 완료!"
-          labelPosition="bottom"
-          variant="success"
-        />
-      </>
-    ),
     tip: (
       <>
         <strong>"친근한"</strong> 분위기가 가장 많이 선택돼요. 강쥐엄마 사용자 톤과 잘 어울려요.
@@ -102,18 +72,6 @@ const STEPS: DemoStep[] = [
         </span>
       </>
     ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={36}
-        width={92}
-        height={28}
-        shape="rect"
-        label="자유롭게 입력"
-        labelPosition="top"
-        variant="biz"
-      />
-    ),
     tip: (
       <>
         <strong>이벤트·할인 정보</strong>, <strong>특별 서비스</strong>(픽업, 야간 진료 등),
@@ -129,22 +87,6 @@ const STEPS: DemoStep[] = [
       <>
         모든 항목이 채워졌으면 <strong className="text-biz">"AI 초안 생성하기"</strong>를
         탭하세요. AI가 사장님 업체에 맞는 광고를 작성해드려요.
-      </>
-    ),
-    overlay: (
-      <>
-        <Highlight
-          x={50}
-          y={91}
-          width={92}
-          height={6}
-          shape="pill"
-          label="탭하면 AI가 작성"
-          labelPosition="top"
-          variant="primary"
-          pulse
-        />
-        <Arrow x={50} y={82} direction="down" variant="primary" />
       </>
     ),
     tip: (
@@ -164,18 +106,6 @@ const STEPS: DemoStep[] = [
         다음 단계에서 자유롭게 <strong>수정</strong>할 수 있어요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={94}
-        width={92}
-        height={6}
-        shape="pill"
-        label="다음 단계로"
-        labelPosition="top"
-        variant="biz"
-      />
-    ),
     tip: (
       <>
         AI는 <strong>사장님 본인의 말투</strong>로 글을 써드려요. ("저희 매장은...",
@@ -191,20 +121,6 @@ const STEPS: DemoStep[] = [
       <>
         업종 탭에서 카테고리를 다시 한 번 확인하고, 광고에 들어갈 사진을 첨부해주세요.
         업체 정보(전화번호, 주소, 홈페이지)는 <strong>자동으로 들어가요</strong>.
-      </>
-    ),
-    overlay: (
-      <>
-        <Highlight
-          x={50}
-          y={34}
-          width={92}
-          height={30}
-          shape="rect"
-          label="사진 첨부"
-          labelPosition="bottom"
-          variant="biz"
-        />
       </>
     ),
     tip: (
@@ -224,31 +140,6 @@ const STEPS: DemoStep[] = [
         <strong className="text-biz"> "즉시 게시"</strong>(바로 강쥐Talk에 노출)를 선택해요.
       </>
     ),
-    overlay: (
-      <>
-        <Highlight
-          x={75}
-          y={92}
-          width={45}
-          height={7}
-          shape="pill"
-          label="즉시 게시"
-          labelPosition="top"
-          variant="primary"
-          pulse
-        />
-        <Highlight
-          x={22}
-          y={92}
-          width={28}
-          height={7}
-          shape="pill"
-          label="임시 저장"
-          labelPosition="top"
-          variant="biz"
-        />
-      </>
-    ),
     tip: (
       <>
         <strong>예약 게시</strong>는 곧 지원될 예정이에요. 지금은 즉시 게시 또는 저장 후 직접 게시만 가능해요.
@@ -258,9 +149,6 @@ const STEPS: DemoStep[] = [
   },
 ];
 
-// ────────────────────────────────────────────
-// 페이지
-// ────────────────────────────────────────────
 export default function AdsManualPage() {
   return (
     <>
@@ -322,7 +210,7 @@ export default function AdsManualPage() {
           </div>
           <p className="text-slate-600 mb-6 text-sm md:text-base">
             각 단계를 탭해서 실제 앱 화면과 함께 안내받으세요.
-            화면에 표시된 펄스/말풍선이 다음에 탭할 위치를 알려줘요.
+            화면에 표시된 빨간 박스가 다음에 탭할 위치를 알려줘요.
           </p>
 
           <InteractiveDemo steps={STEPS} />

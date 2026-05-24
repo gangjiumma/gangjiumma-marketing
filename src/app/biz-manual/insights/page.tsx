@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ManualDetailLayout from '@/components/ManualDetailLayout';
 import InteractiveDemo, { DemoStep } from '@/components/InteractiveDemo';
-import Highlight from '@/components/Highlight';
 
 export const metadata: Metadata = {
   title: '성과 보기 (인사이트) — 강쥐엄마 사장님 메뉴얼',
@@ -23,19 +22,6 @@ const STEPS: DemoStep[] = [
         일/주/월별 추이와 강GPT 분석을 볼 수 있어요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={23}
-        width={92}
-        height={9}
-        shape="rect"
-        label="자세히 보기"
-        labelPosition="bottom"
-        variant="biz"
-        pulse
-      />
-    ),
     tip: '홈 상단에 입점 클릭, AI 추천, 문의 수 등 핵심 지표가 항상 보여요. 빠르게 확인하고 싶을 때 유용해요.',
   },
   {
@@ -46,30 +32,6 @@ const STEPS: DemoStep[] = [
       <>
         상단 탭에서 <strong>일별 / 주별 / 월별</strong>로 보기 단위를 바꿀 수 있어요.
         그 아래 칩으로 보고 싶은 지표(전체/홈 노출/입점업체 클릭/AI 추천)를 선택하세요.
-      </>
-    ),
-    overlay: (
-      <>
-        <Highlight
-          x={50}
-          y={11}
-          width={92}
-          height={6}
-          shape="pill"
-          label="기간 단위"
-          labelPosition="bottom"
-          variant="biz"
-        />
-        <Highlight
-          x={50}
-          y={21}
-          width={92}
-          height={6}
-          shape="pill"
-          label="지표 선택"
-          labelPosition="top"
-          variant="biz"
-        />
       </>
     ),
     tip: '데이터가 쌓이면 그래프로 추이가 보여요. 가입 직후엔 데이터가 없어서 "활동이 없었어요"가 표시될 수 있어요.',
@@ -83,18 +45,6 @@ const STEPS: DemoStep[] = [
         화면 하단의 <strong>"표시할 통계"</strong> 박스에서 각 지표를 켜고 끌 수 있어요.
         보고 싶은 것만 남기고 정리할 수 있어요.
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={59}
-        width={92}
-        height={35}
-        shape="rect"
-        label="탭해서 끄고 켜기"
-        labelPosition="top"
-        variant="biz"
-      />
     ),
     tip: '문의 수, 주문 수, 상품 후기는 매장 운영 형태에 따라 안 쓰는 사장님도 있어요. 본인에게 중요한 것만 켜두세요.',
   },

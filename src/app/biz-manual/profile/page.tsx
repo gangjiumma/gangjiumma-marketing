@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ManualDetailLayout from '@/components/ManualDetailLayout';
 import InteractiveDemo, { DemoStep } from '@/components/InteractiveDemo';
-import Highlight from '@/components/Highlight';
 
 export const metadata: Metadata = {
   title: '사장님 홈 둘러보기 — 강쥐엄마 사장님 메뉴얼',
@@ -23,19 +22,6 @@ const STEPS: DemoStep[] = [
         <strong> "사장님"</strong>을 누르면 사장님 페이지(강쥐사장님)로 이동해요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={18}
-        width={92}
-        height={6}
-        shape="pill"
-        label="여기서 모드 전환"
-        labelPosition="bottom"
-        variant="biz"
-        pulse
-      />
-    ),
     tip: '한 계정으로 일반 사용자 + 사장님 둘 다 사용 가능해요. 산책 기록, 강쥐Talk 등 일반 기능은 그대로 쓸 수 있어요.',
   },
   {
@@ -52,20 +38,6 @@ const STEPS: DemoStep[] = [
         </ul>
       </>
     ),
-    overlay: (
-      <>
-        <Highlight
-          x={50}
-          y={36}
-          width={92}
-          height={12}
-          shape="rect"
-          label="업체 카드 (편집)"
-          labelPosition="right"
-          variant="biz"
-        />
-      </>
-    ),
     tip: '우측 상단의 "사용메뉴얼" 박스를 탭하면 언제든 이 페이지로 다시 올 수 있어요.',
   },
   {
@@ -78,18 +50,6 @@ const STEPS: DemoStep[] = [
         <strong>대표 사진</strong>은 매장 입구, 인테리어, 또는 시그니처 메뉴/서비스 사진이 좋아요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={20}
-        width={92}
-        height={28}
-        shape="rect"
-        label="대표 사진"
-        labelPosition="right"
-        variant="biz"
-      />
-    ),
     tip: '강쥐엄마 사용자들이 가장 먼저 보는 사진이에요. 깔끔하고 강쥐가 보이는 사진을 추천해요.',
   },
   {
@@ -101,18 +61,6 @@ const STEPS: DemoStep[] = [
         스크롤을 내리면 <strong>전화번호, 주소, 영업시간, 인스타, 홈페이지, 카카오톡 채널</strong>을 입력할 수 있어요.
         이 정보들은 광고와 업체 프로필에 <strong>자동으로 표시</strong>돼요.
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={50}
-        width={92}
-        height={42}
-        shape="rect"
-        label="모두 자동 표시"
-        labelPosition="right"
-        variant="biz"
-      />
     ),
     tip: '인스타나 카카오톡 채널을 등록해두면 사용자가 더 다양한 채널로 사장님께 연락할 수 있어요. 비어있어도 됩니다.',
   },

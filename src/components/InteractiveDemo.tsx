@@ -9,12 +9,10 @@ export interface DemoStep {
   title: string;
   /** 단계 설명 (짧게 1-2줄) */
   description: ReactNode;
-  /** 스크린샷 경로 (public/manual/...) */
+  /** 스크린샷 경로 (강조 표시가 이미 굽혀있는 이미지) */
   image: string;
   /** 스크린샷 alt */
   imageAlt: string;
-  /** 화면 위에 얹을 강조 요소 (Highlight, Arrow 등) */
-  overlay?: ReactNode;
   /** 추가 팁 (선택) */
   tip?: ReactNode;
 }
@@ -23,20 +21,17 @@ interface InteractiveDemoProps {
   steps: DemoStep[];
   /** 기본 열린 단계 (0부터, 기본 0) */
   defaultOpen?: number;
-  /** 다음 버튼 클릭 시 다음 단계로 자동 이동 */
-  autoAdvance?: boolean;
 }
 
 /**
  * 수동 아코디언 형태의 인터랙티브 데모
  * - 사장님이 클릭해서 단계별로 진행
- * - 각 단계마다 폰 mockup + 스크린샷 + 강조 + 설명
+ * - 각 단계마다 폰 mockup + 스크린샷 (강조 표시 이미 굽혀있음) + 설명
  * - "다음 →" / "← 이전" 버튼으로 단계 이동
  */
 export default function InteractiveDemo({
   steps,
   defaultOpen = 0,
-  autoAdvance = true,
 }: InteractiveDemoProps) {
   const [openIndex, setOpenIndex] = useState<number>(defaultOpen);
 
@@ -146,7 +141,7 @@ export default function InteractiveDemo({
                           <ArrowLeft className="w-4 h-4" />
                           이전
                         </button>
-                        {autoAdvance && openIndex < steps.length - 1 && (
+                        {openIndex < steps.length - 1 && (
                           <button
                             type="button"
                             onClick={goNext}
@@ -164,20 +159,16 @@ export default function InteractiveDemo({
                       </div>
                     </div>
 
-                    {/* 오른쪽: 폰 mockup */}
+                    {/* 오른쪽: 폰 mockup (강조 표시는 이미지에 굽혀있음) */}
                     <div className="order-1 md:order-2 w-full md:w-auto">
                       <PhoneFrame variant="tall">
-                        <div className="relative h-full w-full">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={step.image}
-                            alt={step.imageAlt}
-                            className="absolute inset-0 h-full w-full object-cover"
-                            loading="lazy"
-                          />
-                          {/* 오버레이 강조 요소 */}
-                          {step.overlay}
-                        </div>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={step.image}
+                          alt={step.imageAlt}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                        />
                       </PhoneFrame>
                     </div>
                   </div>

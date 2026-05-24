@@ -10,7 +10,6 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ManualDetailLayout from '@/components/ManualDetailLayout';
-import Highlight from '@/components/Highlight';
 import PhoneFrame from '@/components/PhoneFrame';
 
 export const metadata: Metadata = {
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
     '고객 문의 답변, QR 스캔으로 Paw 적립, 구독 관리, Paw 포인트 현금화, 운영팀 문의 — 운영에 필요한 모든 것.',
 };
 
-// 카드 데이터 (각 기능 한 카드씩)
+// 카드 데이터 (각 기능 한 카드씩) — 각자 다른 강조 이미지 사용
 const FEATURES = [
   {
     id: 'inquiry',
@@ -28,8 +27,7 @@ const FEATURES = [
     tint: 'bg-violet-50 border-violet-200',
     title: '고객 문의 관리',
     short: '강쥐엄마 사용자가 보낸 문의를 사장님이 직접 답변하는 채널',
-    image: '/manual/26-bizhome-grid.jpg',
-    highlight: { x: 75, y: 62, width: 42, height: 18 },
+    image: '/manual/26-bizhome-grid-inquiry.jpg',
     steps: [
       '사장님 홈 → 운영 → "문의 관리" 진입',
       '대기 중인 문의 리스트 확인',
@@ -45,8 +43,7 @@ const FEATURES = [
     tint: 'bg-cyan-50 border-cyan-200',
     title: 'QR 스캔으로 Paw 적립',
     short: '쿠폰 사용 처리 + 사장님 Paw 포인트 자동 적립',
-    image: '/manual/26-bizhome-grid.jpg',
-    highlight: { x: 26, y: 84, width: 42, height: 18 },
+    image: '/manual/26-bizhome-grid-qr.jpg',
     steps: [
       '매장에 방문한 고객의 쿠폰 QR 코드를 받음',
       '사장님 홈 → 운영 → "QR 스캔" 진입',
@@ -62,8 +59,7 @@ const FEATURES = [
     tint: 'bg-emerald-50 border-emerald-200',
     title: '구독 관리',
     short: '플랜 변경, 결제 카드 등록, 구독 해지',
-    image: '/manual/26-bizhome-grid.jpg',
-    highlight: { x: 75, y: 84, width: 42, height: 18 },
+    image: '/manual/26-bizhome-grid-subscription.jpg',
     steps: [
       '사장님 홈 → 운영 → "구독 관리" 진입',
       '현재 플랜 + 결제 정보 확인',
@@ -79,8 +75,7 @@ const FEATURES = [
     tint: 'bg-orange-50 border-orange-200',
     title: 'Paw 포인트 적립·현금화',
     short: '사장님 매장에서 고객이 Paw를 사용하면 그대로 적립',
-    image: '/manual/27-bizhome-stats.jpg',
-    highlight: { x: 50, y: 46, width: 92, height: 30 },
+    image: '/manual/27-bizhome-stats-paw.jpg',
     steps: [
       '고객이 매장에서 쿠폰/Paw 사용 → 사장님께 적립',
       '사장님 홈 → 내 Paw 포인트 카드 확인',
@@ -96,8 +91,7 @@ const FEATURES = [
     tint: 'bg-rose-50 border-rose-200',
     title: '운영팀에 문의하기',
     short: '강쥐엄마 운영팀(마음이)에게 직접 문의/요청/피드백',
-    image: '/manual/27-bizhome-stats.jpg',
-    highlight: { x: 50, y: 86, width: 92, height: 13 },
+    image: '/manual/27-bizhome-stats-admin.jpg',
     steps: [
       '사장님 홈 맨 아래 → "운영팀에 문의하기" 진입',
       '문의 내용 자유롭게 작성 (입점, 광고, 쿠폰, 정산 등 무엇이든)',
@@ -193,27 +187,16 @@ export default function OperationsManualPage() {
                     </div>
                   </div>
 
-                  {/* 오른쪽: 폰 mockup */}
+                  {/* 오른쪽: 폰 mockup (강조 이미 굽혀있음) */}
                   <div className="bg-slate-50 p-5 flex items-center justify-center order-1 md:order-2 border-b md:border-b-0 md:border-l border-slate-200">
                     <PhoneFrame variant="tall" shadow="none">
-                      <div className="relative h-full w-full">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={feature.image}
-                          alt={feature.title}
-                          className="absolute inset-0 h-full w-full object-cover"
-                          loading="lazy"
-                        />
-                        <Highlight
-                          x={feature.highlight.x}
-                          y={feature.highlight.y}
-                          width={feature.highlight.width}
-                          height={feature.highlight.height}
-                          shape="rect"
-                          variant="biz"
-                          pulse
-                        />
-                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="absolute inset-0 h-full w-full object-cover"
+                        loading="lazy"
+                      />
                     </PhoneFrame>
                   </div>
                 </div>

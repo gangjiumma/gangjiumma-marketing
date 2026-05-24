@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ManualDetailLayout from '@/components/ManualDetailLayout';
 import InteractiveDemo, { DemoStep } from '@/components/InteractiveDemo';
-import Highlight from '@/components/Highlight';
 
 export const metadata: Metadata = {
   title: '광고·쿠폰 관리 — 강쥐엄마 사장님 메뉴얼',
@@ -23,51 +22,16 @@ const STEPS: DemoStep[] = [
         <strong className="text-biz"> "광고·쿠폰"</strong> 카드를 탭하세요.
       </>
     ),
-    overlay: (
-      <Highlight
-        x={26}
-        y={62}
-        width={42}
-        height={18}
-        shape="rect"
-        label="여기를 탭"
-        labelPosition="right"
-        variant="biz"
-        pulse
-      />
-    ),
     tip: '운영 섹션엔 광고·쿠폰 외에도 문의 관리, QR 스캔, 구독 관리가 있어요. 다른 기능들은 다음 섹션에서 다룰게요.',
   },
   {
-    title: '광고 / 쿠폰 탭 분리',
+    title: '광고 / 쿠폰 탭 + 상태 필터',
     image: '/manual/28-manage-list.jpg',
     imageAlt: '광고 쿠폰 관리 화면',
     description: (
       <>
         상단에서 <strong>광고</strong>와 <strong>쿠폰</strong>을 탭으로 나눠서 관리해요.
-        각 탭마다 게시 중인 항목 개수가 표시돼요.
-      </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={15}
-        width={92}
-        height={9}
-        shape="rect"
-        label="탭으로 전환"
-        labelPosition="bottom"
-        variant="biz"
-      />
-    ),
-  },
-  {
-    title: '상태 필터 — 전체 / 게시 중 / 임시 저장 / 예약 대기',
-    image: '/manual/28-manage-list.jpg',
-    imageAlt: '상태 필터',
-    description: (
-      <>
-        그 아래 필터로 광고 상태를 분류해서 볼 수 있어요:
+        그 아래에서 상태별로 분류해서 볼 수 있어요:
         <ul className="mt-2 space-y-1 list-disc list-inside text-sm text-slate-700">
           <li><strong>전체</strong>: 모든 광고</li>
           <li><strong>게시 중</strong>: 강쥐Talk에 노출되고 있는 광고</li>
@@ -75,18 +39,6 @@ const STEPS: DemoStep[] = [
           <li><strong>예약 대기</strong>: 곧 지원 예정</li>
         </ul>
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={25}
-        width={92}
-        height={6}
-        shape="rect"
-        label="상태별 보기"
-        labelPosition="top"
-        variant="biz"
-      />
     ),
   },
   {
@@ -102,18 +54,6 @@ const STEPS: DemoStep[] = [
           <li><strong className="text-red-600">휴지통</strong>: 광고 삭제 (복구 불가)</li>
         </ul>
       </>
-    ),
-    overlay: (
-      <Highlight
-        x={50}
-        y={73}
-        width={92}
-        height={9}
-        shape="rect"
-        label="3가지 액션 버튼"
-        labelPosition="top"
-        variant="primary"
-      />
     ),
     tip: '게시 중인 광고도 편집/삭제할 수 있어요. 편집 후 다시 게시하면 같은 위치에 업데이트돼요. 게시 횟수는 다시 차감되지 않아요.',
   },
