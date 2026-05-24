@@ -40,9 +40,54 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    // 사장님 사용설명서 (준비중)
+    // 사장님 사용설명서 (메인 hub)
     {
       url: "https://www.gangjiumma.kr/biz-manual",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    // 사장님 사용설명서 (앱 빌드 호환용 - biz-manual과 동일)
+    {
+      url: "https://www.gangjiumma.kr/business-manual",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    // 사장님 사용설명서 - 상세 6개
+    {
+      url: "https://www.gangjiumma.kr/biz-manual/signup",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: "https://www.gangjiumma.kr/biz-manual/profile",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      // ⭐ 핵심 기능 — AI 광고 만들기
+      url: "https://www.gangjiumma.kr/biz-manual/ads",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: "https://www.gangjiumma.kr/biz-manual/manage",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: "https://www.gangjiumma.kr/biz-manual/insights",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: "https://www.gangjiumma.kr/biz-manual/operations",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
