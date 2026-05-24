@@ -49,12 +49,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/50 via-brand-tint50 to-white pointer-events-none" />
         <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
-            {/* ✏️ Hero 메인 헤드라인 */}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              산책, 접종관리, 추천 가게,   <br /> 건강 정보 검색, 모임... 
-              <br />
-              왜 다 따로하세요? 
-            </h1>
+            {/* ✏️ Hero 상단 — 작고 회색 (기존에 흩어진 것들 나열) */}
+            <p className="text-sm md:text-base text-ink-3 font-medium tracking-tight leading-relaxed">
+              산책 · 접종관리 · 추천 가게 · 건강 정보 검색 · 모임…
+            </p>
+            {/* ✏️ Hero 메인 헤드라인 — 한 줄로 깔끔하게 */}
+            <p className="mt-4 md:mt-5 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
+              왜 다 따로 하세요?
+            </p>
           </FadeInSection>
 
           <FadeInSection delay={200}>
