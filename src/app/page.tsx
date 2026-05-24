@@ -69,7 +69,7 @@ export default function Home() {
           <FadeInSection delay={400}>
             {/* ✏️ Hero 부제 */}
             <p className="mt-8 md:mt-10 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              모든걸 한번에 AI가 챙겨주는
+              모든걸 AI가 한번에. 
               <br />
               우리 아이와의 일상을 더욱 편하게
             </p>
@@ -80,7 +80,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강쥐엄마 둘러보기</span>
+                <span>강쥐엄마 앱 다운로드</span>
               </a>
             </div>
             {/* 다음 섹션으로 자연스럽게 유도하는 힌트 */}
