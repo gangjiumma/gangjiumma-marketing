@@ -51,16 +51,16 @@ export default function Home() {
           <FadeInSection>
             {/* ✏️ Hero 메인 헤드라인 */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              요새 AI 비서가
+              산책, 접종관리, 추천 가게 찾기, 궁금한 점 질문, 강아지 모임... 
               <br />
-              유행이라던데
+              왜 다 따로하세요? 
             </h1>
           </FadeInSection>
 
           <FadeInSection delay={200}>
             {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
             <p className="mt-6 md:mt-8 text-2xl md:text-4xl lg:text-5xl font-black tracking-tightest leading-tight">
-              <span className="text-ink-1">반려견 AI 비서는,</span>
+              <span className="text-ink-1">모두 다 챙겨주는 반려견 AI 비서,</span>
               <br className="md:hidden" />
               <span className="text-brand"> 강쥐엄마</span>
             </p>
