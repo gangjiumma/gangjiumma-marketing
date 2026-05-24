@@ -50,19 +50,21 @@ export default function Home() {
         <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             {/* ✏️ Hero 상단 — 작고 회색 (기존에 흩어진 것들 나열) */}
-            <p className="text-sm md:text-base text-ink-3 font-medium tracking-tight leading-relaxed">
-              산책 · 접종관리 · 추천 가게 · 건강 정보 검색 · 모임…
+            <p className="text-base md:text-lg text-ink-3 font-medium tracking-tight leading-relaxed">
+              산책 기록, 접종 알림, 동네 가게, 강쥐 친구…
+              <br />
+              이 모든 걸 따로따로 하고 계세요?
             </p>
-            {/* ✏️ Hero 메인 헤드라인 — 한 줄로 깔끔하게 */}
-            <p className="mt-4 md:mt-5 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              왜 다 따로 하세요?
+            {/* ✏️ Hero 메인 헤드라인 */}
+            <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
+              이제 AI 비서 하나면 끝.
             </p>
           </FadeInSection>
 
           <FadeInSection delay={200}>
             {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
             <p className="mt-6 md:mt-8 text-2xl md:text-4xl lg:text-5xl font-black tracking-tightest leading-tight">
-              <span className="text-ink-1">모두 다 챙겨주는 반려견 AI 비서,</span>
+              <span className="text-ink-1">반려견 AI 비서,</span>
               <br className="md:hidden" />
               <span className="text-brand"> 강쥐엄마</span>
             </p>
