@@ -400,13 +400,7 @@ export default function BizManualPage() {
                     <Mail className="w-4 h-4" />
                     cs@gangjiumma.kr
                   </a>
-                  <a
-                    href="tel:01000000000"
-                    className="flex items-center justify-center gap-2 bg-white text-biz hover:bg-slate-50 rounded-2xl px-5 py-3 font-bold transition-colors"
-                  >
-                    <Phone className="w-4 h-4" />
-                    카카오톡 채널
-                  </a>
+                 
                 </div>
               </div>
             </FadeInSection>

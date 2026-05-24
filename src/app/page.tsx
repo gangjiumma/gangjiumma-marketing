@@ -51,7 +51,7 @@ export default function Home() {
           <FadeInSection>
             {/* ✏️ Hero 메인 헤드라인 */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              산책, 접종관리, 추천 가게 찾기, 궁금한 점 질문, 강아지 모임... 
+              산책, 접종관리, 추천 가게,   <br /> 정보 찾기, 모임... 
               <br />
               왜 다 따로하세요? 
             </h1>
@@ -69,9 +69,9 @@ export default function Home() {
           <FadeInSection delay={400}>
             {/* ✏️ Hero 부제 */}
             <p className="mt-8 md:mt-10 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              매일 더 가까이, 더 오래
+              모든걸 한번에 AI가 챙겨주는
               <br />
-              우리 아이의 일상을 챙겨주는 AI 비서
+              우리 아이와의 일상을 더욱 편하게
             </p>
             <div className="mt-12 md:mt-14">
               <a
