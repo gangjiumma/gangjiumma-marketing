@@ -51,7 +51,7 @@ export default function Home() {
           <FadeInSection>
             {/* ✏️ Hero 메인 헤드라인 */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              산책, 접종관리, 추천 가게,   <br /> 정보 찾기, 모임... 
+              산책, 접종관리, 추천 가게,   <br /> 건강 정보 검색, 모임... 
               <br />
               왜 다 따로하세요? 
             </h1>
@@ -473,7 +473,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강쥐엄마 둘러보기</span>
+                <span>강쥐엄마 앱 다운로드</span>
               </a>
             </div>
           </FadeInSection>
