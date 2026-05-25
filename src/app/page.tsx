@@ -64,7 +64,7 @@ export default function Home() {
 
           <FadeInSection delay={200}>
             {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
-            <p className="mt-6 md:mt-8 text-2xl md:text-4xl lg:text-5xl font-black tracking-tightest leading-tight">
+            <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
               <span className="text-ink-1">반려견 AI 비서,</span>
               <br className="md:hidden" />
               <span className="text-brand"> 강쥐엄마</span>
