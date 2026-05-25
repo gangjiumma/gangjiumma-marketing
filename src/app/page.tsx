@@ -50,7 +50,8 @@ export default function Home() {
         <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             {/* ✏️ Hero 상단 — 작고 회색 (기존에 흩어진 것들 나열) */}
-            <p className="text-base md:text-lg text-ink-3 font-medium tracking-tight leading-relaxed">
+            <p className="text-lg md:text-2xl text-ink-3 font-medium tracking-tight leading-relaxed">
+
               산책 기록, 접종 알림, 동네 가게, 강쥐 친구…
               <br />
               이 모든 걸 따로따로 하고 계세요?
@@ -72,11 +73,7 @@ export default function Home() {
 
           <FadeInSection delay={400}>
             {/* ✏️ Hero 부제 */}
-            <p className="mt-8 md:mt-10 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              모든걸 AI가 한번에. 
-              <br />
-              우리 아이와의 일상을 더욱 편하게
-            </p>
+           
             <div className="mt-12 md:mt-14">
               <a
                 href={DOWNLOAD_URL}
