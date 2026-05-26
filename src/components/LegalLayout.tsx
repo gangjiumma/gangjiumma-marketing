@@ -126,14 +126,14 @@ export default function LegalLayout({
                     </p>
                     <p>
                       <span className="text-ink-3">통신판매업신고:</span>{" "}
-                      제2026-인천연수구-XXXX호
+                      제2026-인천연수구-1470호
                     </p>
                     <p>
                       <span className="text-ink-3">주소:</span>{" "}
                       인천광역시 연수구 테크노파크로 111번길 5, 801-16호
                     </p>
                     <p>
-                      <span className="text-ink-3">유선번호:</span> 02-1544-7145
+                      <span className="text-ink-3">유선번호:</span> 010-8547-5248
                     </p>
                     <p>
                       <span className="text-ink-3">서비스:</span> 강쥐엄마 (앱)
