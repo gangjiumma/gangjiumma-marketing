@@ -134,8 +134,8 @@ export default function RefundPolicyPage() {
           <li>본 환불정책 또는 환불 처리에 관한 문의는 다음 채널로 접수해 주십시오.
             <ul className="list-disc pl-6 mt-2 space-y-1">
               <li>이메일: <a href="mailto:cs@gangjiumma.kr" className="text-brand hover:underline font-bold">cs@gangjiumma.kr</a></li>
-              <li>유선번호: 02-1544-7145</li>
-              <li>강쥐엄마 앱 내 [고객센터] 메뉴</li>
+              <li>유선번호: 010-8547-5248</li>
+              <li>강쥐엄마 앱 내 [MY-설정] 메뉴</li>
             </ul>
           </li>
           <li>회사는 회원의 정당한 환불 요청에 대해 성실히 응대하며, 분쟁이 발생할 경우 「전자상거래 등에서의 소비자보호에 관한 법률」 및 관련 법령에 따라 처리합니다.</li>
