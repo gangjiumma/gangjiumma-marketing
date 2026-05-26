@@ -294,7 +294,10 @@ export default function PlansPage() {
                 <span className="text-ink-3">주소:</span> 인천광역시 연수구 테크노파크로 111번길 5, 801-16호
               </div>
               <div>
-                <span className="text-ink-3">유선번호:</span> 02-1544-7145
+                <span className="text-ink-3">연락번호:</span> 010-8547-5248
+              </div>
+              <div>
+                <span className="text-ink-3">통신판매업신고번호:</span> 제2026-인천연수구-1470호
               </div>
               <div>
                 <span className="text-ink-3">이메일:</span>{" "}
