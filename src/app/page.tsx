@@ -52,20 +52,20 @@ export default function Home() {
             {/* ✏️ Hero 상단 — 작고 회색 (기존에 흩어진 것들 나열) */}
             <p className="text-lg md:text-2xl text-ink-3 font-medium tracking-tight leading-relaxed">
 
-              산책 기록, 접종 알림, 동네 가게, 강쥐 친구…
+              우리 강쥐에 대해 궁금한 점, AI한테 많이 물어보시죠? 
               <br />
-              이 모든 걸 따로따로 하고 계세요?
+              일관성 없는 답변, 사람 기준 답변, 자가 학습 없음..
             </p>
             {/* ✏️ Hero 메인 헤드라인 */}
             <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-             이제 강아지 전용 AI 하나면 끝
+             강아지 학습형 AI는 다릅니다.
             </p>
           </FadeInSection>
 
           <FadeInSection delay={200}>
             {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
             <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              <span className="text-ink-1">26.5.29 정식출시 3일차, </br>신규가입 반려인 </span>
+              <span className="text-ink-1">26.5.29 정식출시 3일차, <br/> 신규가입 반려인 </span>
               <br className="md:hidden" />
               <span className="text-brand">1,000명 돌파</span>
             </p>
