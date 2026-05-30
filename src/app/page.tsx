@@ -58,16 +58,16 @@ export default function Home() {
             </p>
             {/* ✏️ Hero 메인 헤드라인 */}
             <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              이제 AI 비서 하나면 끝.
+             이제 강아지 전용 AI 하나면 끝
             </p>
           </FadeInSection>
 
           <FadeInSection delay={200}>
             {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
             <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              <span className="text-ink-1">반려견 AI 비서,</span>
+              <span className="text-ink-1">26.5.29 정식출시 3일차, 신규가입 반려인 </span>
               <br className="md:hidden" />
-              <span className="text-brand"> 강쥐엄마</span>
+              <span className="text-brand">1,000명 돌파</span>
             </p>
           </FadeInSection>
 
