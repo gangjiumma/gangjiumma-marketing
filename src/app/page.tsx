@@ -65,7 +65,7 @@ export default function Home() {
           <FadeInSection delay={200}>
             {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
             <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              <span className="text-ink-1">26.5.29 정식출시 3일차, 신규가입 반려인 </span>
+              <span className="text-ink-1">26.5.29 정식출시 3일차, </br>신규가입 반려인 </span>
               <br className="md:hidden" />
               <span className="text-brand">1,000명 돌파</span>
             </p>
