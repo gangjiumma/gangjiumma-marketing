@@ -5,6 +5,10 @@ import VoiceWall from "@/components/VoiceWall";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
+// ⭐ 실시간 피드백 페이지 — 빌드 때 정적 prerender 하지 않고 요청 시 렌더
+//    (빌드 시점엔 Supabase 환경변수가 없어 prerender가 실패할 수 있음)
+export const dynamic = "force-dynamic";
+
 // ─────────────────────────────────────────────────────────────
 // 강쥐엄마 소통 창구 (/voice)
 // 톤: 메인 브랜드 오렌지 (#FF6B35) — 따뜻하고 진솔하게
