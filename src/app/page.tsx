@@ -17,8 +17,12 @@ import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
 import ScrollHint from "@/components/ScrollHint";
 import { IconBox } from "@/components/IconBox";
+import HeroStats from "@/components/HeroStats";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
+
+// ✏️ 매일 아침 여기 숫자만 업데이트 (오늘자 누적 신규가입 반려인)
+const TOTAL_SIGNUPS = 1047;
 
 // ─────────────────────────────────────────────────────────────
 // 메인 페이지 v2 — "반려견 AI 비서" 컨셉
@@ -63,12 +67,10 @@ export default function Home() {
           </FadeInSection>
 
           <FadeInSection delay={200}>
-            {/* ✏️ Hero 강조 라인 — 강쥐엄마 노출 */}
-            <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-              <span className="text-ink-1">26.5.29 정식출시 3일차, <br/> 신규가입 반려인 </span>
-              <br className="md:hidden" />
-              <span className="text-brand">1,000명 돌파</span>
-            </p>
+            {/* ✏️ Hero 강조 — 가입자 카운터 + D+N 뱃지 (HeroStats) */}
+            <div className="mt-8 md:mt-10">
+              <HeroStats total={TOTAL_SIGNUPS} />
+            </div>
           </FadeInSection>
 
           <FadeInSection delay={400}>
