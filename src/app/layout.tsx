@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://gangjiumma.kr"),
   title: {
-    default: "강쥐엄마 — 반려견 A 비서",
+    default: "강쥐엄마 — 반려견 전용 AI",
     template: "%s | 강쥐엄마",
   },
   description:
