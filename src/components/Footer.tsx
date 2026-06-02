@@ -18,7 +18,7 @@ export default function Footer() {
             <div>사업자등록번호 284-88-02356</div>
             <div>통신판매업신고번호 제2026-인천연수구-1470호</div>
             <div>인천광역시 연수구 테크노파크로 111번길 5, 801-16호</div>
-            <div>유선번호 010-8547-5248</div>
+            <div>유선번호 010-2358-5248</div>
             <a
               href="mailto:cs@gangjiumma.kr"
               className="hover:text-white transition-colors mt-1"
