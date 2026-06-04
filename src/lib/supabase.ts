@@ -18,9 +18,15 @@ if (!supabaseUrl || !supabaseAnonKey) {
   );
 }
 
-export const supabase = createClient(supabaseUrl ?? "", supabaseAnonKey ?? "", {
-  auth: { persistSession: false }, // 마케팅 사이트는 로그인 없음
-});
+export const supabase = createClient(
+  // 빌드(prerender) 시점에 환경변수가 없어도 크래시하지 않도록 placeholder fallback
+  // (실서비스에선 Vercel 환경변수가 주입되므로 실제 값 사용됨)
+  supabaseUrl || "https://placeholder.supabase.co",
+  supabaseAnonKey || "placeholder-anon-key",
+  {
+    auth: { persistSession: false }, // 마케팅 사이트는 로그인 없음
+  }
+);
 
 // 소통 창구 글 타입
 export type FeedbackEntry = {

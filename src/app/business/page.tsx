@@ -24,11 +24,15 @@ import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
 import ScrollHint from "@/components/ScrollHint";
 import { IconBox } from "@/components/IconBox";
+import BusinessComingSoon from "@/components/BusinessComingSoon";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 // ✏️ 사장님용 사용설명서 — 5월 24일 정식 오픈 예정 (현재는 준비중 안내 페이지)
 const MANUAL_URL = "/biz-manual";
+
+// ✏️ 사장님 페이지 정비 중 — 완성되면 true 로 바꾸면 기존 페이지 그대로 복귀
+const SHOW_FULL_PAGE = false;
 
 // ─────────────────────────────────────────────────────────────
 // 사장님 페이지 v2 — "AI로 영업·광고·운영" 컨셉
@@ -53,6 +57,16 @@ const MANUAL_URL = "/biz-manual";
 
 export default function BusinessPage() {
   const [planTab, setPlanTab] = useState<"local" | "online">("local");
+
+  // ⭐ 준비중 모드 — 기존 페이지는 아래에 그대로 보존됨
+  if (!SHOW_FULL_PAGE) {
+    return (
+      <>
+        <ScrollProgressBar />
+        <BusinessComingSoon />
+      </>
+    );
+  }
 
   return (
     <>
