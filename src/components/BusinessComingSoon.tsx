@@ -13,18 +13,7 @@ import { supabase } from "@/lib/supabase";
 
 // ✏️ 이메일 알림 키 — https://web3forms.com 에서 이메일 넣으면 무료 키 발급 (1분)
 //    비워두면 이메일 발송만 생략되고, DB 저장은 정상 작동함
-const WEB3FORMS_ACCESS_KEY = "";
-
-// ✏️ 업종 선택지
-const CATEGORIES = [
-  "미용",
-  "호텔 · 유치원",
-  "동물병원",
-  "카페 · 운동장",
-  "훈련 · 교육",
-  "용품 · 온라인몰",
-  "기타",
-];
+const WEB3FORMS_ACCESS_KEY = "7ab6aed1-714e-4540-9816-2b41fa95832c";
 
 export default function BusinessComingSoon() {
   const [name, setName] = useState("");
@@ -50,8 +39,9 @@ export default function BusinessComingSoon() {
     const nn = name.trim();
     const bn = businessName.trim();
     const ph = phone.trim();
+    const cat = category.trim();
 
-    if (!nn || !bn || !ph || !category) {
+    if (!nn || !bn || !ph || !cat) {
       setErrorMsg("모든 항목을 채워주세요.");
       return;
     }
@@ -71,7 +61,7 @@ export default function BusinessComingSoon() {
         name: nn,
         business_name: bn,
         phone: ph,
-        category,
+        category: cat,
         privacy_consent: true,
       });
 
@@ -92,7 +82,7 @@ export default function BusinessComingSoon() {
             이름: nn,
             상호명: bn,
             전화번호: ph,
-            업종: category,
+            업종: cat,
           }),
         }).catch(() => {});
       }
@@ -205,20 +195,14 @@ export default function BusinessComingSoon() {
 
                 <div>
                   <label className="block text-sm font-bold text-ink-2 mb-2">업종</label>
-                  <select
+                  <input
+                    type="text"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className={`${inputCls} appearance-none ${category ? "text-ink-1" : "text-ink-4"}`}
-                  >
-                    <option value="" disabled>
-                      업종을 선택해주세요
-                    </option>
-                    {CATEGORIES.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
+                    maxLength={30}
+                    placeholder="예) 유치원, 용품점, 미용실"
+                    className={inputCls}
+                  />
                 </div>
 
                 {/* 개인정보 동의 */}
