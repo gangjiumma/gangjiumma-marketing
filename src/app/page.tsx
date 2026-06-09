@@ -22,7 +22,7 @@ import HeroStats from "@/components/HeroStats";
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 // ✏️ 매일 아침 여기 숫만 업데이트 (오늘자 누적 신규가입 반려인)
-const TOTAL_SIGNUPS = 1408;
+const TOTAL_SIGNUPS = 1457;
 
 // ─────────────────────────────────────────────────────────────
 // 메인 페이지 v2 — "반려견 AI 비서" 컨셉
