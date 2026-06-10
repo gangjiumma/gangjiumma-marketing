@@ -18,11 +18,12 @@ import { ScrollProgressBar } from "@/components/ScrollIndicator";
 import ScrollHint from "@/components/ScrollHint";
 import { IconBox } from "@/components/IconBox";
 import HeroStats from "@/components/HeroStats";
+import HeroCinema from "@/components/HeroCinema";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
-// ✏️ 매일 아침 여기 숫만 업데이트 (오늘자 누적 신규가입 반려인)
-const TOTAL_SIGNUPS = 1457;
+// ✏️ 매일 아침 여기 숫자만 업데이트 (오늘자 누적 신규가입 반려인)
+const TOTAL_SIGNUPS = 1047;
 
 // ─────────────────────────────────────────────────────────────
 // 메인 페이지 v2 — "반려견 AI 비서" 컨셉
@@ -46,37 +47,34 @@ export default function Home() {
       <ScrollProgressBar />
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 1. HERO — AI 비서 정체성                              */}
+      {/* 1. HERO — 시간/관계 정체성 (새 컨셉)                              */}
       {/* CTA 버튼 아래에 ScrollHint ("이어서 보기" + 화살표)    */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="relative bg-brand-tint50 pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-tint100/50 via-brand-tint50 to-white pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto px-5 md:px-8 text-center">
-          <FadeInSection>
-            {/* ✏️ Hero 상단 — 작고 회색 (기존에 흩어진 것들 나열) */}
-            <p className="text-lg md:text-2xl text-ink-3 font-medium tracking-tight leading-relaxed">
+      <HeroCinema />
 
-              우리 강쥐에 대해 궁금한 점, AI한테 많이 물어보시죠? 
-              <br />
-              일관성 없는 답변, 사람 기준 답변, 자가 학습 없음..
-            </p>
-            {/* ✏️ Hero 메인 헤드라인 */}
-            <p className="mt-5 md:mt-6 text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.2]">
-             강아지 학습형 AI는 다릅니다.
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 1-2. HERO 합류 — 시네마 끝 → 다운로드 (카운터 유지)     */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="relative bg-white pt-16 md:pt-24 pb-20 md:pb-28">
+        <div className="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
+          <FadeInSection>
+            {/* ✏️ 기능 요약 */}
+            <p className="text-sm md:text-lg text-ink-3 font-medium leading-relaxed">
+              매일 학습하고 · 하루를 기록하고 · 기념일을 챙기고 · 건강을 살피는
+              <br className="hidden md:block" />
+              {" "}우리 아이만을 위한 반려견 AI, <span className="text-brand font-bold">강쥐엄마와 함께 채워나가요.</span>
             </p>
           </FadeInSection>
 
-          <FadeInSection delay={200}>
-            {/* ✏️ Hero 강조 — 가입자 카운터 + D+N 뱃지 (HeroStats) */}
+          <FadeInSection delay={150}>
+            {/* ✏️ 가입자 카운터 + D+N (HeroStats) */}
             <div className="mt-8 md:mt-10">
               <HeroStats total={TOTAL_SIGNUPS} />
             </div>
           </FadeInSection>
 
-          <FadeInSection delay={400}>
-            {/* ✏️ Hero 부제 */}
-           
-            <div className="mt-12 md:mt-14">
+          <FadeInSection delay={300}>
+            <div className="mt-10 md:mt-12">
               <a
                 href={DOWNLOAD_URL}
                 target="_blank"
@@ -86,7 +84,7 @@ export default function Home() {
                 <span>강쥐엄마 앱 다운로드</span>
               </a>
             </div>
-            {/* 다음 섹션으로 자연스럽게 유도하는 힌트 */}
+            {/* 다음 섹션 유도 */}
             <div className="mt-14 md:mt-16">
               <ScrollHint />
             </div>
