@@ -51,7 +51,7 @@ function YearCountScene({ onComplete }: { onComplete: () => void }) {
     timers.push(window.setTimeout(() => setStep(1), 2000));
     timers.push(window.setTimeout(() => setStep(2), 3300));
     timers.push(window.setTimeout(() => setStep(3), 4700));
-    timers.push(window.setTimeout(() => onComplete(), 6600));
+    timers.push(window.setTimeout(() => onComplete(), 7600));
 
     return () => {
       cancelAnimationFrame(raf);
@@ -90,7 +90,7 @@ const PHOTOS = [
       <p className="text-3xl md:text-6xl font-black tracking-tightest leading-[1.25]">
         그치만 우리 아이에겐,
         <br />
-        <span className="text-brand-light">10년의 가치는 다릅니다.</span>
+        <span className="text-brand-light">10년의 가치가 다릅니다.</span>
       </p>
     ),
   },
@@ -101,7 +101,7 @@ const PHOTOS = [
     body: (
       <>
         <p className="text-lg md:text-3xl font-medium leading-relaxed text-white/90">
-          그렇기 때문에 지금 이순간이 더없이 소중합니다.
+          그래서 지금 이 순간이 더없이 소중해요.
         </p>
         <p className="mt-4 md:mt-6 text-4xl md:text-7xl font-black tracking-tightest leading-[1.18]">
           앞으로의 10년을,
