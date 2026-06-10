@@ -63,10 +63,12 @@ function YearCountScene({ onComplete }: { onComplete: () => void }) {
   return (
     <div className="px-6 text-center text-white max-w-4xl mx-auto">
       <p className={`year-num text-7xl md:text-[150px] font-black tabular-nums tracking-tight leading-none ${landed ? "landed" : ""}`}>
-        {year}
+        {year}년
       </p>
-      <p className={`s0-line mt-7 md:mt-9 text-base md:text-2xl font-medium text-white/85 ${step >= 1 ? "show" : ""}`}>
+      <p className={`s0-line mt-7 md:mt-9 text-base md:text-2xl font-medium text-white/85 leading-relaxed ${step >= 1 ? "show" : ""}`}>
         알파고와 이세돌, 거리를 뒤덮은 포켓몬고.
+        <br />
+        블랙핑크가 데뷔하고, &lsquo;태양의 후예&rsquo;에 빠져 있던 그때.
       </p>
       <p className={`s0-line mt-8 md:mt-10 text-xl md:text-3xl font-bold ${step >= 2 ? "show" : ""}`}>
         이게 벌써 10년 전이라고?
@@ -88,7 +90,7 @@ const PHOTOS = [
       <p className="text-3xl md:text-6xl font-black tracking-tightest leading-[1.25]">
         그치만 우리 아이에겐,
         <br />
-        <span className="text-brand-light">10년의 가치가 다릅니다.</span>
+        <span className="text-brand-light">10년의 가치는 다릅니다.</span>
       </p>
     ),
   },
@@ -99,7 +101,7 @@ const PHOTOS = [
     body: (
       <>
         <p className="text-lg md:text-3xl font-medium leading-relaxed text-white/90">
-          그래서 지금 이 순간이 더없이 소중해요.
+          그렇기 때문에 지금 이순간이 더없이 소중합니다.
         </p>
         <p className="mt-4 md:mt-6 text-4xl md:text-7xl font-black tracking-tightest leading-[1.18]">
           앞으로의 10년을,
