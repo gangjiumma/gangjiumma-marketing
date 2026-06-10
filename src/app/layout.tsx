@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | 강쥐엄마",
   },
   description:
-    "우리 강쥐에 대해 스스로 학습하고, 가장 잘아는 AI",
+    "우리 강아지에 대해 학습하고, 가장 가치 있는 반려생활로 안내해주는 AI",
   keywords: [
     "강쥐엄마",
     "반려견 앱",
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     "펫 마케팅",
   ],
   openGraph: {
-    title: "강쥐엄마 — 반려견 AI 비서",
+    title: "강쥐엄마 — 반려견 전용 AI",
     description:
-      "우리 아이를 가장 잘 아는 반려견 전용 AI",
+      "우리 강아지에 대해 학습하고, 가장 가치 있는 반려생활로 안내해주는 AI",
     url: "https://gangjiumma.kr",
     siteName: "강쥐엄마",
     locale: "ko_KR",
