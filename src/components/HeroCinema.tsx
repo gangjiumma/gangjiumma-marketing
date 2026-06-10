@@ -10,10 +10,10 @@
 //
 // 📷 배경 사진: public/hero/scene2.jpg(검둥이), scene3.jpg(골든)
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const PHOTO_MS = 4200; // 사진 장면 노출 시간
+const SUB_MS = 3000; // 사진(서브 이미지) 1장 노출 시간
 
 // ── 장면1: 연도 카운트다운 ─────────────────────────────
 function YearCountScene({ onComplete }: { onComplete: () => void }) {
@@ -84,7 +84,7 @@ function YearCountScene({ onComplete }: { onComplete: () => void }) {
 const PHOTOS = [
   {
     id: "scene2",
-    image: "/hero/scene2.jpg",
+    images: ["/hero/scene2.jpg", "/hero/scene2b.jpg"],
     gradient: "linear-gradient(160deg, #3a2410 0%, #6b3d12 100%)",
     body: (
       <p className="text-3xl md:text-6xl font-black tracking-tightest leading-[1.25]">
@@ -96,7 +96,7 @@ const PHOTOS = [
   },
   {
     id: "scene3",
-    image: "/hero/scene3.jpg",
+    images: ["/hero/scene3.jpg"],
     gradient: "linear-gradient(160deg, #7a2e0a 0%, #c14a12 55%, #ff6b35 100%)",
     body: (
       <>
@@ -127,17 +127,24 @@ const PHOTOS = [
 
 export default function HeroCinema() {
   const [idx, setIdx] = useState(0); // 0=카운트다운, 1=검둥이, 2=골든
+  const [subIdx, setSubIdx] = useState(0); // 현재 사진 장면의 서브 이미지 인덱스
   const last = PHOTOS.length; // 2
   const done = idx >= last;
-  const timer = useRef<number | null>(null);
 
-  // 사진 장면 자동 전환 (마지막에서 멈춤). 장면0은 스스로 onComplete.
+  // 사진 장면: 서브 이미지 크로스페이드 + 자동 전환 (마지막에서 멈춤). 장면0은 스스로 onComplete.
   useEffect(() => {
-    if (idx === 0 || idx >= last) return;
-    timer.current = window.setTimeout(() => setIdx((i) => Math.min(i + 1, last)), PHOTO_MS);
-    return () => {
-      if (timer.current) clearTimeout(timer.current);
-    };
+    if (idx === 0) return;
+    const scene = PHOTOS[idx - 1];
+    const n = scene ? scene.images.length : 1;
+    setSubIdx(0);
+    const timers: number[] = [];
+    for (let k = 1; k < n; k++) {
+      timers.push(window.setTimeout(() => setSubIdx(k), SUB_MS * k));
+    }
+    if (idx < last) {
+      timers.push(window.setTimeout(() => setIdx((i) => Math.min(i + 1, last)), SUB_MS * n));
+    }
+    return () => timers.forEach(clearTimeout);
   }, [idx, last]);
 
   const goNext = () => setIdx((i) => (i < last ? i + 1 : i));
@@ -150,8 +157,9 @@ export default function HeroCinema() {
       <style>{`
         .hc-slide { opacity: 0; transition: opacity 1.2s ease; }
         .hc-slide.is-active { opacity: 1; }
-        .hc-bg { transform: scale(1.06); transition: transform 6s ease-out; }
-        .hc-slide.is-active .hc-bg { transform: scale(1.15); }
+        .hc-bg { opacity: 0; transform: scale(1.06); transition: opacity 1.2s ease, transform 6s ease-out; }
+        .hc-bg.sub-on { opacity: 1; }
+        .hc-slide.is-active .hc-bg.sub-on { transform: scale(1.15); }
         .hc-copy { opacity: 0; transform: translateY(26px); }
         .hc-slide.is-active .hc-copy {
           opacity: 1; transform: none;
@@ -185,10 +193,15 @@ export default function HeroCinema() {
         return (
           <div key={s.id} className={`hc-slide absolute inset-0 ${idx === sceneIndex ? "is-active" : ""}`}>
             <div className="absolute inset-0" style={{ background: s.gradient }} />
-            <div
-              className="hc-bg absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${s.image})` }}
-            />
+            {s.images.map((src, k) => (
+              <div
+                key={k}
+                className={`hc-bg absolute inset-0 bg-cover bg-center ${
+                  idx === sceneIndex && subIdx === k ? "sub-on" : ""
+                }`}
+                style={{ backgroundImage: `url(${src})` }}
+              />
+            ))}
             <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/65" />
             <div className="absolute inset-0 flex items-center justify-center px-6 text-center text-white">
               <div className="hc-copy max-w-4xl">{s.body}</div>
