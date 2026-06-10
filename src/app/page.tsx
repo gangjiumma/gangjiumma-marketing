@@ -20,7 +20,7 @@ import HeroCinema from "@/components/HeroCinema";
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 // ✏️ 매일 아침 여기 숫자만 업데이트 (오늘자 누적 신규가입 반려인)
-const TOTAL_SIGNUPS = 1486;
+const TOTAL_SIGNUPS = 1047;
 
 // ─────────────────────────────────────────────────────────────
 // 메인 페이지 v2 — "반려견 AI 비서" 컨셉
@@ -129,6 +129,40 @@ export default function Home() {
                   건강·행동·식습관, 무엇이든 편하게 물어보세요. 사진 한 장이면 더 정확하게 답해드려요.
                   일반 AI와 달리 <span className="text-ink-1 font-bold">우리 아이를 기억하고</span>, 대화할수록 더 잘 알아가요.
                 </p>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 3-2. AI 시연 영상 — 궁금한 모든 것, 물어보세요           */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-5 md:px-8">
+          <FadeInSection>
+            <div className="text-center mb-10 md:mb-14">
+              <p className="text-base md:text-lg text-brand font-bold mb-3">이렇게 물어봐요</p>
+              <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
+                궁금한 모든 것, 물어보세요
+              </h2>
+              <p className="mt-5 md:mt-6 text-base md:text-lg text-ink-3 leading-relaxed">
+                사진 한 장으로도, 우리 아이에게 꼭 맞는 답을 받아보세요.
+              </p>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={150}>
+            <div className="flex justify-center">
+              <div className="relative w-full max-w-[300px] rounded-[2.5rem] overflow-hidden border-[7px] border-ink-1 shadow-elevated bg-black">
+                <video
+                  src="/videos/ganggpt-demo.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="block w-full h-auto"
+                />
               </div>
             </div>
           </FadeInSection>
