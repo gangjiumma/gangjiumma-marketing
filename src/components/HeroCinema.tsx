@@ -195,8 +195,12 @@ export default function HeroCinema() {
         );
       })}
 
-      {/* 진정성 문구 (항상 고정) */}
-      <div className="absolute bottom-[88px] md:bottom-24 left-0 right-0 px-6 text-center z-20 pointer-events-none">
+      {/* 진정성 문구 (사진 장면에서만) */}
+      <div
+        className={`absolute bottom-[88px] md:bottom-24 left-0 right-0 px-6 text-center z-20 pointer-events-none transition-opacity duration-700 ${
+          idx >= 1 ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <p className="text-xs md:text-sm text-white/75 font-medium tracking-wide">
           강쥐엄마 대표가 실제로 30년간 키워온 아이들입니다 🐾
         </p>

@@ -1,22 +1,19 @@
-import Link from "next/link";
-import Image from "next/image";
 import {
-  Pencil,
-  MessageCircle,
-  Sparkles,
-  ClipboardList,
-  Calendar,
-  Pill,
-  UtensilsCrossed,
-  Store,
-  Dog,
+  MessageCircleHeart,
+  Camera,
+  Film,
+  Cake,
+  Footprints,
+  HeartPulse,
+  CalendarCheck,
+  MapPin,
+  Users,
   PawPrint,
+  ArrowRight,
 } from "lucide-react";
-import PhoneMockup from "@/components/PhoneMockup";
 import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
 import ScrollHint from "@/components/ScrollHint";
-import { IconBox } from "@/components/IconBox";
 import HeroStats from "@/components/HeroStats";
 import HeroCinema from "@/components/HeroCinema";
 
@@ -93,91 +90,146 @@ export default function Home() {
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 2. 간단함 (NEW) — 딱 두 단계면 끝                     */}
+      {/* 2. 둘러보기 인트로 — 강쥐엄마는 이렇게 함께해요         */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white pt-10 md:pt-16 pb-14 md:pb-20">
+        <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
+          <FadeInSection>
+            <p className="text-base md:text-lg text-brand font-bold mb-3">강쥐엄마는</p>
+            <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
+              이렇게 함께해요
+            </h2>
+            <p className="mt-6 md:mt-8 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
+              AI에게 상담하고, 일상을 공유하고, 건강을 맡기고,
+              <br className="hidden md:block" />
+              {" "}유치원·호텔도 물어보고, 스케줄·예약까지 —
+              <br />
+              <span className="text-brand font-bold">우리 아이의 하루를 같이 채워요.</span>
+            </p>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 3. 상담 — 우리 아이 전담 상담사                         */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="bg-surface-subtle py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-5 md:px-8">
+          <FadeInSection>
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+              <div className="rounded-4xl bg-gradient-to-br from-brand-tint100 to-brand-tint50 border border-brand-tint200 aspect-[4/3] flex items-center justify-center">
+                <MessageCircleHeart className="w-20 h-20 md:w-28 md:h-28 text-brand" strokeWidth={1.6} />
+              </div>
+              <div>
+                <p className="text-sm md:text-base text-brand font-bold mb-3">무엇이든 물어보세요</p>
+                <h3 className="text-2xl md:text-4xl font-black text-ink-1 tracking-tight leading-snug mb-4">
+                  우리 아이 전담 상담사
+                </h3>
+                <p className="text-base md:text-lg text-ink-3 leading-relaxed">
+                  건강·행동·식습관, 무엇이든 편하게 물어보세요. 사진 한 장이면 더 정확하게 답해드려요.
+                  일반 AI와 달리 <span className="text-ink-1 font-bold">우리 아이를 기억하고</span>, 대화할수록 더 잘 알아가요.
+                </p>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 4. 기록 ⭐ — 우리 아이의 하루하루를 기록해요 (특별 블록)  */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section
+        className="relative py-20 md:py-28 overflow-hidden"
+        style={{ background: "linear-gradient(160deg, #3a2410 0%, #7a3b14 58%, #c14a12 100%)" }}
+      >
+        <div className="relative max-w-4xl mx-auto px-5 md:px-8 text-center text-white">
+          <FadeInSection>
+            <p className="text-sm md:text-base font-bold text-brand-light mb-3">오늘을 남겨요</p>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tightest leading-tight">
+              우리 아이의 하루하루를
+              <br />
+              기록해요
+            </h2>
+            <p className="mt-6 md:mt-8 text-base md:text-xl text-white/85 leading-relaxed">
+              매일 사진과 영상을 올리고, 어떤 순간이었는지 한마디만 들려주세요.
+              <br className="hidden md:block" />
+              {" "}강쥐엄마가 소중한 추억으로 차곡차곡 기록해드려요.
+            </p>
+          </FadeInSection>
+
+          <FadeInSection delay={150}>
+            <div className="mt-10 md:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 text-left">
+              <div className="bg-white/10 border border-white/15 rounded-3xl p-6 backdrop-blur-sm">
+                <Camera className="w-8 h-8 text-brand-light mb-3" strokeWidth={2} />
+                <h3 className="text-lg font-black mb-1.5">매일의 사진·영상</h3>
+                <p className="text-sm text-white/75 leading-relaxed">오늘의 순간을 올리면 일지로 쌓여요.</p>
+              </div>
+              <div className="bg-white/10 border border-white/15 rounded-3xl p-6 backdrop-blur-sm">
+                <Film className="w-8 h-8 text-brand-light mb-3" strokeWidth={2} />
+                <h3 className="text-lg font-black mb-1.5">기념일 영상 선물</h3>
+                <p className="text-sm text-white/75 leading-relaxed">100일·1년, 그동안의 추억을 영상으로.</p>
+              </div>
+              <div className="bg-white/10 border border-white/15 rounded-3xl p-6 backdrop-blur-sm">
+                <Cake className="w-8 h-8 text-brand-light mb-3" strokeWidth={2} />
+                <h3 className="text-lg font-black mb-1.5">생일 축하 이벤트</h3>
+                <p className="text-sm text-white/75 leading-relaxed">우리 아이의 특별한 날을 함께 챙겨요.</p>
+              </div>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={300}>
+            <p className="mt-10 md:mt-12 text-lg md:text-2xl font-bold">
+              흘러가는 오늘을, <span className="text-brand-light">평생 간직할 수 있게.</span>
+            </p>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 5. 매일 쓰는 기능 — 산책·건강·예약                       */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="bg-white py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
-              {/* ✏️ 섹션 라벨 */}
-              <p className="text-base md:text-lg text-brand font-bold mb-3">
-                어렵지 않아요
-              </p>
-              {/* ✏️ 섹션 헤드라인 */}
-              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                딱 두 단계면 끝
+              <p className="text-base md:text-lg text-brand font-bold mb-3">매일의 든든함</p>
+              <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
+                산책도, 건강도, 예약까지
               </h2>
-              {/* ✏️ 섹션 부제 */}
-              <p className="mt-6 text-base md:text-lg text-ink-3 font-medium leading-relaxed">
-                나머지는 강쥐엄마가 알아서 챙겨드려요
-              </p>
             </div>
           </FadeInSection>
 
-          {/* 3단 카드 — 1, 2, 끝. */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 relative">
-            {/* Step 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
             <FadeInSection delay={0}>
-              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-10 h-full border border-brand-tint200 relative">
-                <div className="absolute -top-4 left-8 bg-brand text-white text-sm font-black px-3 py-1 rounded-full shadow-brand-soft">
-                  STEP 1
+              <div className="bg-surface-subtle rounded-3xl p-8 h-full border border-line">
+                <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
+                  <Footprints className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                <div className="mb-5 mt-2">
-                  <IconBox category="paw" icon={Pencil} size="lg" />
-                </div>
-                {/* ✏️ Step 1 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">
-                  우리 아이 정보 입력
-                </h3>
-                {/* ✏️ Step 1 본문 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">산책 기록</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  이름, 나이, 견종, 건강 정보를
-                  <br />
-                  간단히 알려주세요.
+                  오늘 걸은 코스와 시간을 기록하고, 차곡차곡 쌓이는 운동량을 한눈에 봐요.
                 </p>
               </div>
             </FadeInSection>
-
-            {/* Step 2 */}
-            <FadeInSection delay={150}>
-              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-10 h-full border border-brand-tint200 relative">
-                <div className="absolute -top-4 left-8 bg-brand text-white text-sm font-black px-3 py-1 rounded-full shadow-brand-soft">
-                  STEP 2
+            <FadeInSection delay={100}>
+              <div className="bg-surface-subtle rounded-3xl p-8 h-full border border-line">
+                <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
+                  <HeartPulse className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                <div className="mb-5 mt-2">
-                  <IconBox category="chat" icon={MessageCircle} size="lg" />
-                </div>
-                {/* ✏️ Step 2 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">
-                  AI에게 물어보기
-                </h3>
-                {/* ✏️ Step 2 본문 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">건강관리</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  궁금한 거 무엇이든
-                  <br />
-                  편하게 물어보세요.
+                  접종·체중·증상·복용약을 맡겨두면 강쥐엄마가 챙겨요. 다음 일정도 미리 알려드려요.
                 </p>
               </div>
             </FadeInSection>
-
-            {/* End — "끝." */}
-            <FadeInSection delay={300}>
-              <div className="bg-brand text-white rounded-3xl p-8 md:p-10 h-full relative shadow-brand">
-                <div className="absolute -top-4 left-8 bg-white text-brand text-sm font-black px-3 py-1 rounded-full shadow-soft">
-                  END
+            <FadeInSection delay={200}>
+              <div className="bg-surface-subtle rounded-3xl p-8 h-full border border-line">
+                <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
+                  <CalendarCheck className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                <div className="mb-5 mt-2 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20">
-                  <Sparkles size={32} strokeWidth={2} color="#ffffff" />
-                </div>
-                {/* ✏️ End 제목 */}
-                <h3 className="text-xl md:text-2xl font-black mb-3 leading-snug">
-                  끝.
-                </h3>
-                {/* ✏️ End 본문 */}
-                <p className="text-base text-white/90 leading-relaxed">
-                  나머지는 강쥐엄마가 알아서
-                  <br />
-                  건강한 반려생활로 이끌어드려요.
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">예약·스케줄</h3>
+                <p className="text-base text-ink-3 leading-relaxed">
+                  유치원·호텔·미용을 물어보고, 예약과 일정까지 앱에서 한 번에 관리해요.
                 </p>
               </div>
             </FadeInSection>
@@ -186,239 +238,50 @@ export default function Home() {
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 3. AI 데모 영상 (기존 유지)                            */}
+      {/* 6. 동네·커뮤니티 — 혼자가 아니에요                       */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-surface-subtle py-20 md:py-28 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-5 md:px-8">
+      <section className="bg-brand-tint50 py-20 md:py-28">
+        <div className="max-w-5xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
-              {/* ✏️ 섹션 라벨 */}
-              <p className="text-base md:text-lg text-brand font-bold mb-3">
-                우리 아이를 가장 잘 아는 AI 비서
-              </p>
-              {/* ✏️ 섹션 헤드라인 */}
-              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                궁금한 모든 것,
-                <br />
-                물어보세요
-              </h2>
-            </div>
-          </FadeInSection>
-          <FadeInSection delay={200}>
-            <div className="flex justify-center">
-              <PhoneMockup videoSrc="/videos/ganggpt-demo.mp4" />
-            </div>
-          </FadeInSection>
-          <FadeInSection delay={400}>
-            <div className="text-center mt-12 md:mt-16">
-              {/* ✏️ 영상 아래 강조 카피 */}
-              <p className="text-lg md:text-2xl text-ink-2 font-bold leading-relaxed">
-                질문할수록
-                <span className="text-brand"> 아이에 대해 학습하는 </span>
-                나만의 AI
-              </p>
-              {/* ✏️ 영상 아래 보조 카피 */}
-              <p className="text-base md:text-lg text-ink-3 mt-4 font-medium">
-                사진 한 장으로도, 우리 아이에게 꼭 맞는 답을 받아보세요
-              </p>
-            </div>
-          </FadeInSection>
-        </div>
-      </section>
-
-      {/* ═════════════════════════════════════════════════════ */}
-      {/* 4. AI 비서가 하는 일 (2개 큰 카드)                     */}
-      {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white py-24 md:py-32">
-        <div className="max-w-6xl mx-auto px-5 md:px-8">
-          <FadeInSection>
-            <div className="text-center mb-16 md:mb-20">
-              {/* ✏️ 섹션 라벨 */}
-              <p className="text-base md:text-lg text-brand font-bold mb-3">
-                AI 비서가 하는 일
-              </p>
-              {/* ✏️ 섹션 헤드라인 */}
-              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                쓸수록 똑똑해지고,
-                <br />
-                알아서 챙겨드려요
+              <p className="text-base md:text-lg text-brand font-bold mb-3">혼자가 아니에요</p>
+              <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
+                우리 동네와, 강쥐엄마들과
               </h2>
             </div>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            {/* 카드 1 — 학습하는 AI (컨셉 1) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
             <FadeInSection delay={0}>
-              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-12 h-full border border-brand-tint200">
-                <div className="mb-6">
-                  <Image
-                    src="/icons/paw.png"
-                    alt="학습하는 AI"
-                    width={48}
-                    height={48}
-                    className="rounded-xl"
-                  />
+              <div className="bg-white rounded-3xl p-8 h-full shadow-soft border border-brand-tint200">
+                <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
+                  <MapPin className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                {/* ✏️ 카드 1 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  쓸수록 우리 아이를
-                  <br />
-                  더 잘 아는 AI
-                </h3>
-                {/* ✏️ 카드 1 본문 */}
-                <p className="text-base md:text-lg text-ink-2 leading-relaxed mb-5">
-                  검색, 좋아요, 산책, 일상 기록…
-                  <br />
-                  강쥐엄마 안의 활동만으로 AI가 학습해요.
-                </p>
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">우리동네 정보</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  우리 아이가 뭘 좋아하는지, 어디가 약한지,
-                  <br />
-                  무엇을 조심해야 하는지 — AI 비서가 기억해요.
+                  동반 가능 식당, 행사, 호텔·유치원·미용실까지. 광고 후기가 아닌 진짜 정보만.
                 </p>
-                {/* ✏️ 강조 인용 */}
-                <div className="mt-6 pt-6 border-t border-brand-tint200">
-                  <p className="text-base text-brand font-bold leading-relaxed">
-                    매번 AI가 다른 답을 줘서 불편했던 경험,
-                    <br />
-                    이제 그만.
-                  </p>
-                </div>
               </div>
             </FadeInSection>
-
-            {/* 카드 2 — 알아서 챙겨주는 AI (컨셉 2) */}
-            <FadeInSection delay={150}>
-              <div className="bg-brand-tint50 rounded-3xl p-8 md:p-12 h-full border border-brand-tint200">
-                <div className="mb-6">
-                  <IconBox category="schedule" icon={ClipboardList} size="lg" />
+            <FadeInSection delay={100}>
+              <div className="bg-white rounded-3xl p-8 h-full shadow-soft border border-brand-tint200">
+                <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
+                  <Users className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                {/* ✏️ 카드 2 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  알아서 챙겨주는
-                  <br />
-                  AI 비서
-                </h3>
-                {/* ✏️ 카드 2 본문 */}
-                <p className="text-base md:text-lg text-ink-2 leading-relaxed mb-5">
-                  접종 일정, 영양제, 사료, 여행지, 용품까지
-                  <br />
-                  우리 아이에게 꼭 필요한 것만
-                  <br />
-                  AI 비서가 먼저 알려드려요.
-                </p>
-                {/* ✏️ 예시 리스트 */}
-                <div className="mt-6 pt-6 border-t border-brand-tint200 space-y-3">
-                  <div className="flex items-center gap-3 text-base text-ink-2 font-medium">
-                    <IconBox category="schedule" icon={Calendar} size="sm" />
-                    <span>다음 접종일이 다가왔어요</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-base text-ink-2 font-medium">
-                    <IconBox category="like" icon={Pill} size="sm" />
-                    <span>우리 아이에 맞는 영양제예요</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-base text-ink-2 font-medium">
-                    <IconBox category="market" icon={UtensilsCrossed} size="sm" />
-                    <span>이 사료, 우리 아이에게 맞을까?</span>
-                  </div>
-                </div>
-              </div>
-            </FadeInSection>
-          </div>
-        </div>
-      </section>
-
-      {/* ═════════════════════════════════════════════════════ */}
-      {/* 5. AI 비서가 안내하는 곳 (3개 카드)                    */}
-      {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-brand-tint50 py-24 md:py-32">
-        <div className="max-w-6xl mx-auto px-5 md:px-8">
-          <FadeInSection>
-            <div className="text-center mb-16 md:mb-20">
-              {/* ✏️ 섹션 라벨 */}
-              <p className="text-base md:text-lg text-brand font-bold mb-3">
-                AI 비서가 안내하는 곳
-              </p>
-              {/* ✏️ 섹션 헤드라인 */}
-              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-                매일을 더 풍성하게,
-                <br />
-                강쥐엄마가 연결해드려요
-              </h2>
-            </div>
-          </FadeInSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-            {/* 카드 ① 우리동네 (컨셉 3) */}
-            <FadeInSection delay={0}>
-              <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
-                <div className="mb-6">
-                  <IconBox category="business" icon={Store} size="lg" />
-                </div>
-                {/* ✏️ 카드 ① 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  강쥐엄마가 엄선한
-                  <br />
-                  우리동네
-                </h3>
-                {/* ✏️ 카드 ① 본문 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">강쥐Talk</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  행사 정보, 동반 가능 식당,
-                  <br />
-                  우리동네 호텔·유치원·미용실까지.
-                  <br />
-                  광고 후기가 아닌, 진짜 정보만.
+                  견종끼리, 동네끼리 모여요. 오늘 우리 아이가 한 일을 나누고, 궁금한 건 강쥐엄마들에게.
                 </p>
               </div>
             </FadeInSection>
-
-            {/* 카드 ② 강쥐엄마들 (컨셉 4) */}
-            <FadeInSection delay={150}>
-              <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
-                <div className="mb-6">
-                  <IconBox category="chat" icon={MessageCircle} size="lg" />
+            <FadeInSection delay={200}>
+              <div className="bg-white rounded-3xl p-8 h-full shadow-soft border border-brand-tint200">
+                <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
+                  <PawPrint className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                {/* ✏️ 카드 ② 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  강쥐엄마들이
-                  <br />
-                  모이는 곳
-                </h3>
-                {/* ✏️ 카드 ② 본문 */}
-                <p className="text-base text-ink-3 leading-relaxed mb-3">
-                  AI가 답하기 어려운 질문은 강쥐엄마끼리.
-                  <br />
-                  &quot;우리동네 넥*가드 약국 어디?&quot;
-                  <br />
-                  &quot;다른 친구들 이번 주말에 뭐했지?&quot;
-                </p>
-                <p className="text-base text-brand font-bold leading-relaxed">
-                  익숙한 피드와 프로필로 편하게.
-                </p>
-              </div>
-            </FadeInSection>
-
-            {/* 카드 ③ 유기견 친구들 (컨셉 5) */}
-            <FadeInSection delay={300}>
-              <div className="bg-white rounded-3xl p-8 md:p-10 shadow-card hover:shadow-elevated transition-shadow duration-300 h-full">
-                <div className="mb-6">
-                  <IconBox category="dog" icon={Dog} size="lg" />
-                </div>
-                {/* ✏️ 카드 ③ 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-4 leading-snug">
-                  유기견 친구들에게도
-                  <br />
-                  가족을
-                </h3>
-                {/* ✏️ 카드 ③ 본문 */}
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">유기견 친구들</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  매일 길을 잃어버린 아이들의 정보가
-                  <br />
-                  새롭게 올라와요.
-                  <br />
-                  좋은 곳에 입양될 수 있도록
-                  <br />
-                  잠깐만 관심을 주세요.
+                  가족을 기다리는 아이들의 소식이 올라와요. 잠깐의 관심이 한 생명을 살려요.
                 </p>
               </div>
             </FadeInSection>
@@ -427,47 +290,42 @@ export default function Home() {
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 6. Paw 포인트 (작은 띠)                                */}
+      {/* 7. Paw — 함께한 시간이 쌓여요                            */}
       {/* ═════════════════════════════════════════════════════ */}
       <section className="bg-white py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-5 md:px-8">
+        <div className="max-w-3xl mx-auto px-5 md:px-8">
           <FadeInSection>
-            <div className="bg-gradient-to-r from-brand-tint50 to-brand-tint100 rounded-3xl p-8 md:p-10 border border-brand-tint200 flex flex-col md:flex-row items-center gap-6 md:gap-8">
-              <IconBox category="paw" icon={PawPrint} size="lg" />
-              <div className="flex-1 text-center md:text-left">
-                {/* ✏️ Paw 띠 제목 */}
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-2 leading-snug">
-                  활동할수록 <span className="text-brand">Paw(포)인트</span> 적립
-                </h3>
-                {/* ✏️ Paw 띠 본문 */}
-                <p className="text-base text-ink-3 leading-relaxed">
-                  동네 업체, 행사, 상품에서 할인으로 사용 가능
-                </p>
+            <div className="bg-brand-tint50 rounded-3xl p-8 md:p-10 border border-brand-tint200 text-center">
+              <div className="w-12 h-12 rounded-2xl bg-white border border-brand-tint200 flex items-center justify-center mx-auto mb-4">
+                <PawPrint className="w-6 h-6 text-brand" strokeWidth={2.1} />
               </div>
+              <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-2 leading-snug">
+                함께한 시간이 쌓여요
+              </h3>
+              <p className="text-base text-ink-3 leading-relaxed">
+                출석·산책·기록·퀴즈로 모은 <span className="text-brand font-bold">Paw(포)인트</span>,
+                동네 업체·행사·상품 할인으로 쓸 수 있어요.
+              </p>
             </div>
           </FadeInSection>
         </div>
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 7. 최종 CTA                                            */}
+      {/* 8. 최종 CTA                                            */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section id="download" className="bg-surface-subtle py-24 md:py-32">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 text-center">
+      <section className="bg-brand-tint50 py-24 md:py-32">
+        <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
-            {/* ✏️ Final CTA 헤드라인 */}
             <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tightest leading-tight">
-              우리 아이의
+              우리 아이의 매일,
               <br />
-              <span className="text-brand">AI 비서, 강쥐엄마</span>
+              <span className="text-brand">더 가까이 더 오래</span>
             </h2>
-            {/* ✏️ Final CTA 부제 */}
-            <p className="mt-8 text-lg md:text-2xl text-ink-2 font-medium">
-              매일 더 가까이, 더 오래
-              <br />
-              강쥐엄마와 함께
+            <p className="mt-6 md:mt-8 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
+              오늘도 가치있게, 강쥐엄마와 함께.
             </p>
-            <div className="mt-12 md:mt-14">
+            <div className="mt-10 md:mt-12">
               <a
                 href={DOWNLOAD_URL}
                 target="_blank"
@@ -475,35 +333,9 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>강쥐엄마 앱 다운로드</span>
+                <ArrowRight className="w-6 h-6" strokeWidth={2.4} />
               </a>
             </div>
-          </FadeInSection>
-        </div>
-      </section>
-
-      {/* ═════════════════════════════════════════════════════ */}
-      {/* 8. 사장님 분기 (기존 유지)                              */}
-      {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 md:py-24">
-        <div className="max-w-3xl mx-auto px-5 md:px-8">
-          <FadeInSection>
-            <Link
-              href="/business"
-              className="group block bg-brand-tint50 rounded-3xl p-8 md:p-12 shadow-soft border border-brand-tint200 hover:shadow-card hover:-translate-y-1 transition-all duration-200 text-center"
-            >
-              <p className="text-sm md:text-base text-ink-3 mb-3">
-                강아지 가게를 운영하시나요?
-              </p>
-              <h3 className="text-2xl md:text-3xl font-black text-ink-1 mb-5 leading-snug">
-                강쥐엄마와 함께
-                <br />
-                건강한 반려생활을 만들어요
-              </h3>
-              <span className="inline-flex items-center gap-1 text-base md:text-lg font-bold text-brand group-hover:gap-2 transition-all">
-                사장님 입점 안내 보기
-                <span>→</span>
-              </span>
-            </Link>
           </FadeInSection>
         </div>
       </section>
