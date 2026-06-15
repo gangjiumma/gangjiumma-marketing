@@ -3,7 +3,7 @@ import RetireCountdown from "@/components/RetireCountdown";
 import FunButtons from "@/components/FunButtons";
 
 export const metadata: Metadata = {
-  title: "김해원 퇴사까지 🐾",
+  title: "해원애기 퇴사까지 🐾",
   description: "지금까지 고생 많으셨습니다.",
   robots: {
     index: false,
