@@ -24,7 +24,7 @@ export default function Page() {
 
         {/* Hero */}
         <h1 className="text-4xl md:text-6xl font-black text-ink-1 tracking-tightest leading-tight mb-12 md:mb-16">
-          김해원 퇴사까지
+          해원애기 퇴사까지
         </h1>
 
         {/* 카운트다운 */}
