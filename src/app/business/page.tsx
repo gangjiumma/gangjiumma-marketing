@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CalendarCheck,
   CreditCard,
   NotebookPen,
-  MessageCircle,
   Camera,
   Sparkles,
   ArrowRight,
@@ -14,6 +13,12 @@ import {
   Bell,
   BookHeart,
   Bot,
+  QrCode,
+  Check,
+  ChevronDown,
+  Play,
+  Newspaper,
+  BarChart3,
 } from "lucide-react";
 import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
@@ -21,23 +26,20 @@ import { ScrollProgressBar } from "@/components/ScrollIndicator";
 // ✏️ 입점 신청 페이지 (대시보드 /apply — 구현 후 연결)
 const APPLY_URL = "https://gangji-manage.kr/apply";
 
-// ✏️ 사진/스크린샷 슬롯 — public/business/ 에 파일만 넣으면 자동 교체.
-//    여러 장 넣으면 한 섹션 안에서 자동 슬라이드(크로스페이드). 1장만 넣어도 됩니다.
-//    파일이 하나도 없으면 CSS 더미/그라데이션 fallback 이 보입니다.
+// ✏️ 사진 슬롯 — public/business/ 에 파일만 넣으면 자동 교체. 여러 장이면 자동 슬라이드.
 const PHOTO = {
-  heroDash: [
-    "/business/dash-1.png", // 1·2장: 대시보드 스크린샷 (여러 장 가능)
-    "/business/dash-2.png",
-    "/business/dash-3.png",
-  ],
-  diaryDog: [
-    "/business/diary-1.jpg", // 3장: 알림장 강쥐 사진 (여러 장 가능)
-    "/business/diary-2.jpg",
+  dash: ["/business/dash-1.png", "/business/dash-2.png", "/business/dash-3.png"],
+  stat: ["/business/dash-4.png", "/business/dash-5.png"], // 통계·AI마케팅
+  notice: ["/business/notice-1.jpg"], // 알림장 화면
+  app: [
+    "/business/app-1.jpg", // 문의·예약
+    "/business/app-2.jpg", // 예약하기
+    "/business/app-3.jpg", // 알림장
+    "/business/app-4.jpg", // 문의채팅
   ],
 };
 
 export default function BusinessPage() {
-  // 앱에서 입점신청→가입 후 넘어온 사람을 위한 진입 게이트 모달 (매 진입 시 노출)
   const [showIntro, setShowIntro] = useState(false);
   useEffect(() => {
     setShowIntro(true);
@@ -50,32 +52,28 @@ export default function BusinessPage() {
   }, [showIntro]);
   const dismissIntro = () => setShowIntro(false);
 
-  // 스크롤 진입 시 각 섹션 애니메이션 재생 (나갔다 들어오면 재생)
+  // 히어로 도구 모이기 애니
   useEffect(() => {
-    const timers = new WeakMap<Element, number>();
-    const gatherDelay: Record<string, number> = { "bz-s1": 2600, "bz-s2": 1400 };
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          const el = e.target as HTMLElement;
-          if (e.isIntersecting) {
-            el.classList.add("bz-play");
-            const gd = gatherDelay[el.id];
-            if (gd) {
-              const t = window.setTimeout(() => el.classList.add("bz-gathered"), gd);
-              timers.set(el, t);
-            }
-          } else {
-            el.classList.remove("bz-play", "bz-gathered");
-            const t = timers.get(el);
-            if (t) window.clearTimeout(t);
-          }
-        });
+    const el = document.getElementById("bz-s1");
+    if (!el) return;
+    let timer: number | undefined;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          el.classList.add("bz-play");
+          timer = window.setTimeout(() => el.classList.add("bz-gathered"), 2600);
+        } else {
+          el.classList.remove("bz-play", "bz-gathered");
+          window.clearTimeout(timer);
+        }
       },
       { threshold: 0.4 }
     );
-    document.querySelectorAll(".bz-anim").forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -103,8 +101,8 @@ export default function BusinessPage() {
         </div>
       )}
 
-      {/* ───────── 1 · HERO : 흩어진 도구 → 대시보드로 모임 ───────── */}
-      <section className="bz-sec bz-hero bz-anim" id="bz-s1">
+      {/* ───────── 1 · HERO ───────── */}
+      <section className="bz-sec bz-hero" id="bz-s1">
         <span className="bz-num">01 / 06</span>
         <div className="bz-wrap bz-grid2">
           <div>
@@ -161,233 +159,192 @@ export default function BusinessPage() {
             </div>
             <div className="bz-tool bz-t4">
               <span className="bz-dot" style={{ background: "#fce7f3" }}>
-                <MessageCircle size={15} color="#db2777" />
+                <Camera size={15} color="#db2777" />
               </span>
-              카톡 알림장
+              SNS 홍보
             </div>
             <div className="bz-tool bz-t5">
               <span className="bz-dot" style={{ background: "#ede9fe" }}>
-                <Camera size={15} color="#7c3aed" />
+                <Sparkles size={15} color="#7c3aed" />
               </span>
-              인스타 홍보
+              마케팅
             </div>
             <div className="bz-herodash">
-              <DashboardMock images={PHOTO.heroDash} />
+              <DashboardMock images={PHOTO.dash} />
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ───────── 2 · 따로 노는 시스템 → 한 화면 + 토스 ───────── */}
-      <section className="bz-sec bz-anim" id="bz-s2">
-        <span className="bz-num">02 / 06</span>
-        <div className="bz-wrap bz-grid2">
-          <div>
-            <FadeInSection>
-              <span className="bz-eyebrow">문제 ① · 흩어진 운영 시스템</span>
-            </FadeInSection>
-            <FadeInSection delay={100}>
-              <h2 className="bz-h2">
-                예약과 결제, 고객 관리가
-                <br />
-                서로 따로 움직입니다.
-              </h2>
-            </FadeInSection>
-            <FadeInSection delay={200}>
-              <p className="bz-lead">
-                강쥐엄마에서는 <b>예약부터 결제, 정산까지 한 화면</b>에서 이어집니다. 토스 단말기와
-                연동되어 이용권·선불권 차감도 자동으로 처리됩니다.
-              </p>
-            </FadeInSection>
-          </div>
-
-          <div className="bz-merge">
-            <div className="bz-chip bz-c1">
-              <CalendarCheck size={15} /> 예약 툴
-            </div>
-            <div className="bz-chip bz-c2">
-              <CreditCard size={15} /> 포스기
-            </div>
-            <div className="bz-chip bz-c3">
-              <NotebookPen size={15} /> 장부
-            </div>
-            <div className="bz-mergedash">
-              <DashboardMock images={PHOTO.heroDash} variant="merge" />
-            </div>
-          </div>
+        <div className="bz-scrollcue">
+          아래로 내려서 살펴보세요
+          <ChevronDown size={20} />
         </div>
       </section>
 
-      {/* ───────── 3 · 알림장 노가다 → 보내기 한 번 ───────── */}
-      <section className="bz-sec bz-surface bz-anim" id="bz-s3">
-        <span className="bz-num">03 / 06</span>
-        <div className="bz-wrap bz-grid2">
-          <div className="bz-center">
-            <div className="bz-phone">
-              <div className="bz-screen">
-                <div className="bz-phtop">🐶 콩이의 오늘 알림장</div>
-                <div className="bz-phphoto">
-                  <ImgFade
-                    images={PHOTO.diaryDog}
-                    className="bz-phfade"
-                    imgClassName="bz-fadeimg"
-                  />
-                </div>
-                <div className="bz-phbody">
-                  <div className="bz-phttl">오늘 콩이는요 ✨</div>
-                  <div className="bz-ln" />
-                  <div className="bz-ln" />
-                  <div className="bz-ln bz-s" />
-                  <div className="bz-phsend">✓ 보호자님께 전송 완료</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <FadeInSection>
-              <span className="bz-eyebrow">문제 ② · 반복되는 알림장 작업</span>
-            </FadeInSection>
-            <FadeInSection delay={100}>
-              <h2 className="bz-h2">
-                사진을 찍고, 알림장을 쓰고,
-                <br />
-                <span className="bz-accent">매번 직접 보내고 계십니다.</span>
-              </h2>
-            </FadeInSection>
-            <FadeInSection delay={200}>
-              <p className="bz-lead">
-                사진만 올리면 <b>AI가 알림장을 작성</b>하고, 전송 한 번으로 고객별 알림장 페이지가
-                자동으로 생성·전달됩니다.
-              </p>
-            </FadeInSection>
-            <div className="bz-flow">
-              <span className="bz-fchip bz-f1">사진</span>
-              <ArrowRight size={16} className="bz-farr" />
-              <span className="bz-fchip bz-f2">AI 작성</span>
-              <ArrowRight size={16} className="bz-farr" />
-              <span className="bz-fchip bz-fwin bz-f3">보내기 ✓</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ───────── 2 · 결제 ───────── */}
+      <ProblemSolution
+        num="02"
+        problem={{
+          eyebrow: "이런 고민 있으셨죠",
+          title: (
+            <>
+              예약과 결제, 고객 관리가
+              <br />
+              서로 따로 움직입니다.
+            </>
+          ),
+          visual: <PayProblem />,
+        }}
+        solution={{
+          eyebrow: "강쥐엄마는",
+          title: (
+            <>
+              결제부터 정산까지
+              <br />
+              <span className="bz-accent">한 화면에서</span> 끝납니다.
+            </>
+          ),
+          body: (
+            <>
+              <b>토스 단말기와 연동</b>되어, 결제하면 매출과 이용권 차감까지 대시보드에 자동으로
+              기록됩니다.
+            </>
+          ),
+          visual: <PaySolution />,
+        }}
+      />
 
-      {/* ───────── 4 · 마케팅 + 동네 수요통계 ───────── */}
-      <section className="bz-sec bz-anim" id="bz-s4">
-        <span className="bz-num">04 / 06</span>
+      {/* ───────── 3 · 알림장 ───────── */}
+      <ProblemSolution
+        num="03"
+        surface
+        problem={{
+          eyebrow: "이런 고민 있으셨죠",
+          title: (
+            <>
+              사진 찍고, 알림장 쓰고,
+              <br />
+              카톡으로 <span className="bz-probac">매번 직접</span> 보내고…
+            </>
+          ),
+          visual: <TalkProblem />,
+        }}
+        solution={{
+          eyebrow: "강쥐엄마는",
+          title: (
+            <>
+              사진만 올리면,
+              <br />
+              <span className="bz-accent">알림장이 완성</span>됩니다.
+            </>
+          ),
+          body: (
+            <>
+              AI가 알림장을 작성하고, 전송 한 번으로 <b>고객별 알림장 페이지</b>가 자동으로
+              생성·전달됩니다.
+            </>
+          ),
+          visual: <TalkSolution />,
+        }}
+      />
+
+      {/* ───────── 4 · 마케팅 ───────── */}
+      <ProblemSolution
+        num="04"
+        problem={{
+          eyebrow: "이런 고민 있으셨죠",
+          title: (
+            <>
+              인스타·유튜브·밴드·뉴스…
+              <br />
+              <span className="bz-probac">뭘 어떻게</span> 올려야 할지.
+            </>
+          ),
+          visual: <MktProblem />,
+        }}
+        solution={{
+          eyebrow: "강쥐엄마는",
+          title: (
+            <>
+              우리 동네 데이터로,
+              <br />
+              <span className="bz-accent">AI가 대신</span> 만듭니다.
+            </>
+          ),
+          body: (
+            <>
+              동네 고객의 수요 통계를 바탕으로 <b>광고·인스타 게시글</b>은 물론, 이벤트와 한 달 운영
+              계획까지 제안합니다.
+            </>
+          ),
+          visual: <MktSolution />,
+        }}
+      />
+
+      {/* ───────── 5 · 앱 고객 혜택 ───────── */}
+      <section className="bz-sec bz-surface" id="bz-s5">
+        <span className="bz-num">05 / 06</span>
         <div className="bz-wrap bz-grid2">
-          <div>
-            <FadeInSection>
-              <span className="bz-eyebrow">문제 ③④ · 마케팅의 시간과 정보</span>
-            </FadeInSection>
-            <FadeInSection delay={100}>
-              <h2 className="bz-h2">
-                운영만으로 하루가 빠듯한데,
-                <br />
-                광고까지 <span className="bz-accent">직접</span> 만들기는 어렵습니다.
-              </h2>
-            </FadeInSection>
-            <FadeInSection delay={200}>
-              <p className="bz-lead">
-                <b>AI가 광고와 인스타그램 게시글을 자동으로 작성</b>합니다. 우리 동네 고객의 수요
-                데이터를 바탕으로 이벤트와 한 달 운영 계획까지 제안합니다.
-              </p>
-            </FadeInSection>
-          </div>
-          <FadeInSection delay={150}>
-            <div className="bz-gencard">
-              <span className="bz-genic">
-                <Sparkles size={14} color="#3b82f6" />
-              </span>
-              "여름 모질관리 이벤트" 광고
-              <span className="bz-genstat">생성됨</span>
-            </div>
-            <div className="bz-gencard">
-              <span className="bz-genic">
-                <Camera size={14} color="#3b82f6" />
-              </span>
-              인스타 게시글 초안 3개
-              <span className="bz-genstat">준비됨</span>
-            </div>
-            <div className="bz-browser" style={{ marginTop: 14 }}>
-              <div className="bz-bar">
-                <i />
-                <i />
-                <i />
-                <span className="bz-url">우리 동네 수요</span>
-              </div>
-              <div className="bz-demand">
-                <div className="bz-demandttl">이번 달 우리 동네 관심사 TOP</div>
-                <div className="bz-barsm">
-                  <span className="bz-hi" style={{ height: "92%" }} />
-                  <span style={{ height: "70%" }} />
-                  <span style={{ height: "55%" }} />
-                  <span style={{ height: "44%" }} />
-                  <span style={{ height: "34%" }} />
-                </div>
-                <div className="bz-demandlbl">
-                  <span>피부·모질</span>
-                  <span>관절</span>
-                  <span>치아</span>
-                  <span>다이어트</span>
-                  <span>호텔</span>
-                </div>
+          <FadeInSection>
+            <div className="bz-appphone">
+              <div className="bz-appnotch" />
+              <div className="bz-appscreen">
+                <ImgFade images={PHOTO.app} className="bz-phfade" imgClassName="bz-fadeimg" />
               </div>
             </div>
           </FadeInSection>
-        </div>
-      </section>
-
-      {/* ───────── 5 · 손님이 앱 깔면 (덤) ───────── */}
-      <section className="bz-sec bz-surface" id="bz-s5">
-        <span className="bz-num">05 / 06</span>
-        <div className="bz-wrap">
-          <div className="bz-center">
+          <div>
             <FadeInSection>
               <span className="bz-eyebrow">강쥐엄마 앱 고객이라면</span>
             </FadeInSection>
             <FadeInSection delay={100}>
               <h2 className="bz-h2">
-                고객이 앱을 사용하면,
+                고객이 앱을 쓰면,
                 <br />
                 운영이 한층 <span className="bz-accent">수월해집니다.</span>
               </h2>
             </FadeInSection>
-          </div>
-          <div className="bz-dumgrid">
-            {[
-              {
-                Icon: Ticket,
-                h: "이용권·구매 이력 자동 관리",
-                p: "고객 앱에 잔여 횟수와 구매 내역이 그대로 표시됩니다.",
-              },
-              {
-                Icon: Bell,
-                h: "다음 일정 자동 알림",
-                p: "미용 주기와 다음 예약을 고객 앱이 먼저 안내해 재방문으로 이어집니다.",
-              },
-              {
-                Icon: BookHeart,
-                h: "알림장 기록 보관",
-                p: "전송한 알림장이 고객의 일기장에 쌓여, 우리 매장이 추억으로 남습니다.",
-              },
-              {
-                Icon: Bot,
-                h: "문의 AI 1차 응대",
-                p: "고객 문의에 AI가 먼저 응대해, 영업시간 외에도 놓치지 않습니다.",
-              },
-            ].map((d, i) => (
-              <FadeInSection key={i} delay={i * 80}>
-                <div className="bz-dumcard">
-                  <div className="bz-dumic">
-                    <d.Icon size={20} color="#3b82f6" />
+            <div className="bz-benefits">
+              {[
+                {
+                  Icon: QrCode,
+                  h: "QR 포인트 적립",
+                  p: "방문 시 QR 한 번으로 Paw 포인트가 쌓여 재방문을 부릅니다.",
+                },
+                {
+                  Icon: Ticket,
+                  h: "이용권·구매 이력",
+                  p: "잔여 횟수와 내역이 고객 앱에 그대로 표시됩니다.",
+                },
+                {
+                  Icon: Bell,
+                  h: "다음 일정 자동 알림",
+                  p: "미용 주기·다음 예약을 앱이 먼저 안내합니다.",
+                },
+                {
+                  Icon: BookHeart,
+                  h: "알림장 기록 보관",
+                  p: "보낸 알림장이 고객의 일기장에 추억으로 쌓입니다.",
+                },
+                {
+                  Icon: Bot,
+                  h: "문의 AI 1차 응대",
+                  p: "고객 문의에 AI가 먼저 응대해 놓치지 않습니다.",
+                },
+              ].map((d, i) => (
+                <FadeInSection key={i} delay={120 + i * 70}>
+                  <div className="bz-bcard">
+                    <div className="bz-bic">
+                      <d.Icon size={18} color="#3b82f6" />
+                    </div>
+                    <div>
+                      <div className="bz-bh">{d.h}</div>
+                      <div className="bz-bp">{d.p}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="bz-dumh">{d.h}</div>
-                    <div className="bz-dump">{d.p}</div>
-                  </div>
-                </div>
-              </FadeInSection>
-            ))}
+                </FadeInSection>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -402,7 +359,7 @@ export default function BusinessPage() {
             </FadeInSection>
             <FadeInSection delay={100}>
               <h2 className="bz-h2">
-                지금은 베이직까지, <span className="bz-free">전부 무료입니다.</span>
+                지금 시작하면, <span className="bz-free">전부 무료입니다.</span>
               </h2>
             </FadeInSection>
           </div>
@@ -410,9 +367,9 @@ export default function BusinessPage() {
             <div className="bz-freebar">
               <Gift size={22} color="#ff6b35" style={{ flex: "none" }} />
               <span>
-                <b>~7/31까지 베이직 기능을 전부 무료로 제공합니다.</b> 이후에도{" "}
-                <b>결제·예약 관리 대시보드는 계속 무료</b>로 이용하실 수 있습니다. AI 기능과 앱
-                연동이 필요해지면, 그때 월 단위로 업그레이드하시면 됩니다.
+                <b>6월 30일까지 가입하시면, 7월 말까지 베이직 기능을 무료로 체험</b>할 수 있습니다.
+                이후에는 <b>라이트로 자동 전환되어 계속 무료</b>로 이용하시고, AI 기능 등 더 많은
+                기능이 필요해지면 그때 업그레이드하시면 됩니다.
               </span>
             </div>
             <div className="bz-ptable">
@@ -493,7 +450,239 @@ export default function BusinessPage() {
   );
 }
 
-// 자동 크로스페이드 슬라이더 — 여러 장이면 순환, 1장이면 정지, 전부 실패면 onAllFail
+/* ════════════ 문제 → 해결 전환 섹션 ════════════ */
+function ProblemSolution({
+  num,
+  problem,
+  solution,
+  surface,
+}: {
+  num: string;
+  problem: { eyebrow: string; title: React.ReactNode; visual: React.ReactNode };
+  solution: {
+    eyebrow: string;
+    title: React.ReactNode;
+    body: React.ReactNode;
+    visual: React.ReactNode;
+  };
+  surface?: boolean;
+}) {
+  const [phase, setPhase] = useState<"problem" | "solution">("problem");
+  const ref = useRef<HTMLElement>(null);
+  const timer = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setPhase("problem");
+          window.clearTimeout(timer.current);
+          timer.current = window.setTimeout(() => setPhase("solution"), 3000);
+        } else {
+          window.clearTimeout(timer.current);
+        }
+      },
+      { threshold: 0.45 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer.current);
+    };
+  }, []);
+
+  const go = (p: "problem" | "solution") => {
+    window.clearTimeout(timer.current);
+    setPhase(p);
+  };
+
+  return (
+    <section className={`bz-sec bz-ps${surface ? " bz-surface" : ""}`} ref={ref}>
+      <span className="bz-num">{num} / 06</span>
+      <div className="bz-wrap bz-grid2">
+        <div className="bz-pstext">
+          <div className="bz-phasewrap">
+            <div className={`bz-phase${phase === "problem" ? " on" : ""}`}>
+              <span className="bz-eyebrow bz-prob">{problem.eyebrow}</span>
+              <h2 className="bz-h2">{problem.title}</h2>
+            </div>
+            <div className={`bz-phase${phase === "solution" ? " on" : ""}`}>
+              <span className="bz-eyebrow">{solution.eyebrow}</span>
+              <h2 className="bz-h2">{solution.title}</h2>
+              <p className="bz-lead">{solution.body}</p>
+            </div>
+          </div>
+          <div className="bz-toggle">
+            <button
+              className={`${phase === "problem" ? "on bz-tprob" : ""}`}
+              onClick={() => go("problem")}
+            >
+              지금
+            </button>
+            <button
+              className={`${phase === "solution" ? "on" : ""}`}
+              onClick={() => go("solution")}
+            >
+              강쥐엄마
+            </button>
+          </div>
+        </div>
+
+        <div className="bz-psvisual">
+          <div className={`bz-vis${phase === "problem" ? " on" : ""}`}>{problem.visual}</div>
+          <div className={`bz-vis${phase === "solution" ? " on" : ""}`}>{solution.visual}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ════════════ 비주얼 ════════════ */
+
+// 결제 — 문제: 따로 도는 프로그램들 (카톡·엑셀·포스)
+function PayProblem() {
+  return (
+    <div className="bz-scatter3">
+      <div className="bz-ptool bz-sca">
+        <div className="bz-mini bz-mkatalk">
+          <span className="bz-mb bz-ml" />
+          <span className="bz-mb bz-mr" />
+          <span className="bz-mb bz-ml bz-msh" />
+        </div>
+        <div className="bz-plabel">예약 · 카톡</div>
+      </div>
+      <div className="bz-ptool bz-scb">
+        <div className="bz-mini bz-mexcel">
+          <div className="bz-mxhead" />
+          <div className="bz-mxbody">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
+        <div className="bz-plabel">고객 장부 · 엑셀</div>
+      </div>
+      <div className="bz-ptool bz-scc">
+        <div className="bz-mini bz-mpos">
+          <div className="bz-mposscr">₩ 42,000</div>
+          <div className="bz-mposkeys">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
+        <div className="bz-plabel">포스기 결제</div>
+      </div>
+      <span className="bz-scnote">제각각 따로 운영</span>
+    </div>
+  );
+}
+
+// 결제 — 해결: 대시보드 + 토스 단말기
+function PaySolution() {
+  return (
+    <div className="bz-paysol2">
+      <DashboardMock images={PHOTO.dash} />
+      <div className="bz-terminal bz-termfloat">
+        <div className="bz-termtop">TOSS</div>
+        <div className="bz-termscreen">
+          <Check size={18} strokeWidth={3} />
+          <div className="bz-termok">결제 완료</div>
+          <div className="bz-termamt">42,000원</div>
+        </div>
+        <div className="bz-termslot" />
+      </div>
+    </div>
+  );
+}
+
+// 알림장 — 문제: 카톡 정신없이
+function TalkProblem() {
+  return (
+    <div className="bz-katalk">
+      <div className="bz-kday">고객님과의 채팅</div>
+      <div className="bz-kbubble bz-kme">오늘 콩이 사진이에요!</div>
+      <div className="bz-kbubble bz-kme bz-kphoto">
+        <Camera size={18} color="#a16207" />
+      </div>
+      <div className="bz-kbubble bz-kme">미용 완료했습니다~</div>
+      <div className="bz-kbubble bz-kme">전체미용, 1시간 반 걸렸고…</div>
+      <div className="bz-kbubble bz-kme bz-ktype">
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="bz-knote">매 고객마다 복사·붙여넣기</div>
+    </div>
+  );
+}
+
+// 알림장 — 해결: 실제 알림장 화면
+function TalkSolution() {
+  return (
+    <div className="bz-appphone bz-talkphone">
+      <div className="bz-appnotch" />
+      <div className="bz-appscreen">
+        <ImgFade images={PHOTO.notice} className="bz-phfade" imgClassName="bz-fadeimg" />
+      </div>
+    </div>
+  );
+}
+
+// 마케팅 — 문제: SNS 헤매기
+function MktProblem() {
+  return (
+    <div className="bz-snsmess">
+      <div className="bz-snsicon bz-insta">
+        <Camera size={24} color="#fff" />
+      </div>
+      <div className="bz-snsicon bz-yt">
+        <Play size={24} color="#fff" fill="#fff" />
+      </div>
+      <div className="bz-snsicon bz-band">BAND</div>
+      <div className="bz-snsicon bz-news">
+        <Newspaper size={22} color="#fff" />
+      </div>
+      <div className="bz-snscenter">뭘 어떻게 올리지?</div>
+    </div>
+  );
+}
+
+// 마케팅 — 해결: 통계 + AI
+function MktSolution() {
+  return (
+    <div className="bz-mktsol">
+      <div className="bz-mktcard">
+        <span className="bz-mktic">
+          <Sparkles size={14} color="#3b82f6" />
+        </span>
+        "여름 모질관리 이벤트" 광고
+        <span className="bz-mktstat">생성됨</span>
+      </div>
+      <div className="bz-browser bz-mktbrowser">
+        <div className="bz-bar">
+          <i />
+          <i />
+          <i />
+          <span className="bz-url">
+            <BarChart3 size={11} style={{ verticalAlign: "-1px" }} /> 통계 · AI 마케팅
+          </span>
+        </div>
+        <ImgFade images={PHOTO.stat} className="bz-shotwrap" imgClassName="bz-fadeimg" />
+      </div>
+    </div>
+  );
+}
+
+/* ════════════ 공용: 슬라이더 / 대시보드 ════════════ */
 function ImgFade({
   images,
   interval = 3800,
@@ -544,14 +733,7 @@ function ImgFade({
   );
 }
 
-// 대시보드 미니 목업 — 스크린샷 있으면 슬라이더, 없으면 CSS 더미
-function DashboardMock({
-  images,
-  variant,
-}: {
-  images: string[];
-  variant?: "merge";
-}) {
+function DashboardMock({ images }: { images: string[] }) {
   const [allFailed, setAllFailed] = useState(false);
   return (
     <div className="bz-browser">
@@ -559,11 +741,8 @@ function DashboardMock({
         <i />
         <i />
         <i />
-        <span className="bz-url">
-          {variant === "merge" ? "예약 · 결제 · 정산" : "gangji-manage.kr"}
-        </span>
+        <span className="bz-url">gangji-manage.kr</span>
       </div>
-
       {!allFailed ? (
         <ImgFade
           images={images}
@@ -575,10 +754,7 @@ function DashboardMock({
         <div className="bz-dash">
           <div className="bz-side">
             <div className="bz-biz">
-              {variant === "merge" ? "한 화면" : "마음이네유치원"}
-              <small>
-                {variant === "merge" ? "예약→결제→정산" : "인천 연수구 · BASIC"}
-              </small>
+              마음이네유치원<small>인천 연수구 · BASIC</small>
             </div>
             <div className="bz-nav bz-on">홈</div>
             <div className="bz-nav">예약</div>
@@ -614,33 +790,40 @@ function DashboardMock({
   );
 }
 
-// ───────────────────────── 스타일 (일반 CSS, prefix bz-) ─────────────────────────
+/* ════════════ 스타일 ════════════ */
 const BZ_CSS = `
 .bz-sec{min-height:100vh;display:flex;align-items:center;padding:72px 24px;position:relative;overflow:hidden}
 .bz-wrap{max-width:1080px;margin:0 auto;width:100%}
 .bz-grid2{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
-@media(max-width:860px){.bz-grid2{grid-template-columns:1fr;gap:36px}}
+@media(max-width:860px){.bz-grid2{grid-template-columns:1fr;gap:28px}.bz-sec{padding:60px 20px}}
 .bz-num{position:absolute;top:30px;right:28px;font-size:12px;font-weight:700;color:#94a3b8;letter-spacing:.06em}
 .bz-center{text-align:center}
-.bz-eyebrow{font-size:13px;font-weight:700;color:#3b82f6;margin-bottom:16px;display:inline-block}
+.bz-eyebrow{font-size:13px;font-weight:700;color:#3b82f6;margin-bottom:14px;display:inline-block}
 .bz-eyebrow.bz-warm{color:#ff6b35}
+.bz-eyebrow.bz-prob{color:#e55a2b}
 .bz-h1{font-size:clamp(30px,5.4vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1.16;color:#0f172a}
-.bz-h2{font-size:clamp(26px,4.2vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.22;color:#0f172a}
-.bz-lead{font-size:clamp(15px,1.9vw,19px);color:#64748b;margin-top:18px;max-width:440px;font-weight:500}
+.bz-h2{font-size:clamp(25px,4vw,40px);font-weight:800;letter-spacing:-.035em;line-height:1.22;color:#0f172a}
+.bz-lead{font-size:clamp(15px,1.9vw,18px);color:#64748b;margin-top:16px;max-width:440px;font-weight:500}
 .bz-lead b{color:#0f172a;font-weight:700}
 .bz-accent{color:#3b82f6}
+.bz-probac{color:#e55a2b}
 .bz-free{color:#ff6b35;font-weight:800}
-.bz-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#ff6b35;color:#fff;box-shadow:0 8px 24px rgba(255,107,53,.28);margin-top:32px}
+.bz-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#ff6b35;color:#fff;box-shadow:0 8px 24px rgba(255,107,53,.28);margin-top:30px}
 .bz-btn:hover{background:#e55a2b;transform:translateY(-1px)}
 .bz-btnlg{font-size:18px;padding:18px 40px;margin-top:0}
-.bz-trust{margin-top:26px;display:flex;gap:18px;flex-wrap:wrap;color:#64748b;font-size:13px;font-weight:600}
+.bz-trust{margin-top:24px;display:flex;gap:18px;flex-wrap:wrap;color:#64748b;font-size:13px;font-weight:600}
 .bz-trust b{color:#0f172a}
 .bz-finalnote{color:#94a3b8;font-size:13px;margin-top:13px}
+.bz-surface{background:#f8fafc}
 
+/* scroll cue */
+.bz-scrollcue{position:absolute;bottom:24px;left:50%;display:flex;flex-direction:column;align-items:center;gap:3px;color:#64748b;font-size:13px;font-weight:600;animation:bzbob 1.8s ease-in-out infinite}
+@keyframes bzbob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+/* hero */
 .bz-hero{background:linear-gradient(180deg,#eff6ff,#fff 72%)}
-
-/* sec1 hero gather */
 .bz-stage{position:relative;height:400px}
+@media(max-width:860px){.bz-stage{height:320px}}
 .bz-tool{position:absolute;background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:12px 15px;box-shadow:0 10px 28px rgba(15,23,42,.09);font-weight:700;font-size:13px;color:#334155;display:flex;align-items:center;gap:9px;opacity:0;transform:translateY(10px) scale(.92);transition:opacity .8s ease,transform 1s ease,left 1.2s ease,top 1.2s ease;white-space:nowrap}
 .bz-dot{width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
 .bz-t1{top:6%;left:4%;transition-delay:0s}
@@ -653,58 +836,107 @@ const BZ_CSS = `
 .bz-herodash{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%) scale(.9);opacity:0;transition:.9s ease;width:92%;max-width:380px}
 .bz-play.bz-gathered .bz-herodash{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
-/* sec2 merge */
-.bz-merge{position:relative;height:330px}
-.bz-chip{position:absolute;background:#fff;border:1px solid #e8edf3;border-radius:13px;padding:11px 14px;font-weight:700;font-size:13px;color:#334155;display:flex;align-items:center;gap:8px;box-shadow:0 8px 22px rgba(15,23,42,.08);opacity:0;transition:opacity .7s ease,transform 1.1s ease,top 1.1s ease,left 1.1s ease}
-.bz-c1{top:0;left:6%;transition-delay:0s}
-.bz-c2{top:14%;right:4%;transition-delay:.3s}
-.bz-c3{top:30%;left:22%;transition-delay:.6s}
-.bz-play .bz-chip{opacity:1}
-.bz-play.bz-gathered .bz-chip{top:50%!important;left:50%!important;right:auto!important;transform:translate(-50%,-50%) scale(.3);opacity:0;transition-delay:0s}
-.bz-mergedash{position:absolute;bottom:0;left:50%;transform:translateX(-50%) scale(.92);opacity:0;transition:.9s ease;width:100%}
-.bz-play.bz-gathered .bz-mergedash{opacity:1;transform:translateX(-50%) scale(1)}
+/* problem-solution */
+.bz-pstext{position:relative}
+.bz-phasewrap{position:relative;min-height:230px}
+@media(max-width:860px){.bz-phasewrap{min-height:150px}}
+.bz-phase{position:absolute;inset:0;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
+.bz-phase.on{opacity:1;transform:none;pointer-events:auto}
+.bz-toggle{display:inline-flex;gap:5px;margin-top:18px;background:#eef2f7;padding:5px;border-radius:13px}
+.bz-toggle button{border:none;background:transparent;padding:9px 18px;border-radius:9px;font-weight:700;font-size:13px;color:#94a3b8;cursor:pointer;transition:.2s;font-family:inherit}
+.bz-toggle button.on{background:#fff;color:#0f172a;box-shadow:0 2px 8px rgba(15,23,42,.1)}
+.bz-toggle button.on.bz-tprob{color:#e55a2b}
+.bz-psvisual{position:relative;height:380px}
+@media(max-width:860px){.bz-psvisual{height:310px}}
+.bz-vis{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.96);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
+.bz-vis.on{opacity:1;transform:none;pointer-events:auto}
 
-/* sec3 flow */
-.bz-surface{background:#f8fafc}
-.bz-phone{width:210px;margin:0 auto;background:#0f172a;border-radius:32px;padding:10px;box-shadow:0 22px 56px rgba(15,23,42,.22)}
+/* pay problem — 미니 프로그램들 */
+.bz-scatter3{position:relative;width:100%;height:100%}
+.bz-ptool{position:absolute;display:flex;flex-direction:column;align-items:center;gap:7px}
+.bz-mini{width:88px;height:66px;border-radius:12px;overflow:hidden;box-shadow:0 10px 24px rgba(15,23,42,.15);background:#fff;border:1px solid #e8edf3}
+.bz-plabel{font-size:12.5px;font-weight:700;color:#475569;white-space:nowrap}
+.bz-sca{top:8%;left:5%;transform:rotate(-6deg)}
+.bz-scb{top:33%;right:3%;transform:rotate(5deg)}
+.bz-scc{bottom:13%;left:15%;transform:rotate(-2deg)}
+.bz-mkatalk{background:#9bbbd4;padding:9px;display:flex;flex-direction:column;gap:6px}
+.bz-mb{height:9px;border-radius:5px;display:block}
+.bz-ml{width:62%;background:#fff}
+.bz-mr{width:54%;background:#fee500;align-self:flex-end}
+.bz-msh{width:42%}
+.bz-mexcel{display:flex;flex-direction:column}
+.bz-mxhead{height:17px;background:#107c41}
+.bz-mxbody{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:1px;background:#cbd5e1;padding:1px}
+.bz-mxbody span{background:#fff}
+.bz-mpos{background:#1e293b;display:flex;flex-direction:column;padding:8px;gap:5px}
+.bz-mposscr{background:#0f172a;color:#4ade80;font-size:10px;font-weight:800;text-align:right;padding:3px 5px;border-radius:3px;letter-spacing:.02em}
+.bz-mposkeys{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.bz-mposkeys span{background:#334155;border-radius:2px}
+.bz-scnote{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:#e55a2b;background:#fff3ec;padding:6px 14px;border-radius:20px;border:1px solid #ffd9c4;white-space:nowrap}
+
+/* pay solution — 대시보드 + 토스 단말기 */
+.bz-paysol2{position:relative;width:100%;max-width:380px;margin:0 auto}
+.bz-terminal{width:130px;background:#1e293b;border-radius:20px;padding:12px 12px 16px;box-shadow:0 18px 40px rgba(15,23,42,.3)}
+.bz-termtop{color:#94a3b8;font-size:11px;font-weight:800;text-align:center;letter-spacing:.1em;margin-bottom:8px}
+.bz-termscreen{background:linear-gradient(150deg,#3b82f6,#2563eb);border-radius:13px;padding:16px 10px;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.bz-termok{font-size:12px;font-weight:600;opacity:.9;margin-top:3px}
+.bz-termamt{font-size:18px;font-weight:800}
+.bz-termslot{height:7px;background:#0f172a;border-radius:4px;margin:13px 8px 0}
+.bz-termfloat{position:absolute;bottom:-20px;right:-12px;width:108px;z-index:3;transform:rotate(3deg)}
+@media(max-width:860px){.bz-termfloat{width:90px;right:0;bottom:-12px}}
+
+/* talk solution — 알림장 스샷 폰 */
+.bz-talkphone{width:225px}
+.bz-talkphone .bz-appscreen{height:420px}
+
+/* talk problem (katalk) */
+.bz-katalk{width:270px;background:#9bbbd4;border-radius:20px;padding:16px 14px 14px;box-shadow:0 18px 44px rgba(15,23,42,.18)}
+.bz-kday{text-align:center;font-size:11px;color:#475569;background:rgba(255,255,255,.5);border-radius:10px;padding:4px;margin-bottom:12px;font-weight:600}
+.bz-kbubble{max-width:78%;padding:9px 12px;border-radius:13px;font-size:12.5px;font-weight:500;margin-bottom:8px;line-height:1.35}
+.bz-kme{background:#fee500;color:#3a1d1d;margin-left:auto;border-top-right-radius:4px}
+.bz-kphoto{height:46px;display:flex;align-items:center;justify-content:center;background:#fde68a}
+.bz-ktype{display:flex;gap:4px;align-items:center;width:auto;max-width:60px;justify-content:center;padding:11px 12px}
+.bz-ktype span{width:6px;height:6px;border-radius:50%;background:#a16207;animation:bztype 1.2s infinite}
+.bz-ktype span:nth-child(2){animation-delay:.2s}
+.bz-ktype span:nth-child(3){animation-delay:.4s}
+@keyframes bztype{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.bz-knote{text-align:center;font-size:12px;font-weight:700;color:#e55a2b;margin-top:6px}
+
+/* phone (talk solution) */
+.bz-phone{width:215px;background:#0f172a;border-radius:32px;padding:10px;box-shadow:0 22px 56px rgba(15,23,42,.22)}
 .bz-screen{background:#fff;border-radius:23px;overflow:hidden}
 .bz-phtop{background:#3b82f6;color:#fff;padding:13px 15px;font-weight:700;font-size:13px}
-.bz-phphoto{height:110px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fde68a,#fca5a5)}
+.bz-phphoto{height:150px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fde68a,#fca5a5)}
 .bz-phfade{position:absolute;inset:0}
-.bz-phbody{padding:13px}
-.bz-phttl{font-weight:800;font-size:13px;margin-bottom:7px}
+.bz-phbody{padding:14px}
+.bz-phttl{font-weight:800;font-size:13px;margin-bottom:8px}
 .bz-ln{height:6px;background:#eef2f7;border-radius:4px;margin:5px 0}
 .bz-ln.bz-s{width:65%}
-.bz-phsend{background:#e2e8f0;color:#94a3b8;text-align:center;padding:10px;border-radius:11px;font-weight:700;font-size:12px;margin-top:11px;transition:.6s ease}
-.bz-play .bz-phsend{background:#3b82f6;color:#fff;transition-delay:1.1s}
-.bz-flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:24px}
-.bz-fchip{background:#fff;border:1px solid #e8edf3;border-radius:11px;padding:9px 13px;font-weight:600;font-size:13px;color:#64748b;opacity:.4;transform:scale(.96);transition:.5s ease}
-.bz-play .bz-fchip{opacity:1;transform:none;color:#334155}
-.bz-play .bz-f1{transition-delay:.2s}
-.bz-play .bz-f2{transition-delay:.7s}
-.bz-play .bz-f3{transition-delay:1.2s}
-.bz-play .bz-fwin{background:#fff3ec;border-color:#ffd9c4;color:#e55a2b}
-.bz-farr{color:#94a3b8}
+.bz-phsend2{display:flex;align-items:center;justify-content:center;gap:5px;background:#3b82f6;color:#fff;padding:10px;border-radius:11px;font-weight:700;font-size:12px;margin-top:12px}
 
-/* sec4 */
-.bz-gencard{background:#fff;border:1px solid #e8edf3;border-radius:13px;padding:13px 15px;font-weight:600;font-size:13px;color:#334155;display:flex;align-items:center;gap:9px;margin-bottom:10px;box-shadow:0 6px 18px rgba(15,23,42,.06)}
-.bz-genic{width:24px;height:24px;border-radius:7px;background:#eff6ff;display:grid;place-items:center}
-.bz-genstat{margin-left:auto;font-size:11px;font-weight:700;color:#3b82f6}
+/* mkt problem (sns) */
+.bz-snsmess{position:relative;width:100%;height:100%}
+.bz-snsicon{position:absolute;width:56px;height:56px;border-radius:15px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:12px;box-shadow:0 10px 26px rgba(15,23,42,.16)}
+.bz-insta{top:12%;left:12%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);transform:rotate(-8deg)}
+.bz-yt{top:8%;right:14%;background:#ff0000;transform:rotate(6deg)}
+.bz-band{bottom:20%;left:8%;background:#03c75a;transform:rotate(-4deg)}
+.bz-news{bottom:14%;right:12%;background:#475569;transform:rotate(7deg)}
+.bz-snscenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border:1px solid #ffd9c4;color:#e55a2b;font-weight:700;font-size:13px;padding:9px 16px;border-radius:20px;box-shadow:0 8px 22px rgba(15,23,42,.1);white-space:nowrap}
 
-/* shared browser/dashboard */
+/* mkt solution */
+.bz-mktsol{width:100%;max-width:380px}
+.bz-mktcard{background:#fff;border:1px solid #e8edf3;border-radius:13px;padding:12px 14px;font-weight:600;font-size:13px;color:#334155;display:flex;align-items:center;gap:9px;margin-bottom:12px;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+.bz-mktic{width:24px;height:24px;border-radius:7px;background:#eff6ff;display:grid;place-items:center;flex:none}
+.bz-mktstat{margin-left:auto;font-size:11px;font-weight:700;color:#3b82f6;flex:none}
+
+/* browser/dashboard */
 .bz-browser{background:#fff;border:1px solid #e8edf3;border-radius:16px;overflow:hidden;box-shadow:0 22px 56px rgba(15,23,42,.13)}
+.bz-mktbrowser{width:100%}
 .bz-bar{background:#f1f5f9;padding:10px 13px;display:flex;gap:6px;align-items:center;border-bottom:1px solid #e8edf3}
 .bz-bar i{width:10px;height:10px;border-radius:50%;background:#cbd5e1}
 .bz-url{margin-left:9px;font-size:11px;color:#94a3b8;font-weight:600}
-.bz-shotimg{display:block;width:100%;height:auto}
 .bz-shotwrap{position:relative;width:100%;aspect-ratio:16/10;background:#f8fafc;overflow:hidden}
 .bz-fadeimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity 1s ease}
-.bz-demand{padding:13px 16px}
-.bz-demandttl{font-size:11px;color:#64748b;font-weight:600;margin-bottom:8px}
-.bz-barsm{height:54px;display:flex;align-items:flex-end;gap:7px}
-.bz-barsm span{flex:1;background:#dbeafe;border-radius:4px 4px 0 0}
-.bz-barsm span.bz-hi{background:#3b82f6}
-.bz-demandlbl{display:flex;justify-content:space-between;font-size:9px;color:#94a3b8;margin-top:6px;font-weight:600}
 .bz-dash{display:grid;grid-template-columns:118px 1fr;min-height:230px}
 .bz-side{background:#f8fafc;border-right:1px solid #e8edf3;padding:14px 10px}
 .bz-biz{background:#3b82f6;color:#fff;border-radius:11px;padding:9px;font-size:11px;font-weight:700;margin-bottom:12px;line-height:1.3}
@@ -722,17 +954,19 @@ const BZ_CSS = `
 .bz-pbar span{flex:1;background:#dbeafe;border-radius:4px 4px 0 0}
 .bz-pbar span.bz-phi{background:#3b82f6}
 
-/* sec5 dum */
-.bz-dumgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:32px}
-@media(max-width:860px){.bz-dumgrid{grid-template-columns:1fr}}
-.bz-dumcard{background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:20px;display:flex;gap:13px;align-items:flex-start;height:100%}
-.bz-dumic{flex:none;width:40px;height:40px;border-radius:11px;background:#eff6ff;display:grid;place-items:center}
-.bz-dumh{font-weight:700;font-size:15px;margin-bottom:3px;color:#0f172a}
-.bz-dump{font-size:13px;color:#64748b;line-height:1.45}
+/* sec5 app phone + benefits */
+.bz-appphone{width:240px;margin:0 auto;background:#0f172a;border-radius:36px;padding:11px;box-shadow:0 24px 60px rgba(15,23,42,.24);position:relative}
+.bz-appnotch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:90px;height:18px;background:#0f172a;border-radius:0 0 14px 14px;z-index:2}
+.bz-appscreen{position:relative;height:430px;border-radius:26px;overflow:hidden;background:#f1f5f9}
+.bz-benefits{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.bz-bcard{background:#fff;border:1px solid #e8edf3;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.bz-bic{flex:none;width:36px;height:36px;border-radius:10px;background:#eff6ff;display:grid;place-items:center}
+.bz-bh{font-weight:700;font-size:14.5px;color:#0f172a}
+.bz-bp{font-size:12.5px;color:#64748b;margin-top:2px;line-height:1.45}
 
-/* sec6 plans */
+/* plans */
 .bz-plans{background:linear-gradient(180deg,#fff,#eff6ff)}
-.bz-freebar{background:#fff3ec;border:1px solid #ffd9c4;border-radius:16px;padding:16px 20px;margin:24px auto 30px;max-width:680px;font-weight:600;color:#334155;font-size:14px;display:flex;gap:11px;align-items:flex-start;line-height:1.5}
+.bz-freebar{background:#fff3ec;border:1px solid #ffd9c4;border-radius:16px;padding:16px 20px;margin:24px auto 30px;max-width:700px;font-weight:600;color:#334155;font-size:14px;display:flex;gap:11px;align-items:flex-start;line-height:1.55}
 .bz-freebar b{color:#0f172a}
 .bz-ptable{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:860px){.bz-ptable{grid-template-columns:1fr 1fr}}
@@ -748,11 +982,7 @@ const BZ_CSS = `
 .bz-badge{position:absolute;top:-10px;left:16px;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:7px}
 .bz-badge.bz-bsoon{background:#e2e8f0;color:#64748b}
 
-@media(prefers-reduced-motion:reduce){
-  .bz-tool,.bz-chip,.bz-herodash,.bz-mergedash,.bz-fchip,.bz-phsend{transition:none!important}
-}
-
-/* intro gate modal */
+/* intro modal */
 .bz-introbg{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;animation:bzfade .25s ease}
 @keyframes bzfade{from{opacity:0}to{opacity:1}}
 .bz-intro{background:#fff;border-radius:24px;padding:38px 30px;max-width:380px;width:100%;text-align:center;box-shadow:0 30px 80px rgba(15,23,42,.3);animation:bzpop .3s ease}
@@ -760,9 +990,13 @@ const BZ_CSS = `
 .bz-intrologo{font-size:40px;margin-bottom:10px}
 .bz-introttl{font-size:22px;font-weight:800;color:#0f172a;letter-spacing:-.02em}
 .bz-introsub{font-size:15px;color:#64748b;margin-top:12px;line-height:1.5;font-weight:500}
-.bz-introbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-weight:700;font-size:16px;padding:15px;border-radius:14px;cursor:pointer;text-decoration:none;border:none;transition:.15s}
+.bz-introbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-weight:700;font-size:16px;padding:15px;border-radius:14px;cursor:pointer;text-decoration:none;border:none;transition:.15s;font-family:inherit}
 .bz-introprimary{background:#ff6b35;color:#fff;margin-top:26px;box-shadow:0 8px 22px rgba(255,107,53,.28)}
 .bz-introprimary:hover{background:#e55a2b}
 .bz-introghost{background:#fff;color:#334155;border:1.5px solid #e8edf3;margin-top:10px}
 .bz-introghost:hover{border-color:#3b82f6;color:#3b82f6}
+
+@media(prefers-reduced-motion:reduce){
+  .bz-tool,.bz-herodash,.bz-phase,.bz-vis,.bz-fadeimg,.bz-scrollcue,.bz-ktype span{transition:none!important;animation:none!important}
+}
 `;
