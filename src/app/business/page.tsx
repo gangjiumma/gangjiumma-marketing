@@ -717,7 +717,7 @@ function ImgFade({
   }, [failed, idx, okList.length, images.length, onAllFail]);
 
   return (
-    <div className={className} style={{ position: "relative" }}>
+    <div className={className}>
       {images.map((src, i) => (
         // eslint-disable-next-line @next/next/no-img-element
         <img

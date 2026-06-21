@@ -25,25 +25,26 @@ export default function Header() {
           강쥐엄마
         </Link>
 
-        {/* 소통창구 (/voice) — 펫페어 소통 약속 페이지 */}
-        <Link
-          href="/voice"
-          className="inline-flex items-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl border border-brand-tint200 bg-brand-tint50 text-brand text-sm md:text-base font-bold hover:bg-brand-tint100 hover:border-brand transition-all duration-200"
-        >
-          <span>🐾</span>
-          <span>소통창구</span>
-        </Link>
+        {/* 우측 버튼 그룹 */}
+        <div className="flex items-center gap-2 md:gap-3">
+          {/* 소통창구 (/voice) — 펫페어 소통 약속 페이지 */}
+          <Link
+            href="/voice"
+            className="inline-flex items-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl border border-brand-tint200 bg-brand-tint50 text-brand text-sm md:text-base font-bold hover:bg-brand-tint100 hover:border-brand transition-all duration-200"
+          >
+            <span>🐾</span>
+            <span>소통창구</span>
+          </Link>
 
-        {/* 사장님 입점 — 사장님 페이지 정비 중 임시 숨김 (복구: 아래 false && 제거) */}
-        {false && (
+          {/* 사장님 입점 (/business) — 사장님용 입점 안내 */}
           <Link
             href="/business"
-            className="inline-flex items-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl border border-brand-tint200 bg-brand-tint50 text-brand text-sm md:text-base font-bold hover:bg-brand-tint100 hover:border-brand transition-all duration-200"
+            className="inline-flex items-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl bg-brand text-white text-sm md:text-base font-bold shadow-soft hover:opacity-90 transition-all duration-200"
           >
             <span>🏪</span>
             <span>사장님 입점</span>
           </Link>
-        )}
+        </div>
       </div>
     </header>
   );
