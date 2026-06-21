@@ -52,30 +52,6 @@ export default function BusinessPage() {
   }, [showIntro]);
   const dismissIntro = () => setShowIntro(false);
 
-  // 히어로 도구 모이기 애니
-  useEffect(() => {
-    const el = document.getElementById("bz-s1");
-    if (!el) return;
-    let timer: number | undefined;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          el.classList.add("bz-play");
-          timer = window.setTimeout(() => el.classList.add("bz-gathered"), 2600);
-        } else {
-          el.classList.remove("bz-play", "bz-gathered");
-          window.clearTimeout(timer);
-        }
-      },
-      { threshold: 0.4 }
-    );
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      window.clearTimeout(timer);
-    };
-  }, []);
-
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: BZ_CSS }} />
@@ -102,84 +78,7 @@ export default function BusinessPage() {
       )}
 
       {/* ───────── 1 · HERO ───────── */}
-      <section className="bz-sec bz-hero" id="bz-s1">
-        <span className="bz-num">01 / 06</span>
-        <div className="bz-wrap bz-grid2">
-          <div>
-            <FadeInSection>
-              <span className="bz-eyebrow">펫 유치원·미용실 사장님께</span>
-            </FadeInSection>
-            <FadeInSection delay={100}>
-              <h1 className="bz-h1">
-                예약부터 결제, 매출 관리까지
-                <br />
-                <span className="bz-accent">몇 개의 프로그램</span>을 쓰고 계신가요?
-              </h1>
-            </FadeInSection>
-            <FadeInSection delay={200}>
-              <p className="bz-lead">
-                예약·결제·고객·홍보가 제각기 흩어져 있습니다.
-                <br />
-                강쥐엄마는 이 모두를 한 곳에 모았습니다. <span className="bz-free">무료로 시작하세요.</span>
-              </p>
-            </FadeInSection>
-            <FadeInSection delay={300}>
-              <a className="bz-btn" href={APPLY_URL}>
-                무료로 입점 신청하기 <ArrowRight size={18} />
-              </a>
-              <div className="bz-trust">
-                <span>
-                  전국 <b>17,000곳</b> 펫 시설 등록
-                </span>
-                <span>
-                  <b>펫 특화</b> 올인원 솔루션
-                </span>
-              </div>
-            </FadeInSection>
-          </div>
-
-          <div className="bz-stage">
-            <div className="bz-tool bz-t1">
-              <span className="bz-dot" style={{ background: "#dcfce7" }}>
-                <CalendarCheck size={15} color="#16a34a" />
-              </span>
-              예약 프로그램
-            </div>
-            <div className="bz-tool bz-t2">
-              <span className="bz-dot" style={{ background: "#dbeafe" }}>
-                <CreditCard size={15} color="#2563eb" />
-              </span>
-              포스기 결제
-            </div>
-            <div className="bz-tool bz-t3">
-              <span className="bz-dot" style={{ background: "#fef9c3" }}>
-                <NotebookPen size={15} color="#ca8a04" />
-              </span>
-              고객 장부
-            </div>
-            <div className="bz-tool bz-t4">
-              <span className="bz-dot" style={{ background: "#fce7f3" }}>
-                <Camera size={15} color="#db2777" />
-              </span>
-              SNS 홍보
-            </div>
-            <div className="bz-tool bz-t5">
-              <span className="bz-dot" style={{ background: "#ede9fe" }}>
-                <Sparkles size={15} color="#7c3aed" />
-              </span>
-              마케팅
-            </div>
-            <div className="bz-herodash">
-              <DashboardMock images={PHOTO.dash} />
-            </div>
-          </div>
-        </div>
-
-        <div className="bz-scrollcue">
-          아래로 내려서 살펴보세요
-          <ChevronDown size={20} />
-        </div>
-      </section>
+      <Hero />
 
       {/* ───────── 2 · 결제 ───────── */}
       <ProblemSolution
@@ -455,6 +354,136 @@ export default function BusinessPage() {
   );
 }
 
+/* ════════════ 메인(히어로) — 문제 → 해결 자동 전환 ════════════ */
+function Hero() {
+  const [phase, setPhase] = useState<"problem" | "solution">("problem");
+  const ref = useRef<HTMLElement>(null);
+  const timer = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setPhase("problem");
+          window.clearTimeout(timer.current);
+          timer.current = window.setTimeout(() => setPhase("solution"), 3500);
+        } else {
+          window.clearTimeout(timer.current);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(timer.current);
+    };
+  }, []);
+
+  return (
+    <section className="bz-sec bz-hero" ref={ref}>
+      <span className="bz-num">01 / 06</span>
+      <div className="bz-wrap bz-grid2">
+        <div className="bz-pstext">
+          <div className="bz-phasewrap bz-herowrap">
+            <div className={`bz-phase${phase === "problem" ? " on" : ""}`}>
+              <span className="bz-eyebrow">펫 유치원·미용실 사장님께</span>
+              <h1 className="bz-h1">
+                예약부터 결제, 매출 관리까지
+                <br />
+                <span className="bz-accent">몇 개의 프로그램</span>을 쓰고 계신가요?
+              </h1>
+            </div>
+            <div className={`bz-phase${phase === "solution" ? " on" : ""}`}>
+              <span className="bz-eyebrow bz-warm">강쥐엄마는</span>
+              <h1 className="bz-h1">
+                이 모두를 <span className="bz-free">한 곳에</span> 모았습니다.
+                <br />
+                무료로 시작하세요.
+              </h1>
+            </div>
+          </div>
+          <a className="bz-btn" href={APPLY_URL}>
+            무료로 입점 신청하기 <ArrowRight size={18} />
+          </a>
+          <div className="bz-trust">
+            <span>
+              전국 <b>17,000곳</b> 펫 시설 등록
+            </span>
+            <span>
+              <b>펫 특화</b> 올인원 솔루션
+            </span>
+          </div>
+        </div>
+
+        <div className="bz-psvisual bz-herovis">
+          <div className={`bz-vis${phase === "problem" ? " on" : ""}`}>
+            <HeroProblem />
+          </div>
+          <div className={`bz-vis${phase === "solution" ? " on" : ""}`}>
+            <HeroSolution />
+          </div>
+        </div>
+      </div>
+
+      <div className="bz-scrollcue">
+        아래로 내려서 살펴보세요
+        <ChevronDown size={20} />
+      </div>
+    </section>
+  );
+}
+
+// 히어로 문제: 흩어진 운영 도구들
+function HeroProblem() {
+  return (
+    <div className="bz-heroscatter">
+      <div className="bz-htool bz-ht1">
+        <span className="bz-dot" style={{ background: "#dcfce7" }}>
+          <CalendarCheck size={15} color="#16a34a" />
+        </span>
+        예약
+      </div>
+      <div className="bz-htool bz-ht2">
+        <span className="bz-dot" style={{ background: "#dbeafe" }}>
+          <CreditCard size={15} color="#2563eb" />
+        </span>
+        결제
+      </div>
+      <div className="bz-htool bz-ht3">
+        <span className="bz-dot" style={{ background: "#fef9c3" }}>
+          <NotebookPen size={15} color="#ca8a04" />
+        </span>
+        고객 장부
+      </div>
+      <div className="bz-htool bz-ht4">
+        <span className="bz-dot" style={{ background: "#fce7f3" }}>
+          <Camera size={15} color="#db2777" />
+        </span>
+        SNS 홍보
+      </div>
+      <div className="bz-htool bz-ht5">
+        <span className="bz-dot" style={{ background: "#ede9fe" }}>
+          <Sparkles size={15} color="#7c3aed" />
+        </span>
+        마케팅
+      </div>
+      <span className="bz-scnote">제각각 흩어져</span>
+    </div>
+  );
+}
+
+// 히어로 해결: 한 곳에 모인 대시보드
+function HeroSolution() {
+  return (
+    <div className="bz-herosol">
+      <DashboardMock images={PHOTO.dash} />
+    </div>
+  );
+}
+
 /* ════════════ 문제 → 해결 전환 섹션 ════════════ */
 function ProblemSolution({
   num,
@@ -475,16 +504,17 @@ function ProblemSolution({
   const [phase, setPhase] = useState<"problem" | "solution">("problem");
   const ref = useRef<HTMLElement>(null);
   const timer = useRef<number | undefined>(undefined);
+  const locked = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e.isIntersecting && !locked.current) {
           setPhase("problem");
           window.clearTimeout(timer.current);
-          timer.current = window.setTimeout(() => setPhase("solution"), 3000);
+          timer.current = window.setTimeout(() => setPhase("solution"), 2200);
         } else {
           window.clearTimeout(timer.current);
         }
@@ -499,6 +529,7 @@ function ProblemSolution({
   }, []);
 
   const go = (p: "problem" | "solution") => {
+    locked.current = true; // 유저가 직접 누르면 그 선택 유지 (자동 전환 중단)
     window.clearTimeout(timer.current);
     setPhase(p);
   };
@@ -827,19 +858,20 @@ const BZ_CSS = `
 
 /* hero */
 .bz-hero{background:linear-gradient(180deg,#eff6ff,#fff 72%)}
-.bz-stage{position:relative;height:400px}
-@media(max-width:860px){.bz-stage{height:320px}}
-.bz-tool{position:absolute;background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:12px 15px;box-shadow:0 10px 28px rgba(15,23,42,.09);font-weight:700;font-size:13px;color:#334155;display:flex;align-items:center;gap:9px;opacity:0;transform:translateY(10px) scale(.92);transition:opacity .8s ease,transform 1s ease,left 1.2s ease,top 1.2s ease;white-space:nowrap}
+.bz-herowrap{min-height:200px}
+@media(max-width:860px){.bz-herowrap{min-height:160px}}
+.bz-herovis{height:400px}
+@media(max-width:860px){.bz-herovis{height:320px}}
+.bz-heroscatter{position:relative;width:100%;height:100%}
+.bz-htool{position:absolute;background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:12px 15px;box-shadow:0 10px 28px rgba(15,23,42,.1);font-weight:700;font-size:13px;color:#334155;display:flex;align-items:center;gap:9px;white-space:nowrap}
 .bz-dot{width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
-.bz-t1{top:6%;left:4%;transition-delay:0s}
-.bz-t2{top:0;right:8%;transition-delay:.4s}
-.bz-t3{top:40%;left:26%;transition-delay:.8s}
-.bz-t4{bottom:20%;left:0;transition-delay:1.2s}
-.bz-t5{bottom:4%;right:4%;transition-delay:1.6s}
-.bz-play .bz-tool{opacity:1;transform:none}
-.bz-play.bz-gathered .bz-tool{left:50%!important;top:44%!important;right:auto!important;bottom:auto!important;transform:translate(-50%,-50%) scale(.25)!important;opacity:0!important;transition-delay:0s!important}
-.bz-herodash{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%) scale(.9);opacity:0;transition:.9s ease;width:92%;max-width:380px}
-.bz-play.bz-gathered .bz-herodash{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.bz-ht1{top:5%;left:3%;transform:rotate(-6deg)}
+.bz-ht2{top:0;right:9%;transform:rotate(5deg)}
+.bz-ht3{top:39%;left:23%;transform:rotate(-2deg)}
+.bz-ht4{bottom:21%;left:1%;transform:rotate(4deg)}
+.bz-ht5{bottom:5%;right:5%;transform:rotate(-5deg)}
+.bz-heroscatter .bz-scnote{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:#e55a2b;background:#fff3ec;padding:6px 14px;border-radius:20px;border:1px solid #ffd9c4;white-space:nowrap}
+.bz-herosol{width:100%;max-width:380px}
 
 /* problem-solution */
 .bz-pstext{position:relative}
