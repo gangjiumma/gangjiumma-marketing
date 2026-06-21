@@ -1002,6 +1002,27 @@ const BZ_CSS = `
 .bz-introghost{background:#fff;color:#334155;border:1.5px solid #e8edf3;margin-top:10px}
 .bz-introghost:hover{border-color:#3b82f6;color:#3b82f6}
 
+@media(max-width:600px){
+  .bz-sec{padding:52px 18px}
+  .bz-h1{font-size:25px;line-height:1.3}
+  .bz-h2{font-size:22px;line-height:1.32}
+  .bz-lead{font-size:13.5px;margin-top:12px;line-height:1.55}
+  .bz-eyebrow{font-size:12px;margin-bottom:9px}
+  .bz-btn{font-size:15px;padding:14px 26px;margin-top:24px}
+  .bz-btnlg{font-size:15px;padding:15px 28px}
+  .bz-trust{font-size:11.5px;gap:12px;margin-top:18px}
+  .bz-num{font-size:11px;top:20px;right:18px}
+  .bz-freebar{font-size:13px;padding:14px 15px;gap:9px;margin:18px auto 24px}
+  .bz-finalnote{font-size:12px}
+  .bz-bh{font-size:13.5px}
+  .bz-bp{font-size:12px}
+  .bz-scrollcue{font-size:12px}
+  .bz-toggle button{font-size:12.5px;padding:8px 15px}
+  .bz-pn{font-size:13px}
+  .bz-pp .bz-free{font-size:22px}
+  .bz-was{font-size:13px}
+  .bz-pd{font-size:11.5px}
+}
 @media(prefers-reduced-motion:reduce){
   .bz-tool,.bz-herodash,.bz-phase,.bz-vis,.bz-fadeimg,.bz-scrollcue,.bz-ktype span{transition:none!important;animation:none!important}
 }
