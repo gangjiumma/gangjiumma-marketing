@@ -375,7 +375,9 @@ export default function BusinessPage() {
             <div className="bz-ptable">
               <div className="bz-pcard">
                 <div className="bz-pn">라이트</div>
-                <div className="bz-pp bz-free">무료</div>
+                <div className="bz-pp">
+                  <span className="bz-free">무료</span>
+                </div>
                 <div className="bz-pu">계속 무료</div>
                 <div className="bz-pd">
                   예약·고객 관리
@@ -390,9 +392,10 @@ export default function BusinessPage() {
               <div className="bz-pcard">
                 <div className="bz-pn">미니</div>
                 <div className="bz-pp">
-                  30,000<span className="bz-won">원</span>
+                  <span className="bz-was">30,000원</span>
+                  <span className="bz-free">무료</span>
                 </div>
-                <div className="bz-pu">하루 1,000원 꼴</div>
+                <div className="bz-pu">베타 기간 무료</div>
                 <div className="bz-pd">
                   라이트 +<br />
                   매출 관리
@@ -406,9 +409,10 @@ export default function BusinessPage() {
                 <span className="bz-badge">추천</span>
                 <div className="bz-pn">베이직</div>
                 <div className="bz-pp">
-                  60,000<span className="bz-won">원</span>
+                  <span className="bz-was">60,000원</span>
+                  <span className="bz-free">무료</span>
                 </div>
-                <div className="bz-pu">하루 2,000원 꼴</div>
+                <div className="bz-pu">베타 기간 무료</div>
                 <div className="bz-pd">
                   미니 +<br />
                   AI 알림장
@@ -422,9 +426,10 @@ export default function BusinessPage() {
                 <span className="bz-badge bz-bsoon">출시 예정</span>
                 <div className="bz-pn">프로</div>
                 <div className="bz-pp">
-                  90,000<span className="bz-won">원</span>
+                  <span className="bz-was">90,000원</span>
+                  <span className="bz-soontxt">출시 예정</span>
                 </div>
-                <div className="bz-pu">하루 3,000원 꼴</div>
+                <div className="bz-pu">출시 후 안내</div>
                 <div className="bz-pd">
                   베이직 +<br />
                   전담 AI 에이전트
@@ -974,9 +979,10 @@ const BZ_CSS = `
 .bz-pcard.bz-hot{border:2px solid #3b82f6;box-shadow:0 12px 28px rgba(59,130,246,.15)}
 .bz-pcard.bz-soon{opacity:.7}
 .bz-pn{font-weight:700;font-size:14px;color:#334155}
-.bz-pp{font-size:24px;font-weight:800;margin:7px 0 1px;color:#0f172a}
-.bz-pp.bz-free{color:#ff6b35}
-.bz-won{font-size:14px}
+.bz-pp{display:flex;align-items:baseline;gap:7px;margin:7px 0 1px;flex-wrap:wrap}
+.bz-was{font-size:15px;color:#94a3b8;text-decoration:line-through;font-weight:600}
+.bz-pp .bz-free{font-size:25px;font-weight:800;color:#ff6b35}
+.bz-soontxt{font-size:17px;font-weight:800;color:#94a3b8}
 .bz-pu{font-size:11px;color:#94a3b8}
 .bz-pd{font-size:12px;color:#64748b;margin-top:11px;line-height:1.65}
 .bz-badge{position:absolute;top:-10px;left:16px;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:7px}
