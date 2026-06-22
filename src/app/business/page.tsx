@@ -881,8 +881,8 @@ const BZ_CSS = `
 @media(max-width:600px){.bz-feat,.bz-featlabel{font-size:12px;padding:6px 11px}}
 .bz-trust2{margin-top:14px;font-size:13px;color:#94a3b8;font-weight:600}
 .bz-trust2 b{color:#64748b}
-.bz-herovis{height:400px}
-@media(max-width:860px){.bz-herovis{height:320px}}
+.bz-herovis{height:470px}
+@media(max-width:860px){.bz-herovis{height:340px}}
 .bz-heroscatter{position:relative;width:100%;height:100%}
 .bz-htool{position:absolute;background:#fff;border:1px solid #e8edf3;border-radius:16px;padding:12px 15px;box-shadow:0 10px 28px rgba(15,23,42,.1);font-weight:700;font-size:13px;color:#334155;display:flex;align-items:center;gap:9px;white-space:nowrap}
 .bz-dot{width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
@@ -892,7 +892,7 @@ const BZ_CSS = `
 .bz-ht4{bottom:21%;left:1%;transform:rotate(4deg)}
 .bz-ht5{bottom:5%;right:5%;transform:rotate(-5deg)}
 .bz-heroscatter .bz-scnote{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:#e55a2b;background:#fff3ec;padding:6px 14px;border-radius:20px;border:1px solid #ffd9c4;white-space:nowrap}
-.bz-herosol{width:100%;max-width:380px}
+.bz-herosol{width:100%;max-width:560px}
 
 /* problem-solution */
 .bz-pstext{position:relative}
@@ -903,8 +903,8 @@ const BZ_CSS = `
 .bz-toggle button{border:none;background:transparent;padding:9px 18px;border-radius:9px;font-weight:700;font-size:13px;color:#94a3b8;cursor:pointer;transition:.2s;font-family:inherit}
 .bz-toggle button.on{background:#fff;color:#0f172a;box-shadow:0 2px 8px rgba(15,23,42,.1)}
 .bz-toggle button.on.bz-tprob{color:#e55a2b}
-.bz-psvisual{position:relative;height:380px}
-@media(max-width:860px){.bz-psvisual{height:310px}}
+.bz-psvisual{position:relative;height:440px}
+@media(max-width:860px){.bz-psvisual{height:330px}}
 .bz-vis{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.96);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
 .bz-vis.on{opacity:1;transform:none;pointer-events:auto}
 
@@ -932,7 +932,7 @@ const BZ_CSS = `
 .bz-scnote{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:#e55a2b;background:#fff3ec;padding:6px 14px;border-radius:20px;border:1px solid #ffd9c4;white-space:nowrap}
 
 /* pay solution — 대시보드 + 토스 단말기 */
-.bz-paysol2{position:relative;width:100%;max-width:380px;margin:0 auto}
+.bz-paysol2{position:relative;width:100%;max-width:560px;margin:0 auto}
 .bz-terminal{width:130px;background:#1e293b;border-radius:20px;padding:12px 12px 16px;box-shadow:0 18px 40px rgba(15,23,42,.3)}
 .bz-termtop{color:#94a3b8;font-size:11px;font-weight:800;text-align:center;letter-spacing:.1em;margin-bottom:8px}
 .bz-termscreen{background:linear-gradient(150deg,#3b82f6,#2563eb);border-radius:13px;padding:16px 10px;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
@@ -981,7 +981,7 @@ const BZ_CSS = `
 .bz-snscenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border:1px solid #ffd9c4;color:#e55a2b;font-weight:700;font-size:13px;padding:9px 16px;border-radius:20px;box-shadow:0 8px 22px rgba(15,23,42,.1);white-space:nowrap}
 
 /* mkt solution */
-.bz-mktsol{width:100%;max-width:380px}
+.bz-mktsol{width:100%;max-width:560px}
 .bz-mktcard{background:#fff;border:1px solid #e8edf3;border-radius:13px;padding:12px 14px;font-weight:600;font-size:13px;color:#334155;display:flex;align-items:center;gap:9px;margin-bottom:12px;box-shadow:0 6px 18px rgba(15,23,42,.06)}
 .bz-mktic{width:24px;height:24px;border-radius:7px;background:#eff6ff;display:grid;place-items:center;flex:none}
 .bz-mktstat{margin-left:auto;font-size:11px;font-weight:700;color:#3b82f6;flex:none}
