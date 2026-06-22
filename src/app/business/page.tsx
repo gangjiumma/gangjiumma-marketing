@@ -405,7 +405,7 @@ function Hero() {
             </div>
             <div className={`bz-phase${phase === "solution" ? " on" : ""}`}>
               <h1 className="bz-h1">
-                이 모두를 <span className="bz-free">한 곳에</span> 모았습니다.
+                이 모두를 <span className="bz-free">한 곳에</span>
                 <br />
                 무료로 시작하세요.
               </h1>
