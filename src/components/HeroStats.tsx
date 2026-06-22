@@ -69,7 +69,7 @@ export default function HeroStats({ total }: { total: number }) {
             <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
           </span>
-          오늘자 누적 가입자
+          오늘자 누적 다운로드
         </span>
         <span className="text-5xl md:text-7xl font-black text-brand tracking-tightest tabular-nums leading-none">
           {display.toLocaleString("ko-KR")}
