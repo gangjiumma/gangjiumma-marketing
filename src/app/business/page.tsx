@@ -387,17 +387,23 @@ function Hero() {
       <span className="bz-num">01 / 06</span>
       <div className="bz-wrap bz-grid2">
         <div className="bz-pstext">
+          <div className="bz-bizbrand">
+            <div className="bz-bizrow">
+              <span className="bz-bizlogo">🐾</span>
+              <span className="bz-bizname">강쥐 사장님</span>
+              <span className="bz-bizfree">무료</span>
+            </div>
+            <div className="bz-bizdesc">펫 유치원·미용실을 위한 올인원 관리 프로그램</div>
+          </div>
           <div className="bz-phasewrap bz-herowrap">
             <div className={`bz-phase${phase === "problem" ? " on" : ""}`}>
-              <span className="bz-eyebrow">펫 유치원·미용실 사장님께</span>
               <h1 className="bz-h1">
-                예약부터 결제, 매출 관리까지
+                예약·결제·매출 관리,
                 <br />
-                <span className="bz-accent">몇 개의 프로그램</span>을 쓰고 계신가요?
+                <span className="bz-accent">몇 개의 프로그램</span>을 쓰세요?
               </h1>
             </div>
             <div className={`bz-phase${phase === "solution" ? " on" : ""}`}>
-              <span className="bz-eyebrow bz-warm">강쥐엄마는</span>
               <h1 className="bz-h1">
                 이 모두를 <span className="bz-free">한 곳에</span> 모았습니다.
                 <br />
@@ -408,13 +414,16 @@ function Hero() {
           <a className="bz-btn" href={APPLY_URL}>
             무료로 입점 신청하기 <ArrowRight size={18} />
           </a>
-          <div className="bz-trust">
-            <span>
-              전국 <b>17,000곳</b> 펫 시설 등록
-            </span>
-            <span>
-              <b>펫 특화</b> 올인원 솔루션
-            </span>
+          <div className="bz-feats">
+            <span className="bz-featlabel">하나로 관리</span>
+            <span className="bz-feat">예약</span>
+            <span className="bz-feat">결제</span>
+            <span className="bz-feat">고객 관리</span>
+            <span className="bz-feat">매출</span>
+            <span className="bz-feat">AI 마케팅</span>
+          </div>
+          <div className="bz-trust2">
+            전국 <b>17,000곳</b> 펫 시설 등록 중
           </div>
         </div>
 
@@ -858,8 +867,20 @@ const BZ_CSS = `
 
 /* hero */
 .bz-hero{background:linear-gradient(180deg,#eff6ff,#fff 72%)}
-.bz-herowrap{min-height:200px}
-@media(max-width:860px){.bz-herowrap{min-height:160px}}
+.bz-herowrap{margin:0}
+.bz-bizbrand{margin-bottom:22px}
+.bz-bizrow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.bz-bizlogo{font-size:23px}
+.bz-bizname{font-size:23px;font-weight:800;color:#ff6b35;letter-spacing:-.02em}
+.bz-bizfree{font-size:11px;font-weight:800;color:#fff;background:#22c55e;padding:3px 9px;border-radius:7px;letter-spacing:.04em}
+.bz-bizdesc{font-size:15.5px;color:#475569;font-weight:600}
+@media(max-width:600px){.bz-bizname,.bz-bizlogo{font-size:20px}.bz-bizdesc{font-size:13.5px}}
+.bz-feats{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:24px}
+.bz-featlabel{font-size:13px;font-weight:700;color:#64748b;margin-right:2px}
+.bz-feat{font-size:13px;font-weight:700;color:#3b82f6;background:#eff6ff;border:1px solid #dbeafe;padding:7px 13px;border-radius:10px}
+@media(max-width:600px){.bz-feat,.bz-featlabel{font-size:12px;padding:6px 11px}}
+.bz-trust2{margin-top:14px;font-size:13px;color:#94a3b8;font-weight:600}
+.bz-trust2 b{color:#64748b}
 .bz-herovis{height:400px}
 @media(max-width:860px){.bz-herovis{height:320px}}
 .bz-heroscatter{position:relative;width:100%;height:100%}
@@ -875,9 +896,8 @@ const BZ_CSS = `
 
 /* problem-solution */
 .bz-pstext{position:relative}
-.bz-phasewrap{position:relative;min-height:230px}
-@media(max-width:860px){.bz-phasewrap{min-height:150px}}
-.bz-phase{position:absolute;inset:0;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
+.bz-phasewrap{position:relative;display:grid}
+.bz-phase{grid-area:1/1;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
 .bz-phase.on{opacity:1;transform:none;pointer-events:auto}
 .bz-toggle{display:inline-flex;gap:5px;margin-top:18px;background:#eef2f7;padding:5px;border-radius:13px}
 .bz-toggle button{border:none;background:transparent;padding:9px 18px;border-radius:9px;font-weight:700;font-size:13px;color:#94a3b8;cursor:pointer;transition:.2s;font-family:inherit}
