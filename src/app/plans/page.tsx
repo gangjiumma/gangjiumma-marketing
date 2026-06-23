@@ -38,7 +38,7 @@ const plans = [
   {
     id: "mini",
     title: "미니",
-    price: 30000,
+    price: 29900,
     badge: "베타 기간 무료",
     isAvailableNow: true,
     description: "매출까지 챙기는 사장님",
@@ -52,7 +52,7 @@ const plans = [
   {
     id: "basic",
     title: "베이직",
-    price: 60000,
+    price: 59900,
     badge: "베타 기간 무료",
     isAvailableNow: true,
     highlight: true,
@@ -69,7 +69,7 @@ const plans = [
   {
     id: "pro",
     title: "프로",
-    price: 90000,
+    price: 79900,
     badge: "출시 예정",
     isAvailableNow: false,
     description: "전국 노출 + 전담 관리",
