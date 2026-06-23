@@ -20,55 +20,66 @@ const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 const plans = [
   {
     id: "lite",
-    title: "Lite",
-    price: 29900,
-    badge: "7월 15일 정식 출시",
-    isAvailableNow: false,
-    description: "가볍게 시작하는 사장님",
+    title: "라이트",
+    price: 0,
+    isFree: true,
+    badge: "계속 무료",
+    isAvailableNow: true,
+    description: "무료로 시작하는 사장님",
     features: [
-      "광고 게시글 주 1회 (시·도)",
-      "AI 광고 초안 (일 3회)",
+      "예약·고객 관리",
+      "토스 결제 연동",
+      "예약 알림톡",
+      "입점 노출 (Home·강쥐talk·AI 검색)",
       "AI 문의 응대 (무제한)",
-      "Home / 강쥐talk / AI 검색 노출",
       "Paw 수취 및 현금화",
     ],
   },
   {
+    id: "mini",
+    title: "미니",
+    price: 30000,
+    badge: "베타 기간 무료",
+    isAvailableNow: true,
+    description: "매출까지 챙기는 사장님",
+    features: [
+      "라이트의 모든 기능",
+      "매출 관리·정산",
+      "수요 통계 리포트 (기본)",
+      "할인 쿠폰 발행 (시·도)",
+    ],
+  },
+  {
     id: "basic",
-    title: "Basic",
-    price: 59900,
+    title: "베이직",
+    price: 60000,
     badge: "베타 기간 무료",
     isAvailableNow: true,
     highlight: true,
     description: "가장 인기 있는 플랜",
     features: [
+      "미니의 모든 기능",
+      "AI 알림장 자동 작성",
+      "AI 마케팅 풀세트 (광고 초안 일 10회)",
       "광고 게시글 주 3회 (시·도)",
-      "AI 광고 초안 (일 10회)",
-      "AI 문의 응대 (무제한)",
       "AI 추천 우선순위",
-      "쿠폰 발행 (시·도 노출)",
       "매월 펫페어 공동 광고 (기본)",
-      "유저 트렌드 리포트 (기본)",
-      "Paw 수취 및 현금화",
     ],
   },
   {
     id: "pro",
-    title: "Pro",
-    price: 79900,
-    badge: "7월 15일 정식 출시",
+    title: "프로",
+    price: 90000,
+    badge: "출시 예정",
     isAvailableNow: false,
-    description: "전국 노출 + 상단 고정",
+    description: "전국 노출 + 전담 관리",
     features: [
-      "광고 게시글 주 3회 (전국)",
+      "베이직의 모든 기능",
+      "광고 게시글 주 5회 (전국)",
       "AI 광고 초안 (일 20회)",
-      "AI 문의 응대 (무제한)",
       "강쥐talk 상단 고정",
-      "AI 추천 우선순위",
-      "쿠폰 발행 (전국 노출)",
-      "매월 펫페어 공동 광고 (우선)",
+      "전담 AI 에이전트 · 매일 매출 보고",
       "유저 트렌드 리포트 (상세)",
-      "Paw 수취 및 현금화",
     ],
   },
 ];
@@ -96,7 +107,7 @@ export default function PlansPage() {
       {/* ═════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-5 md:px-8">
-          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {plans.map((plan) => (
               <div
                 key={plan.id}
@@ -119,10 +130,16 @@ export default function PlansPage() {
 
                 <div className="mb-5">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-3xl md:text-4xl font-black text-ink-1">
-                      {plan.price.toLocaleString()}
-                    </span>
-                    <span className="text-base text-ink-3 font-bold">원 / 월</span>
+                    {plan.isFree ? (
+                      <span className="text-3xl md:text-4xl font-black text-biz">무료</span>
+                    ) : (
+                      <>
+                        <span className="text-3xl md:text-4xl font-black text-ink-1">
+                          {plan.price.toLocaleString()}
+                        </span>
+                        <span className="text-base text-ink-3 font-bold">원 / 월</span>
+                      </>
+                    )}
                   </div>
                   <div
                     className={`mt-2 inline-block px-2.5 py-1 rounded-md text-xs font-bold ${
@@ -155,11 +172,11 @@ export default function PlansPage() {
                     href={DOWNLOAD_URL}
                     className="block w-full text-center py-3 rounded-xl bg-biz text-white font-black hover:bg-biz-dark transition-colors"
                   >
-                    무료로 시작하기
+                    {plan.isFree ? "무료로 시작하기" : "베타 무료로 시작하기"}
                   </Link>
                 ) : (
                   <div className="block w-full text-center py-3 rounded-xl bg-surface-muted text-ink-3 font-bold">
-                    7월 15일 정식 출시
+                    {plan.badge}
                   </div>
                 )}
               </div>
