@@ -20,6 +20,7 @@ import {
   Newspaper,
   BarChart3,
 } from "lucide-react";
+import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
 
@@ -342,9 +343,14 @@ export default function BusinessPage() {
           </FadeInSection>
           <FadeInSection delay={250}>
             <div className="bz-center" style={{ marginTop: 36 }}>
-              <a className="bz-btn bz-btnlg" href={APPLY_URL}>
-                무료로 입점 신청하기 <ArrowRight size={18} />
-              </a>
+              <div className="bz-ctarow">
+                <a className="bz-btn bz-btnlg" href={APPLY_URL}>
+                  무료로 입점 신청하기 <ArrowRight size={18} />
+                </a>
+                <Link className="bz-btn2" href="/plans">
+                  요금제 자세히 보기 <ArrowRight size={16} />
+                </Link>
+              </div>
               <p className="bz-finalnote">앱 계정으로 신청하시면, 1~2일 검수 후 문자로 안내드립니다.</p>
             </div>
           </FadeInSection>
@@ -405,7 +411,7 @@ function Hero() {
             </div>
             <div className={`bz-phase${phase === "solution" ? " on" : ""}`}>
               <h1 className="bz-h1">
-                이 모두를 <span className="bz-free">한 곳에</span>
+                이 모두를 <span className="bz-free">한 곳에</span> 모았습니다.
                 <br />
                 무료로 시작하세요.
               </h1>
@@ -856,6 +862,10 @@ const BZ_CSS = `
 .bz-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#ff6b35;color:#fff;box-shadow:0 8px 24px rgba(255,107,53,.28);margin-top:30px}
 .bz-btn:hover{background:#e55a2b;transform:translateY(-1px)}
 .bz-btnlg{font-size:18px;padding:18px 40px;margin-top:0}
+.bz-ctarow{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}
+.bz-btn2{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:16px;padding:17px 30px;border-radius:16px;background:#fff;color:#3b82f6;border:1.5px solid #dbeafe;text-decoration:none;transition:.15s}
+.bz-btn2:hover{border-color:#3b82f6;background:#eff6ff}
+@media(max-width:600px){.bz-btn2{font-size:15px;padding:15px 26px}}
 .bz-trust{margin-top:24px;display:flex;gap:18px;flex-wrap:wrap;color:#64748b;font-size:13px;font-weight:600}
 .bz-trust b{color:#0f172a}
 .bz-finalnote{color:#94a3b8;font-size:13px;margin-top:13px}
