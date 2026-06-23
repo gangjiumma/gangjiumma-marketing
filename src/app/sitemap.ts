@@ -27,6 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    // 정기결제 안내 (토스 빌링 심사)
+    {
+      url: "https://www.gangjiumma.kr/plans",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     // 펫페어 랜딩
     {
       url: "https://www.gangjiumma.kr/megaz",
@@ -93,6 +100,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     // 법적 페이지
+    {
+      url: "https://www.gangjiumma.kr/refund-policy",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
     {
       url: "https://www.gangjiumma.kr/privacy-policy",
       lastModified: new Date(),
