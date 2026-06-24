@@ -23,11 +23,26 @@ const catColor = (c: string) => CAT_COLOR[c] || "#6b7280";
 
 const CHIPS = ["강아지 사료", "유모차·카시트", "영양제", "수제간식", "샴푸·미용", "강아지 옷", "펫보험", "장난감"];
 
-// 배치도 랜드마크 (PDF 좌표, viewBox 1191x842)
-const LANDMARKS = [
-  { x: 470, y: 812, label: "▲ 금·일 입구" },
-  { x: 735, y: 812, label: "▲ 토요일 입구" },
-  { x: 800, y: 250, label: "인포데스크" },
+// 중앙 행사·시설 박스 (PDF 실제 좌표, 메쎄이상 주최 행사존)
+const ZONE_BOXES: { x: number; y: number; w: number; h: number; lines: string[] }[] = [
+  { x: 357, y: 427, w: 42, h: 127, lines: ["쉼터1"] },
+  { x: 424, y: 427, w: 42, h: 127, lines: ["카페테", "리아"] },
+  { x: 491, y: 427, w: 42, h: 127, lines: ["멍드컵", "도기챔프"] },
+  { x: 558, y: 427, w: 42, h: 127, lines: ["큐푸드", "식품"] },
+  { x: 624, y: 427, w: 42, h: 127, lines: ["쉼터2"] },
+];
+
+// 배치도 랜드마크 (PDF 좌표, viewBox 1191x842) — kind: zone(시설) / rest(화장실) / entrance(입구)
+const LANDMARKS: { x: number; y: number; label: string; kind: "zone" | "rest" | "entrance" }[] = [
+  { x: 305, y: 457, label: "경품지급처", kind: "zone" },
+  { x: 716, y: 457, label: "경품지급처", kind: "zone" },
+  { x: 631, y: 761, label: "인포데스크", kind: "zone" },
+  { x: 502, y: 761, label: "현황판", kind: "zone" },
+  { x: 496, y: 226, label: "화장실", kind: "rest" },
+  { x: 346, y: 759, label: "화장실", kind: "rest" },
+  { x: 773, y: 757, label: "화장실", kind: "rest" },
+  { x: 470, y: 812, label: "▲ 금·일 입구", kind: "entrance" },
+  { x: 735, y: 812, label: "▲ 토요일 입구", kind: "entrance" },
 ];
 
 type Msg = { role: "user" | "assistant"; content: string; matches?: Exhibitor[] };
@@ -290,7 +305,7 @@ export default function PetGuidePage() {
                 return (
                   <button
                     key={c}
-                    onClick={() => setMapCat(on ? null : c)}
+                    onClick={() => { setMapCat(on ? null : c); setSelected(null); }}
                     className={
                       "inline-flex items-center gap-1.5 text-[12px] font-semibold rounded-full pl-1.5 pr-2.5 py-1 border transition-colors " +
                       (on ? "bg-ink-1 text-white border-ink-1" : "bg-white text-ink-2 border-line hover:border-ink-3")
@@ -314,8 +329,36 @@ export default function PetGuidePage() {
               <div ref={mapBoxRef} className="overflow-auto pg-scroll" style={{ maxHeight: "62vh" }}>
                 <svg viewBox={FAIR.mapViewBox} style={{ width: `${zoom * 100}%`, height: "auto", display: "block", minWidth: "100%" }}>
                   <rect x="0" y="0" width="1191" height="842" fill="#fafafa" />
-                  {LANDMARKS.map((l, i) => (
-                    <text key={i} x={l.x} y={l.y} textAnchor="middle" fontSize="15" fontWeight="700" fill="#9ca3af">{l.label}</text>
+                  {LANDMARKS.map((l, i) => {
+                    if (l.kind === "entrance")
+                      return <text key={i} x={l.x} y={l.y} textAnchor="middle" fontSize="15" fontWeight="700" fill="#9ca3af">{l.label}</text>;
+                    const isRest = l.kind === "rest";
+                    const w = l.label.length * 16 * 0.62 + 16;
+                    return (
+                      <g key={i}>
+                        <rect x={l.x - w / 2} y={l.y - 13} width={w} height={26} rx={7} fill={isRest ? "#cbd5e1" : "#e9edf2"} opacity={0.92} />
+                        <text x={l.x} y={l.y + 5} textAnchor="middle" fontSize="16" fontWeight={isRest ? 800 : 600} fill={isRest ? "#334155" : "#94a3b8"}>{l.label}</text>
+                      </g>
+                    );
+                  })}
+                  {/* 중앙 행사존 박스 */}
+                  {ZONE_BOXES.map((z, i) => (
+                    <g key={"z" + i}>
+                      <rect x={z.x} y={z.y} width={z.w} height={z.h} rx={5} fill="#dbe7ff" stroke="#2563eb" strokeWidth={1.5} opacity={0.9} />
+                      {z.lines.map((ln, j) => (
+                        <text
+                          key={j}
+                          x={z.x + z.w / 2}
+                          y={z.y + z.h / 2 + 5 + (j - (z.lines.length - 1) / 2) * 16}
+                          textAnchor="middle"
+                          fontSize="14"
+                          fontWeight="700"
+                          fill="#1d4ed8"
+                        >
+                          {ln}
+                        </text>
+                      ))}
+                    </g>
                   ))}
                   {EXHIBITORS.map((e) => {
                     const isSel = e.id === selected;
@@ -465,7 +508,7 @@ function ExhibitorCard({ ex, compact, onMap }: { ex: Exhibitor; compact?: boolea
             <Globe size={13} /> 웹사이트
           </a>
         )}
-        <a href={ex.instagram ? `https://instagram.com/${ex.instagram}` : ex.instaSearch} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[12px] text-ink-2 bg-surface-subtle rounded-lg px-2.5 py-1.5">
+        <a href={ex.instagram ? `https://instagram.com/${ex.instagram}` : `https://www.google.com/search?q=${encodeURIComponent(ex.brand + " 인스타그램")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[12px] text-ink-2 bg-surface-subtle rounded-lg px-2.5 py-1.5">
           <Camera size={13} /> 인스타
         </a>
         <a href={ex.naver} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-[12px] text-ink-2 bg-surface-subtle rounded-lg px-2.5 py-1.5">
