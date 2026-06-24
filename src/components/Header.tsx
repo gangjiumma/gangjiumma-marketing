@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { PawPrint, Store } from "lucide-react";
+import { PawPrint, Store, Compass } from "lucide-react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,6 +28,16 @@ export default function Header() {
 
         {/* 우측 버튼 그룹 */}
         <div className="flex items-center gap-2 md:gap-3">
+          {/* 펫페어 가이드 (/pet-guide) — 케이펫페어 수원 AI 부스 가이드 */}
+          <Link
+            href="/pet-guide"
+            aria-label="펫페어 가이드"
+            className="inline-flex items-center gap-1.5 px-3 md:px-5 py-2 md:py-2.5 rounded-3xl border border-brand bg-white text-brand text-sm md:text-base font-bold hover:bg-brand-tint50 transition-all duration-200"
+          >
+            <Compass size={17} strokeWidth={2.5} />
+            <span className="hidden sm:inline">펫페어 가이드</span>
+          </Link>
+
           {/* 소통창구 (/voice) — 펫페어 소통 약속 페이지 */}
           <Link
             href="/voice"
