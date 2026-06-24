@@ -5,9 +5,16 @@ import { Sparkles, ArrowRight } from "lucide-react";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 const VIDEOS = ["/hero-puppy.mp4", "/hero-allergy.mp4"];
+const POSTERS = ["/hero-puppy.jpg", "/hero-allergy.jpg"];
 
 export default function HeroChat() {
   const [idx, setIdx] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+
+  const next = () => {
+    setLoaded(false);
+    setIdx((i) => (i + 1) % VIDEOS.length);
+  };
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-brand-tint50 via-white to-white pt-28 md:pt-32 pb-16 md:pb-24">
@@ -50,12 +57,25 @@ export default function HeroChat() {
                 <video
                   key={idx}
                   src={VIDEOS[idx]}
+                  poster={POSTERS[idx]}
+                  preload="auto"
                   autoPlay
                   muted
                   playsInline
-                  onEnded={() => setIdx((i) => (i + 1) % VIDEOS.length)}
+                  onPlaying={() => setLoaded(true)}
+                  onLoadedData={() => setLoaded(true)}
+                  onEnded={next}
                   className="h-full w-full object-cover"
                 />
+                {/* 영상 준비 전 로딩 표시 (포스터 위에) */}
+                {!loaded && (
+                  <div className="absolute inset-0 flex items-end justify-center pb-10 bg-gradient-to-t from-black/15 to-transparent">
+                    <div className="flex items-center gap-2 rounded-full bg-white/85 px-3.5 py-2 shadow-sm backdrop-blur-sm">
+                      <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-brand/30 border-t-brand" />
+                      <span className="text-xs font-bold text-ink-2">불러오는 중</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

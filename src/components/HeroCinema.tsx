@@ -10,7 +10,7 @@
 //
 // 📷 배경 사진: public/hero/scene2.jpg(검둥이), scene3.jpg(골든)
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const SUB_MS = 3000; // 사진(서브 이미지) 1장 노출 시간
@@ -128,11 +128,31 @@ const PHOTOS = [
 export default function HeroCinema() {
   const [idx, setIdx] = useState(0); // 0=카운트다운, 1=검둥이, 2=골든
   const [subIdx, setSubIdx] = useState(0); // 현재 사진 장면의 서브 이미지 인덱스
+  const [started, setStarted] = useState(false); // 섹션이 화면에 보이면 true
+  const sectionRef = useRef<HTMLElement>(null);
   const last = PHOTOS.length; // 2
   const done = idx >= last;
 
+  // 섹션이 화면에 들어오면 비로소 1장면(카운트다운)부터 시작
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setStarted(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.45 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // 사진 장면: 서브 이미지 크로스페이드 + 자동 전환 (마지막에서 멈춤). 장면0은 스스로 onComplete.
   useEffect(() => {
+    if (!started) return;
     if (idx === 0) return;
     const scene = PHOTOS[idx - 1];
     const n = scene ? scene.images.length : 1;
@@ -145,12 +165,13 @@ export default function HeroCinema() {
       timers.push(window.setTimeout(() => setIdx((i) => Math.min(i + 1, last)), SUB_MS * n));
     }
     return () => timers.forEach(clearTimeout);
-  }, [idx, last]);
+  }, [idx, last, started]);
 
   const goNext = () => setIdx((i) => (i < last ? i + 1 : i));
 
   return (
     <section
+      ref={sectionRef}
       onClick={goNext}
       className="relative h-[100svh] overflow-hidden bg-black select-none cursor-pointer"
     >
@@ -160,6 +181,9 @@ export default function HeroCinema() {
         .hc-bg { opacity: 0; transform: scale(1.06); transition: opacity 1.2s ease, transform 6s ease-out; }
         .hc-bg.sub-on { opacity: 1; }
         .hc-slide.is-active .hc-bg.sub-on { transform: scale(1.15); }
+        /* 마지막 장면: 켄번스 은은하게 무한 반복 */
+        @keyframes kenburnsLoop { 0%{transform:scale(1.08);} 50%{transform:scale(1.2);} 100%{transform:scale(1.08);} }
+        .hc-slide.is-active .hc-bg.loop.sub-on { animation: kenburnsLoop 18s ease-in-out infinite; }
         .hc-copy { opacity: 0; transform: translateY(26px); }
         .hc-slide.is-active .hc-copy {
           opacity: 1; transform: none;
@@ -173,6 +197,7 @@ export default function HeroCinema() {
         @media (prefers-reduced-motion: reduce) {
           .hc-bg, .hc-slide, .hc-copy, .s0-line { transition: none !important; }
           .year-num.landed { animation: none !important; }
+          .hc-bg.loop.sub-on { animation: none !important; }
         }
       `}</style>
 
@@ -183,7 +208,16 @@ export default function HeroCinema() {
           style={{ background: "radial-gradient(120% 90% at 50% 35%, #2a2018 0%, #14100c 100%)" }}
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          {idx === 0 && <YearCountScene onComplete={() => setIdx((i) => (i === 0 ? 1 : i))} />}
+          {idx === 0 &&
+            (started ? (
+              <YearCountScene onComplete={() => setIdx((i) => (i === 0 ? 1 : i))} />
+            ) : (
+              <div className="px-6 text-center text-white max-w-4xl mx-auto">
+                <p className="text-7xl md:text-[150px] font-black tabular-nums tracking-tight leading-none">
+                  2026년
+                </p>
+              </div>
+            ))}
         </div>
       </div>
 
@@ -198,7 +232,7 @@ export default function HeroCinema() {
                 key={k}
                 className={`hc-bg absolute inset-0 bg-cover bg-center ${
                   idx === sceneIndex && subIdx === k ? "sub-on" : ""
-                }`}
+                } ${sceneIndex === last && done ? "loop" : ""}`}
                 style={{ backgroundImage: `url(${src})` }}
               />
             ))}

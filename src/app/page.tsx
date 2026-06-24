@@ -1,5 +1,5 @@
 import {
-  MessageCircleHeart,
+  Bot,
   Camera,
   Film,
   Cake,
@@ -71,18 +71,8 @@ export default function Home() {
           </FadeInSection>
 
           <FadeInSection delay={300}>
-            <div className="mt-10 md:mt-12">
-              <a
-                href={DOWNLOAD_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
-              >
-                <span>강쥐엄마 앱 다운로드</span>
-              </a>
-            </div>
             {/* 다음 섹션 유도 */}
-            <div className="mt-14 md:mt-16">
+            <div className="mt-10 md:mt-12">
               <ScrollHint />
             </div>
           </FadeInSection>
@@ -111,26 +101,72 @@ export default function Home() {
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 3. 상담 — 우리 아이 전담 상담사                         */}
+      {/* 3. 차별점 — 우리 아이를 기억하는 AI                     */}
       {/* ═════════════════════════════════════════════════════ */}
       <section className="bg-surface-subtle py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <FadeInSection>
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-              <div className="rounded-4xl bg-gradient-to-br from-brand-tint100 to-brand-tint50 border border-brand-tint200 aspect-[4/3] flex items-center justify-center">
-                <MessageCircleHeart className="w-20 h-20 md:w-28 md:h-28 text-brand" strokeWidth={1.6} />
+            <div className="text-center mb-10 md:mb-14">
+              <p className="text-sm md:text-base text-brand font-bold mb-3">무엇이든 물어보세요</p>
+              <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
+                우리 아이를 <span className="text-brand">기억하는</span> AI
+              </h2>
+              <p className="mt-5 md:mt-6 text-base md:text-lg text-ink-3 leading-relaxed">
+                같은 질문에도, 우리 아이만을 위한 답이 달라요.
+              </p>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={150}>
+            <div className="grid md:grid-cols-2 gap-5 md:gap-6 items-stretch">
+              {/* 일반 AI */}
+              <div className="rounded-3xl bg-white border border-line p-6 md:p-7 flex flex-col">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center">
+                    <Bot className="w-5 h-5 text-ink-3" strokeWidth={2.1} />
+                  </div>
+                  <span className="font-bold text-ink-2">일반 AI</span>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <div className="ml-auto max-w-[88%] rounded-2xl rounded-tr-md bg-slate-100 px-4 py-2.5 text-sm text-ink-2">
+                    펫페어 왔는데 어떤 사료 고르지?
+                  </div>
+                  <div className="mr-auto max-w-[94%] rounded-2xl rounded-tl-md bg-slate-50 border border-line px-4 py-3 text-sm text-ink-3 leading-relaxed">
+                    연령·견종·알러지 유무에 따라 달라요. 일반적으로 주성분, 첨가물, AAFCO 기준을 확인하시고 수의사와 상담하세요.
+                  </div>
+                </div>
+                <p className="mt-5 text-xs font-bold text-ink-3 text-center">누구에게나 똑같은 일반론</p>
               </div>
-              <div>
-                <p className="text-sm md:text-base text-brand font-bold mb-3">무엇이든 물어보세요</p>
-                <h3 className="text-2xl md:text-4xl font-black text-ink-1 tracking-tight leading-snug mb-4">
-                  우리 아이 전담 상담사
-                </h3>
-                <p className="text-base md:text-lg text-ink-3 leading-relaxed">
-                  건강·행동·식습관, 무엇이든 편하게 물어보세요. 사진 한 장이면 더 정확하게 답해드려요.
-                  일반 AI와 달리 <span className="text-ink-1 font-bold">우리 아이를 기억하고</span>, 대화할수록 더 잘 알아가요.
-                </p>
+
+              {/* 강쥐엄마 */}
+              <div className="rounded-3xl bg-white border-2 border-brand shadow-brand p-6 md:p-7 flex flex-col">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-9 h-9 rounded-xl bg-brand-tint50 flex items-center justify-center">
+                    <PawPrint className="w-5 h-5 text-brand" strokeWidth={2.1} />
+                  </div>
+                  <span className="font-bold text-ink-1">강쥐엄마</span>
+                  <span className="ml-auto text-[11px] font-bold text-brand bg-brand-tint50 px-2 py-0.5 rounded-full">
+                    마음이 전용 AI
+                  </span>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <div className="ml-auto max-w-[88%] rounded-2xl rounded-tr-md bg-brand text-white px-4 py-2.5 text-sm">
+                    펫페어 왔는데 어떤 사료 고르지?
+                  </div>
+                  <div className="mr-auto max-w-[94%] rounded-2xl rounded-tl-md bg-brand-tint50 border border-brand-tint200 px-4 py-3 text-sm text-ink-1 leading-relaxed">
+                    <b>마음이</b>는 글루텐 알러지가 있으니 글루텐 적은 사료로 골라줘. 탄수화물 낮고 단백질 높은 걸로! 그리고 아직 1살이라 성장기니까 퍼피용·고열량 사료가 좋아. 업체에 &lsquo;글루텐 최소&rsquo;로 추천받아봐 🐾
+                  </div>
+                </div>
+                <p className="mt-5 text-xs font-bold text-brand text-center">우리 아이를 기억한 맞춤 답</p>
               </div>
             </div>
+          </FadeInSection>
+
+          <FadeInSection delay={300}>
+            <p className="mt-10 md:mt-12 text-center text-base md:text-lg text-ink-2 font-medium leading-relaxed">
+              대화할수록 더 잘 알아가요 —{" "}
+              <span className="text-ink-1 font-bold">세상에서 우리 아이를 가장 잘 아는 AI.</span>
+            </p>
           </FadeInSection>
         </div>
       </section>

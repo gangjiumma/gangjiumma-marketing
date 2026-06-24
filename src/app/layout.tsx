@@ -62,6 +62,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        {/* 새로고침 시 항상 맨 위(히어로)부터 시작 — 브라우저 스크롤 복원 끄기 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if('scrollRestoration' in history){history.scrollRestoration='manual';}`,
+          }}
+        />
         {/* Pretendard 폰트 CDN */}
         <link
           rel="stylesheet"
