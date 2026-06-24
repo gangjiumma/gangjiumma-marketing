@@ -22,10 +22,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
+import BizSignupModal from "@/components/BizSignupModal";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
-
-// ✏️ 입점 신청 페이지 (대시보드 /apply — 구현 후 연결)
-const APPLY_URL = "https://gangji-manage.kr/apply";
 
 // ✏️ 사진 슬롯 — public/business/ 에 파일만 넣으면 자동 교체. 여러 장이면 자동 슬라이드.
 const PHOTO = {
@@ -42,6 +40,7 @@ const PHOTO = {
 
 export default function BusinessPage() {
   const [showIntro, setShowIntro] = useState(false);
+  const [signupOpen, setSignupOpen] = useState(false);
   useEffect(() => {
     setShowIntro(true);
   }, []);
@@ -57,6 +56,7 @@ export default function BusinessPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: BZ_CSS }} />
       <ScrollProgressBar />
+      <BizSignupModal open={signupOpen} onClose={() => setSignupOpen(false)} />
 
       {showIntro && (
         <div className="bz-introbg" onClick={dismissIntro}>
@@ -68,9 +68,15 @@ export default function BusinessPage() {
               <br />
               예약·결제·고객 통합 대시보드
             </p>
-            <a className="bz-introbtn bz-introprimary" href={APPLY_URL}>
+            <button
+              className="bz-introbtn bz-introprimary"
+              onClick={() => {
+                dismissIntro();
+                setSignupOpen(true);
+              }}
+            >
               입점 바로 신청하기 <ArrowRight size={18} />
-            </a>
+            </button>
             <button className="bz-introbtn bz-introghost" onClick={dismissIntro}>
               프로그램 먼저 둘러보기
             </button>
@@ -79,7 +85,7 @@ export default function BusinessPage() {
       )}
 
       {/* ───────── 1 · HERO ───────── */}
-      <Hero />
+      <Hero onStart={() => setSignupOpen(true)} />
 
       {/* ───────── 2 · 결제 ───────── */}
       <ProblemSolution
@@ -344,9 +350,13 @@ export default function BusinessPage() {
           <FadeInSection delay={250}>
             <div className="bz-center" style={{ marginTop: 36 }}>
               <div className="bz-ctarow">
-                <a className="bz-btn bz-btnlg" href={APPLY_URL}>
+                <button
+                  type="button"
+                  className="bz-btn bz-btnlg"
+                  onClick={() => setSignupOpen(true)}
+                >
                   무료로 입점 신청하기 <ArrowRight size={18} />
-                </a>
+                </button>
                 <Link className="bz-btn2" href="/plans">
                   요금제 자세히 보기 <ArrowRight size={16} />
                 </Link>
@@ -361,7 +371,7 @@ export default function BusinessPage() {
 }
 
 /* ════════════ 메인(히어로) — 문제 → 해결 자동 전환 ════════════ */
-function Hero() {
+function Hero({ onStart }: { onStart: () => void }) {
   const [phase, setPhase] = useState<"problem" | "solution">("problem");
   const ref = useRef<HTMLElement>(null);
   const timer = useRef<number | undefined>(undefined);
@@ -417,9 +427,9 @@ function Hero() {
               </h1>
             </div>
           </div>
-          <a className="bz-btn" href={APPLY_URL}>
+          <button type="button" className="bz-btn" onClick={onStart}>
             무료로 입점 신청하기 <ArrowRight size={18} />
-          </a>
+          </button>
           <div className="bz-feats">
             <span className="bz-featlabel">하나로 관리</span>
             <span className="bz-feat">예약</span>
@@ -859,7 +869,7 @@ const BZ_CSS = `
 .bz-accent{color:#3b82f6}
 .bz-probac{color:#e55a2b}
 .bz-free{color:#ff6b35;font-weight:800}
-.bz-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#ff6b35;color:#fff;box-shadow:0 8px 24px rgba(255,107,53,.28);margin-top:30px}
+.bz-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#ff6b35;color:#fff;box-shadow:0 8px 24px rgba(255,107,53,.28);margin-top:30px;border:none;font-family:inherit}
 .bz-btn:hover{background:#e55a2b;transform:translateY(-1px)}
 .bz-btnlg{font-size:18px;padding:18px 40px;margin-top:0}
 .bz-ctarow{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}

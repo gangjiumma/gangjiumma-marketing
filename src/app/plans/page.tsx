@@ -1,11 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Check, CreditCard, RefreshCw, ShieldCheck, Calendar } from "lucide-react";
+import BizSignupModal from "@/components/BizSignupModal";
 
 export const dynamic = "force-static";
-
-const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 // ─────────────────────────────────────────────────────────────
 // 정기결제 상품 안내 페이지 (/plans)
@@ -85,8 +85,10 @@ const plans = [
 ];
 
 export default function PlansPage() {
+  const [signupOpen, setSignupOpen] = useState(false);
   return (
     <>
+      <BizSignupModal open={signupOpen} onClose={() => setSignupOpen(false)} />
       {/* ═════════════════════════════════════════════════════ */}
       {/* HERO                                                    */}
       {/* ═════════════════════════════════════════════════════ */}
@@ -168,12 +170,13 @@ export default function PlansPage() {
                 </ul>
 
                 {plan.isAvailableNow ? (
-                  <Link
-                    href={DOWNLOAD_URL}
+                  <button
+                    type="button"
+                    onClick={() => setSignupOpen(true)}
                     className="block w-full text-center py-3 rounded-xl bg-biz text-white font-black hover:bg-biz-dark transition-colors"
                   >
                     {plan.isFree ? "무료로 시작하기" : "베타 무료로 시작하기"}
-                  </Link>
+                  </button>
                 ) : (
                   <div className="block w-full text-center py-3 rounded-xl bg-surface-muted text-ink-3 font-bold">
                     {plan.badge}
