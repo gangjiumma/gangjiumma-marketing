@@ -26,18 +26,16 @@ export default function HeroChat() {
               <Sparkles size={16} strokeWidth={2.4} /> 강아지 전용 AI · 강쥐엄마
             </p>
             <h1 className="text-[2rem] md:text-5xl font-black text-ink-1 tracking-tighter leading-[1.18]">
-              우리 아이를 아는 AI에게,
+              우리 아이를 학습 하는 AI에게
               <br />
-              다 물어보세요
+              물어보세요
             </h1>
             <p className="mt-5 md:mt-6 text-base md:text-lg text-ink-3 font-medium leading-relaxed">
               처음 키워서 잘 모를 때도, 갑자기 궁금한 것도,
               <br className="hidden md:block" /> 우리 동네 미용실 물어볼 때도 —{" "}
-              <span className="text-ink-1 font-bold">우리 아이만을 위한 답변.</span>
+              <span className="text-ink-1 font-bold">우리 아이만을 위한 맞춤 답변.</span>
             </p>
-            <p className="mt-4 inline-flex items-center gap-1.5 text-sm md:text-base text-brand font-bold">
-              <Sparkles size={15} strokeWidth={2.4} /> 우리 아이만을 기억하는 강아지 전용 AI
-            </p>
+           
             <div className="mt-8 md:mt-10">
               <a
                 href={DOWNLOAD_URL}

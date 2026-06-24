@@ -2,19 +2,23 @@
 
 /**
  * ScrollHint — "이어서 보기" 텍스트 + 작은 v 화살표
- *
- * Hero section 안에 inline으로 배치 (CTA 아래)
- * 부드럽게 위→아래로 통통 튀는 애니메이션
- *
- * 사용:
- *   <ScrollHint />
+ * 부드럽게 위→아래로 통통 튀는 애니메이션 (일반 CSS — styled-jsx 미사용)
  */
+const HINT_CSS = `
+.scroll-hint-bounce { animation: scrollHintBounce 1.8s ease-in-out infinite; }
+@keyframes scrollHintBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+`;
+
 export default function ScrollHint() {
   return (
     <div
       className="inline-flex flex-col items-center gap-1.5 select-none scroll-hint-bounce"
       aria-hidden="true"
     >
+      <style dangerouslySetInnerHTML={{ __html: HINT_CSS }} />
       <span className="text-sm md:text-base font-semibold text-brand tracking-tight">
         이어서 보기
       </span>
@@ -31,21 +35,6 @@ export default function ScrollHint() {
       >
         <path d="M6 9l6 6 6-6" />
       </svg>
-
-      <style jsx>{`
-        .scroll-hint-bounce {
-          animation: bounceGentle 1.8s ease-in-out infinite;
-        }
-        @keyframes bounceGentle {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(4px);
-          }
-        }
-      `}</style>
     </div>
   );
 }

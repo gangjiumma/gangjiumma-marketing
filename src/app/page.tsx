@@ -10,6 +10,9 @@ import {
   Users,
   PawPrint,
   ArrowRight,
+  Smartphone,
+  MessageCircle,
+  Sparkles,
 } from "lucide-react";
 import FadeInSection from "@/components/FadeInSection";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
@@ -20,8 +23,16 @@ import HeroChat from "@/components/HeroChat";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
+// 앱 사용 흐름 4단계 (히어로 아래 간단 디렉팅)
+const USE_STEPS = [
+  { icon: <Smartphone size={20} strokeWidth={2.1} />, label: "앱 다운로드" },
+  { icon: <PawPrint size={20} strokeWidth={2.1} />, label: "강아지 등록" },
+  { icon: <MessageCircle size={20} strokeWidth={2.1} />, label: "무료로 대화" },
+  { icon: <Sparkles size={20} strokeWidth={2.1} />, label: "알아서 학습" },
+];
+
 // ✏️ 매일 아침 여기 숫자만 업데이트 (오늘자 누적 신규가입 반려인)
-const TOTAL_SIGNUPS = 5289;
+const TOTAL_SIGNUPS = 5374;
 
 // ─────────────────────────────────────────────────────────────
 // 메인 페이지 v2 — "반려견 AI 비서" 컨셉
@@ -54,18 +65,36 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       <section className="relative bg-white pt-16 md:pt-24 pb-20 md:pb-28">
         <div className="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
+          {/* 사용 흐름 4단계 — 순차 페이드인 */}
           <FadeInSection>
-            {/* ✏️ 기능 요약 */}
-            <p className="text-sm md:text-lg text-ink-3 font-medium leading-relaxed">
-              매일 학습하고 · 하루를 기록하고 · 기념일을 챙기고 · 건강을 살피는
-              <br className="hidden md:block" />
-              {" "}우리 아이만을 위한 반려견 AI, <span className="text-brand font-bold">강쥐엄마와 함께 채워나가요.</span>
-            </p>
+            <p className="text-sm md:text-base text-brand font-bold mb-5 md:mb-7">이렇게 시작해요</p>
           </FadeInSection>
+          <div className="flex items-center justify-center gap-1 md:gap-2 flex-wrap max-w-lg mx-auto">
+            {USE_STEPS.map((s, i) => (
+              <div key={s.label} className="flex items-center gap-1 md:gap-2">
+                <FadeInSection delay={i * 150}>
+                  <div className="flex flex-col items-center gap-1.5 w-[68px] md:w-[84px]">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-brand-tint50 border border-brand-tint200 flex items-center justify-center text-brand">
+                      {s.icon}
+                    </div>
+                    <span className="text-[11px] md:text-sm font-bold text-ink-2 text-center leading-tight">
+                      {s.label}
+                    </span>
+                  </div>
+                </FadeInSection>
+                {i < USE_STEPS.length - 1 && (
+                  <ArrowRight
+                    className="w-3.5 h-3.5 md:w-4 md:h-4 text-brand/40 shrink-0"
+                    strokeWidth={2.6}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
 
           <FadeInSection delay={150}>
             {/* ✏️ 가입자 카운터 + D+N (HeroStats) */}
-            <div className="mt-8 md:mt-10">
+            <div className="mt-12 md:mt-16">
               <HeroStats total={TOTAL_SIGNUPS} />
             </div>
           </FadeInSection>
@@ -75,27 +104,6 @@ export default function Home() {
             <div className="mt-10 md:mt-12">
               <ScrollHint />
             </div>
-          </FadeInSection>
-        </div>
-      </section>
-
-      {/* ═════════════════════════════════════════════════════ */}
-      {/* 2. 둘러보기 인트로 — 강쥐엄마는 이렇게 함께해요         */}
-      {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white pt-10 md:pt-16 pb-14 md:pb-20">
-        <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
-          <FadeInSection>
-            <p className="text-base md:text-lg text-brand font-bold mb-3">강쥐엄마는</p>
-            <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
-              이렇게 함께해요
-            </h2>
-            <p className="mt-6 md:mt-8 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              AI에게 상담하고, 일상을 공유하고, 건강을 맡기고,
-              <br className="hidden md:block" />
-              {" "}유치원·호텔도 물어보고, 스케줄·예약까지 —
-              <br />
-              <span className="text-brand font-bold">우리 아이의 하루를 같이 채워요.</span>
-            </p>
           </FadeInSection>
         </div>
       </section>
@@ -172,34 +180,42 @@ export default function Home() {
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 3-2. AI 시연 영상 — 궁금한 모든 것, 물어보세요           */}
+      {/* 3-2. 전환 다리 — AI 위에, 일상을 더 든든하게            */}
       {/* ═════════════════════════════════════════════════════ */}
       <section className="bg-white py-16 md:py-24">
-        <div className="max-w-5xl mx-auto px-5 md:px-8">
+        <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
-            <div className="text-center mb-10 md:mb-14">
-              <p className="text-base md:text-lg text-brand font-bold mb-3">이렇게 물어봐요</p>
-              <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
-                궁금한 모든 것, 물어보세요
-              </h2>
-              <p className="mt-5 md:mt-6 text-base md:text-lg text-ink-3 leading-relaxed">
-                사진 한 장으로도, 우리 아이에게 꼭 맞는 답을 받아보세요.
-              </p>
-            </div>
+            <p className="text-sm md:text-base text-brand font-bold mb-3">AI로 시작되는 건강한 반려생활</p>
+            <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
+              묻고 답하는 것에서
+              <br />
+              그치지 않아요
+            </h2>
+            <p className="mt-5 md:mt-7 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
+              AI 대화 이외에도 —{" "}
+              <span className="text-ink-1 font-bold">일기를 작성하고, 산책하고, 영양제 일정을 등록하고, 동네 사장님들과 이어지며</span>
+              <br className="hidden md:block" />
+              {" "}매일을 더 든든하게 채워가요.
+            </p>
           </FadeInSection>
 
           <FadeInSection delay={150}>
-            <div className="flex justify-center">
-              <div className="relative w-full max-w-[300px] rounded-[2.5rem] overflow-hidden border-[7px] border-ink-1 shadow-elevated bg-black">
-                <video
-                  src="/videos/ganggpt-demo.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="block w-full h-auto"
-                />
-              </div>
+            <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-2.5">
+              {[
+                { icon: <Camera size={15} strokeWidth={2.2} />, label: "기록" },
+                { icon: <Footprints size={15} strokeWidth={2.2} />, label: "산책" },
+                { icon: <HeartPulse size={15} strokeWidth={2.2} />, label: "건강" },
+                { icon: <MapPin size={15} strokeWidth={2.2} />, label: "동네" },
+                { icon: <PawPrint size={15} strokeWidth={2.2} />, label: "Paw 적립" },
+              ].map((chip) => (
+                <span
+                  key={chip.label}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-brand-tint50 border border-brand-tint200 px-4 py-2 text-sm font-bold text-brand"
+                >
+                  {chip.icon}
+                  {chip.label}
+                </span>
+              ))}
             </div>
           </FadeInSection>
         </div>
