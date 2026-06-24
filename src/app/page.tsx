@@ -16,6 +16,7 @@ import { ScrollProgressBar } from "@/components/ScrollIndicator";
 import ScrollHint from "@/components/ScrollHint";
 import HeroStats from "@/components/HeroStats";
 import HeroCinema from "@/components/HeroCinema";
+import HeroChat from "@/components/HeroChat";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
@@ -44,10 +45,9 @@ export default function Home() {
       <ScrollProgressBar />
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 1. HERO — 시간/관계 정체성 (새 컨셉)                              */}
-      {/* CTA 버튼 아래에 ScrollHint ("이어서 보기" + 화살표)    */}
+      {/* 1. HERO — 영상 채팅 (내 아이를 아는 AE에게 물어보세요)   */}
       {/* ═════════════════════════════════════════════════════ */}
-      <HeroCinema />
+      <HeroChat />
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 1-2. HERO 합류 — 시네마 끝 → 다운로드 (카운터 유지)     */}
@@ -344,6 +344,11 @@ export default function Home() {
           </FadeInSection>
         </div>
       </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
+      {/* 7-2. 감성 마무리 — 2016 시네마 (유한성·앞으로의 10년)   */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <HeroCinema />
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 8. 최종 CTA                                            */}
