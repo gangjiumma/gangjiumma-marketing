@@ -194,7 +194,7 @@ export default function PetGuidePage() {
             <div className="mt-7 max-w-xl mx-auto bg-white border border-brand-tint200 rounded-2xl shadow-soft p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
               <p className="text-sm md:text-[15px] font-bold text-ink-1 flex items-center gap-1.5 text-center sm:text-left leading-snug">
                 <PawPrint size={16} className="text-brand shrink-0" strokeWidth={2.2} />
-                반려견 AI, 강GPT로 일상의 질문을 채워보세요!
+                본 가이드는 반려견 AI, 강쥐엄마가 지원합니다!
               </p>
               <a
                 href={DOWNLOAD_URL}
