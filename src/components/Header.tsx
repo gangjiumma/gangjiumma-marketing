@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { PawPrint, Store, Compass } from "lucide-react";
+import { Store, Compass } from "lucide-react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,22 +39,16 @@ export default function Header() {
             <span className="hidden sm:inline">펫페어 가이드</span>
           </Link>
 
-          {/* 소통창구 (/voice) — 소통 약속 페이지 */}
-          <Link
-            href="/voice"
-            className="inline-flex items-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl border border-brand-tint200 bg-brand-tint50 text-brand text-sm md:text-base font-bold hover:bg-brand-tint100 hover:border-brand transition-all duration-200"
-          >
-            <PawPrint size={17} strokeWidth={2.5} />
-            <span>소통창구</span>
-          </Link>
-
-          {/* 사장님 입점 (/business) — 사장님용 입점 안내 */}
+          {/* AnimAI Biz — 사장님 솔루션 입점 안내 (/business) */}
           <Link
             href="/business"
-            className="inline-flex items-center gap-1.5 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl bg-brand text-white text-sm md:text-base font-bold shadow-soft hover:opacity-90 transition-all duration-200"
+            className="inline-flex items-center gap-1.5 md:gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl bg-brand text-white text-sm md:text-base font-bold shadow-soft hover:opacity-90 transition-all duration-200"
           >
             <Store size={17} strokeWidth={2.5} />
-            <span>사장님 입점</span>
+            <span className="whitespace-nowrap">
+              <span className="hidden md:inline">AnimAI Biz - 사장님 솔루션</span>
+              <span className="md:hidden">AnimAI Biz</span>
+            </span>
           </Link>
         </div>
       </div>

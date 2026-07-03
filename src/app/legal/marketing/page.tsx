@@ -1,31 +1,18 @@
 import type { Metadata } from "next";
-import LegalLayout from "@/components/LegalLayout";
+import AppLegalLayout from "@/components/AppLegalLayout";
 
 export const metadata: Metadata = {
   title: "마케팅 정보 수신 동의",
+  robots: { index: false, follow: false, nocache: true },
   description: "AnimAI 마케팅 정보 수신 동의에 관한 안내입니다.",
 };
 
-const sections = [
-  { id: "intro", title: "개요" },
-  { id: "section-1", title: "1. 동의 항목" },
-  { id: "section-2", title: "2. 수집·이용 목적" },
-  { id: "section-3", title: "3. 수집 항목" },
-  { id: "section-4", title: "4. 발송 채널" },
-  { id: "section-5", title: "5. 보유·이용 기간" },
-  { id: "section-6", title: "6. 동의 철회" },
-  { id: "section-7", title: "7. 거부 권리" },
-  { id: "section-8", title: "8. 맞춤형 광고" },
-  { id: "section-9", title: "9. 제휴 광고" },
-];
-
 export default function MarketingConsentPage() {
   return (
-    <LegalLayout
+    <AppLegalLayout
       title="마케팅 정보 수신 동의"
       subtitle="AnimAI의 다양한 혜택과 정보를 받아보세요."
       effectiveDate="2026년 5월 12일"
-      sections={sections}
     >
       <section id="intro" className="mb-12">
         <p className="text-base md:text-lg">
@@ -247,6 +234,6 @@ export default function MarketingConsentPage() {
           </p>
         </div>
       </section>
-    </LegalLayout>
+    </AppLegalLayout>
   );
 }

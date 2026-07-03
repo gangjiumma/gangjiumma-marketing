@@ -1,7 +1,7 @@
 import { LucideIcon } from "lucide-react";
 
 /**
- * IconBox — 강쥐엄마 컬러 박스 아이콘 시스템 (Web 버전)
+ * IconBox — AnimAI 컬러 박스 아이콘 시스템 (Web 버전)
  *
  * 앱의 src/theme/iconBoxes.ts와 1:1 매핑.
  * 컬러 박스(기본 48×48, radius 12) 안에 Lucide 아이콘.
@@ -16,7 +16,7 @@ import { LucideIcon } from "lucide-react";
 
 // 카테고리별 컬러 매핑 (앱 iconBoxes.ts와 동일)
 export const ICON_BOX_COLORS = {
-  paw: { bg: "#FFF4E6", color: "#FF6B35" },           // 강쥐엄마 시그니처 오렌지
+  paw: { bg: "#FFF4E6", color: "#FF6B35" },           // AnimAI 시그니처 오렌지
   schedule: { bg: "#EFF6FF", color: "#2563EB" },       // 일정 (파랑)
   dog: { bg: "#ECFDF5", color: "#16A34A" },            // 강쥐 (초록)
   chat: { bg: "#F5F3FF", color: "#7C3AED" },           // 글/댓글/대화 (보라)

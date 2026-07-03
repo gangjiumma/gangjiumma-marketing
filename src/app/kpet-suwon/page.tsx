@@ -14,11 +14,11 @@ const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 export const metadata: Metadata = {
   // ✏️ 카피 수정 — SEO 메타
-  title: "강쥐엄마, 케이펫페어 수원에서 만나요!",
-  description: "신선한 봄, 수원메쎄에서 강쥐엄마를 만나보세요. AI 퀴즈, 사은품, Paw 쿠폰까지!",
+  title: "AnimAI, 케이펫페어 수원에서 만나요!",
+  description: "신선한 봄, 수원메쎄에서 AnimAI를 만나보세요. AI 퀴즈, 사은품, Paw 쿠폰까지!",
   openGraph: {
-    title: "강쥐엄마, 케이펫페어 수원에서 만나요!",
-    description: "수원메쎄에서 강쥐엄마와 함께. AI 퀴즈, 사은품, Paw 쿠폰까지!",
+    title: "AnimAI, 케이펫페어 수원에서 만나요!",
+    description: "수원메쎄에서 AnimAI와 함께. AI 퀴즈, 사은품, Paw 쿠폰까지!",
     images: ["/og-image.png"],
   },
 };
@@ -45,7 +45,7 @@ export default function KpetSuwonPage() {
 
             {/* ✏️ 카피 수정 — 메인 헤드라인 */}
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.15]">
-              강쥐엄마,
+              AnimAI,
               <br />
               <span className="text-lime">수원에서 만나요!</span>
             </h1>
@@ -56,7 +56,7 @@ export default function KpetSuwonPage() {
             <p className="mt-8 md:mt-10 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
               신선한 봄, 수원메쎄에서
               <br />
-              강쥐엄마와 <span className="text-lime font-bold">처음 만나요</span>.
+              AnimAI와 <span className="text-lime font-bold">처음 만나요</span>.
             </p>
           </FadeInSection>
         </div>
@@ -89,7 +89,7 @@ export default function KpetSuwonPage() {
                   AI 퀴즈 이벤트
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  강쥐엄마의 AI와 함께하는 재미있는 퀴즈로
+                  AnimAI의 AI와 함께하는 재미있는 퀴즈로
                   <br />
                   우리 강아지에 대해 더 알아보세요.
                 </p>
@@ -104,7 +104,7 @@ export default function KpetSuwonPage() {
                   사은품 증정
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  방문해주신 모든 분들께 강쥐엄마가
+                  방문해주신 모든 분들께 AnimAI가
                   <br />
                   준비한 특별한 선물을 드려요.
                 </p>
@@ -119,7 +119,7 @@ export default function KpetSuwonPage() {
                   Paw(포)인트 쿠폰
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  강쥐엄마 앱에서 사용 가능한
+                  AnimAI 앱에서 사용 가능한
                   <br />
                   Paw 포인트 쿠폰을 드려요.
                 </p>
@@ -134,7 +134,7 @@ export default function KpetSuwonPage() {
                   우리동네 추천 업체
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  강쥐엄마가 엄선한 진심 가득한
+                  AnimAI가 엄선한 진심 가득한
                   <br />
                   우리동네 업체들을 소개해드려요.
                 </p>
@@ -155,7 +155,7 @@ export default function KpetSuwonPage() {
               </p>
               {/* ✏️ 카피 수정 — 섹션 제목 */}
               <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
-                강쥐엄마는
+                AnimAI는
                 <br />
                 여기에 있어요
               </h2>
@@ -222,7 +222,7 @@ export default function KpetSuwonPage() {
             </h2>
             {/* ✏️ 카피 수정 — Final CTA 부제 */}
             <p className="mt-8 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              강쥐엄마 앱을 먼저 다운받고 오시면
+              AnimAI 앱을 먼저 다운받고 오시면
               <br />
               부스에서 더 많은 혜택을 받으실 수 있어요.
             </p>
@@ -235,7 +235,7 @@ export default function KpetSuwonPage() {
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>📱</span>
-                <span>강쥐엄마 다운로드</span>
+                <span>AnimAI 다운로드</span>
               </a>
             </div>
             {/* ✏️ 카피 수정 — 하단 마무리 멘트 */}

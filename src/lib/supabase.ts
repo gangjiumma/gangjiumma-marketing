@@ -1,5 +1,5 @@
 // src/lib/supabase.ts
-// 강쥐엄마 마케팅 사이트 ↔ Supabase 연결 (소통 창구 /voice 용)
+// AnimAI 마케팅 사이트 ↔ Supabase 연결 (소통 창구 /voice 용)
 // 앱과 동일한 Supabase 프로젝트(druwwrpunuxpvjbsrcls)를 재사용한다.
 //
 // .env.local 에 아래 두 줄 필요 (Vercel 환경변수에도 동일하게 등록):

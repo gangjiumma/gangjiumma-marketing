@@ -1,29 +1,18 @@
 import type { Metadata } from "next";
-import LegalLayout from "@/components/LegalLayout";
+import AppLegalLayout from "@/components/AppLegalLayout";
 
 export const metadata: Metadata = {
   title: "환불정책",
+  robots: { index: false, follow: false, nocache: true },
   description: "AnimAI 정기결제(구독) 서비스의 환불 정책을 안내합니다.",
 };
 
-const sections = [
-  { id: "section-1", title: "1. 환불정책 개요" },
-  { id: "section-2", title: "2. 정기결제 청약철회" },
-  { id: "section-3", title: "3. 결제 취소 및 환불" },
-  { id: "section-4", title: "4. 회사 귀책에 의한 환불" },
-  { id: "section-5", title: "5. 환불이 불가한 경우" },
-  { id: "section-6", title: "6. 환불 신청 방법" },
-  { id: "section-7", title: "7. 환불 처리 기간" },
-  { id: "section-8", title: "8. 문의 및 분쟁 해결" },
-];
-
 export default function RefundPolicyPage() {
   return (
-    <LegalLayout
+    <AppLegalLayout
       title="환불정책"
       subtitle="AnimAI 정기결제(구독) 서비스의 환불 규정입니다."
       effectiveDate="2026년 5월 23일"
-      sections={sections}
     >
       <section className="mb-12">
         <p className="text-base md:text-lg">
@@ -142,6 +131,6 @@ export default function RefundPolicyPage() {
           <li>회원과 회사 간의 분쟁 해결이 원활하지 않을 경우, 한국소비자원, 전자거래분쟁조정위원회 등 관련 기관의 조정을 받을 수 있습니다.</li>
         </ol>
       </section>
-    </LegalLayout>
+    </AppLegalLayout>
   );
 }

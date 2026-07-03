@@ -253,6 +253,9 @@ export default function HeroCinema() {
         <p className="text-xs md:text-sm text-white/75 font-medium tracking-wide">
           AnimAI 대표가 실제로 30년간 키워온 아이들입니다 🐾
         </p>
+        <p className="mt-1 text-[11px] md:text-xs text-white/60 font-medium tracking-wide">
+          이제 강아지도, 고양이도 함께해요
+        </p>
       </div>
 
       {/* 슬라이드 점 */}

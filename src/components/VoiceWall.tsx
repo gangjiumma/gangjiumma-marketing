@@ -1,7 +1,7 @@
 "use client";
 
 // src/components/VoiceWall.tsx
-// 강쥐엄마 소통 창구 — 작성 폼 + 실시간 카드 리스트
+// AnimAI 소통 창구 — 작성 폼 + 실시간 카드 리스트
 // - Supabase Realtime 으로 새 글이 올라오면 카드가 위에서 스르르 떠오름
 // - 좋아요(하트): 브라우저 기억(localStorage) 1인 1좋아요 + RPC 원자적 +1 + 실시간 반영
 // - 무한스크롤: 20개씩 로드 (IntersectionObserver)

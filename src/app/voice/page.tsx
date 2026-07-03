@@ -10,7 +10,7 @@ const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 export const dynamic = "force-dynamic";
 
 // ─────────────────────────────────────────────────────────────
-// 강쥐엄마 소통 창구 (/voice)
+// AnimAI 소통 창구 (/voice)
 // 톤: 메인 브랜드 오렌지 (#FF6B35) — 따뜻하고 진솔하게
 // 펫페어에서 한 약속("여러분과 소통하는 공간을 만들겠다")을 실제 페이지로
 //
@@ -20,12 +20,12 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   // ✏️ 카피 — SEO 메타
-  title: "강쥐엄마에게 한마디 | 소통 창구",
+  title: "AnimAI에게 한마디 | 소통 창구",
   description:
-    "강쥐엄마는 여러분의 목소리로 만들어집니다. 바라는 점, 아쉬운 점 무엇이든 들려주세요. 제가 다 읽어요.",
+    "AnimAI는 여러분의 목소리로 만들어집니다. 바라는 점, 아쉬운 점 무엇이든 들려주세요. 제가 다 읽어요.",
   openGraph: {
-    title: "강쥐엄마에게 한마디 | 소통 창구",
-    description: "여러분의 목소리가 강쥐엄마를 키웁니다. 무엇이든 편하게 남겨주세요.",
+    title: "AnimAI에게 한마디 | 소통 창구",
+    description: "여러분의 목소리가 AnimAI를 키웁니다. 무엇이든 편하게 남겨주세요.",
     images: ["/og-image.png"],
   },
 };
@@ -53,7 +53,7 @@ export default function VoicePage() {
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.15]">
               여러분의 목소리를
               <br />
-              <span className="text-brand">강쥐엄마는 기다립니다</span>
+              <span className="text-brand">AnimAI는 기다립니다</span>
             </h1>
           </FadeInSection>
 
@@ -90,10 +90,10 @@ export default function VoicePage() {
           <FadeInSection>
             {/* ✏️ 카피 — CTA */}
             <h2 className="text-2xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
-              아직 강쥐엄마가 처음이세요?
+              아직 AnimAI가 처음이세요?
             </h2>
             <p className="mt-6 text-base md:text-lg text-ink-2 font-medium leading-relaxed">
-              반려견 AI 비서, 강쥐엄마와 함께
+              반려동물 AI 비서, AnimAI와 함께
               <br />
               우리 아이와의 일상을 더 편하게.
             </p>
@@ -105,7 +105,7 @@ export default function VoicePage() {
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>📱</span>
-                <span>강쥐엄마 다운로드</span>
+                <span>AnimAI 다운로드</span>
               </a>
             </div>
           </FadeInSection>

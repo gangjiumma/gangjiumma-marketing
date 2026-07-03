@@ -1,36 +1,18 @@
 import type { Metadata } from "next";
-import LegalLayout from "@/components/LegalLayout";
+import AppLegalLayout from "@/components/AppLegalLayout";
 
 export const metadata: Metadata = {
   title: "개인정보 처리방침",
+  robots: { index: false, follow: false, nocache: true },
   description: "AnimAI 개인정보 처리방침. 이용자의 개인정보를 안전하게 보호하기 위한 방침입니다.",
 };
 
-const sections = [
-  { id: "intro", title: "총칙" },
-  { id: "section-1", title: "1. 수집하는 개인정보" },
-  { id: "section-2", title: "2. 수집·이용 목적" },
-  { id: "section-3", title: "3. 보유 및 이용 기간" },
-  { id: "section-4", title: "4. 제3자 제공" },
-  { id: "section-5", title: "5. 처리 위탁" },
-  { id: "section-6", title: "6. 국외 이전" },
-  { id: "section-7", title: "7. 이용자의 권리" },
-  { id: "section-8", title: "8. 파기 절차 및 방법" },
-  { id: "section-9", title: "9. 안전성 확보 조치" },
-  { id: "section-10", title: "10. 자동 수집 장치" },
-  { id: "section-11", title: "11. 14세 미만 아동" },
-  { id: "section-12", title: "12. 개인정보 보호책임자" },
-  { id: "section-13", title: "13. 권익 침해 구제" },
-  { id: "section-14", title: "14. 방침 변경" },
-];
-
 export default function PrivacyPolicyPage() {
   return (
-    <LegalLayout
+    <AppLegalLayout
       title="개인정보 처리방침"
       subtitle="(주)비타니마는 이용자의 개인정보를 소중히 다룹니다."
       effectiveDate="2026년 5월 12일"
-      sections={sections}
     >
       <section id="intro" className="mb-12">
         <p className="text-base md:text-lg">
@@ -333,6 +315,6 @@ export default function PrivacyPolicyPage() {
         <p>이 개인정보 처리방침은 2026년 5월 12일부터 시행됩니다.</p>
         <p className="mt-3">법령 및 방침에 따른 변경 내용의 추가, 삭제 및 정정이 있는 경우 변경사항의 시행 7일 전부터 앱 내 공지사항 또는 이메일을 통해 사전 공지합니다. 다만, 이용자의 권리에 중대한 변경이 발생하는 경우 최소 30일 전에 공지합니다.</p>
       </section>
-    </LegalLayout>
+    </AppLegalLayout>
   );
 }

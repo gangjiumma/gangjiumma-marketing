@@ -9,6 +9,8 @@ import {
   MapPin,
   Users,
   PawPrint,
+  Dog,
+  Cat,
   ArrowRight,
   Smartphone,
   MessageCircle,
@@ -26,7 +28,15 @@ const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 // 앱 사용 흐름 4단계 (히어로 아래 간단 디렉팅)
 const USE_STEPS = [
   { icon: <Smartphone size={20} strokeWidth={2.1} />, label: "앱 다운로드" },
-  { icon: <PawPrint size={20} strokeWidth={2.1} />, label: "우리 아이 등록" },
+  {
+    icon: (
+      <div className="flex items-center gap-0.5">
+        <Dog size={17} strokeWidth={2.1} />
+        <Cat size={17} strokeWidth={2.1} />
+      </div>
+    ),
+    label: "우리 아이 등록",
+  },
   { icon: <MessageCircle size={20} strokeWidth={2.1} />, label: "무료로 대화" },
   { icon: <Sparkles size={20} strokeWidth={2.1} />, label: "알아서 학습" },
 ];

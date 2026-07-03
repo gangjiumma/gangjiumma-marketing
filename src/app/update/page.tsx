@@ -14,7 +14,7 @@ import { ScrollProgressBar } from "@/components/ScrollIndicator";
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 // ─────────────────────────────────────────────────────────────
-// 강쥐엄마 1차 개편 업데이트 안내 (/update)
+// AnimAI 1차 개편 업데이트 안내 (/update)
 // 톤: 메인 브랜드 오렌지 (#FF6B35)
 // 6월 12일(금) 새 버전 안내 + 적용 내용 4가지 + 업데이트 권장 안내
 //
@@ -22,11 +22,11 @@ const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 // ─────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "강쥐엄마 1차 개편 업데이트 안내",
+  title: "AnimAI 1차 개편 업데이트 안내",
   description:
     "출시 일주일 만에 1,000분 돌파! 여러분의 피드백을 담아 6월 12일 새 버전으로 찾아옵니다.",
   openGraph: {
-    title: "강쥐엄마 1차 개편 업데이트 안내",
+    title: "AnimAI 1차 개편 업데이트 안내",
     description: "여러분의 목소리를 담은 첫 번째 큰 업데이트, 6월 12일(금) 공개!",
     images: ["/og-image.png"],
   },
@@ -53,8 +53,8 @@ const FEATURES = [
   },
   {
     icon: MessagesSquare,
-    label: "강쥐TALK",
-    title: "강쥐TALK, 진짜 소통 공간으로",
+    label: "Ani Talk",
+    title: "Ani Talk, 진짜 소통 공간으로",
     desc: "밴드·단톡방처럼 견종끼리, 동네끼리 자유롭게 소통할 수 있도록 기능을 보완했어요. 우리 아이와 비슷한 친구들의 이야기를 더 가깝게 나눠요.",
   },
 ];
@@ -166,7 +166,7 @@ export default function UpdatePage() {
           <FadeInSection>
             {/* ✏️ CTA 카피 */}
             <h2 className="text-2xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
-              더 좋아진 강쥐엄마,
+              더 좋아진 AnimAI,
               <br />
               지금 만나보세요
             </h2>

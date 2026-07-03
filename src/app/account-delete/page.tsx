@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "계정 삭제 요청 - 강쥐엄마",
+  title: "계정 삭제 요청 - AnimAI",
   description:
-    "강쥐엄마 앱의 계정 삭제 요청 방법 안내. 이메일로 요청 시 영업일 기준 7일 이내 처리됩니다.",
+    "AnimAI 앱의 계정 삭제 요청 방법 안내. 이메일로 요청 시 영업일 기준 7일 이내 처리됩니다.",
 };
 
 const sections = [
@@ -20,7 +20,7 @@ export default function AccountDeletePage() {
   return (
     <LegalLayout
       title="계정 삭제 요청"
-      subtitle="강쥐엄마 계정 및 관련 데이터 삭제 안내"
+      subtitle="AnimAI 계정 및 관련 데이터 삭제 안내"
       effectiveDate="2026년 5월 22일"
       sections={sections}
     >
@@ -30,7 +30,7 @@ export default function AccountDeletePage() {
           1. 안내
         </h2>
         <p className="mb-4 leading-relaxed">
-          강쥐엄마(이하 &quot;서비스&quot;)는 이용자가 언제든 계정 및 관련 개인정보의
+          AnimAI(이하 &quot;서비스&quot;)는 이용자가 언제든 계정 및 관련 개인정보의
           삭제를 요청할 수 있도록 두 가지 방법을 제공합니다.
         </p>
         <p className="mb-4 leading-relaxed">
@@ -46,12 +46,12 @@ export default function AccountDeletePage() {
           2. 앱 내에서 직접 삭제하기
         </h2>
         <p className="mb-4 leading-relaxed">
-          강쥐엄마 앱을 설치하신 경우, 다음 경로로 직접 계정을 삭제하실 수
+          AnimAI 앱을 설치하신 경우, 다음 경로로 직접 계정을 삭제하실 수
           있습니다:
         </p>
         <div className="bg-surface-subtle rounded-2xl p-6 my-6">
           <ol className="list-decimal list-inside space-y-2 text-ink-2">
-            <li>강쥐엄마 앱 실행</li>
+            <li>AnimAI 앱 실행</li>
             <li>하단 메뉴 <strong>MY</strong> 탭 → <strong>내 프로필</strong> 진입</li>
             <li>화면 하단 <strong>계정 탈퇴</strong> 선택</li>
             <li>안내에 따라 본인 확인 후 탈퇴 완료</li>
@@ -72,10 +72,10 @@ export default function AccountDeletePage() {
           <p className="font-bold text-ink-1 mb-3">📧 요청 이메일 주소</p>
           <p className="text-lg md:text-xl mb-6">
             <a
-              href="mailto:cs@gangjiumma.kr?subject=[계정 삭제 요청] 강쥐엄마"
+              href="mailto:cs@vitanima.kr?subject=[계정 삭제 요청] AnimAI"
               className="text-brand font-bold hover:underline"
             >
-              cs@gangjiumma.kr
+              cs@vitanima.kr
             </a>
           </p>
           <p className="font-bold text-ink-1 mb-3">📋 이메일에 포함할 정보</p>
@@ -86,10 +86,10 @@ export default function AccountDeletePage() {
           </ul>
           <p className="font-bold text-ink-1 mb-3">📝 이메일 양식 예시</p>
           <div className="bg-white rounded-xl p-4 md:p-5 text-sm md:text-base text-ink-2 font-mono leading-relaxed">
-            제목: [계정 삭제 요청] 강쥐엄마
+            제목: [계정 삭제 요청] AnimAI
             <br />
             <br />
-            안녕하세요. 강쥐엄마 계정 삭제를 요청합니다.
+            안녕하세요. AnimAI 계정 삭제를 요청합니다.
             <br />
             <br />
             • 가입 이메일: example@email.com
@@ -111,7 +111,7 @@ export default function AccountDeletePage() {
         </p>
         <ul className="list-disc list-inside space-y-2 my-6 text-ink-2">
           <li>회원 가입 정보 (이메일, 닉네임, 프로필 사진 등)</li>
-          <li>반려견 정보 (이름, 견종, 사진, 건강 정보 등)</li>
+          <li>반려동물 정보 (이름, 품종, 사진, 건강 정보 등)</li>
           <li>작성한 게시글, 댓글, 좋아요 기록</li>
           <li>AI(강GPT) 대화 기록</li>
           <li>일정, 알림, 산책 기록</li>

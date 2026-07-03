@@ -5,10 +5,10 @@ import { ScrollDownIndicator, ScrollProgressBar } from "@/components/ScrollIndic
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 export const metadata: Metadata = {
-  title: "강쥐엄마, 메가주에서 만나요!",
-  description: "5월 29일~31일 일산 킨텍스 메가주. 강쥐엄마가 엄마들께 처음 인사드립니다. AI 퀴즈, 사은품, Paw 쿠폰까지!",
+  title: "AnimAI, 메가주에서 만나요!",
+  description: "5월 29일~31일 일산 킨텍스 메가주. AnimAI가 엄마들께 처음 인사드립니다. AI 퀴즈, 사은품, Paw 쿠폰까지!",
   openGraph: {
-    title: "강쥐엄마, 메가주에서 만나요!",
+    title: "AnimAI, 메가주에서 만나요!",
     description: "5월 29일~31일 일산 킨텍스 C-5 부스. AI 퀴즈, 사은품, Paw 쿠폰까지!",
     images: ["/og-image.png"],
   },
@@ -34,7 +34,7 @@ export default function MegazPage() {
             </div>
 
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-ink-1 tracking-tightest leading-[1.15]">
-              강쥐엄마,
+              AnimAI,
               <br />
               <span className="text-brand">메가주 등장!</span>
             </h1>
@@ -42,7 +42,7 @@ export default function MegazPage() {
 
           <FadeInSection delay={300}>
             <p className="mt-8 md:mt-10 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              반려견 AI 선두주자 강쥐엄마가
+              반려동물 AI 선두주자 AnimAI가
               <br />
               메가주에서 엄마들께 <span className="text-brand font-bold">처음 인사</span>드릴 예정입니다.
             </p>
@@ -74,7 +74,7 @@ export default function MegazPage() {
                   AI 퀴즈 이벤트
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  강쥐엄마의 AI와 함께하는 재미있는 퀴즈로
+                  AnimAI의 AI와 함께하는 재미있는 퀴즈로
                   <br />
                   우리 강아지에 대해 더 알아보세요.
                 </p>
@@ -88,7 +88,7 @@ export default function MegazPage() {
                   사은품 증정
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  방문해주신 모든 분들께 강쥐엄마가
+                  방문해주신 모든 분들께 AnimAI가
                   <br />
                   준비한 특별한 선물을 드려요.
                 </p>
@@ -102,7 +102,7 @@ export default function MegazPage() {
                   Paw(포)인트 쿠폰
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  강쥐엄마 앱에서 사용 가능한
+                  AnimAI 앱에서 사용 가능한
                   <br />
                   Paw 포인트 쿠폰을 드려요.
                 </p>
@@ -116,7 +116,7 @@ export default function MegazPage() {
                   우리동네 추천 업체
                 </h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  강쥐엄마가 엄선한 진심 가득한
+                  AnimAI가 엄선한 진심 가득한
                   <br />
                   우리동네 업체들을 소개해드려요.
                 </p>
@@ -135,7 +135,7 @@ export default function MegazPage() {
                 만나러 오세요
               </p>
               <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
-                강쥐엄마는
+                AnimAI는
                 <br />
                 여기에 있어요
               </h2>
@@ -200,7 +200,7 @@ export default function MegazPage() {
               <span className="text-brand">미리 만나요</span>
             </h2>
             <p className="mt-8 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              강쥐엄마 앱을 먼저 다운받고 오시면
+              AnimAI 앱을 먼저 다운받고 오시면
               <br />
               부스에서 더 많은 혜택을 받으실 수 있어요.
             </p>
@@ -212,7 +212,7 @@ export default function MegazPage() {
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
                 <span>📱</span>
-                <span>강쥐엄마 다운로드</span>
+                <span>AnimAI 다운로드</span>
               </a>
             </div>
             <p className="mt-6 text-sm md:text-base text-ink-3 font-medium">

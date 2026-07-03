@@ -19,6 +19,8 @@ import {
   Play,
   Newspaper,
   BarChart3,
+  Heart,
+  PawPrint,
 } from "lucide-react";
 import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
@@ -58,32 +60,7 @@ export default function BusinessPage() {
       <ScrollProgressBar />
       <BizSignupModal open={signupOpen} onClose={() => setSignupOpen(false)} />
 
-      {showIntro && (
-        <div className="bz-introbg" onClick={dismissIntro}>
-          <div className="bz-intro" onClick={(e) => e.stopPropagation()}>
-            <div className="bz-intrologo">🐾</div>
-            <div className="bz-introtag">사장님을 위한 운영 솔루션</div>
-            <div className="bz-introttl">AnimAI Biz</div>
-            <p className="bz-introsub">
-              펫 유치원·미용실을 위한
-              <br />
-              예약·결제·고객 통합 대시보드
-            </p>
-            <button
-              className="bz-introbtn bz-introprimary"
-              onClick={() => {
-                dismissIntro();
-                setSignupOpen(true);
-              }}
-            >
-              입점 바로 신청하기 <ArrowRight size={18} />
-            </button>
-            <button className="bz-introbtn bz-introghost" onClick={dismissIntro}>
-              프로그램 먼저 둘러보기
-            </button>
-          </div>
-        </div>
-      )}
+      {showIntro && <IntroChecklist onDone={dismissIntro} />}
 
       {/* ───────── 1 · HERO ───────── */}
       <Hero onStart={() => setSignupOpen(true)} />
@@ -274,76 +251,75 @@ export default function BusinessPage() {
             <div className="bz-freebar">
               <Gift size={22} color="#ff6b35" style={{ flex: "none" }} />
               <span>
-                <b>6월 30일까지 가입하시면, 7월 말까지 베이직 기능을 무료로 체험</b>할 수 있습니다.
-                이후에는 <b>라이트로 자동 전환되어 계속 무료</b>로 이용하시고, AI 기능 등 더 많은
-                기능이 필요해지면 그때 업그레이드하시면 됩니다.
+                <b>7월 한달간 가입 사장님 한정</b> — 라이트플랜{" "}
+                <b>평생 무료</b>(원가 월 <s>9,900원</s>) + <b>14일간 베이직 플랜 무료 체험</b>. 무료체험
+                이후 원하실 경우 카드결제 후 원하는 플랜을 이용하실 수 있어요.
               </span>
             </div>
             <div className="bz-ptable">
               <div className="bz-pcard">
+                <span className="bz-badge bz-bwarm">출시 기념</span>
                 <div className="bz-pn">라이트</div>
                 <div className="bz-pp">
+                  <span className="bz-was">9,900원</span>
                   <span className="bz-free">무료</span>
                 </div>
-                <div className="bz-pu">계속 무료</div>
+                <div className="bz-pu">평생 무료 🎉</div>
                 <div className="bz-pd">
                   예약·고객 관리
                   <br />
-                  토스 결제 연동
+                  토스 단말기 결제·매출
                   <br />
-                  예약 알림톡
+                  예약 확정·취소 알림톡
                   <br />
-                  입점 노출
+                  시·구 단위 입점 노출
                 </div>
               </div>
               <div className="bz-pcard">
                 <div className="bz-pn">미니</div>
                 <div className="bz-pp">
-                  <span className="bz-was">30,000원</span>
-                  <span className="bz-free">무료</span>
+                  <span className="bz-price">29,900원</span>
                 </div>
-                <div className="bz-pu">베타 기간 무료</div>
+                <div className="bz-pu">하루 1,000원 꼴</div>
                 <div className="bz-pd">
                   라이트 +<br />
-                  매출 관리
+                  AI 알림장
                   <br />
-                  수요 통계
+                  AI 문의 자동응답
                   <br />
-                  할인쿠폰
+                  할인쿠폰 발행
                 </div>
               </div>
               <div className="bz-pcard bz-hot">
                 <span className="bz-badge">추천</span>
                 <div className="bz-pn">베이직</div>
                 <div className="bz-pp">
-                  <span className="bz-was">60,000원</span>
-                  <span className="bz-free">무료</span>
+                  <span className="bz-price">59,900원</span>
                 </div>
-                <div className="bz-pu">베타 기간 무료</div>
+                <div className="bz-pu">하루 2,000원 꼴</div>
                 <div className="bz-pd">
-                  미니 +<br />
-                  AI 알림장
+                  라이트·미니 +<br />
+                  AI 광고 콘텐츠 (무제한)
                   <br />
-                  AI 마케팅 풀세트
+                  반려동물 트렌드 리포트
                   <br />
-                  AI 실험실
+                  AnimAI 앱 광고 (시도·주3)
                 </div>
               </div>
               <div className="bz-pcard bz-soon">
                 <span className="bz-badge bz-bsoon">출시 예정</span>
                 <div className="bz-pn">프로</div>
                 <div className="bz-pp">
-                  <span className="bz-was">90,000원</span>
-                  <span className="bz-soontxt">출시 예정</span>
+                  <span className="bz-price">79,900원</span>
                 </div>
-                <div className="bz-pu">출시 후 안내</div>
+                <div className="bz-pu">하루 2,700원 꼴</div>
                 <div className="bz-pd">
-                  베이직 +<br />
+                  라이트·미니·베이직 +<br />
                   전담 AI 에이전트
                   <br />
-                  매일 매출 보고
+                  매일 영업·매출 보고
                   <br />
-                  담당 직원 배정
+                  AnimAI 앱 광고 (전국·주5)
                 </div>
               </div>
             </div>
@@ -460,6 +436,168 @@ function Hero({ onStart }: { onStart: () => void }) {
         <ChevronDown size={20} />
       </div>
     </section>
+  );
+}
+
+/* ════════════ 인트로 체크리스트 — 펫페어 사이니지 톤 (v2) ════════════ */
+function IntroChecklist({ onDone }: { onDone: () => void }) {
+  const items = [
+    <><span className="bz-intro-hl">DM·전화·문자로</span> 상담받고 예약 프로그램에 <span className="bz-intro-hl">수기 기입</span></>,
+    <><span className="bz-intro-hl">토스나 다른 단말기</span> 결제 후 예약 프로그램에 <span className="bz-intro-hl">다시 기입</span></>,
+    <>미용·유치원·호텔 알림장, <span className="bz-intro-hl">카톡·DM으로</span> 사진 <span className="bz-intro-hl">하나씩 전달</span></>,
+    <><span className="bz-intro-hl">매번</span> <span className="bz-intro-hl">ChatGPT·Gemini</span> 열어 광고글 만들어 인스타·블로그 업로드</>,
+    <><span className="bz-intro-hl">우리 동네 견주·집사가</span> 뭘 원하는지 모른 채 <span className="bz-intro-hl">감으로</span> 이벤트 제작</>,
+  ];
+
+  const [checkedCount, setCheckedCount] = useState(0);
+  const [concludeVisible, setConcludeVisible] = useState(false);
+  const [brandVisible, setBrandVisible] = useState(false);
+  const [confettiVisible, setConfettiVisible] = useState(false);
+  const [tailVisible, setTailVisible] = useState(false);
+  const [fadingOut, setFadingOut] = useState(false);
+
+  // 애니 시퀀스 (총 ~10초, 펫페어 톤 - 리듬감 있게)
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    // 각 체크 순차 등장 (1.4s부터 800ms 간격 · 좌우 교대 flyR/flyL)
+    items.forEach((_, i) => {
+      timers.push(setTimeout(() => setCheckedCount(i + 1), 1400 + i * 800));
+    });
+    // 결론 카피 (5.5s)
+    timers.push(setTimeout(() => setConcludeVisible(true), 5500));
+    // 브랜드 pill + 컨페티 (6.0s)
+    timers.push(setTimeout(() => {
+      setBrandVisible(true);
+      setConfettiVisible(true);
+    }, 6000));
+    // 꼬리 카피 (7.0s)
+    timers.push(setTimeout(() => setTailVisible(true), 7000));
+    // 페이드아웃 (9.4s)
+    timers.push(setTimeout(() => setFadingOut(true), 9400));
+    // 종료 (10.0s)
+    timers.push(setTimeout(onDone, 10000));
+    return () => timers.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const skip = () => {
+    setFadingOut(true);
+    setTimeout(onDone, 250);
+  };
+
+  return (
+    <div className={`bz-intro ${fadingOut ? "bz-intro-out" : ""}`} role="dialog" aria-label="AnimAI Biz 인트로">
+      {/* 배경 레이어: blob 3개 + 점 그리드 */}
+      <div className="bz-intro-bg" aria-hidden>
+        <div className="bz-intro-blob bz-intro-blob-1" />
+        <div className="bz-intro-blob bz-intro-blob-2" />
+        <div className="bz-intro-blob bz-intro-blob-3" />
+        <div className="bz-intro-dots" />
+      </div>
+
+      {/* 부유 오브젝트 (하트/발/별/스파클) */}
+      <div className="bz-intro-obj bz-intro-obj-1" aria-hidden>
+        <Heart size={44} fill="#ff9ec4" stroke="#ff9ec4" strokeWidth={2} />
+      </div>
+      <div className="bz-intro-obj bz-intro-obj-2" aria-hidden>
+        <Sparkles size={38} fill="#ffd84d" stroke="#ffd84d" strokeWidth={2} />
+      </div>
+      <div className="bz-intro-obj bz-intro-obj-3" aria-hidden>
+        <PawPrint size={42} fill="#ff6b35" stroke="#ff6b35" strokeWidth={2} />
+      </div>
+      <div className="bz-intro-obj bz-intro-obj-4" aria-hidden>
+        <Sparkles size={32} fill="#ffd9c9" stroke="#ffd9c9" strokeWidth={2} />
+      </div>
+
+      <button type="button" onClick={skip} className="bz-intro-skip" aria-label="건너뛰기">
+        건너뛰기
+      </button>
+
+      <div className="bz-intro-inner">
+        {/* 상단 kicker */}
+        <div className="bz-intro-kicker">사장님, 잠깐만요…</div>
+
+        {/* 메인 타이틀 (punch 애니) */}
+        <h1 className="bz-intro-title">
+          강아지, 고양이 돌보고,
+          <br />
+          <span className="bz-intro-title-o">관리해</span> 주시며…
+        </h1>
+
+        {/* 체크리스트 (좌우 교대 flyL/flyR) */}
+        <ul className="bz-intro-list">
+          {items.map((text, idx) => {
+            const isShown = idx < checkedCount;
+            const dir = idx % 2 === 0 ? "bz-intro-item-r" : "bz-intro-item-l";
+            return (
+              <li
+                key={idx}
+                className={`bz-intro-item ${dir} ${isShown ? "bz-intro-item-in" : ""}`}
+              >
+                <span className={`bz-intro-box ${isShown ? "bz-intro-box-on" : ""}`}>
+                  <Check size={17} strokeWidth={3.5} className="bz-intro-check-icon" />
+                </span>
+                <span className="bz-intro-text">{text}</span>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* 결론 카피 */}
+        <div className={`bz-intro-conclude ${concludeVisible ? "bz-intro-conclude-in" : ""}`}>
+          <p className="bz-intro-conclude-lead">이 중 <b>하나라도</b> 해당하신다면,</p>
+        </div>
+
+        {/* 브랜드 pill (대형 punch + 컨페티) */}
+        <div className={`bz-intro-brand-row ${brandVisible ? "bz-intro-brand-in" : ""}`}>
+          <div className="bz-intro-brand-wrap">
+            <span className="bz-intro-brand-big">
+              <span className="bz-intro-brand-paw">🐾</span>
+              <b>AnimAI Biz</b>
+            </span>
+            {/* 손그림 밑줄 (SVG) */}
+            <svg className="bz-intro-underline" viewBox="0 0 220 14" aria-hidden>
+              <path
+                d="M4 8 Q 55 2, 110 7 T 216 6"
+                fill="none"
+                stroke="#ff6b35"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+        </div>
+
+        {/* 꼬리 카피 */}
+        <p className={`bz-intro-tail ${tailVisible ? "bz-intro-tail-in" : ""}`}>
+          <b>가 필요합니다</b>
+        </p>
+      </div>
+
+      {/* 컨페티 */}
+      {confettiVisible && (
+        <div className="bz-intro-confetti" aria-hidden>
+          {Array.from({ length: 18 }).map((_, i) => {
+            const colors = ["#ff6b35", "#ffd84d", "#ff9ec4", "#059669", "#5db4ff", "#e85d2a"];
+            const left = 10 + i * 5;
+            const bg = colors[i % colors.length];
+            const dur = 1.6 + (i % 5) * 0.2;
+            const delay = (i % 6) * 0.1;
+            return (
+              <i
+                key={i}
+                style={{
+                  left: `${left}%`,
+                  background: bg,
+                  animationDuration: `${dur}s`,
+                  animationDelay: `${delay}s`,
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -871,6 +1009,104 @@ const BZ_CSS = `
 .bz-accent{color:#3b82f6}
 .bz-probac{color:#e55a2b}
 .bz-free{color:#ff6b35;font-weight:800}
+
+/* intro — 진입 오버레이 (펫페어 사이니지 톤: 부유 오브젝트 + flyL/flyR + 컨페티 + 손그림 밑줄) */
+.bz-intro{position:fixed;inset:0;z-index:120;background:#ffffff;display:flex;align-items:center;justify-content:center;padding:32px 20px;overflow-y:auto;overflow-x:hidden;animation:bzIntroFadeIn .35s ease-out both}
+.bz-intro-out{animation:bzIntroFadeOut .5s ease-in both}
+@keyframes bzIntroFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes bzIntroFadeOut{from{opacity:1}to{opacity:0}}
+
+/* 배경 레이어 (blob 3개 + 점 그리드) */
+.bz-intro-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bz-intro-blob{position:absolute;border-radius:50%;filter:blur(72px);opacity:.32;mix-blend-mode:multiply}
+.bz-intro-blob-1{width:440px;height:440px;left:-140px;top:-120px;background:#ffd9c9;animation:bzIntroDrift1 26s ease-in-out infinite}
+.bz-intro-blob-2{width:400px;height:400px;right:-120px;bottom:-140px;background:#ffe9c2;animation:bzIntroDrift2 30s ease-in-out infinite}
+.bz-intro-blob-3{width:320px;height:320px;left:50%;top:45%;background:#e6f7ee;animation:bzIntroDrift3 34s ease-in-out infinite}
+@keyframes bzIntroDrift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,50px) scale(1.12)}}
+@keyframes bzIntroDrift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-40px) scale(1.1)}}
+@keyframes bzIntroDrift3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-44%,-58%) scale(1.18)}}
+.bz-intro-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,107,53,.09) 2px, transparent 2px);background-size:32px 32px;opacity:.42}
+
+/* 부유 오브젝트 (하트/발/별/스파클 - 등장 애니 + bob 반복) */
+.bz-intro-obj{position:absolute;z-index:1;opacity:0;pointer-events:none;animation:bzIntroObjIn .7s cubic-bezier(.2,1.3,.3,1) forwards, bzIntroObjBob 6s ease-in-out infinite}
+@keyframes bzIntroObjIn{0%{opacity:0;transform:scale(0) rotate(-30deg)}70%{opacity:1;transform:scale(1.15) rotate(6deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes bzIntroObjBob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(6deg)}}
+.bz-intro-obj-1{left:6%;top:12%;animation-delay:0.3s,1.0s}
+.bz-intro-obj-2{right:8%;top:9%;animation-delay:0.5s,1.2s}
+.bz-intro-obj-3{right:5%;bottom:14%;animation-delay:0.7s,1.4s}
+.bz-intro-obj-4{left:7%;bottom:16%;animation-delay:0.9s,1.6s}
+
+.bz-intro-skip{position:fixed;top:18px;right:18px;background:transparent;border:1px solid #e2e8f0;color:#64748b;font-family:inherit;font-size:12px;font-weight:600;padding:7px 14px;border-radius:100px;cursor:pointer;transition:.15s;z-index:10}
+.bz-intro-skip:hover{color:#ff6b35;border-color:#ff6b35;background:#fff}
+
+.bz-intro-inner{position:relative;z-index:5;max-width:680px;width:100%;padding:24px 4px;text-align:center}
+
+.bz-intro-kicker{font-size:15px;font-weight:700;color:#94a3b8;letter-spacing:.02em;margin-bottom:12px;opacity:0;animation:bzIntroFadeUp .5s ease-out .4s both}
+.bz-intro-title{font-size:clamp(26px,4.4vw,42px);font-weight:900;letter-spacing:-.035em;line-height:1.25;color:#0f172a;margin-bottom:36px;opacity:0;animation:bzIntroPunch .6s cubic-bezier(.18,1.4,.32,1) .7s both}
+.bz-intro-title-o{color:#ff6b35}
+@keyframes bzIntroPunch{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes bzIntroFadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.bz-intro-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;max-width:600px;margin-left:auto;margin-right:auto;text-align:left}
+.bz-intro-item{opacity:0;background:#fff;border:1.5px solid #ffe4d1;border-radius:16px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:500;color:#334155;line-height:1.55;box-shadow:0 6px 18px rgba(255,107,53,.08);transition:box-shadow .3s}
+.bz-intro-item-r{transform:translateX(80px) rotate(4deg)}
+.bz-intro-item-l{transform:translateX(-80px) rotate(-4deg)}
+.bz-intro-item-in{opacity:1;transform:translateX(0) rotate(0);transition:opacity .5s cubic-bezier(.2,1,.3,1),transform .5s cubic-bezier(.2,1.4,.3,1)}
+.bz-intro-box{flex-shrink:0;width:28px;height:28px;border-radius:9px;background:#fff;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;transition:background .3s ease-out,border-color .3s ease-out,transform .25s ease-out}
+.bz-intro-box-on{background:#ff6b35;border-color:#ff6b35;animation:bzIntroCheckPop .4s ease-out .15s}
+@keyframes bzIntroCheckPop{0%{transform:scale(1)}45%{transform:scale(1.25) rotate(-8deg)}100%{transform:scale(1) rotate(0)}}
+.bz-intro-check-icon{color:#fff;opacity:0;transform:scale(.4);transition:opacity .25s ease-out .25s,transform .3s cubic-bezier(.34,1.56,.64,1) .25s}
+.bz-intro-box-on .bz-intro-check-icon{opacity:1;transform:scale(1)}
+.bz-intro-text{flex:1;padding-top:2px}
+.bz-intro-hl{color:#e85d2a;font-weight:800;font-size:1.08em;background:linear-gradient(180deg,transparent 55%,#ffcba8 55%);padding:0 4px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;letter-spacing:-.01em}
+
+/* 결론 카피 */
+.bz-intro-conclude{margin-top:44px;opacity:0;transform:translateY(10px);transition:opacity .5s ease-out,transform .5s ease-out}
+.bz-intro-conclude-in{opacity:1;transform:translateY(0)}
+.bz-intro-conclude-lead{font-size:clamp(17px,2.4vw,22px);font-weight:700;color:#334155;letter-spacing:-.01em}
+.bz-intro-conclude-lead b{color:#ff6b35;font-weight:900}
+
+/* 브랜드 pill (대형 zoom) */
+.bz-intro-brand-row{margin-top:20px;opacity:0;transform:scale(.5);transition:opacity .5s,transform .6s cubic-bezier(.18,1.4,.32,1)}
+.bz-intro-brand-in{opacity:1;transform:scale(1)}
+.bz-intro-brand-wrap{position:relative;display:inline-block}
+.bz-intro-brand-big{display:inline-flex;align-items:center;gap:10px;padding:14px 28px 14px 22px;border-radius:22px;background:linear-gradient(135deg,#ff6b35,#e85d2a);color:#fff;box-shadow:0 14px 40px rgba(255,107,53,.4)}
+.bz-intro-brand-big b{color:#fff;font-weight:900;font-size:clamp(28px,4.2vw,38px);letter-spacing:-.02em}
+.bz-intro-brand-paw{font-size:clamp(26px,3.8vw,34px);line-height:1}
+
+/* 손그림 밑줄 (SVG draw 애니) */
+.bz-intro-underline{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);width:80%;height:14px}
+.bz-intro-underline path{stroke-dasharray:260;stroke-dashoffset:260}
+.bz-intro-brand-in .bz-intro-underline path{animation:bzIntroDraw .7s ease .5s forwards}
+@keyframes bzIntroDraw{to{stroke-dashoffset:0}}
+
+/* 꼬리 카피 */
+.bz-intro-tail{margin-top:32px;font-size:clamp(17px,2.4vw,22px);font-weight:700;color:#334155;opacity:0;transform:translateY(10px);transition:opacity .5s ease-out,transform .5s ease-out}
+.bz-intro-tail-in{opacity:1;transform:translateY(0)}
+.bz-intro-tail b{color:#0f172a;font-weight:900}
+
+/* 컨페티 (낙하 애니 6색) */
+.bz-intro-confetti{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden}
+.bz-intro-confetti i{position:absolute;top:-40px;width:12px;height:14px;opacity:0;border-radius:3px;animation-name:bzIntroConfetti;animation-timing-function:cubic-bezier(.4,.2,.7,.9);animation-fill-mode:forwards}
+@keyframes bzIntroConfetti{0%{opacity:1;transform:translateY(-40px) rotate(0)}100%{opacity:0;transform:translateY(120vh) rotate(720deg)}}
+
+@media(max-width:600px){
+  .bz-intro{padding:24px 16px}
+  .bz-intro-title{font-size:22px;margin-bottom:26px}
+  .bz-intro-item{font-size:13.5px;padding:12px 14px}
+  .bz-intro-box{width:24px;height:24px}
+  .bz-intro-conclude{margin-top:32px}
+  .bz-intro-conclude-lead{font-size:16px}
+  .bz-intro-brand-big{padding:11px 22px 11px 18px}
+  .bz-intro-brand-big b{font-size:24px}
+  .bz-intro-brand-paw{font-size:22px}
+  .bz-intro-tail{font-size:16px;margin-top:24px}
+  .bz-intro-obj{transform:scale(.75)}
+  .bz-intro-obj-1{left:2%;top:8%}
+  .bz-intro-obj-2{right:2%;top:6%}
+  .bz-intro-obj-3{right:1%;bottom:10%}
+  .bz-intro-obj-4{left:2%;bottom:12%}
+}
 .bz-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#ff6b35;color:#fff;box-shadow:0 8px 24px rgba(255,107,53,.28);margin-top:30px;border:none;font-family:inherit}
 .bz-btn:hover{background:#e55a2b;transform:translateY(-1px)}
 .bz-btnlg{font-size:18px;padding:18px 40px;margin-top:0}
@@ -1056,26 +1292,14 @@ const BZ_CSS = `
 .bz-pp{display:flex;align-items:baseline;gap:7px;margin:7px 0 1px;flex-wrap:wrap}
 .bz-was{font-size:15px;color:#94a3b8;text-decoration:line-through;font-weight:600}
 .bz-pp .bz-free{font-size:25px;font-weight:800;color:#ff6b35}
+.bz-pp .bz-price{font-size:25px;font-weight:800;color:#0f172a}
 .bz-soontxt{font-size:17px;font-weight:800;color:#94a3b8}
 .bz-pu{font-size:11px;color:#94a3b8}
 .bz-pd{font-size:12px;color:#64748b;margin-top:11px;line-height:1.65}
 .bz-badge{position:absolute;top:-10px;left:16px;background:#3b82f6;color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:7px}
 .bz-badge.bz-bsoon{background:#e2e8f0;color:#64748b}
+.bz-badge.bz-bwarm{background:#ff6b35}
 
-/* intro modal */
-.bz-introbg{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;animation:bzfade .25s ease}
-@keyframes bzfade{from{opacity:0}to{opacity:1}}
-.bz-intro{background:#fff;border-radius:24px;padding:38px 30px;max-width:380px;width:100%;text-align:center;box-shadow:0 30px 80px rgba(15,23,42,.3);animation:bzpop .3s ease}
-@keyframes bzpop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
-.bz-intrologo{font-size:40px;margin-bottom:10px}
-.bz-introtag{font-size:12px;font-weight:700;color:#3b82f6;letter-spacing:.02em;margin-bottom:6px;text-transform:none}
-.bz-introttl{font-size:22px;font-weight:800;color:#0f172a;letter-spacing:-.02em}
-.bz-introsub{font-size:15px;color:#64748b;margin-top:12px;line-height:1.5;font-weight:500}
-.bz-introbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-weight:700;font-size:16px;padding:15px;border-radius:14px;cursor:pointer;text-decoration:none;border:none;transition:.15s;font-family:inherit}
-.bz-introprimary{background:#ff6b35;color:#fff;margin-top:26px;box-shadow:0 8px 22px rgba(255,107,53,.28)}
-.bz-introprimary:hover{background:#e55a2b}
-.bz-introghost{background:#fff;color:#334155;border:1.5px solid #e8edf3;margin-top:10px}
-.bz-introghost:hover{border-color:#3b82f6;color:#3b82f6}
 
 @media(max-width:600px){
   .bz-sec{padding:52px 18px}

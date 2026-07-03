@@ -1,43 +1,18 @@
 import type { Metadata } from "next";
-import LegalLayout from "@/components/LegalLayout";
+import AppLegalLayout from "@/components/AppLegalLayout";
 
 export const metadata: Metadata = {
   title: "이용약관",
+  robots: { index: false, follow: false, nocache: true },
   description: "AnimAI 서비스 이용약관. 이용자와 회사 간의 권리·의무를 규정합니다.",
 };
 
-const sections = [
-  { id: "section-1", title: "1. 목적" },
-  { id: "section-2", title: "2. 용어의 정의" },
-  { id: "section-3", title: "3. 약관의 효력 및 변경" },
-  { id: "section-4", title: "4. 회원가입" },
-  { id: "section-5", title: "5. 회원 탈퇴 및 자격 상실" },
-  { id: "section-6", title: "6. 서비스 제공" },
-  { id: "section-7", title: "7. 서비스 변경 및 중단" },
-  { id: "section-8", title: "8. 이용자의 의무" },
-  { id: "section-9", title: "9. 금지 행위" },
-  { id: "section-10", title: "10. 게시물 권리 및 관리" },
-  { id: "section-11", title: "11. 회사의 권리" },
-  { id: "section-12", title: "12. AI 서비스 면책" },
-  { id: "section-13", title: "13. 사장님(사업자) 회원" },
-  { id: "section-14", title: "14. 유료 서비스 및 결제" },
-  { id: "section-15", title: "15. 환불 정책" },
-  { id: "section-16", title: "16. Paw 포인트" },
-  { id: "section-17", title: "17. 광고 및 제휴" },
-  { id: "section-18", title: "18. 책임 제한" },
-  { id: "section-19", title: "19. 손해배상" },
-  { id: "section-20", title: "20. 분쟁 해결 및 관할" },
-  { id: "section-21", title: "21. 준거법" },
-  { id: "section-22", title: "22. 기타" },
-];
-
 export default function TermsOfServicePage() {
   return (
-    <LegalLayout
+    <AppLegalLayout
       title="이용약관"
       subtitle="AnimAI 서비스 이용에 관한 규정입니다."
       effectiveDate="2026년 5월 12일"
-      sections={sections}
     >
       <section className="mb-12">
         <p className="text-base md:text-lg">
@@ -398,6 +373,6 @@ export default function TermsOfServicePage() {
         <p>본 약관은 2026년 5월 12일부터 시행됩니다.</p>
         <p className="mt-2 text-sm text-ink-3">이전 버전 약관(시행일: 2026년 3월 19일)은 본 약관 시행과 동시에 폐지됩니다.</p>
       </section>
-    </LegalLayout>
+    </AppLegalLayout>
   );
 }

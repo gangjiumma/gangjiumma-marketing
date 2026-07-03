@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Sparkles, ArrowRight } from "lucide-react";
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
-const VIDEOS = ["/hero-puppy.mp4", "/hero-allergy.mp4"];
-const POSTERS = ["/hero-puppy.jpg", "/hero-allergy.jpg"];
+// 히어로 폰 목업 영상 (강아지·고양이·알러지 순환 재생)
+const VIDEOS = ["/hero-puppy.mp4", "/hero-cat.mp4", "/hero-allergy.mp4"];
+const POSTERS = ["/hero-puppy.jpg", "/hero-cat.jpg", "/hero-allergy.jpg"];
 
 export default function HeroChat() {
   const [idx, setIdx] = useState(0);
@@ -32,7 +33,7 @@ export default function HeroChat() {
             </h1>
             <p className="mt-5 md:mt-6 text-base md:text-lg text-ink-3 font-medium leading-relaxed">
               처음 키워서 잘 모를 때도, 갑자기 궁금한 것도,
-              <br className="hidden md:block" /> 우리 동네 미용실 물어볼 때도 —{" "}
+              <br className="hidden md:block" /> 우리 동네 미용실·병원 물어볼 때도 —{" "}
               <span className="text-ink-1 font-bold">우리 아이만을 위한 맞춤 답변.</span>
             </p>
            

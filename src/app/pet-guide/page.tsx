@@ -1,6 +1,6 @@
 "use client";
 // src/app/pet-guide/page.tsx
-// 케이펫페어 수원 시즌2 — AI 부스 가이드 (강쥐엄마 제공)
+// 케이펫페어 수원 시즌2 — AI 부스 가이드 (AnimAI 제공)
 import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import {
   Search, Send, MapPin, Globe, Camera, X,
@@ -168,7 +168,7 @@ export default function PetGuidePage() {
         <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             <p className="inline-flex items-center gap-1.5 text-sm md:text-base text-brand font-bold mb-4">
-              <Sparkles size={15} strokeWidth={2.4} /> 강아지 전용 AI · 강쥐엄마
+              <Sparkles size={15} strokeWidth={2.4} /> 강아지 전용 AI · AnimAI
             </p>
             <h1 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tighter leading-tight">
               케이펫페어 수원
@@ -194,7 +194,7 @@ export default function PetGuidePage() {
             <div className="mt-7 max-w-xl mx-auto bg-white border border-brand-tint200 rounded-2xl shadow-soft p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
               <p className="text-sm md:text-[15px] font-bold text-ink-1 flex items-center gap-1.5 text-center sm:text-left leading-snug">
                 <PawPrint size={16} className="text-brand shrink-0" strokeWidth={2.2} />
-                본 가이드는 반려견 AI, 강쥐엄마가 지원합니다!
+                본 가이드는 반려동물 AI, AnimAI가 지원합니다!
               </p>
               <a
                 href={DOWNLOAD_URL}
@@ -449,7 +449,7 @@ export default function PetGuidePage() {
         <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             <p className="inline-flex items-center gap-1.5 text-sm md:text-base text-brand font-bold mb-3">
-              <Sparkles size={15} strokeWidth={2.4} /> 강아지 전용 AI · 강쥐엄마
+              <Sparkles size={15} strokeWidth={2.4} /> 강아지 전용 AI · AnimAI
             </p>
             <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tightest leading-tight">
               우리 아이의 매일,
@@ -459,7 +459,7 @@ export default function PetGuidePage() {
             <p className="mt-6 md:mt-8 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
               펫페어에서 고른 사료·간식, 우리 아이한테 맞는지 물어보세요.
               <br className="hidden md:block" />
-              강쥐엄마는 우리 아이만 기억하는 강아지 전용 AI예요.
+              AnimAI는 우리 아이만 기억하는 강아지 전용 AI예요.
             </p>
             <div className="mt-10 md:mt-12">
               <a
@@ -468,7 +468,7 @@ export default function PetGuidePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강아지 전용 AI, 강쥐엄마 써보기</span>
+                <span>강아지 전용 AI, AnimAI 써보기</span>
                 <ArrowRight className="w-6 h-6" strokeWidth={2.4} />
               </a>
             </div>
