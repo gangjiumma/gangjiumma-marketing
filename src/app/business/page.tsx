@@ -1011,7 +1011,7 @@ const BZ_CSS = `
 .bz-free{color:#ff6b35;font-weight:800}
 
 /* intro — 진입 오버레이 (펫페어 사이니지 톤: 부유 오브젝트 + flyL/flyR + 컨페티 + 손그림 밑줄) */
-.bz-intro{position:fixed;inset:0;z-index:120;background:#ffffff;display:flex;align-items:center;justify-content:center;padding:32px 20px;overflow-y:auto;overflow-x:hidden;animation:bzIntroFadeIn .35s ease-out both}
+.bz-intro{position:fixed;inset:0;z-index:120;background:#ffffff;display:flex;align-items:center;align-items:safe center;justify-content:center;padding:32px 20px;overflow-y:auto;overflow-x:hidden;animation:bzIntroFadeIn .35s ease-out both}
 .bz-intro-out{animation:bzIntroFadeOut .5s ease-in both}
 @keyframes bzIntroFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes bzIntroFadeOut{from{opacity:1}to{opacity:0}}
@@ -1090,22 +1090,45 @@ const BZ_CSS = `
 .bz-intro-confetti i{position:absolute;top:-40px;width:12px;height:14px;opacity:0;border-radius:3px;animation-name:bzIntroConfetti;animation-timing-function:cubic-bezier(.4,.2,.7,.9);animation-fill-mode:forwards}
 @keyframes bzIntroConfetti{0%{opacity:1;transform:translateY(-40px) rotate(0)}100%{opacity:0;transform:translateY(120vh) rotate(720deg)}}
 
+/* 모바일 컴팩트 (< 600px) — kicker+제목+체크5+결론+브랜드+꼬리 다 화면에 담김 */
 @media(max-width:600px){
-  .bz-intro{padding:24px 16px}
-  .bz-intro-title{font-size:22px;margin-bottom:26px}
-  .bz-intro-item{font-size:13.5px;padding:12px 14px}
-  .bz-intro-box{width:24px;height:24px}
-  .bz-intro-conclude{margin-top:32px}
-  .bz-intro-conclude-lead{font-size:16px}
-  .bz-intro-brand-big{padding:11px 22px 11px 18px}
-  .bz-intro-brand-big b{font-size:24px}
-  .bz-intro-brand-paw{font-size:22px}
-  .bz-intro-tail{font-size:16px;margin-top:24px}
-  .bz-intro-obj{transform:scale(.75)}
-  .bz-intro-obj-1{left:2%;top:8%}
-  .bz-intro-obj-2{right:2%;top:6%}
-  .bz-intro-obj-3{right:1%;bottom:10%}
-  .bz-intro-obj-4{left:2%;bottom:12%}
+  .bz-intro{padding:16px 14px}
+  .bz-intro-inner{padding:8px 4px}
+  .bz-intro-kicker{font-size:13px;margin-bottom:8px}
+  .bz-intro-title{font-size:19px;margin-bottom:18px;line-height:1.28}
+  .bz-intro-list{gap:7px;max-width:520px}
+  .bz-intro-item{font-size:13px;padding:9px 12px;gap:10px;line-height:1.5;border-radius:12px}
+  .bz-intro-box{width:22px;height:22px;border-radius:7px}
+  .bz-intro-hl{padding:0 3px;font-size:1.06em}
+  .bz-intro-conclude{margin-top:22px}
+  .bz-intro-conclude-lead{font-size:15px}
+  .bz-intro-brand-row{margin-top:12px}
+  .bz-intro-brand-big{padding:10px 20px 10px 16px;border-radius:18px;gap:8px}
+  .bz-intro-brand-big b{font-size:22px}
+  .bz-intro-brand-paw{font-size:20px}
+  .bz-intro-underline{bottom:-10px;height:10px}
+  .bz-intro-tail{font-size:15px;margin-top:18px}
+  .bz-intro-obj{transform:scale(.7)}
+  .bz-intro-obj-1{left:2%;top:6%}
+  .bz-intro-obj-2{right:2%;top:5%}
+  .bz-intro-obj-3{right:1%;bottom:8%}
+  .bz-intro-obj-4{left:2%;bottom:10%}
+}
+/* 초소형 폰 (아이폰 SE 1st, 갤럭시 fold outer 등, < 380px) */
+@media(max-width:380px){
+  .bz-intro{padding:10px 12px}
+  .bz-intro-kicker{font-size:12px;margin-bottom:6px}
+  .bz-intro-title{font-size:17px;margin-bottom:14px;line-height:1.25}
+  .bz-intro-list{gap:6px}
+  .bz-intro-item{font-size:12px;padding:8px 11px;gap:8px}
+  .bz-intro-box{width:20px;height:20px;border-radius:6px}
+  .bz-intro-conclude{margin-top:16px}
+  .bz-intro-conclude-lead{font-size:14px}
+  .bz-intro-brand-row{margin-top:10px}
+  .bz-intro-brand-big{padding:9px 18px 9px 14px;gap:6px}
+  .bz-intro-brand-big b{font-size:20px}
+  .bz-intro-brand-paw{font-size:18px}
+  .bz-intro-tail{font-size:14px;margin-top:14px}
 }
 .bz-btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#ff6b35;color:#fff;box-shadow:0 8px 24px rgba(255,107,53,.28);margin-top:30px;border:none;font-family:inherit}
 .bz-btn:hover{background:#e55a2b;transform:translateY(-1px)}
