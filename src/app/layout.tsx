@@ -6,25 +6,36 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://gangjiumma.kr"),
   title: {
-    default: "강쥐엄마 — 반려견 전용 AI",
-    template: "%s | 강쥐엄마",
+    default: "AnimAI — 반려동물 전용 AI (강아지·고양이)",
+    template: "%s | AnimAI",
   },
   description:
-    "우리 강아지에 대해 학습하고, 가장 가치 있는 반려생활로 안내해주는 AI",
+    "반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
   keywords: [
+    // 새 브랜드 (우선)
+    "AnimAI",
+    "애니마이",
+    "반려동물 AI",
+    "반려동물 앱",
+    "강아지 고양이 AI",
+    "고양이 AI",
+    "반려동물 커뮤니티",
+    // 구 브랜드 (SEO 자산 유지 — 6~12개월 후 조정)
     "강쥐엄마",
     "반려견 앱",
     "강아지 커뮤니티",
     "강아지 정보",
     "동네 강아지",
+    // 사장님
     "펫 마케팅",
+    "펫샵 사장님",
   ],
   openGraph: {
-    title: "강쥐엄마 — 반려견 전용 AI",
+    title: "AnimAI — 반려동물 전용 AI (강아지·고양이)",
     description:
-      "우리 강아지에 대해 학습하고, 가장 가치 있는 반려생활로 안내해주는 AI",
+      "반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
     url: "https://gangjiumma.kr",
-    siteName: "강쥐엄마",
+    siteName: "AnimAI",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -32,15 +43,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "강쥐엄마 — 반려견 AI",
+        alt: "AnimAI — 반려동물 AI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "강쥐엄마 — 반려견 AI",
+    title: "AnimAI — 반려동물 AI",
     description:
-      "우리 아이를 가장 잘 아는 반려견 전용 AI",
+      "우리 아이(강아지·고양이)를 매일 학습하는 반려동물 전용 AI",
     images: ["/og-image.png"],
   },
   robots: {

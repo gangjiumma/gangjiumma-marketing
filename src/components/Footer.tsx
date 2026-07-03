@@ -7,8 +7,9 @@ export default function Footer() {
         {/* 상단 — 브랜드 + 회사 정보 */}
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           <div className="flex flex-col gap-3">
-            <div className="text-2xl font-black text-brand">강쥐엄마</div>
+            <div className="text-2xl font-black text-brand">AnimAI</div>
             <p className="text-ink-4 text-base">매일 더 가까이, 더 오래</p>
+            <p className="text-ink-4 text-xs">Animal + AI · 구 강쥐엄마</p>
           </div>
 
           {/* 회사 정보 — 토스페이먼츠 심사 필수 6항목 모두 노출 */}
