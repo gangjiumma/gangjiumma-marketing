@@ -36,9 +36,9 @@ export default function BizSignupModal({
             <PawPrint size={26} className="text-brand" strokeWidth={2.4} />
           </div>
           <h3 className="text-lg font-black leading-snug text-slate-900">
-            강쥐 사장님 대시보드는
+            AnimAI Biz 대시보드는
             <br />
-            강쥐엄마 앱 회원가입이 필요해요
+            AnimAI 앱 회원가입이 필요해요
           </h3>
           <p className="mt-2 text-sm leading-relaxed text-slate-500">
             앱에서 우리 가게(사장님)로 가입하면

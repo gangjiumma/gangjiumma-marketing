@@ -26,7 +26,7 @@ const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 // 앱 사용 흐름 4단계 (히어로 아래 간단 디렉팅)
 const USE_STEPS = [
   { icon: <Smartphone size={20} strokeWidth={2.1} />, label: "앱 다운로드" },
-  { icon: <PawPrint size={20} strokeWidth={2.1} />, label: "강아지 등록" },
+  { icon: <PawPrint size={20} strokeWidth={2.1} />, label: "우리 아이 등록" },
   { icon: <MessageCircle size={20} strokeWidth={2.1} />, label: "무료로 대화" },
   { icon: <Sparkles size={20} strokeWidth={2.1} />, label: "알아서 학습" },
 ];
@@ -35,7 +35,7 @@ const USE_STEPS = [
 const TOTAL_SIGNUPS = 5374;
 
 // ─────────────────────────────────────────────────────────────
-// 메인 페이지 v2 — "반려견 AI 비서" 컨셉
+// 메인 페이지 v2 — "반려동물 AI 비서" 컨셉
 //
 // 구조:
 //   1. Hero — AI 비서 정체성
@@ -140,19 +140,19 @@ export default function Home() {
                     펫페어 왔는데 어떤 사료 고르지?
                   </div>
                   <div className="mr-auto max-w-[94%] rounded-2xl rounded-tl-md bg-slate-50 border border-line px-4 py-3 text-sm text-ink-3 leading-relaxed">
-                    연령·견종·알러지 유무에 따라 달라요. 일반적으로 주성분, 첨가물, AAFCO 기준을 확인하시고 수의사와 상담하세요.
+                    연령·품종·알러지 유무에 따라 달라요. 일반적으로 주성분, 첨가물, AAFCO 기준을 확인하시고 수의사와 상담하세요.
                   </div>
                 </div>
                 <p className="mt-5 text-xs font-bold text-ink-3 text-center">누구에게나 똑같은 일반론</p>
               </div>
 
-              {/* 강쥐엄마 */}
+              {/* AnimAI */}
               <div className="rounded-3xl bg-white border-2 border-brand shadow-brand p-6 md:p-7 flex flex-col">
                 <div className="flex items-center gap-2 mb-5">
                   <div className="w-9 h-9 rounded-xl bg-brand-tint50 flex items-center justify-center">
                     <PawPrint className="w-5 h-5 text-brand" strokeWidth={2.1} />
                   </div>
-                  <span className="font-bold text-ink-1">강쥐엄마</span>
+                  <span className="font-bold text-ink-1">AnimAI</span>
                   <span className="ml-auto text-[11px] font-bold text-brand bg-brand-tint50 px-2 py-0.5 rounded-full">
                     마음이 전용 AI
                   </span>
@@ -239,7 +239,7 @@ export default function Home() {
             <p className="mt-6 md:mt-8 text-base md:text-xl text-white/85 leading-relaxed">
               매일 사진과 영상을 올리고, 어떤 순간이었는지 한마디만 들려주세요.
               <br className="hidden md:block" />
-              {" "}강쥐엄마가 소중한 추억으로 차곡차곡 기록해드려요.
+              {" "}AnimAI가 소중한 추억으로 차곡차곡 기록해드려요.
             </p>
           </FadeInSection>
 
@@ -304,7 +304,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">건강관리</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  접종·체중·증상·복용약을 맡겨두면 강쥐엄마가 챙겨요. 다음 일정도 미리 알려드려요.
+                  접종·체중·증상·복용약을 맡겨두면 AnimAI가 챙겨요. 다음 일정도 미리 알려드려요.
                 </p>
               </div>
             </FadeInSection>
@@ -332,7 +332,7 @@ export default function Home() {
             <div className="text-center mb-12 md:mb-16">
               <p className="text-base md:text-lg text-brand font-bold mb-3">혼자가 아니에요</p>
               <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
-                우리 동네와, 강쥐엄마들과
+                우리 동네와, 반려인 이웃들과
               </h2>
             </div>
           </FadeInSection>
@@ -354,9 +354,9 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
                   <Users className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">강쥐Talk</h3>
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">Ani Talk</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  견종끼리, 동네끼리 모여요. 오늘 우리 아이가 한 일을 나누고, 궁금한 건 강쥐엄마들에게.
+                  종끼리, 동네끼리 모여요. 오늘 우리 아이가 한 일을 나누고, 궁금한 건 이웃들에게.
                 </p>
               </div>
             </FadeInSection>
@@ -365,7 +365,7 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
                   <PawPrint className="w-6 h-6 text-brand" strokeWidth={2.1} />
                 </div>
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">유기견 친구들</h3>
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">가족을 찾는 아이들</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
                   가족을 기다리는 아이들의 소식이 올라와요. 잠깐의 관심이 한 생명을 살려요.
                 </p>
@@ -414,7 +414,7 @@ export default function Home() {
               <span className="text-brand">더 가까이 더 오래</span>
             </h2>
             <p className="mt-6 md:mt-8 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
-              오늘도 가치있게, 강쥐엄마와 함께.
+              오늘도 가치있게, AnimAI와 함께.
             </p>
             <div className="mt-10 md:mt-12">
               <a
@@ -423,7 +423,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-10 md:px-12 py-5 md:py-6 bg-brand text-white font-extrabold text-lg md:text-2xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                <span>강쥐엄마 앱 다운로드</span>
+                <span>AnimAI 앱 다운로드</span>
                 <ArrowRight className="w-6 h-6" strokeWidth={2.4} />
               </a>
             </div>

@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gangjiumma.kr"),
+  metadataBase: new URL("https://www.animai.kr"),
   title: {
     default: "AnimAI — 반려동물 전용 AI (강아지·고양이)",
     template: "%s | AnimAI",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "AnimAI — 반려동물 전용 AI (강아지·고양이)",
     description:
       "반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
-    url: "https://gangjiumma.kr",
+    url: "https://www.animai.kr",
     siteName: "AnimAI",
     locale: "ko_KR",
     type: "website",
@@ -60,7 +60,10 @@ export const metadata: Metadata = {
   },
   verification: {
     other: {
-      "naver-site-verification": "e91039a96bbb4447a608405c39a686429948832d",
+      "naver-site-verification": [
+        "9f11059b6e73d8cbc1e52e3426c613db18bd92d8", // www.animai.kr (신규 대표)
+        "e91039a96bbb4447a608405c39a686429948832d", // gangjiumma.kr (구 도메인, 리다이렉트 이관 완료까지 유지)
+      ],
     },
   },
 };

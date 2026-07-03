@@ -62,7 +62,8 @@ export default function BusinessPage() {
         <div className="bz-introbg" onClick={dismissIntro}>
           <div className="bz-intro" onClick={(e) => e.stopPropagation()}>
             <div className="bz-intrologo">🐾</div>
-            <div className="bz-introttl">강쥐엄마 사장님</div>
+            <div className="bz-introtag">사장님을 위한 운영 솔루션</div>
+            <div className="bz-introttl">AnimAI Biz</div>
             <p className="bz-introsub">
               펫 유치원·미용실을 위한
               <br />
@@ -102,7 +103,7 @@ export default function BusinessPage() {
           visual: <PayProblem />,
         }}
         solution={{
-          eyebrow: "강쥐엄마는",
+          eyebrow: "AnimAI Biz는",
           title: (
             <>
               결제부터 정산까지
@@ -136,7 +137,7 @@ export default function BusinessPage() {
           visual: <TalkProblem />,
         }}
         solution={{
-          eyebrow: "강쥐엄마는",
+          eyebrow: "AnimAI Biz는",
           title: (
             <>
               사진만 올리면,
@@ -169,7 +170,7 @@ export default function BusinessPage() {
           visual: <MktProblem />,
         }}
         solution={{
-          eyebrow: "강쥐엄마는",
+          eyebrow: "AnimAI Biz는",
           title: (
             <>
               우리 동네 데이터로,
@@ -201,7 +202,7 @@ export default function BusinessPage() {
           </FadeInSection>
           <div>
             <FadeInSection>
-              <span className="bz-eyebrow">강쥐엄마 앱 고객이라면</span>
+              <span className="bz-eyebrow">AnimAI 앱 고객이라면</span>
             </FadeInSection>
             <FadeInSection delay={100}>
               <h2 className="bz-h2">
@@ -404,9 +405,10 @@ function Hero({ onStart }: { onStart: () => void }) {
       <div className="bz-wrap bz-grid2">
         <div className="bz-pstext">
           <div className="bz-bizbrand">
+            <div className="bz-eyebrow">사장님을 위한 운영 솔루션</div>
             <div className="bz-bizrow">
               <span className="bz-bizlogo">🐾</span>
-              <span className="bz-bizname">강쥐 사장님</span>
+              <span className="bz-bizname">AnimAI Biz</span>
               <span className="bz-bizfree">무료</span>
             </div>
             <div className="bz-bizdesc">펫 유치원·미용실을 위한 올인원 관리 프로그램</div>
@@ -586,7 +588,7 @@ function ProblemSolution({
               className={`${phase === "solution" ? "on" : ""}`}
               onClick={() => go("solution")}
             >
-              강쥐엄마
+              AnimAI Biz
             </button>
           </div>
         </div>
@@ -1066,6 +1068,7 @@ const BZ_CSS = `
 .bz-intro{background:#fff;border-radius:24px;padding:38px 30px;max-width:380px;width:100%;text-align:center;box-shadow:0 30px 80px rgba(15,23,42,.3);animation:bzpop .3s ease}
 @keyframes bzpop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
 .bz-intrologo{font-size:40px;margin-bottom:10px}
+.bz-introtag{font-size:12px;font-weight:700;color:#3b82f6;letter-spacing:.02em;margin-bottom:6px;text-transform:none}
 .bz-introttl{font-size:22px;font-weight:800;color:#0f172a;letter-spacing:-.02em}
 .bz-introsub{font-size:15px;color:#64748b;margin-top:12px;line-height:1.5;font-weight:500}
 .bz-introbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-weight:700;font-size:16px;padding:15px;border-radius:14px;cursor:pointer;text-decoration:none;border:none;transition:.15s;font-family:inherit}

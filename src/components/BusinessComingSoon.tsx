@@ -78,7 +78,7 @@ export default function BusinessComingSoon() {
           body: JSON.stringify({
             access_key: WEB3FORMS_ACCESS_KEY,
             subject: `🐾 사장님 입점 사전신청 — ${bn}`,
-            from_name: "강쥐엄마 사장님 페이지",
+            from_name: "AnimAI Biz 페이지",
             이름: nn,
             상호명: bn,
             전화번호: ph,

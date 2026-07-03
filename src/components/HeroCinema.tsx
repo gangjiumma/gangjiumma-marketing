@@ -106,7 +106,7 @@ const PHOTOS = [
         <p className="mt-4 md:mt-6 text-4xl md:text-7xl font-black tracking-tightest leading-[1.18]">
           앞으로의 10년을,
           <br />
-          <span className="text-white">강쥐엄마와 함께.</span>
+          <span className="text-white">AnimAI와 함께.</span>
         </p>
 
         {/* 마무리 강조 */}
@@ -116,8 +116,8 @@ const PHOTOS = [
             매일을 가치있게
           </p>
           <p className="text-xl md:text-3xl font-black tracking-tight">
-            <span className="text-white/90">강아지 전용 AI · </span>
-            <span className="text-brand-light">강쥐엄마</span>
+            <span className="text-white/90">반려동물 전용 AI · </span>
+            <span className="text-brand-light">AnimAI</span>
           </p>
         </div>
       </>
@@ -251,7 +251,7 @@ export default function HeroCinema() {
         }`}
       >
         <p className="text-xs md:text-sm text-white/75 font-medium tracking-wide">
-          강쥐엄마 대표가 실제로 30년간 키워온 아이들입니다 🐾
+          AnimAI 대표가 실제로 30년간 키워온 아이들입니다 🐾
         </p>
       </div>
 

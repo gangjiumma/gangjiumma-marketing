@@ -23,7 +23,7 @@ export default function HeroChat() {
           {/* 카피 */}
           <div className="text-center md:text-left">
             <p className="inline-flex items-center gap-1.5 text-sm md:text-base text-brand font-bold mb-4">
-              <Sparkles size={16} strokeWidth={2.4} /> 강아지 전용 AI · 강쥐엄마
+              <Sparkles size={16} strokeWidth={2.4} /> 반려동물 전용 AI · AnimAI
             </p>
             <h1 className="text-[2rem] md:text-5xl font-black text-ink-1 tracking-tighter leading-[1.18]">
               우리 아이를 학습 하는 AI에게
@@ -43,7 +43,7 @@ export default function HeroChat() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 md:px-10 py-4 md:py-5 bg-brand text-white font-extrabold text-base md:text-xl rounded-2xl shadow-brand hover:bg-brand-dark hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-200"
               >
-                강쥐엄마 앱 다운로드 <ArrowRight size={20} />
+                AnimAI 앱 다운로드 <ArrowRight size={20} />
               </a>
             </div>
           </div>
