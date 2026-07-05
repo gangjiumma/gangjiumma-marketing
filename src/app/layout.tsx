@@ -6,36 +6,45 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.animai.kr"),
   title: {
-    default: "AnimAI — 반려동물 전용 AI (강아지·고양이)",
-    template: "%s | AnimAI",
+    default: "AnimAI (애니마이) — 반려동물 전용 AI (강아지·고양이)",
+    template: "%s | AnimAI (애니마이)",
   },
   description:
-    "반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
+    "AnimAI(애니마이)는 강쥐엄마의 새 이름이에요. 반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI. 강아지·고양이 모두 함께해요.",
   keywords: [
-    // 새 브랜드 (우선)
-    "AnimAI",
+    // 새 브랜드 (한글 발음 우선 노출)
     "애니마이",
+    "AnimAI",
+    "애니마이 앱",
+    "애니마이 반려동물",
+    // 브랜드 전환 (강쥐엄마→AnimAI 매칭)
+    "강쥐엄마",
+    "구 강쥐엄마",
+    "강쥐엄마 앱",
+    "강쥐엄마 애니마이",
+    "강쥐엄마 AnimAI",
+    // 기능·카테고리
     "반려동물 AI",
     "반려동물 앱",
     "강아지 고양이 AI",
     "고양이 AI",
     "반려동물 커뮤니티",
-    // 구 브랜드 (SEO 자산 유지 — 6~12개월 후 조정)
-    "강쥐엄마",
+    // 강쥐엄마 SEO 자산 (6~12개월 유지)
     "반려견 앱",
     "강아지 커뮤니티",
     "강아지 정보",
     "동네 강아지",
     // 사장님
+    "AnimAI Biz",
     "펫 마케팅",
     "펫샵 사장님",
   ],
   openGraph: {
-    title: "AnimAI — 반려동물 전용 AI (강아지·고양이)",
+    title: "AnimAI (애니마이) — 반려동물 전용 AI (강아지·고양이)",
     description:
-      "반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
+      "AnimAI(애니마이)는 강쥐엄마의 새 이름. 반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
     url: "https://www.animai.kr",
-    siteName: "AnimAI",
+    siteName: "AnimAI (애니마이)",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -43,15 +52,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "AnimAI — 반려동물 AI",
+        alt: "AnimAI (애니마이) — 반려동물 AI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AnimAI — 반려동물 AI",
+    title: "AnimAI (애니마이) — 반려동물 AI",
     description:
-      "우리 아이(강아지·고양이)를 매일 학습하는 반려동물 전용 AI",
+      "강쥐엄마의 새 이름 · 우리 아이(강아지·고양이)를 매일 학습하는 반려동물 전용 AI · AnimAI (애니마이)",
     images: ["/og-image.png"],
   },
   robots: {
@@ -87,6 +96,54 @@ export default function RootLayout({
           rel="stylesheet"
           as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
+        {/* JSON-LD 구조화 데이터 — 검색엔진에 브랜드/한글발음 공식 통보 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://www.animai.kr/#organization",
+                  name: "AnimAI",
+                  alternateName: ["애니마이", "AnimAI (애니마이)", "강쥐엄마"],
+                  url: "https://www.animai.kr",
+                  logo: "https://www.animai.kr/og-image.png",
+                  description:
+                    "AnimAI(애니마이)는 강쥐엄마의 새 이름. 반려동물 전용 AI — 강아지·고양이 모두를 위한 맞춤 학습·기록·커뮤니티 앱.",
+                  sameAs: [
+                    "https://www.instagram.com/animai_official",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://www.animai.kr/#website",
+                  url: "https://www.animai.kr",
+                  name: "AnimAI (애니마이)",
+                  alternateName: "애니마이",
+                  inLanguage: "ko-KR",
+                  publisher: { "@id": "https://www.animai.kr/#organization" },
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: "https://www.animai.kr/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string",
+                  },
+                },
+                {
+                  "@type": "MobileApplication",
+                  name: "AnimAI",
+                  alternateName: "애니마이",
+                  applicationCategory: "LifestyleApplication",
+                  operatingSystem: "iOS, Android",
+                  offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+                  description:
+                    "우리 아이(강아지·고양이)를 매일 학습하는 반려동물 AI 비서",
+                },
+              ],
+            }),
+          }}
         />
       </head>
       <body className="font-sans antialiased bg-white text-ink-1">

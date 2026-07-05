@@ -28,15 +28,36 @@ import BizSignupModal from "@/components/BizSignupModal";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
 
 // ✏️ 사진 슬롯 — public/business/ 에 파일만 넣으면 자동 교체. 여러 장이면 자동 슬라이드.
+// 2026.07 대시보드 UI 리브랜딩(AnimAI Biz) 반영본. 파일명 규칙: 슬롯-번호.jpg (전부 jpg 통일)
 const PHOTO = {
-  dash: ["/business/dash-1.png", "/business/dash-2.png", "/business/dash-3.png"],
-  stat: ["/business/dash-4.png", "/business/dash-5.png"], // 통계·AI마케팅
-  notice: ["/business/notice-1.jpg"], // 알림장 화면
+  // 대시보드 전반 (히어로 + 결제 해결 섹션에서 순환) — 관리 전반 스토리
+  dash: [
+    "/business/dash-1.jpg", // 대시보드 홈 (접수중·변경·오늘확정 + 결제·빠른예약)
+    "/business/dash-2.jpg", // 빠른 예약 팝업 (30초 등록)
+    "/business/dash-3.jpg", // 결제 받기 팝업 (포스·수기)
+    "/business/dash-4.jpg", // 예약 설정 (예약받기 켬 + 기본설정)
+    "/business/dash-5.jpg", // 이용권·선불 (미용선불권 등)
+    "/business/dash-6.jpg", // 일반상품 카드 (전체미용·위생미용 등)
+  ],
+  // 통계·AI 마케팅 (마케팅 해결 섹션에서 순환) — 인사이트 스토리
+  stat: [
+    "/business/stat-1.jpg", // 운영 통계 상단 (매출·도넛·일별 매출)
+    "/business/stat-2.jpg", // 운영 통계 하단 (요일별·시간대별·고객·단골)
+    "/business/stat-3.jpg", // AI 마케팅 트렌드 탭 (우리 앱 노출·강고리즘 등장)
+    "/business/stat-4.jpg", // AI 마케팅 광고 탭 (반려동물 특화 콘텐츠 제작)
+  ],
+  // AI 알림장 (알림장 해결 섹션에서 순환) — 사장님 관점 작성·전송
+  notice: [
+    "/business/notice-1.jpg", // 오늘 명단 (컨디션·식사·낮잠·놀이·배변·투약 태그)
+    "/business/notice-2.jpg", // 알림장 완성 확인 (전원에게 전송)
+    "/business/notice-3.jpg", // 미용 알림장 상단 (Before/After + 시술 태그)
+    "/business/notice-4.jpg", // 미용 알림장 하단 (특이사항·다음 방문 추천)
+  ],
+  // 앱 유저 관점 (앱 고객 혜택 섹션에서 순환) — 손님이 받는 알림장
   app: [
-    "/business/app-1.jpg", // 문의·예약
-    "/business/app-2.jpg", // 예약하기
-    "/business/app-3.jpg", // 알림장
-    "/business/app-4.jpg", // 문의채팅
+    "/business/app-1.jpg", // 유치원 알림장 수신 (4장 사진 + 컨디션·식사)
+    "/business/app-2.jpg", // 미용실 알림장 수신 (Before/After 시술 완료)
+    "/business/app-3.jpg", // 알림장 사진 확대 뷰
   ],
 };
 
@@ -517,11 +538,9 @@ function IntroChecklist({ onDone }: { onDone: () => void }) {
         {/* 상단 kicker */}
         <div className="bz-intro-kicker">사장님, 잠깐만요…</div>
 
-        {/* 메인 타이틀 (punch 애니) */}
+        {/* 메인 타이틀 (punch 애니, 한 줄) */}
         <h1 className="bz-intro-title">
-          강아지, 고양이 돌보고,
-          <br />
-          <span className="bz-intro-title-o">관리해</span> 주시며…
+          운영하시면서 <span className="bz-intro-title-o">혹시…</span>
         </h1>
 
         {/* 체크리스트 (좌우 교대 flyL/flyR) */}
@@ -826,14 +845,17 @@ function TalkProblem() {
   );
 }
 
-// 알림장 — 해결: 실제 알림장 화면
+// 알림장 — 해결: 사장님 대시보드 알림장 화면 (브라우저 목업 = 가로 이미지 원 비율 맞춤)
 function TalkSolution() {
   return (
-    <div className="bz-appphone bz-talkphone">
-      <div className="bz-appnotch" />
-      <div className="bz-appscreen">
-        <ImgFade images={PHOTO.notice} className="bz-phfade" imgClassName="bz-fadeimg" />
+    <div className="bz-mktbrowser">
+      <div className="bz-mktbar">
+        <span className="bz-mktdot" />
+        <span className="bz-mktdot" />
+        <span className="bz-mktdot" />
+        <span className="bz-mkturl">gangji-manage.kr</span>
       </div>
+      <ImgFade images={PHOTO.notice} className="bz-shotwrap" imgClassName="bz-fadeimg" />
     </div>
   );
 }
@@ -886,7 +908,7 @@ function MktSolution() {
 /* ════════════ 공용: 슬라이더 / 대시보드 ════════════ */
 function ImgFade({
   images,
-  interval = 3800,
+  interval = 5000,
   className,
   imgClassName,
   onAllFail,
@@ -1042,7 +1064,7 @@ const BZ_CSS = `
 .bz-intro-inner{position:relative;z-index:5;max-width:680px;width:100%;padding:24px 4px;text-align:center}
 
 .bz-intro-kicker{font-size:15px;font-weight:700;color:#94a3b8;letter-spacing:.02em;margin-bottom:12px;opacity:0;animation:bzIntroFadeUp .5s ease-out .4s both}
-.bz-intro-title{font-size:clamp(26px,4.4vw,42px);font-weight:900;letter-spacing:-.035em;line-height:1.25;color:#0f172a;margin-bottom:36px;opacity:0;animation:bzIntroPunch .6s cubic-bezier(.18,1.4,.32,1) .7s both}
+.bz-intro-title{font-size:clamp(26px,4.4vw,42px);font-weight:900;letter-spacing:-.035em;line-height:1.25;color:#0f172a;margin-bottom:28px;opacity:0;animation:bzIntroPunch .6s cubic-bezier(.18,1.4,.32,1) .7s both}
 .bz-intro-title-o{color:#ff6b35}
 @keyframes bzIntroPunch{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 @keyframes bzIntroFadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -1095,7 +1117,7 @@ const BZ_CSS = `
   .bz-intro{padding:16px 14px}
   .bz-intro-inner{padding:8px 4px}
   .bz-intro-kicker{font-size:13px;margin-bottom:8px}
-  .bz-intro-title{font-size:19px;margin-bottom:18px;line-height:1.28}
+  .bz-intro-title{font-size:19px;margin-bottom:14px;line-height:1.28}
   .bz-intro-list{gap:7px;max-width:520px}
   .bz-intro-item{font-size:13px;padding:9px 12px;gap:10px;line-height:1.5;border-radius:12px}
   .bz-intro-box{width:22px;height:22px;border-radius:7px}
@@ -1118,7 +1140,7 @@ const BZ_CSS = `
 @media(max-width:380px){
   .bz-intro{padding:10px 12px}
   .bz-intro-kicker{font-size:12px;margin-bottom:6px}
-  .bz-intro-title{font-size:17px;margin-bottom:14px;line-height:1.25}
+  .bz-intro-title{font-size:17px;margin-bottom:10px;line-height:1.25}
   .bz-intro-list{gap:6px}
   .bz-intro-item{font-size:12px;padding:8px 11px;gap:8px}
   .bz-intro-box{width:20px;height:20px;border-radius:6px}
@@ -1274,7 +1296,7 @@ const BZ_CSS = `
 .bz-bar i{width:10px;height:10px;border-radius:50%;background:#cbd5e1}
 .bz-url{margin-left:9px;font-size:11px;color:#94a3b8;font-weight:600}
 .bz-shotwrap{position:relative;width:100%;aspect-ratio:16/10;background:#f8fafc;overflow:hidden}
-.bz-fadeimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity 1s ease}
+.bz-fadeimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .4s ease;image-rendering:-webkit-optimize-contrast}
 .bz-dash{display:grid;grid-template-columns:118px 1fr;min-height:230px}
 .bz-side{background:#f8fafc;border-right:1px solid #e8edf3;padding:14px 10px}
 .bz-biz{background:#3b82f6;color:#fff;border-radius:11px;padding:9px;font-size:11px;font-weight:700;margin-bottom:12px;line-height:1.3}

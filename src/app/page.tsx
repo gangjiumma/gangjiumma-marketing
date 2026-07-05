@@ -71,6 +71,26 @@ export default function Home() {
       <HeroChat />
 
       {/* ═════════════════════════════════════════════════════ */}
+      {/* 1-1. 리브랜딩 밴드 — SEO "강쥐엄마" 검색 자산 회수    */}
+      {/* ═════════════════════════════════════════════════════ */}
+      <section className="bg-white py-6 md:py-8" aria-label="브랜드 안내">
+        <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
+          <div className="inline-flex items-center gap-2 flex-wrap justify-center px-4 py-2 rounded-full bg-brand-tint50 border border-brand-tint200 text-sm md:text-base font-medium text-ink-2">
+            <span aria-hidden>🐾</span>
+            <span>
+              <b className="text-brand font-black">AnimAI</b>
+              <span className="text-ink-3 font-normal"> (애니마이)</span>
+              <span className="mx-2 text-ink-3">·</span>
+              <span>
+                <b className="text-ink-1 font-bold">강쥐엄마</b>
+                <span className="text-ink-3 font-normal">의 새 이름이에요</span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ═════════════════════════════════════════════════════ */}
       {/* 1-2. HERO 합류 — 시네마 끝 → 다운로드 (카운터 유지)     */}
       {/* ═════════════════════════════════════════════════════ */}
       <section className="relative bg-white pt-16 md:pt-24 pb-20 md:pb-28">
@@ -203,7 +223,7 @@ export default function Home() {
             </h2>
             <p className="mt-5 md:mt-7 text-base md:text-xl text-ink-2 font-medium leading-relaxed">
               AI 대화 이외에도 —{" "}
-              <span className="text-ink-1 font-bold">일기를 작성하고, 산책하고, 영양제 일정을 등록하고, 동네 사장님들과 이어지며</span>
+              <span className="text-ink-1 font-bold">일기를 작성하고, 산책·놀이하고, 영양제 일정을 등록하고, 동네 사장님들과 이어지며</span>
               <br className="hidden md:block" />
               {" "}매일을 더 든든하게 채워가요.
             </p>
@@ -214,6 +234,7 @@ export default function Home() {
               {[
                 { icon: <Camera size={15} strokeWidth={2.2} />, label: "기록" },
                 { icon: <Footprints size={15} strokeWidth={2.2} />, label: "산책" },
+                { icon: <span className="text-[15px] leading-none">🎣</span>, label: "놀이" },
                 { icon: <HeartPulse size={15} strokeWidth={2.2} />, label: "건강" },
                 { icon: <MapPin size={15} strokeWidth={2.2} />, label: "동네" },
                 { icon: <PawPrint size={15} strokeWidth={2.2} />, label: "Paw 적립" },
@@ -282,7 +303,7 @@ export default function Home() {
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
-      {/* 5. 매일 쓰는 기능 — 산책·건강·예약                       */}
+      {/* 5. 매일 쓰는 기능 — 산책·놀이·건강·예약                */}
       {/* ═════════════════════════════════════════════════════ */}
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
@@ -290,7 +311,7 @@ export default function Home() {
             <div className="text-center mb-12 md:mb-16">
               <p className="text-base md:text-lg text-brand font-bold mb-3">매일의 든든함</p>
               <h2 className="text-3xl md:text-4xl font-black text-ink-1 tracking-tighter leading-tight">
-                산책도, 건강도, 예약까지
+                산책·놀이도, 건강도, 예약까지
               </h2>
             </div>
           </FadeInSection>
@@ -299,11 +320,14 @@ export default function Home() {
             <FadeInSection delay={0}>
               <div className="bg-surface-subtle rounded-3xl p-8 h-full border border-line">
                 <div className="w-12 h-12 rounded-2xl bg-brand-tint100 flex items-center justify-center mb-5">
-                  <Footprints className="w-6 h-6 text-brand" strokeWidth={2.1} />
+                  <span className="inline-flex items-center gap-1">
+                    <Footprints className="w-5 h-5 text-brand" strokeWidth={2.1} />
+                    <span className="text-[15px] leading-none">🎣</span>
+                  </span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">산책 기록</h3>
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-3 leading-snug">산책·놀이 기록</h3>
                 <p className="text-base text-ink-3 leading-relaxed">
-                  오늘 걸은 코스와 시간을 기록하고, 차곡차곡 쌓이는 운동량을 한눈에 봐요.
+                  강아지랑 산책하고, 고양이랑 놀아주고 — 함께한 시간을 차곡차곡 기록해요.
                 </p>
               </div>
             </FadeInSection>
@@ -399,7 +423,7 @@ export default function Home() {
                 함께한 시간이 쌓여요
               </h3>
               <p className="text-base text-ink-3 leading-relaxed">
-                출석·산책·기록·퀴즈로 모은 <span className="text-brand font-bold">Paw(포)인트</span>,
+                출석·산책·놀이·기록·퀴즈로 모은 <span className="text-brand font-bold">Paw(포)인트</span>,
                 동네 업체·행사·상품 할인으로 쓸 수 있어요.
               </p>
             </div>
