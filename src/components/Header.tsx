@@ -45,9 +45,11 @@ export default function Header() {
             className="inline-flex items-center gap-1.5 md:gap-2 px-4 md:px-5 py-2 md:py-2.5 rounded-3xl bg-brand text-white text-sm md:text-base font-bold shadow-soft hover:opacity-90 transition-all duration-200"
           >
             <Store size={17} strokeWidth={2.5} />
-            <span className="whitespace-nowrap">
-              <span className="hidden md:inline">AnimAI Biz - 사장님 솔루션</span>
-              <span className="md:hidden">AnimAI Biz</span>
+            {/* 데스크탑: 한 줄 / 모바일: 두 줄로 풀어서 전체 노출 */}
+            <span className="hidden md:inline whitespace-nowrap">AnimAI Biz - 사장님 솔루션</span>
+            <span className="md:hidden flex flex-col leading-tight text-left">
+              <span>AnimAI Biz</span>
+              <span className="text-[11px] font-semibold text-white/90">사장님 솔루션</span>
             </span>
           </Link>
         </div>

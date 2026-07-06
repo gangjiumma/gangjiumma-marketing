@@ -355,6 +355,9 @@ export default function BusinessPage() {
                 >
                   무료로 입점 신청하기 <ArrowRight size={18} />
                 </button>
+                <Link className="bz-btndemo bz-btndemolg" href="/demo">
+                  <Play size={18} /> 데모 체험하기
+                </Link>
                 <Link className="bz-btn2" href="/plans">
                   요금제 자세히 보기 <ArrowRight size={16} />
                 </Link>
@@ -426,9 +429,14 @@ function Hero({ onStart }: { onStart: () => void }) {
               </h1>
             </div>
           </div>
-          <button type="button" className="bz-btn" onClick={onStart}>
-            무료로 입점 신청하기 <ArrowRight size={18} />
-          </button>
+          <div className="bz-herocta">
+            <button type="button" className="bz-btn" onClick={onStart}>
+              무료로 입점 신청하기 <ArrowRight size={18} />
+            </button>
+            <Link className="bz-btndemo" href="/demo">
+              <Play size={18} /> 데모 체험하기
+            </Link>
+          </div>
           <div className="bz-feats">
             <span className="bz-featlabel">하나로 관리</span>
             <span className="bz-feat">예약</span>
@@ -1159,6 +1167,12 @@ const BZ_CSS = `
 .bz-btn2{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:16px;padding:17px 30px;border-radius:16px;background:#fff;color:#3b82f6;border:1.5px solid #dbeafe;text-decoration:none;transition:.15s}
 .bz-btn2:hover{border-color:#3b82f6;background:#eff6ff}
 @media(max-width:600px){.bz-btn2{font-size:15px;padding:15px 26px}}
+.bz-btndemo{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#3b82f6;color:#fff;box-shadow:0 8px 24px rgba(59,130,246,.30);border:none;font-family:inherit}
+.bz-btndemo:hover{background:#2563eb;transform:translateY(-1px)}
+.bz-btndemolg{font-size:18px;padding:18px 40px}
+.bz-herocta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:30px}
+.bz-herocta .bz-btn{margin-top:0}
+@media(max-width:600px){.bz-btndemo{font-size:15px;padding:14px 26px}.bz-btndemolg{font-size:15px;padding:15px 28px}.bz-herocta{margin-top:24px}}
 .bz-trust{margin-top:24px;display:flex;gap:18px;flex-wrap:wrap;color:#64748b;font-size:13px;font-weight:600}
 .bz-trust b{color:#0f172a}
 .bz-finalnote{color:#94a3b8;font-size:13px;margin-top:13px}
