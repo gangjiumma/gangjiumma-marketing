@@ -118,7 +118,7 @@ export default function DemoPage() {
               <li>· 월권 · 주권 · 일권 이용권 관리</li>
               <li>· 매출 · AI 마케팅 · 통계</li>
             </ul>
-            <div className="mt-5 flex items-center gap-1.5 text-[13px] font-bold text-brand">
+            <div className="mt-6 flex w-full items-center justify-center gap-1.5 rounded-2xl bg-brand px-5 py-3.5 text-[14px] font-extrabold text-white shadow-sm transition group-hover:shadow-md group-hover:brightness-105">
               {busy === 'care' ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -150,7 +150,7 @@ export default function DemoPage() {
               <li>· 횟수권 · 회당 단가 자동 계산</li>
               <li>· 매출 · AI 마케팅 · 통계</li>
             </ul>
-            <div className="mt-5 flex items-center gap-1.5 text-[13px] font-bold text-emerald-600">
+            <div className="mt-6 flex w-full items-center justify-center gap-1.5 rounded-2xl bg-emerald-600 px-5 py-3.5 text-[14px] font-extrabold text-white shadow-sm transition group-hover:shadow-md group-hover:brightness-105">
               {busy === 'grooming' ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
