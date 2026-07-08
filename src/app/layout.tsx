@@ -6,11 +6,11 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.animai.kr"),
   title: {
-    default: "AnimAI (애니마이) — 반려동물 전용 AI (강아지·고양이)",
-    template: "%s | AnimAI (애니마이)",
+    default: "애니마이 (AnimAI) — 반려동물 전용 AI (강아지·고양이)",
+    template: "%s | 애니마이 (AnimAI)",
   },
   description:
-    "AnimAI(애니마이)는 강쥐엄마의 새 이름이에요. 반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI. 강아지·고양이 모두 함께해요.",
+    "애니마이(AnimAI)는 강쥐엄마의 새 이름이에요. 반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI. 강아지·고양이 모두 함께해요.",
   keywords: [
     // 새 브랜드 (한글 발음 우선 노출)
     "애니마이",
@@ -40,11 +40,11 @@ export const metadata: Metadata = {
     "펫샵 사장님",
   ],
   openGraph: {
-    title: "AnimAI (애니마이) — 반려동물 전용 AI (강아지·고양이)",
+    title: "애니마이 (AnimAI) — 반려동물 전용 AI (강아지·고양이)",
     description:
-      "AnimAI(애니마이)는 강쥐엄마의 새 이름. 반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
+      "애니마이(AnimAI)는 강쥐엄마의 새 이름. 반려동물 곁에서 매일 학습하고 함께 기록하는, 아이 하나하나에 맞춤 AI",
     url: "https://www.animai.kr",
-    siteName: "AnimAI (애니마이)",
+    siteName: "애니마이 (AnimAI)",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -52,15 +52,15 @@ export const metadata: Metadata = {
         url: "/og-animai.png", // ⚠️ 파일명 = 캐시 키. 이미지 교체 시 반드시 파일명도 바꿀 것
         width: 1200,
         height: 630,
-        alt: "AnimAI (애니마이) — 반려동물 AI",
+        alt: "애니마이 (AnimAI) — 반려동물 AI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AnimAI (애니마이) — 반려동물 AI",
+    title: "애니마이 (AnimAI) — 반려동물 AI",
     description:
-      "강쥐엄마의 새 이름 · 우리 아이(강아지·고양이)를 매일 학습하는 반려동물 전용 AI · AnimAI (애니마이)",
+      "강쥐엄마의 새 이름 · 우리 아이(강아지·고양이)를 매일 학습하는 반려동물 전용 AI · 애니마이 (AnimAI)",
     images: ["/og-animai.png"],
   },
   robots: {
@@ -108,11 +108,11 @@ export default function RootLayout({
                   "@type": "Organization",
                   "@id": "https://www.animai.kr/#organization",
                   name: "AnimAI",
-                  alternateName: ["애니마이", "AnimAI (애니마이)", "강쥐엄마"],
+                  alternateName: ["애니마이", "애니마이 (AnimAI)", "강쥐엄마"],
                   url: "https://www.animai.kr",
                   logo: "https://www.animai.kr/og-animai.png",
                   description:
-                    "AnimAI(애니마이)는 강쥐엄마의 새 이름. 반려동물 전용 AI — 강아지·고양이 모두를 위한 맞춤 학습·기록·커뮤니티 앱.",
+                    "애니마이(AnimAI)는 강쥐엄마의 새 이름. 반려동물 전용 AI — 강아지·고양이 모두를 위한 맞춤 학습·기록·커뮤니티 앱.",
                   sameAs: [
                     "https://www.instagram.com/animai_official",
                   ],
@@ -121,7 +121,7 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "@id": "https://www.animai.kr/#website",
                   url: "https://www.animai.kr",
-                  name: "AnimAI (애니마이)",
+                  name: "애니마이 (AnimAI)",
                   alternateName: "애니마이",
                   inLanguage: "ko-KR",
                   publisher: { "@id": "https://www.animai.kr/#organization" },
