@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   Bot,
   Camera,
@@ -22,6 +23,23 @@ import ScrollHint from "@/components/ScrollHint";
 import HeroStats from "@/components/HeroStats";
 import HeroCinema from "@/components/HeroCinema";
 import HeroChat from "@/components/HeroChat";
+
+// ─────────────────────────────────────────────────────────────
+// 홈 전용 metadata — canonical 명시 (2026.07.08)
+//
+// 배경: 리브랜딩 후 동일 HTML이 www.animai.kr / www.gangjiumma.kr /
+//       *.vercel.app 3곳에서 200으로 서빙되며 중복 콘텐츠로 인식됨
+//       → 신규 도메인 색인이 억제됨(네이버 색인 2 vs 구도메인 15).
+//       호스트는 308로 정리했고, 정본을 태그로도 못박음.
+//
+// ⚠️ 루트 layout.tsx 에 canonical 을 넣으면 하위 전 페이지가 "/" 로
+//    박혀서 오히려 망가짐. 반드시 여기(홈 page)에만 스코프할 것.
+//
+// title/description/openGraph 등은 루트 layout 값이 그대로 병합됨.
+// ─────────────────────────────────────────────────────────────
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.animai.kr" },
+};
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 

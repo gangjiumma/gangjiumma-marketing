@@ -194,7 +194,12 @@ export default function BusinessPage() {
             <div className="bz-appphone">
               <div className="bz-appnotch" />
               <div className="bz-appscreen">
-                <ImgFade images={PHOTO.app} className="bz-phfade" imgClassName="bz-fadeimg" />
+                <ImgFade
+                  images={PHOTO.app}
+                  className="bz-phfade"
+                  imgClassName="bz-fadeimg"
+                  alt="AnimAI 앱 화면 — 예약·고객·매출 관리"
+                />
               </div>
             </div>
           </FadeInSection>
@@ -422,11 +427,12 @@ function Hero({ onStart }: { onStart: () => void }) {
               </h1>
             </div>
             <div className={`bz-phase${phase === "solution" ? " on" : ""}`}>
-              <h1 className="bz-h1">
+              {/* SEO: 한 페이지 h1은 1개 — 아래 문구는 h2로 (bz-h1 스타일 유지) */}
+              <h2 className="bz-h1">
                 이 모두를 <span className="bz-free">한 곳에</span> 모았습니다.
                 <br />
                 무료로 시작하세요.
-              </h1>
+              </h2>
             </div>
           </div>
           <div className="bz-herocta">
@@ -547,9 +553,9 @@ function IntroChecklist({ onDone }: { onDone: () => void }) {
         <div className="bz-intro-kicker">사장님, 잠깐만요…</div>
 
         {/* 메인 타이틀 (punch 애니, 한 줄) */}
-        <h1 className="bz-intro-title">
+        <h2 className="bz-intro-title">
           운영하시면서 <span className="bz-intro-title-o">혹시…</span>
-        </h1>
+        </h2>
 
         {/* 체크리스트 (좌우 교대 flyL/flyR) */}
         <ul className="bz-intro-list">
@@ -863,7 +869,12 @@ function TalkSolution() {
         <span className="bz-mktdot" />
         <span className="bz-mkturl">gangji-manage.kr</span>
       </div>
-      <ImgFade images={PHOTO.notice} className="bz-shotwrap" imgClassName="bz-fadeimg" />
+      <ImgFade
+        images={PHOTO.notice}
+        className="bz-shotwrap"
+        imgClassName="bz-fadeimg"
+        alt="AnimAI Biz AI 광고 만들기 화면"
+      />
     </div>
   );
 }
@@ -907,7 +918,12 @@ function MktSolution() {
             <BarChart3 size={11} style={{ verticalAlign: "-1px" }} /> 통계 · AI 마케팅
           </span>
         </div>
-        <ImgFade images={PHOTO.stat} className="bz-shotwrap" imgClassName="bz-fadeimg" />
+        <ImgFade
+          images={PHOTO.stat}
+          className="bz-shotwrap"
+          imgClassName="bz-fadeimg"
+          alt="AnimAI Biz 매출·고객 통계 화면"
+        />
       </div>
     </div>
   );
@@ -920,12 +936,14 @@ function ImgFade({
   className,
   imgClassName,
   onAllFail,
+  alt = "AnimAI Biz 서비스 화면", // SEO: alt="" 는 네이버 진단에서 "Alt 속성 누락"으로 잡힘
 }: {
   images: string[];
   interval?: number;
   className?: string;
   imgClassName?: string;
   onAllFail?: () => void;
+  alt?: string;
 }) {
   const [failed, setFailed] = useState<number[]>([]);
   const [idx, setIdx] = useState(0);
@@ -954,7 +972,7 @@ function ImgFade({
         <img
           key={src + i}
           src={src}
-          alt=""
+          alt={alt}
           onError={() => setFailed((f) => (f.includes(i) ? f : [...f, i]))}
           className={imgClassName}
           style={{ opacity: i === idx && !failed.includes(i) ? 1 : 0 }}
@@ -979,6 +997,7 @@ function DashboardMock({ images }: { images: string[] }) {
           images={images}
           className="bz-shotwrap"
           imgClassName="bz-fadeimg"
+          alt="AnimAI Biz 관리 대시보드 화면"
           onAllFail={() => setAllFailed(true)}
         />
       ) : (

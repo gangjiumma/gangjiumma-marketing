@@ -16,16 +16,45 @@ import {
 } from "lucide-react";
 import ShareButton from "@/components/ShareButton";
 
+// ─────────────────────────────────────────────────────────────
+// /renew — "강쥐엄마" 검색어의 유일한 착지점 (2026.07.08)
+//
+// 리브랜딩 후 전 페이지 <title>이 AnimAI로 바뀌면서 "강쥐엄마" 브랜드
+// 검색어가 통째로 빠짐(브랜드 쿼리는 title 매칭이 절대적).
+// 이 페이지가 구 브랜드 검색 유입을 받아 신 브랜드로 넘기는 다리 역할.
+//
+// ⚠️ title에서 "강쥐엄마"를 빼지 말 것. 루트 template("%s | AnimAI (애니마이)")가
+//    뒤에 붙으므로 여기 title엔 "AnimAI"를 중복해 넣지 않는다.
+// ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "강쥐엄마가 AnimAI로 이름을 바꿨어요 — AnimAI",
+  title: "강쥐엄마가 애니마이로 바뀌었어요",
   description:
-    "Animal + AI = AnimAI. 이제 강아지도 고양이도 함께해요. 우리 아이만의 AI 비서, AnimAI.",
+    "강쥐엄마 앱의 새 이름은 애니마이(AnimAI)입니다. Animal + AI = AnimAI. 기존 계정·기록 그대로, 이제 강아지도 고양이도 함께해요. 우리 아이만의 AI 비서.",
+  keywords: [
+    // 구 브랜드 — 이 페이지의 존재 이유
+    "강쥐엄마",
+    "강쥐엄마 앱",
+    "강쥐엄마 새 이름",
+    "강쥐엄마 애니마이",
+    "강쥐엄마 AnimAI",
+    "강쥐엄마 바뀜",
+    // 신 브랜드
+    "애니마이",
+    "AnimAI",
+    "애니마이 앱",
+    "반려동물 AI",
+  ],
   openGraph: {
-    title: "강쥐엄마 → AnimAI",
+    title: "강쥐엄마 → 애니마이 (AnimAI)",
     description:
       "우리 아이만의 AI 비서. 강아지도, 고양이도, 이제 함께해요 🐾",
+    url: "https://www.animai.kr/renew",
+    siteName: "AnimAI (애니마이)",
+    locale: "ko_KR",
     type: "website",
   },
+  alternates: { canonical: "https://www.animai.kr/renew" },
+  robots: { index: true, follow: true },
 };
 
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
