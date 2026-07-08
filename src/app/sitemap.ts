@@ -27,6 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    // 사장님 데모 체험 (영업 유입 · 가입 없이 대시보드 체험)
+    {
+      url: "https://www.animai.kr/demo",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     // 정기결제 안내 (토스 빌링 심사)
     {
       url: "https://www.animai.kr/plans",
