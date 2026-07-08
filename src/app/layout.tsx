@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-animai.png", // ⚠️ 파일명 = 캐시 키. 이미지 교체 시 반드시 파일명도 바꿀 것
         width: 1200,
         height: 630,
         alt: "AnimAI (애니마이) — 반려동물 AI",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "AnimAI (애니마이) — 반려동물 AI",
     description:
       "강쥐엄마의 새 이름 · 우리 아이(강아지·고양이)를 매일 학습하는 반려동물 전용 AI · AnimAI (애니마이)",
-    images: ["/og-image.png"],
+    images: ["/og-animai.png"],
   },
   robots: {
     index: true,
@@ -110,7 +110,7 @@ export default function RootLayout({
                   name: "AnimAI",
                   alternateName: ["애니마이", "AnimAI (애니마이)", "강쥐엄마"],
                   url: "https://www.animai.kr",
-                  logo: "https://www.animai.kr/og-image.png",
+                  logo: "https://www.animai.kr/og-animai.png",
                   description:
                     "AnimAI(애니마이)는 강쥐엄마의 새 이름. 반려동물 전용 AI — 강아지·고양이 모두를 위한 맞춤 학습·기록·커뮤니티 앱.",
                   sameAs: [
