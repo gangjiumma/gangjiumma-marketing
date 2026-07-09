@@ -392,7 +392,7 @@ export default function BusinessPage() {
                   href={APPLY_URL}
                   className="bz-btn bz-btnlg"
                 >
-                  무료로 입점 신청하기 <ArrowRight size={18} />
+                  [출시기념] 평생 무료로 시작하기 <ArrowRight size={18} />
                 </a>
                 <Link className="bz-btndemo bz-btndemolg" href="/demo">
                   <Play size={18} /> 데모 체험하기
@@ -471,7 +471,7 @@ function Hero() {
           </div>
           <div className="bz-herocta">
             <a href={APPLY_URL} className="bz-btn">
-              무료로 입점 신청하기 <ArrowRight size={18} />
+              [출시기념] 평생 무료로 시작하기 <ArrowRight size={18} />
             </a>
             <Link className="bz-btndemo" href="/demo">
               <Play size={18} /> 데모 체험하기
