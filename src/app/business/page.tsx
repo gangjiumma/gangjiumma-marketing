@@ -17,10 +17,14 @@ import {
   Check,
   ChevronDown,
   Play,
-  Newspaper,
   BarChart3,
   Heart,
   PawPrint,
+  TrendingUp,
+  MapPin,
+  CalendarDays,
+  Search,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
@@ -61,6 +65,12 @@ const PHOTO = {
     "/business/app-1.jpg", // 유치원 알림장 수신 (4장 사진 + 컨디션·식사)
     "/business/app-2.jpg", // 미용실 알림장 수신 (Before/After 시술 완료)
     "/business/app-3.jpg", // 알림장 사진 확대 뷰
+  ],
+  // 앱 내 광고 노출 (새 "어디에 광고?" 섹션에서 순환) — 반려인이 실제로 보는 화면
+  adexpose: [
+    "/business/ad-home.jpg",      // 홈 '우리동네 업체' 카드 그리드 노출
+    "/business/ad-directory.jpg", // 파트너 디렉토리 검색 목록 노출 (총 1.4만 곳)
+    "/business/ad-profile.jpg",   // 업체 상세 페이지 노출
   ],
 };
 
@@ -154,6 +164,39 @@ export default function BusinessPage() {
         }}
       />
 
+      {/* ───────── 2.5 · 앱 광고 노출 (어디에 광고?) ───────── */}
+      <ProblemSolution
+        problem={{
+          eyebrow: "이런 고민 있으셨죠",
+          title: (
+            <>
+              인스타·네이버·카페…
+              <br />
+              <span className="bz-probac">어디에</span> 광고해야 할까요?
+            </>
+          ),
+          visual: <AdChannelProblem />,
+        }}
+        solution={{
+          eyebrow: "AnimAI Biz는",
+          title: (
+            <>
+              100% 반려인이 보는 앱에
+              <br />
+              <span className="bz-accent">자동으로 노출</span>됩니다.
+            </>
+          ),
+          body: (
+            <>
+              대시보드를 쓰는 것만으로 <b>앱 안에 업체가 노출되고 광고가 집행</b>됩니다. 강아지·고양이
+              보호자만 모인 곳에서 <b>평생 무료로</b>.
+            </>
+          ),
+          visual: <AdExposeSolution />,
+        }}
+        note="* 수도권 기준 매일 500명 이상이 접속해 우리 동네 업체를 찾고 있어요."
+      />
+
       {/* ───────── 3 · 알림장 ───────── */}
       <ProblemSolution
         num="03"
@@ -195,9 +238,9 @@ export default function BusinessPage() {
           eyebrow: "이런 고민 있으셨죠",
           title: (
             <>
-              인스타·유튜브·밴드·뉴스…
+              광고는 올려야 하는데…
               <br />
-              <span className="bz-probac">뭘 어떻게</span> 올려야 할지.
+              <span className="bz-probac">어떤 내용</span>으로 만들지.
             </>
           ),
           visual: <MktProblem />,
@@ -722,8 +765,9 @@ function ProblemSolution({
   problem,
   solution,
   surface,
+  note,
 }: {
-  num: string;
+  num?: string;
   problem: { eyebrow: string; title: React.ReactNode; visual: React.ReactNode };
   solution: {
     eyebrow: string;
@@ -732,6 +776,7 @@ function ProblemSolution({
     visual: React.ReactNode;
   };
   surface?: boolean;
+  note?: React.ReactNode; // 토글 버튼 아래에 뜨는 주석 (solution 단계에서만). 새 광고섹션에서 사용
 }) {
   const [phase, setPhase] = useState<"problem" | "solution">("problem");
   const ref = useRef<HTMLElement>(null);
@@ -768,7 +813,7 @@ function ProblemSolution({
 
   return (
     <section className={`bz-sec bz-ps${surface ? " bz-surface" : ""}`} ref={ref}>
-      <span className="bz-num">{num} / 06</span>
+      <span className="bz-num">{num ? `${num} / 06` : ""}</span>
       <div className="bz-wrap bz-grid2">
         <div className="bz-pstext">
           <div className="bz-phasewrap">
@@ -796,6 +841,7 @@ function ProblemSolution({
               AnimAI Biz
             </button>
           </div>
+          {note && phase === "solution" && <p className="bz-psnote">{note}</p>}
         </div>
 
         <div className="bz-psvisual">
@@ -916,18 +962,25 @@ function TalkSolution() {
 // 마케팅 — 문제: SNS 헤매기
 function MktProblem() {
   return (
-    <div className="bz-snsmess">
-      <div className="bz-snsicon bz-insta">
-        <Camera size={24} color="#fff" />
+    <div className="bz-mktq">
+      <div className="bz-mktqcard">
+        <span className="bz-mktqic">
+          <TrendingUp size={16} color="#f97316" />
+        </span>
+        요즘 트렌드는 뭐지?
       </div>
-      <div className="bz-snsicon bz-yt">
-        <Play size={24} color="#fff" fill="#fff" />
+      <div className="bz-mktqcard">
+        <span className="bz-mktqic">
+          <MapPin size={16} color="#f97316" />
+        </span>
+        우리 동네 수요는?
       </div>
-      <div className="bz-snsicon bz-band">BAND</div>
-      <div className="bz-snsicon bz-news">
-        <Newspaper size={22} color="#fff" />
+      <div className="bz-mktqcard">
+        <span className="bz-mktqic">
+          <CalendarDays size={16} color="#f97316" />
+        </span>
+        다음 달엔 뭐 하지?
       </div>
-      <div className="bz-snscenter">뭘 어떻게 올리지?</div>
     </div>
   );
 }
@@ -957,6 +1010,52 @@ function MktSolution() {
           className="bz-shotwrap"
           imgClassName="bz-fadeimg"
           alt="AnimAI Biz 매출·고객 통계 화면"
+        />
+      </div>
+    </div>
+  );
+}
+
+// 앱 광고 노출 — 문제: 어디에 광고할지 (상표권 회피 위해 로고 대신 채널명 텍스트칩)
+function AdChannelProblem() {
+  return (
+    <div className="bz-snsmess">
+      <div className="bz-snsicon bz-insta">
+        <Camera size={24} color="#fff" />
+      </div>
+      <div className="bz-snsicon bz-band" style={{ background: "#03c75a" }}>
+        N
+      </div>
+      <div className="bz-snsicon bz-news" style={{ background: "#f97316" }}>
+        <Users size={22} color="#fff" />
+      </div>
+      <div className="bz-snsicon bz-yt" style={{ background: "#5f6368" }}>
+        <Search size={22} color="#fff" />
+      </div>
+      <div className="bz-snscenter">어디에 광고하지?</div>
+    </div>
+  );
+}
+
+// 앱 광고 노출 — 해결: 반려인이 실제로 보는 앱 화면 (자동 노출)
+function AdExposeSolution() {
+  return (
+    <div className="bz-mktsol">
+      <div className="bz-mktcard">
+        <span className="bz-mktic" style={{ background: "#fff1e8" }}>
+          <PawPrint size={14} color="#f97316" />
+        </span>
+        반려인만 모인 앱에 노출 중
+        <span className="bz-mktstat" style={{ color: "#f97316" }}>
+          평생 무료
+        </span>
+      </div>
+      <div className="bz-adshotwrap">
+        <ImgFade
+          images={PHOTO.adexpose}
+          className="bz-adshot"
+          imgClassName="bz-adfadeimg"
+          alt="AnimAI 앱에서 업체가 노출되는 화면 — 홈·검색·상세"
         />
       </div>
     </div>
@@ -1270,6 +1369,7 @@ const BZ_CSS = `
 .bz-phase{grid-area:1/1;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
 .bz-phase.on{opacity:1;transform:none;pointer-events:auto}
 .bz-toggle{display:inline-flex;gap:5px;margin-top:18px;background:#eef2f7;padding:5px;border-radius:13px}
+.bz-psnote{margin-top:14px;font-size:12.5px;line-height:1.55;color:#94a3b8;max-width:440px}
 .bz-toggle button{border:none;background:transparent;padding:9px 18px;border-radius:9px;font-weight:700;font-size:13px;color:#94a3b8;cursor:pointer;transition:.2s;font-family:inherit}
 .bz-toggle button.on{background:#fff;color:#0f172a;box-shadow:0 2px 8px rgba(15,23,42,.1)}
 .bz-toggle button.on.bz-tprob{color:#e55a2b}
@@ -1364,6 +1464,18 @@ const BZ_CSS = `
 .bz-url{margin-left:9px;font-size:11px;color:#94a3b8;font-weight:600}
 .bz-shotwrap{position:relative;width:100%;aspect-ratio:16/10;background:#f8fafc;overflow:hidden}
 .bz-fadeimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .4s ease;image-rendering:-webkit-optimize-contrast}
+
+/* 마케팅 문제 — 콘텐츠 고민 3카드 */
+.bz-mktq{display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px}
+.bz-mktqcard{background:#fff;border:1px solid #ffe2d1;border-radius:14px;padding:15px 17px;font-weight:700;font-size:14.5px;color:#3f3a36;display:flex;align-items:center;gap:11px;box-shadow:0 8px 22px rgba(249,115,22,.08)}
+.bz-mktqcard:nth-child(2){margin-left:26px}
+.bz-mktqcard:nth-child(3){margin-left:52px}
+.bz-mktqic{width:30px;height:30px;border-radius:9px;background:#fff1e8;display:grid;place-items:center;flex:none}
+
+/* 앱 광고 노출 — 세로 폰 스크린샷 (3화면 순환) */
+.bz-adshotwrap{position:relative;width:100%;max-width:270px;margin:0 auto;aspect-ratio:9/17.5;border-radius:26px;overflow:hidden;background:#f8fafc;border:6px solid #1f2937;box-shadow:0 24px 60px rgba(15,23,42,.22)}
+.bz-adshot{position:absolute;inset:0;width:100%;height:100%}
+.bz-adfadeimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .5s ease;image-rendering:-webkit-optimize-contrast}
 .bz-dash{display:grid;grid-template-columns:118px 1fr;min-height:230px}
 .bz-side{background:#f8fafc;border-right:1px solid #e8edf3;padding:14px 10px}
 .bz-biz{background:#3b82f6;color:#fff;border-radius:11px;padding:9px;font-size:11px;font-weight:700;margin-bottom:12px;line-height:1.3}
