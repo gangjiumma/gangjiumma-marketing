@@ -194,7 +194,7 @@ export default function BusinessPage() {
           ),
           visual: <AdExposeSolution />,
         }}
-        note="* 수도권 기준 매일 500명 이상이 접속해 우리 동네 업체를 찾고 있어요."
+        note="* 수도권 기준 2,000명 이상이 매월 접속해 우리 동네 업체를 찾고 있어요."
       />
 
       {/* ───────── 3 · 알림장 ───────── */}
