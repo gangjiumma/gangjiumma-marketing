@@ -24,7 +24,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
-import BizSignupModal from "@/components/BizSignupModal";
+// 사장님 입점 신청 = apply 페이지 직행.
+// (기존 "앱 가입했나요?" 게이트 모달은 apply 페이지가 동일 안내를 이미 하므로
+//  중복 → 렌더 제거. 2026.07.09. 모달 컴포넌트 파일은 롤백용으로 디스크에 보존)
+const APPLY_URL = "https://www.animai.biz/apply";
 import { ScrollProgressBar } from "@/components/ScrollIndicator";
 
 // ✏️ 사진 슬롯 — public/business/ 에 파일만 넣으면 자동 교체. 여러 장이면 자동 슬라이드.
@@ -63,28 +66,60 @@ const PHOTO = {
 
 export default function BusinessPage() {
   const [showIntro, setShowIntro] = useState(false);
-  const [signupOpen, setSignupOpen] = useState(false);
+
+  // ─── 인트로(IntroChecklist) 노출 정책: 주 1회 ───────────────
+  // 이번 주에 이미 봤으면(완주 or 닫음) 스킵, 새 주(월~일)가 되면 자동 재노출.
+  // 저장값 = ISO 주차 문자열("2026-W28"). "며칠 지남" 계산이 아니라
+  // 주차 비교라 정확히 주 경계에서 리셋됨. localStorage = 같은 브라우저 기준.
+  const INTRO_SEEN_KEY = "animai_biz_intro_week";
+  const currentIsoWeek = () => {
+    const d = new Date();
+    // ISO 8601 주차: 목요일 기준
+    const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const day = t.getUTCDay() || 7; // 월=1..일=7
+    t.setUTCDate(t.getUTCDate() + 4 - day);
+    const yearStart = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+    const week = Math.ceil(((+t - +yearStart) / 86400000 + 1) / 7);
+    return `${t.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+  };
+
   useEffect(() => {
-    setShowIntro(true);
+    try {
+      const seen = localStorage.getItem(INTRO_SEEN_KEY);
+      if (seen !== currentIsoWeek()) setShowIntro(true);
+    } catch {
+      // localStorage 불가(사파리 프라이빗 등) → 안전하게 노출
+      setShowIntro(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     document.body.style.overflow = showIntro ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [showIntro]);
-  const dismissIntro = () => setShowIntro(false);
+
+  // 완주 or 닫힘 → 이번 주차 기록 후 닫기 (다음 주에 다시 노출됨)
+  const dismissIntro = () => {
+    try {
+      localStorage.setItem(INTRO_SEEN_KEY, currentIsoWeek());
+    } catch {
+      /* 저장 실패해도 이번 세션은 닫힘 */
+    }
+    setShowIntro(false);
+  };
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: BZ_CSS }} />
       <ScrollProgressBar />
-      <BizSignupModal open={signupOpen} onClose={() => setSignupOpen(false)} />
 
       {showIntro && <IntroChecklist onDone={dismissIntro} />}
 
       {/* ───────── 1 · HERO ───────── */}
-      <Hero onStart={() => setSignupOpen(true)} />
+      <Hero />
 
       {/* ───────── 2 · 결제 ───────── */}
       <ProblemSolution
@@ -353,13 +388,12 @@ export default function BusinessPage() {
           <FadeInSection delay={250}>
             <div className="bz-center" style={{ marginTop: 36 }}>
               <div className="bz-ctarow">
-                <button
-                  type="button"
+                <a
+                  href={APPLY_URL}
                   className="bz-btn bz-btnlg"
-                  onClick={() => setSignupOpen(true)}
                 >
                   무료로 입점 신청하기 <ArrowRight size={18} />
-                </button>
+                </a>
                 <Link className="bz-btndemo bz-btndemolg" href="/demo">
                   <Play size={18} /> 데모 체험하기
                 </Link>
@@ -377,7 +411,7 @@ export default function BusinessPage() {
 }
 
 /* ════════════ 메인(히어로) — 문제 → 해결 자동 전환 ════════════ */
-function Hero({ onStart }: { onStart: () => void }) {
+function Hero() {
   const [phase, setPhase] = useState<"problem" | "solution">("problem");
   const ref = useRef<HTMLElement>(null);
   const timer = useRef<number | undefined>(undefined);
@@ -436,9 +470,9 @@ function Hero({ onStart }: { onStart: () => void }) {
             </div>
           </div>
           <div className="bz-herocta">
-            <button type="button" className="bz-btn" onClick={onStart}>
+            <a href={APPLY_URL} className="bz-btn">
               무료로 입점 신청하기 <ArrowRight size={18} />
-            </button>
+            </a>
             <Link className="bz-btndemo" href="/demo">
               <Play size={18} /> 데모 체험하기
             </Link>
