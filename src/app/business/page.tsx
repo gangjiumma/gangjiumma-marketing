@@ -1503,10 +1503,12 @@ const BZ_CSS = `
 .bz-hleadclose:hover{color:#ff8c50}
 
 .bz-hleadtag{display:flex;align-items:center;gap:6px;width:fit-content;margin:0 auto 14px;font-size:12px;font-weight:800;color:#ffb184;background:rgba(255,140,80,.14);border:1px solid rgba(255,140,80,.24);border-radius:999px;padding:5px 12px}
-.bz-hleadquotes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px}
-.bz-hleadq{display:flex;align-items:flex-start;gap:9px;font-size:15px;font-weight:700;color:#f7ede6;line-height:1.5}
+.bz-hleadquotes{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 34px;max-width:900px;margin:0 auto}
+/* ⚠️ display:flex 금지 — <b> 가 flex item 이 되어 긴 문구가 여러 덩이로 쪼개짐(모바일).
+   번호는 float 대신 절대배치, 텍스트는 일반 인라인 흐름으로 자연스럽게 줄바꿈. */
+.bz-hleadq{position:relative;padding-left:28px;font-size:15px;font-weight:700;color:#f7ede6;line-height:1.6;word-break:keep-all}
 .bz-hleadq b{color:#ff8c50}
-.bz-hleadqnum{flex:none;width:19px;height:19px;margin-top:2px;border-radius:50%;background:#ff6b35;color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center}
+.bz-hleadqnum{position:absolute;left:0;top:3px;width:19px;height:19px;border-radius:50%;background:#ff6b35;color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center}
 .bz-hleadbody{margin-top:14px;padding-top:13px;border-top:1px dashed rgba(255,255,255,.14);font-size:13.5px;line-height:1.66;color:#c3b1a5}
 .bz-hleadbody b{color:#f7ede6}
 .bz-hleaddiv{display:flex;align-items:center;gap:10px;margin:19px 0 13px;font-size:11.5px;font-weight:800;color:#9a8375;letter-spacing:.02em}
@@ -1528,7 +1530,8 @@ const BZ_CSS = `
 .bz-hleadfoldtxt{color:#d3c3b8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bz-hleadfoldmore{flex:none;background:#ff6b35;color:#fff;border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:800}
 @media(max-width:900px){
-  .bz-hleadquotes{flex-direction:column;align-items:flex-start;gap:10px}
+  .bz-hleadquotes{flex-direction:column;align-items:stretch;gap:11px}
+  .bz-hleadq{font-size:14.5px;line-height:1.62}
   .bz-hleadcards{grid-template-columns:1fr}
   .bz-hleadfind{text-align:left}
 }
