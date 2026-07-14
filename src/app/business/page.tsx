@@ -25,6 +25,7 @@ import {
   CalendarDays,
   Search,
   Users,
+  MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
@@ -104,8 +105,12 @@ export default function BusinessPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // ⚠️ 인트로가 {false &&} 로 숨겨져 있으므로 body 잠금도 걸지 않는다.
+  //    (숨긴 뒤에도 showIntro=true 라 overflow:hidden 이 남아 페이지 스크롤이 잠기던 버그)
+  //    인트로를 되살릴 때 아래 false 를 showIntro 로 함께 되돌릴 것.
+  const INTRO_ENABLED = false;
   useEffect(() => {
-    document.body.style.overflow = showIntro ? "hidden" : "";
+    document.body.style.overflow = INTRO_ENABLED && showIntro ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -126,7 +131,10 @@ export default function BusinessPage() {
       <style dangerouslySetInnerHTML={{ __html: BZ_CSS }} />
       <ScrollProgressBar />
 
-      {showIntro && <IntroChecklist onDone={dismissIntro} />}
+      {/* ⚠️ 인트로 오버레이 — 화면에서만 숨김(코드 보존).
+          사유: 새 히어로 LEAD가 같은 역할(훅)을 하게 되어 중복 + 번잡. 2026.07.14
+          되살리려면 위 INTRO_ENABLED = true 로만 바꾸면 됨 (주 1회 노출 로직 그대로 살아있음) */}
+      {INTRO_ENABLED && showIntro && <IntroChecklist onDone={dismissIntro} />}
 
       {/* ───────── 1 · HERO ───────── */}
       <Hero />
@@ -194,7 +202,7 @@ export default function BusinessPage() {
           ),
           visual: <AdExposeSolution />,
         }}
-        note="* 수도권 기준 2,000명 이상이 매월 접속해 우리 동네 업체를 찾고 있어요."
+        note="* 수도권 기준 매일 500명 이상이 접속해 우리 동네 업체를 찾고 있어요."
       />
 
       {/* ───────── 3 · 알림장 ───────── */}
@@ -453,11 +461,59 @@ export default function BusinessPage() {
   );
 }
 
-/* ════════════ 메인(히어로) — 문제 → 해결 자동 전환 ════════════ */
+/* ════════════ 메인(히어로) — 고객 요청 LEAD → 문제 → 해결 자동 전환 ════════════ */
+
+// LEAD 안에서 순차 등장하는 "발견한 문제" 3가지.
+// 텔레마케팅에서 검증된 인과 사슬: 고객 요청 → 입점 준비 중 발견 → 그래서 Biz
+const LEAD_FINDINGS = [
+  {
+    Icon: PawPrint,
+    tag: "돌봄·미용 중엔",
+    body: "손이 묶여 있어 예약·알림·문의 대응이 어려워요.",
+  },
+  {
+    Icon: BarChart3,
+    tag: "고객 피드백 받을 시간 부족",
+    body: "우리 동네 손님이 뭘 원하는지 몰라 맞춤 서비스 제공이 어려워요.",
+  },
+  {
+    Icon: Ticket,
+    tag: "통합 운영 도구의 부재",
+    body: "예약·문의·결제·고객관리를 각각 다른 곳에서 관리하다보니 실수가 많아져요.",
+  },
+];
+
+const LEAD_STEP_MS = 1000; // 카드 등장 간격
+const LEAD_READ_MS = 9000; // 마지막 카드 등장 후 읽는 시간 → 총 3s + 9s = 12s
+
 function Hero() {
   const [phase, setPhase] = useState<"problem" | "solution">("problem");
+  // LEAD(고객 요청 훅) — 문제카드 3장 순차 등장 후 자동 fold. [다시 보기]로 재확장.
+  // "우리가 좋은 프로그램 만들었다"(공급 시점) → "고객이 요청하고, 사장님 현장에서
+  // 원인을 발견했다"(수요 시점) 로 전환. 실제 콜 응답률이 올라간 프레임.
+  const [leadOpen, setLeadOpen] = useState(true);
+  const [leadDismissed, setLeadDismissed] = useState(false); // 유저가 직접 닫았으면 자동 재개 안 함
+  const [leadStep, setLeadStep] = useState(0); // 0 → 1 → 2 → 3 (등장한 카드 수)
   const ref = useRef<HTMLElement>(null);
   const timer = useRef<number | undefined>(undefined);
+  const leadTimer = useRef<number | undefined>(undefined);
+
+  // 카드 순차 등장 → 마지막 카드 후 LEAD_READ_MS 뒤 fold
+  useEffect(() => {
+    if (!leadOpen || leadDismissed) return;
+    const timers: number[] = [];
+    LEAD_FINDINGS.forEach((_, i) => {
+      timers.push(
+        window.setTimeout(() => setLeadStep(i + 1), LEAD_STEP_MS * (i + 1))
+      );
+    });
+    leadTimer.current = window.setTimeout(
+      () => setLeadOpen(false),
+      LEAD_STEP_MS * LEAD_FINDINGS.length + LEAD_READ_MS
+    );
+    timers.push(leadTimer.current);
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, [leadOpen, leadDismissed]);
 
   useEffect(() => {
     const el = ref.current;
@@ -484,6 +540,90 @@ function Hero() {
   return (
     <section className="bz-sec bz-hero" ref={ref}>
       <span className="bz-num">01 / 06</span>
+      {/* LEAD는 그리드 밖 = 전체폭.
+          좌측 컬럼(bz-pstext)에 두면 폭에 눌려 세로로 길쭉해지고 CTA가 아래로 밀림 */}
+      <div className="bz-wrap bz-leadwrap">
+        {/* ─── LEAD · 고객 요청 훅 (8초 후 자동 fold) ─── */}
+        {leadOpen ? (
+          <div className="bz-hlead">
+            <div className="bz-hleadhead">
+              <h2 className="bz-hleadtitle">왜 사장님 버전을 만들었나요?</h2>
+              <button
+                type="button"
+                className="bz-hleadclose"
+                onClick={() => {
+                  setLeadOpen(false);
+                  setLeadDismissed(true);
+                }}
+              >
+                접기
+              </button>
+            </div>
+
+            <div className="bz-hleadtag">
+              <MessageCircle size={13} /> 애니마이 유저가 가장 많이 요청한 것
+            </div>
+            <div className="bz-hleadquotes">
+              <div className="bz-hleadq">
+                <span className="bz-hleadqnum">1</span>
+                “동네 좋은 미용실·유치원 <b>추천</b>받고 싶어요”
+              </div>
+              <div className="bz-hleadq">
+                <span className="bz-hleadqnum">2</span>
+                “이용권 내역·알림장 내용이 <b>틀릴때가 많고,</b> 카톡으로 받으니 불편해요”
+              </div>
+            </div>
+
+            {/* 발견 — 입점 사장님들을 만나며 알게 된 것 */}
+            <div className="bz-hleaddiv">
+              <span>그래서 두달간 사장님들을 만나뵀습니다</span>
+            </div>
+            <p className="bz-hleadfind">
+              최선을 다하는 사장님임에도 <b>고객 만족이 떨어지는 이유</b>가 있었습니다.
+            </p>
+
+            <div className="bz-hleadcards">
+              {LEAD_FINDINGS.map((f, i) => (
+                <div
+                  key={f.tag}
+                  className={`bz-hleadcard${leadStep > i ? " on" : ""}`}
+                >
+                  <span className="bz-hleadcardic">
+                    <f.Icon size={15} />
+                  </span>
+                  <div>
+                    <div className="bz-hleadcardtag">{f.tag}</div>
+                    <div className="bz-hleadcardbody">{f.body}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p
+              className={`bz-hleadconc${
+                leadStep >= LEAD_FINDINGS.length ? " on" : ""
+              }`}
+            >
+              <Sparkles size={14} /> 사장님들의 문제를 해결하고, 고객만족을 위해
+              <b> AnimAI Biz를 만들었습니다.</b>
+            </p>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="bz-hleadfold"
+            onClick={() => setLeadOpen(true)}
+            aria-label="고객 요청 다시 보기"
+          >
+            <MessageCircle size={13} />
+            <span className="bz-hleadfoldtxt">
+              왜 사장님 버전을 만들었나요? — 고객 요청에서 시작했습니다
+            </span>
+            <span className="bz-hleadfoldmore">다시 보기</span>
+          </button>
+        )}
+      </div>
+
       <div className="bz-wrap bz-grid2">
         <div className="bz-pstext">
           <div className="bz-bizbrand">
@@ -1336,6 +1476,11 @@ const BZ_CSS = `
 
 /* hero */
 .bz-hero{background:linear-gradient(180deg,#eff6ff,#fff 72%)}
+/* 히어로만 세로 스택: bz-sec 은 flex row 라, LEAD(bz-wrap)와 본문(bz-wrap bz-grid2)
+   두 자식이 가로로 나란히 붙어버림 → column 으로 쌓는다.
+   ⚠️ overflow:hidden 은 유지 (히어로 안 absolute 떠다니는 아이콘이 섹션 밖으로 새지 않게) */
+.bz-hero{flex-direction:column;justify-content:center;align-items:stretch}
+@media(max-width:900px){.bz-hero{justify-content:flex-start}}
 .bz-herowrap{margin:0}
 .bz-bizbrand{margin-bottom:22px}
 .bz-bizrow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
@@ -1344,6 +1489,60 @@ const BZ_CSS = `
 .bz-bizfree{font-size:11px;font-weight:800;color:#fff;background:#22c55e;padding:3px 9px;border-radius:7px;letter-spacing:.04em}
 .bz-bizdesc{font-size:15.5px;color:#475569;font-weight:600}
 @media(max-width:600px){.bz-bizname,.bz-bizlogo{font-size:20px}.bz-bizdesc{font-size:13.5px}}
+/* LEAD — 블로그 배너 톤의 브라운 카드.
+   "왜 사장님 버전을 만들었나요?" 를 배너 타이틀로 세우고, 그 아래 근거를 눕힌다.
+   내용은 중앙으로 모아 양 끝으로 벌어지지 않게 (전체폭이라 1fr 1fr 이면 너무 벌어짐) */
+.bz-leadwrap{margin-bottom:30px}
+.bz-hlead{position:relative;background:radial-gradient(120% 130% at 50% 0%,#4a3225 0%,#33231a 45%,#251910 100%);border:1px solid #57402f;border-radius:24px;padding:26px 30px 24px;box-shadow:0 26px 60px rgba(43,29,21,.32);animation:bz-leadin .5s ease both;overflow:hidden}
+.bz-hlead::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:60%;height:80%;background:radial-gradient(ellipse,rgba(255,140,80,.13),transparent 70%);pointer-events:none}
+@keyframes bz-leadin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+.bz-hleadhead{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.bz-hleadtitle{font-size:clamp(19px,2.2vw,25px);font-weight:900;color:#fff;letter-spacing:-.02em;text-align:center;line-height:1.35}
+.bz-hleadclose{position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:0;font-size:12px;font-weight:700;color:#8a7365;cursor:pointer;padding:4px 6px}
+.bz-hleadclose:hover{color:#ff8c50}
+
+.bz-hleadtag{display:flex;align-items:center;gap:6px;width:fit-content;margin:0 auto 14px;font-size:12px;font-weight:800;color:#ffb184;background:rgba(255,140,80,.14);border:1px solid rgba(255,140,80,.24);border-radius:999px;padding:5px 12px}
+.bz-hleadquotes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px}
+.bz-hleadq{display:flex;align-items:flex-start;gap:9px;font-size:15px;font-weight:700;color:#f7ede6;line-height:1.5}
+.bz-hleadq b{color:#ff8c50}
+.bz-hleadqnum{flex:none;width:19px;height:19px;margin-top:2px;border-radius:50%;background:#ff6b35;color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center}
+.bz-hleadbody{margin-top:14px;padding-top:13px;border-top:1px dashed rgba(255,255,255,.14);font-size:13.5px;line-height:1.66;color:#c3b1a5}
+.bz-hleadbody b{color:#f7ede6}
+.bz-hleaddiv{display:flex;align-items:center;gap:10px;margin:19px 0 13px;font-size:11.5px;font-weight:800;color:#9a8375;letter-spacing:.02em}
+.bz-hleaddiv::before,.bz-hleaddiv::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.12)}
+.bz-hleadfind{font-size:14.5px;font-weight:700;color:#f7ede6;line-height:1.55;margin-bottom:13px;text-align:center}
+.bz-hleadfind b{color:#ff8c50}
+.bz-hleadcards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:860px;margin:0 auto}
+.bz-hleadcard{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);border-radius:13px;padding:12px 13px;opacity:0;transform:translateY(8px);transition:opacity .55s ease,transform .55s ease}
+.bz-hleadcard.on{opacity:1;transform:none}
+.bz-hleadcardic{flex:none;width:28px;height:28px;border-radius:9px;background:rgba(255,140,80,.16);color:#ff8c50;display:grid;place-items:center}
+.bz-hleadcardtag{font-size:12px;font-weight:800;color:#ffb184;margin-bottom:3px}
+.bz-hleadcardbody{font-size:12.8px;font-weight:600;color:#cbbcb1;line-height:1.5}
+.bz-hleadconc{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;width:fit-content;max-width:100%;margin:17px auto 0;padding-top:15px;border-top:1px dashed rgba(255,255,255,.14);font-size:14px;line-height:1.6;color:#c3b1a5;text-align:center;opacity:0;transform:translateY(6px);transition:opacity .6s ease .25s,transform .6s ease .25s}
+.bz-hleadconc.on{opacity:1;transform:none}
+.bz-hleadconc b{color:#fff}
+.bz-hleadconc svg{color:#ff8c50;flex:none}
+.bz-hleadfold{display:inline-flex;align-items:center;gap:8px;background:#3d2a1f;border:1px solid #543a2b;border-radius:999px;padding:8px 8px 8px 14px;cursor:pointer;color:#ff8c50;font-weight:700;font-size:12.5px;max-width:100%;animation:bz-leadin .4s ease both}
+.bz-hleadfold:hover{background:#4a3327}
+.bz-hleadfoldtxt{color:#d3c3b8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bz-hleadfoldmore{flex:none;background:#ff6b35;color:#fff;border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:800}
+@media(max-width:900px){
+  .bz-hleadquotes{flex-direction:column;align-items:flex-start;gap:10px}
+  .bz-hleadcards{grid-template-columns:1fr}
+  .bz-hleadfind{text-align:left}
+}
+@media(max-width:760px){
+  .bz-leadwrap{margin-bottom:22px}
+  .bz-hlead{padding:18px 18px 16px;border-radius:18px}
+  .bz-hleadq{font-size:14px}
+  .bz-hleadbody{font-size:12.8px}
+  .bz-hleadfind{font-size:13px}
+  .bz-hleadcardbody{font-size:12.3px}
+  .bz-hleadconc{font-size:12.8px}
+  .bz-hleadfoldtxt{display:none}
+  .bz-hleadfold{padding:8px 12px}
+}
 .bz-feats{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:24px}
 .bz-featlabel{font-size:13px;font-weight:700;color:#64748b;margin-right:2px}
 .bz-feat{font-size:13px;font-weight:700;color:#3b82f6;background:#eff6ff;border:1px solid #dbeafe;padding:7px 13px;border-radius:10px}
