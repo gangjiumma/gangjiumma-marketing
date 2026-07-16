@@ -363,9 +363,9 @@ export default function BusinessPage() {
             <div className="bz-freebar">
               <Gift size={22} color="#ff6b35" style={{ flex: "none" }} />
               <span>
-                <b>7월 한달간 가입 사장님 한정</b> — 라이트플랜{" "}
-                <b>평생 무료</b>(원가 월 <s>9,900원</s>) + <b>14일간 베이직 플랜 무료 체험</b>. 무료체험
-                이후 원하실 경우 카드결제 후 원하는 플랜을 이용하실 수 있어요.
+                <b>출시 기념</b> — 라이트플랜 <b>평생 무료</b>(원가 월 <s>9,900원</s>) +{" "}
+                <b>14일간 베이직 플랜 무료 체험</b>. 유료 플랜은 지금 <b>출시 기념 50% 할인가</b>로
+                시작하실 수 있어요. 무료체험 이후 원하실 경우 카드결제 후 원하는 플랜을 이용하실 수 있어요.
               </span>
             </div>
             <div className="bz-ptable">
@@ -390,9 +390,13 @@ export default function BusinessPage() {
               <div className="bz-pcard">
                 <div className="bz-pn">베이직</div>
                 <div className="bz-pp">
-                  <span className="bz-price">29,900원</span>
+                  <span className="bz-wasprice">29,900원</span>
+                  <span className="bz-salerow">
+                    <span className="bz-saletag">50%</span>
+                    <span className="bz-price">14,950원</span>
+                  </span>
                 </div>
-                <div className="bz-pu">하루 1,000원 꼴</div>
+                <div className="bz-pu">하루 500원 꼴</div>
                 <div className="bz-pd">
                   라이트 +<br />
                   AI 알림장
@@ -406,9 +410,13 @@ export default function BusinessPage() {
                 <span className="bz-badge">추천</span>
                 <div className="bz-pn">프로</div>
                 <div className="bz-pp">
-                  <span className="bz-price">59,900원</span>
+                  <span className="bz-wasprice">59,900원</span>
+                  <span className="bz-salerow">
+                    <span className="bz-saletag">50%</span>
+                    <span className="bz-price">29,950원</span>
+                  </span>
                 </div>
-                <div className="bz-pu">하루 2,000원 꼴</div>
+                <div className="bz-pu">하루 1,000원 꼴</div>
                 <div className="bz-pd">
                   라이트·베이직 +<br />
                   AI 광고 콘텐츠 (무제한)
@@ -422,9 +430,13 @@ export default function BusinessPage() {
                 <span className="bz-badge bz-bsoon">출시 예정</span>
                 <div className="bz-pn">맥스</div>
                 <div className="bz-pp">
-                  <span className="bz-price">79,900원</span>
+                  <span className="bz-wasprice">79,900원</span>
+                  <span className="bz-salerow">
+                    <span className="bz-saletag">50%</span>
+                    <span className="bz-price">39,950원</span>
+                  </span>
                 </div>
-                <div className="bz-pu">하루 2,700원 꼴</div>
+                <div className="bz-pu">하루 1,300원 꼴</div>
                 <div className="bz-pd">
                   라이트·베이직·프로 +<br />
                   전담 AI 에이전트
@@ -1716,6 +1728,9 @@ const BZ_CSS = `
 .bz-pcard.bz-soon{opacity:.7}
 .bz-pn{font-weight:700;font-size:14px;color:#334155}
 .bz-pp{display:flex;align-items:baseline;gap:7px;margin:7px 0 1px;flex-wrap:wrap}
+.bz-wasprice{display:block;width:100%;font-size:13px;color:#94a3b8;text-decoration:line-through;font-weight:600;margin-bottom:1px}
+.bz-salerow{display:flex;align-items:center;gap:6px}
+.bz-saletag{font-size:12px;font-weight:800;color:#fff;background:#ff6b35;border-radius:6px;padding:2px 6px;flex:none}
 .bz-was{font-size:15px;color:#94a3b8;text-decoration:line-through;font-weight:600}
 .bz-pp .bz-free{font-size:25px;font-weight:800;color:#ff6b35}
 .bz-pp .bz-price{font-size:25px;font-weight:800;color:#0f172a}

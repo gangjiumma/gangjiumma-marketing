@@ -83,8 +83,9 @@ const plans: Plan[] = [
   {
     id: "mini",
     title: "베이직",
-    price: 29900,
-    perDay: "월 · 하루 1,000원 꼴",
+    price: 14950,
+    originalPrice: 29900,
+    perDay: "월 · 하루 500원 꼴",
     description: "AI 알림장 · 할인쿠폰",
     inherits: "라이트의 모든 기능 +",
     features: [
@@ -101,8 +102,9 @@ const plans: Plan[] = [
   {
     id: "basic",
     title: "프로",
-    price: 59900,
-    perDay: "월 · 하루 2,000원 꼴",
+    price: 29950,
+    originalPrice: 59900,
+    perDay: "월 · 하루 1,000원 꼴",
     description: "펫 특화 AI 광고 제작소 · 트렌드 리포트",
     inherits: "라이트·베이직의 모든 기능 +",
     features: [
@@ -120,8 +122,9 @@ const plans: Plan[] = [
   {
     id: "pro",
     title: "맥스",
-    price: 79900,
-    perDay: "월 · 하루 2,700원 꼴",
+    price: 39950,
+    originalPrice: 79900,
+    perDay: "월 · 하루 1,300원 꼴",
     description: "전담 AI 에이전트 + 담당자 지원",
     inherits: "라이트·베이직·프로의 모든 기능 +",
     features: [
@@ -176,8 +179,9 @@ export default function PlansPage() {
                 </span>
               </div>
               <p className="text-ink-2">
-                딱 <b className="text-brand">7월 한달간 가입 사장님 한정</b> 라이트플랜 평생 무료 +{" "}
-                <b>14일간 베이직 플랜 무료 체험</b>. 무료체험 이후 원하실 경우 카드결제 후 원하는 플랜을 이용하실 수 있어요.
+                <b className="text-brand">출시 기념</b> 라이트플랜 평생 무료 +{" "}
+                <b>14일간 베이직 플랜 무료 체험</b>. 유료 플랜은 지금 <b className="text-brand">출시 기념 50% 할인가</b>로
+                시작하실 수 있어요. 무료체험 이후 원하실 경우 카드결제 후 원하는 플랜을 이용하실 수 있어요.
               </p>
             </div>
           </div>
