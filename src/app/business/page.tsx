@@ -388,7 +388,7 @@ export default function BusinessPage() {
                 </div>
               </div>
               <div className="bz-pcard">
-                <div className="bz-pn">미니</div>
+                <div className="bz-pn">베이직</div>
                 <div className="bz-pp">
                   <span className="bz-price">29,900원</span>
                 </div>
@@ -404,13 +404,13 @@ export default function BusinessPage() {
               </div>
               <div className="bz-pcard bz-hot">
                 <span className="bz-badge">추천</span>
-                <div className="bz-pn">베이직</div>
+                <div className="bz-pn">프로</div>
                 <div className="bz-pp">
                   <span className="bz-price">59,900원</span>
                 </div>
                 <div className="bz-pu">하루 2,000원 꼴</div>
                 <div className="bz-pd">
-                  라이트·미니 +<br />
+                  라이트·베이직 +<br />
                   AI 광고 콘텐츠 (무제한)
                   <br />
                   반려동물 트렌드 리포트
@@ -420,13 +420,13 @@ export default function BusinessPage() {
               </div>
               <div className="bz-pcard bz-soon">
                 <span className="bz-badge bz-bsoon">출시 예정</span>
-                <div className="bz-pn">프로</div>
+                <div className="bz-pn">맥스</div>
                 <div className="bz-pp">
                   <span className="bz-price">79,900원</span>
                 </div>
                 <div className="bz-pu">하루 2,700원 꼴</div>
                 <div className="bz-pd">
-                  라이트·미니·베이직 +<br />
+                  라이트·베이직·프로 +<br />
                   전담 AI 에이전트
                   <br />
                   매일 영업·매출 보고
