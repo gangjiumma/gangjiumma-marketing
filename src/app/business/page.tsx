@@ -385,6 +385,8 @@ export default function BusinessPage() {
                   예약 확정·취소 알림톡
                   <br />
                   시·구 단위 입점 노출
+                  <br />
+                  앱 포인트 사용 · 수취
                 </div>
               </div>
               <div className="bz-pcard">
@@ -399,11 +401,11 @@ export default function BusinessPage() {
                 <div className="bz-pu">하루 500원 꼴</div>
                 <div className="bz-pd">
                   라이트 +<br />
-                  AI 알림장
+                  AI 알림장 · 알림톡 (무제한)
                   <br />
-                  AI 문의 자동응답
+                  AI 문의 자동응답 (무제한)
                   <br />
-                  할인쿠폰 발행
+                  앱사용 할인쿠폰 발행
                 </div>
               </div>
               <div className="bz-pcard bz-hot">
@@ -421,9 +423,9 @@ export default function BusinessPage() {
                   라이트·베이직 +<br />
                   AI 광고 콘텐츠 (무제한)
                   <br />
-                  반려동물 트렌드 리포트
+                  고객이 알려주는 트렌드 리포트 (미용·유치원·호텔)
                   <br />
-                  AnimAI 앱 광고 (시도·주3)
+                  AnimAI 앱 광고 (우리동네·주3)
                 </div>
               </div>
               <div className="bz-pcard bz-soon">

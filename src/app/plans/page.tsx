@@ -86,11 +86,12 @@ const plans: Plan[] = [
     price: 14950,
     originalPrice: 29900,
     perDay: "월 · 하루 500원 꼴",
-    description: "AI 알림장 · 할인쿠폰",
+    description: "AI 알림장 · 알림톡 무제한 · 할인쿠폰",
     inherits: "라이트의 모든 기능 +",
     features: [
       { text: "AI 알림장 (유치원·호텔·미용)", type: "all" },
-      { text: "AI 문의 자동응답", type: "app" },
+      { text: "AI 알림톡 무제한", type: "all" },
+      { text: "AI 문의 자동응답 무제한", type: "app" },
       { text: "할인쿠폰 발행", type: "app" },
     ],
     badge: "추천",
@@ -109,7 +110,7 @@ const plans: Plan[] = [
     inherits: "라이트·베이직의 모든 기능 +",
     features: [
       { text: "인스타·스레드·블로그용 광고 콘텐츠 제작 (무제한)", type: "all" },
-      { text: "반려동물 실시간 트렌드 리포트", type: "all" },
+      { text: "고객이 알려주는 트렌드 리포트 (미용·유치원·호텔)", type: "all" },
       { text: "지역별 고객 수요 통계", type: "app" },
       { text: "AI 이벤트 초안 (관심사 TOP3 기반)", type: "app" },
       { text: "AnimAI 앱 광고 게재 (시도·주 3회)", type: "app" },
