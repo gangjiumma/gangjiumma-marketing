@@ -758,15 +758,14 @@ function Hero() {
               <span className="bz-bizname">AnimAI Biz</span>
               <span className="bz-bizfree">입점 무료</span>
             </div>
-            <div className="bz-bizdesc">우리 가게를 반려인 고객에게 알리는 가장 확실한 방법</div>
           </div>
           {/* ⚠️ 히어로는 '연결·홍보'만 말한다. 프로그램 얘기는 아래 '다리' 섹션부터.
               (프로그램을 먼저 꺼내면 "대체 프로그램" 프레임에 갇혀 유입이 좁아짐) */}
           <div className="bz-herowrap">
             <h1 className="bz-h1">
-              <span className="bz-accent">AI로 아이를 키우는 반려인</span>이,
+              우리 가게를 <span className="bz-accent">반려인 고객</span>에게
               <br />
-              동네 가게를 찾고 있습니다.
+              알리는 가장 확실한 방법
             </h1>
             <p className="bz-herolead">
               반려인이 <b>매일 아이에 대해 물어보고 대화하는 앱</b>에서 홍보하세요.
@@ -1600,18 +1599,21 @@ const BZ_CSS = `
 .bz-sol3{background:#fff}
 .bz-benefit{background:#f8fafc}
 
-/* ── 섹션 스냅 (훅훅 넘어가는 느낌) ────────────────────────────
-   proximity = 경계 "근처"에서만 자석처럼 붙음.
-   mandatory 로 바꾸면 무조건 스냅되지만, 화면보다 긴 섹션(01·04)의
-   아랫부분을 못 읽게 되므로 쓰지 말 것.
-   ⚠️ 끄고 싶으면 아래 html{...} 한 줄만 지우면 원복됨. */
-html{scroll-snap-type:y proximity;scroll-behavior:smooth}
-.bz-sec{scroll-snap-align:start;scroll-snap-stop:normal}
-/* 내용이 화면보다 긴 섹션은 스냅에서 제외 — 중간이 잘려 보이는 것 방지 */
-@media (max-height:820px){
-  .bz-why,.bz-benefit{scroll-snap-align:none}
-}
-/* 접근성: 모션 최소화 설정 사용자는 스냅 해제 */
+/* ── 섹션 슬라이드 스냅 ──────────────────────────────────────
+   mandatory = 손을 떼면 반드시 가장 가까운 섹션 시작점으로 붙는다(슬라이드 느낌).
+   scroll-padding-top = 고정 헤더 높이. 없으면 섹션이 붙어도 제목이 헤더 뒤로 숨음.
+   ⚠️ 끄고 싶으면 아래 html{...} 줄만 지우면 원복됨. */
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;scroll-padding-top:80px}
+/* ⚠️ 모든 섹션을 스냅 대상으로 — 일부만 빼면 그 구간에 붙을 지점이 없어
+   스크롤이 엉뚱한 중간에서 멈춘다. (CSS 스펙상 섹션이 화면보다 크면
+   브라우저가 알아서 그 안에서 자유 스크롤을 허용하므로 잘리지 않음) */
+.bz-sec,.bz-foldcue{scroll-snap-align:start;scroll-snap-stop:always}
+/* 화면보다 긴 섹션은 고정 높이만 풀어준다 (스냅 대상은 그대로 유지) */
+.bz-why,.bz-benefit{min-height:auto}
+
+@media(max-width:768px){html{scroll-padding-top:64px}}
+
+/* 접근성: 모션 최소화 사용자는 스냅 해제 */
 @media (prefers-reduced-motion:reduce){
   html{scroll-snap-type:none}
 }
@@ -1621,10 +1623,10 @@ html{scroll-snap-type:y proximity;scroll-behavior:smooth}
 .bz-folded>*:first-child{border-top:1px solid #e9edf2}
 
 @media(max-width:900px){
-  /* 모바일은 100vh 고정이 오히려 답답 — 내용만큼 쓰되 위아래 숨 공간을 크게 */
-  .bz-sec{min-height:auto;padding:76px 20px;align-items:flex-start}
-  .bz-hero{min-height:100svh;align-items:center}
-  .bz-num{top:26px;right:20px;font-size:11px}
+  /* 슬라이드 스냅을 살리려면 섹션이 한 화면을 채워야 한다 (100svh = 주소창 제외 실높이).
+     단 내용이 넘치는 섹션은 위 .bz-why/.bz-benefit 규칙이 min-height 를 풀어준다. */
+  .bz-sec{min-height:100svh;padding:64px 20px;align-items:center}
+  .bz-num{top:22px;right:18px;font-size:10.5px}
 }
 
 
@@ -1833,6 +1835,17 @@ html{scroll-snap-type:y proximity;scroll-behavior:smooth}
 @media(max-width:860px){.bz-psvisual{height:330px}}
 .bz-vis{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.96);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
 .bz-vis.on{opacity:1;transform:none;pointer-events:auto}
+/* 🔴 모바일 히어로 비주얼 넘침 fix
+   .bz-vis 가 absolute 라 부모(.bz-psvisual) 높이를 못 늘림 →
+   세로 폰 목업이 고정높이를 넘쳐 CTA·칩·trust 를 덮었음.
+   모바일에서는 흐름 배치로 되돌려 높이를 내용에 맞춘다. */
+@media(max-width:860px){
+  .bz-psvisual,.bz-herovis{height:auto;min-height:0}
+  .bz-vis{position:relative;inset:auto;opacity:1;transform:none;pointer-events:auto}
+  .bz-vis:not(.on){display:none}
+  .bz-adshotwrap{max-width:230px}
+}
+
 
 /* pay problem — 미니 프로그램들 */
 .bz-scatter3{position:relative;width:100%;height:100%}
