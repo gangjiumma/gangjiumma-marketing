@@ -257,7 +257,7 @@ export default function BusinessPage() {
       </section>
 
       {/* ───────── 3 · 3가지 솔루션 (카드 5/7) ───────── */}
-      <section className="bz-sec bz-surface bz-sol3">
+      <section className="bz-sec bz-sol3">
         <span className="bz-num">03 / 09</span>
         <div className="bz-wrap">
           <FadeInSection>
@@ -1435,11 +1435,16 @@ function DashboardMock({ images }: { images: string[] }) {
 
 /* ════════════ 스타일 ════════════ */
 const BZ_CSS = `
-.bz-sec{min-height:100vh;display:flex;align-items:center;padding:72px 24px;position:relative;overflow:hidden}
+/* 섹션 리듬 — 배경 교대 + 상단 경계선으로 "한 섹션 → 다음 섹션"이 눈에 딱 끊기게.
+   (전부 흰 배경이면 스크롤 시 어디서 끝나고 시작하는지 안 보임) */
+.bz-sec{min-height:100vh;display:flex;align-items:center;padding:96px 24px;position:relative;overflow:hidden;border-top:1px solid #e9edf2}
+.bz-sec:first-of-type{border-top:0}
+.bz-hero+.bz-sec{border-top:0}
+/* 섹션 번호를 경계 표식으로 — 더 또렷하게 */
+.bz-num{position:absolute;top:34px;right:30px;font-size:11.5px;font-weight:800;color:#cbd5e1;letter-spacing:.1em}
 .bz-wrap{max-width:1080px;margin:0 auto;width:100%}
 .bz-grid2{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
 @media(max-width:860px){.bz-grid2{grid-template-columns:1fr;gap:28px}.bz-sec{padding:60px 20px}}
-.bz-num{position:absolute;top:30px;right:28px;font-size:12px;font-weight:700;color:#94a3b8;letter-spacing:.06em}
 .bz-center{text-align:center}
 .bz-eyebrow{font-size:13px;font-weight:700;color:#3b82f6;margin-bottom:14px;display:inline-block}
 .bz-eyebrow.bz-warm{color:#ff6b35}
@@ -1589,6 +1594,39 @@ const BZ_CSS = `
 .bz-trust b{color:#0f172a}
 .bz-finalnote{color:#94a3b8;font-size:13px;margin-top:13px}
 .bz-surface{background:#f8fafc}
+/* 배경 교대: 01흰 → 02회색 → 03흰 → 04회색 → (폴드) */
+.bz-why{background:#fff}
+.bz-same{background:#f8fafc}
+.bz-sol3{background:#fff}
+.bz-benefit{background:#f8fafc}
+
+/* ── 섹션 스냅 (훅훅 넘어가는 느낌) ────────────────────────────
+   proximity = 경계 "근처"에서만 자석처럼 붙음.
+   mandatory 로 바꾸면 무조건 스냅되지만, 화면보다 긴 섹션(01·04)의
+   아랫부분을 못 읽게 되므로 쓰지 말 것.
+   ⚠️ 끄고 싶으면 아래 html{...} 한 줄만 지우면 원복됨. */
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+.bz-sec{scroll-snap-align:start;scroll-snap-stop:normal}
+/* 내용이 화면보다 긴 섹션은 스냅에서 제외 — 중간이 잘려 보이는 것 방지 */
+@media (max-height:820px){
+  .bz-why,.bz-benefit{scroll-snap-align:none}
+}
+/* 접근성: 모션 최소화 설정 사용자는 스냅 해제 */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-snap-type:none}
+}
+
+/* 폴드 영역도 배경 교대 흐름을 잇는다 */
+.bz-foldcue{border-top:1px solid #e9edf2}
+.bz-folded>*:first-child{border-top:1px solid #e9edf2}
+
+@media(max-width:900px){
+  /* 모바일은 100vh 고정이 오히려 답답 — 내용만큼 쓰되 위아래 숨 공간을 크게 */
+  .bz-sec{min-height:auto;padding:76px 20px;align-items:flex-start}
+  .bz-hero{min-height:100svh;align-items:center}
+  .bz-num{top:26px;right:20px;font-size:11px}
+}
+
 
 /* scroll cue */
 .bz-scrollcue{position:absolute;bottom:24px;left:50%;display:flex;flex-direction:column;align-items:center;gap:3px;color:#64748b;font-size:13px;font-weight:600;animation:bzbob 1.8s ease-in-out infinite}
