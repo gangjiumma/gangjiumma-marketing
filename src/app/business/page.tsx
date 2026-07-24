@@ -26,6 +26,10 @@ import {
   Search,
   Users,
   MessageCircle,
+  Megaphone,
+  LayoutDashboard,
+  MessageSquare,
+  Store,
 } from "lucide-react";
 import Link from "next/link";
 import FadeInSection from "@/components/FadeInSection";
@@ -77,6 +81,8 @@ const PHOTO = {
 
 export default function BusinessPage() {
   const [showIntro, setShowIntro] = useState(false);
+  // 대시보드 상세 섹션 접힘/펼침. 기본 접힘 — 프로그램이 주인공이 되지 않게.
+  const [dashOpen, setDashOpen] = useState(false);
 
   // ─── 인트로(IntroChecklist) 노출 정책: 주 1회 ───────────────
   // 이번 주에 이미 봤으면(완주 or 닫음) 스킵, 새 주(월~일)가 되면 자동 재노출.
@@ -139,338 +145,553 @@ export default function BusinessPage() {
       {/* ───────── 1 · HERO ───────── */}
       <Hero />
 
-      {/* ───────── 2 · 결제 ───────── */}
-      <ProblemSolution
-        num="02"
-        problem={{
-          eyebrow: "이런 고민 있으셨죠",
-          title: (
-            <>
-              예약과 결제, 고객 관리가
-              <br />
-              서로 따로 움직입니다.
-            </>
-          ),
-          visual: <PayProblem />,
-        }}
-        solution={{
-          eyebrow: "AnimAI Biz는",
-          title: (
-            <>
-              결제부터 정산까지
-              <br />
-              <span className="bz-accent">한 화면에서</span> 끝납니다.
-            </>
-          ),
-          body: (
-            <>
-              <b>토스 단말기와 연동</b>되어, 결제하면 매출과 이용권 차감까지 대시보드에 자동으로
-              기록됩니다.
-            </>
-          ),
-          visual: <PaySolution />,
-        }}
-      />
-
-      {/* ───────── 2.5 · 앱 광고 노출 (어디에 광고?) ───────── */}
-      <ProblemSolution
-        problem={{
-          eyebrow: "이런 고민 있으셨죠",
-          title: (
-            <>
-              인스타·네이버·카페…
-              <br />
-              <span className="bz-probac">어디에</span> 광고해야 할까요?
-            </>
-          ),
-          visual: <AdChannelProblem />,
-        }}
-        solution={{
-          eyebrow: "AnimAI Biz는",
-          title: (
-            <>
-              100% 반려인이 보는 앱에
-              <br />
-              <span className="bz-accent">자동으로 노출</span>됩니다.
-            </>
-          ),
-          body: (
-            <>
-              대시보드를 쓰는 것만으로 <b>앱 안에 업체가 노출되고 광고가 집행</b>됩니다. 강아지·고양이
-              보호자만 모인 곳에서 <b>평생 무료로</b>.
-            </>
-          ),
-          visual: <AdExposeSolution />,
-        }}
-        note="* 수도권 기준 매일 500명 이상이 접속해 우리 동네 업체를 찾고 있어요."
-      />
-
-      {/* ───────── 3 · 알림장 ───────── */}
-      <ProblemSolution
-        num="03"
-        surface
-        problem={{
-          eyebrow: "이런 고민 있으셨죠",
-          title: (
-            <>
-              사진 찍고, 알림장 쓰고,
-              <br />
-              카톡으로 <span className="bz-probac">매번 직접</span> 보내고…
-            </>
-          ),
-          visual: <TalkProblem />,
-        }}
-        solution={{
-          eyebrow: "AnimAI Biz는",
-          title: (
-            <>
-              사진만 올리면,
-              <br />
-              <span className="bz-accent">알림장이 완성</span>됩니다.
-            </>
-          ),
-          body: (
-            <>
-              AI가 알림장을 작성하고, 전송 한 번으로 <b>고객별 알림장 페이지</b>가 자동으로
-              생성·전달됩니다.
-            </>
-          ),
-          visual: <TalkSolution />,
-        }}
-      />
-
-      {/* ───────── 4 · 마케팅 ───────── */}
-      <ProblemSolution
-        num="04"
-        problem={{
-          eyebrow: "이런 고민 있으셨죠",
-          title: (
-            <>
-              광고는 올려야 하는데…
-              <br />
-              <span className="bz-probac">어떤 내용</span>으로 만들지.
-            </>
-          ),
-          visual: <MktProblem />,
-        }}
-        solution={{
-          eyebrow: "AnimAI Biz는",
-          title: (
-            <>
-              우리 동네 데이터로,
-              <br />
-              <span className="bz-accent">AI가 대신</span> 만듭니다.
-            </>
-          ),
-          body: (
-            <>
-              동네 고객의 수요 통계를 바탕으로 <b>광고·인스타 게시글</b>은 물론, 이벤트와 한 달 운영
-              계획까지 제안합니다.
-            </>
-          ),
-          visual: <MktSolution />,
-        }}
-      />
-
-      {/* ───────── 5 · 앱 고객 혜택 ───────── */}
-      <section className="bz-sec bz-surface" id="bz-s5">
-        <span className="bz-num">05 / 06</span>
-        <div className="bz-wrap bz-grid2">
-          <FadeInSection>
-            <div className="bz-appphone">
-              <div className="bz-appnotch" />
-              <div className="bz-appscreen">
-                <ImgFade
-                  images={PHOTO.app}
-                  className="bz-phfade"
-                  imgClassName="bz-fadeimg"
-                  alt="AnimAI 앱 화면 — 예약·고객·매출 관리"
-                />
-              </div>
-            </div>
-          </FadeInSection>
-          <div>
-            <FadeInSection>
-              <span className="bz-eyebrow">AnimAI 앱 고객이라면</span>
-            </FadeInSection>
-            <FadeInSection delay={100}>
-              <h2 className="bz-h2">
-                고객이 앱을 쓰면,
-                <br />
-                운영이 한층 <span className="bz-accent">수월해집니다.</span>
-              </h2>
-            </FadeInSection>
-            <div className="bz-benefits">
-              {[
-                {
-                  Icon: QrCode,
-                  h: "QR 포인트 적립",
-                  p: "방문 시 QR 한 번으로 Paw 포인트가 쌓여 재방문을 부릅니다.",
-                },
-                {
-                  Icon: Ticket,
-                  h: "이용권·구매 이력",
-                  p: "잔여 횟수와 내역이 고객 앱에 그대로 표시됩니다.",
-                },
-                {
-                  Icon: Bell,
-                  h: "다음 일정 자동 알림",
-                  p: "미용 주기·다음 예약을 앱이 먼저 안내합니다.",
-                },
-                {
-                  Icon: BookHeart,
-                  h: "알림장 기록 보관",
-                  p: "보낸 알림장이 고객의 일기장에 추억으로 쌓입니다.",
-                },
-                {
-                  Icon: Bot,
-                  h: "문의 AI 1차 응대",
-                  p: "고객 문의에 AI가 먼저 응대해 놓치지 않습니다.",
-                },
-              ].map((d, i) => (
-                <FadeInSection key={i} delay={120 + i * 70}>
-                  <div className="bz-bcard">
-                    <div className="bz-bic">
-                      <d.Icon size={18} color="#3b82f6" />
-                    </div>
-                    <div>
-                      <div className="bz-bh">{d.h}</div>
-                      <div className="bz-bp">{d.p}</div>
-                    </div>
-                  </div>
-                </FadeInSection>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── 6 · 요금제 + 무료 + CTA ───────── */}
-      <section className="bz-sec bz-plans" id="bz-s6">
-        <span className="bz-num">06 / 06</span>
+      {/* ───────── 1 · 왜 만들었나 (고객 요청 → 사장님 만남) ───────── */}
+      <section className="bz-sec bz-why">
+        <span className="bz-num">01 / 09</span>
         <div className="bz-wrap">
-          <div className="bz-center">
-            <FadeInSection>
-              <span className="bz-eyebrow bz-warm">요금제</span>
-            </FadeInSection>
-            <FadeInSection delay={100}>
-              <h2 className="bz-h2">
-                지금 시작하면, <span className="bz-free">전부 무료입니다.</span>
-              </h2>
-            </FadeInSection>
-          </div>
-          <FadeInSection delay={150}>
-            <div className="bz-freebar">
-              <Gift size={22} color="#ff6b35" style={{ flex: "none" }} />
-              <span>
-                <b>출시 기념</b> — 라이트플랜 <b>평생 무료</b>(원가 월 <s>9,900원</s>) +{" "}
-                <b>14일간 베이직 플랜 무료 체험</b>. 유료 플랜은 지금 <b>출시 기념 50% 할인가</b>로
-                시작하실 수 있어요. 무료체험 이후 원하실 경우 카드결제 후 원하는 플랜을 이용하실 수 있어요.
+          <FadeInSection>
+            <div className="bz-samehead">
+              <span className="bz-eyebrow">
+                <MessageCircle size={13} style={{ verticalAlign: "-2px" }} /> 애니마이 유저가 가장 많이 요청한 것
               </span>
+              <h2 className="bz-h2">왜 사장님 버전을 만들었나요?</h2>
             </div>
-            <div className="bz-ptable">
-              <div className="bz-pcard">
-                <span className="bz-badge bz-bwarm">출시 기념</span>
-                <div className="bz-pn">라이트</div>
-                <div className="bz-pp">
-                  <span className="bz-was">9,900원</span>
-                  <span className="bz-free">무료</span>
-                </div>
-                <div className="bz-pu">평생 무료 🎉</div>
-                <div className="bz-pd">
-                  예약·고객 관리
-                  <br />
-                  토스 단말기 결제·매출
-                  <br />
-                  예약 확정·취소 알림톡
-                  <br />
-                  시·구 단위 입점 노출
-                  <br />
-                  앱 포인트 사용 · 수취
-                </div>
+          </FadeInSection>
+
+          <FadeInSection delay={100}>
+            <div className="bz-whyquotes">
+              <div className="bz-whyq">
+                <span className="bz-whyqnum">1</span>
+                <span>
+                  “동네 좋은 미용실·유치원 <b>추천</b> 받고 싶어요”
+                </span>
               </div>
-              <div className="bz-pcard">
-                <div className="bz-pn">베이직</div>
-                <div className="bz-pp">
-                  <span className="bz-wasprice">29,900원</span>
-                  <span className="bz-salerow">
-                    <span className="bz-saletag">50%</span>
-                    <span className="bz-price">14,950원</span>
-                  </span>
-                </div>
-                <div className="bz-pu">하루 500원 꼴</div>
-                <div className="bz-pd">
-                  라이트 +<br />
-                  AI 알림장 · 알림톡 (무제한)
-                  <br />
-                  AI 문의 자동응답 (무제한)
-                  <br />
-                  앱사용 할인쿠폰 발행
-                </div>
-              </div>
-              <div className="bz-pcard bz-hot">
-                <span className="bz-badge">추천</span>
-                <div className="bz-pn">프로</div>
-                <div className="bz-pp">
-                  <span className="bz-wasprice">59,900원</span>
-                  <span className="bz-salerow">
-                    <span className="bz-saletag">50%</span>
-                    <span className="bz-price">29,950원</span>
-                  </span>
-                </div>
-                <div className="bz-pu">하루 1,000원 꼴</div>
-                <div className="bz-pd">
-                  라이트·베이직 +<br />
-                  AI 광고 콘텐츠 (무제한)
-                  <br />
-                  고객이 알려주는 트렌드 리포트 (미용·유치원·호텔)
-                  <br />
-                  AnimAI 앱 광고 (우리동네·주3)
-                </div>
-              </div>
-              <div className="bz-pcard bz-soon">
-                <span className="bz-badge bz-bsoon">출시 예정</span>
-                <div className="bz-pn">맥스</div>
-                <div className="bz-pp">
-                  <span className="bz-wasprice">79,900원</span>
-                  <span className="bz-salerow">
-                    <span className="bz-saletag">50%</span>
-                    <span className="bz-price">39,950원</span>
-                  </span>
-                </div>
-                <div className="bz-pu">하루 1,300원 꼴</div>
-                <div className="bz-pd">
-                  라이트·베이직·프로 +<br />
-                  전담 AI 에이전트
-                  <br />
-                  매일 영업·매출 보고
-                  <br />
-                  AnimAI 앱 광고 (전국·주5)
-                </div>
+              <div className="bz-whyq">
+                <span className="bz-whyqnum">2</span>
+                <span>
+                  “이용권 내역·알림장 내용이 <b>틀릴 때가 많고</b>, 카톡으로 받으니 불편해요”
+                </span>
               </div>
             </div>
           </FadeInSection>
-          <FadeInSection delay={250}>
-            <div className="bz-center" style={{ marginTop: 36 }}>
-              <div className="bz-ctarow">
-                <a
-                  href={APPLY_URL}
-                  className="bz-btn bz-btnlg"
-                >
-                  [출시기념] 평생 무료로 시작하기 <ArrowRight size={18} />
-                </a>
-                <Link className="bz-btndemo bz-btndemolg" href="/demo">
-                  <Play size={18} /> 데모 체험하기
-                </Link>
-                <Link className="bz-btn2" href="/plans">
-                  요금제 자세히 보기 <ArrowRight size={16} />
-                </Link>
+
+          <FadeInSection delay={200}>
+            <div className="bz-whydiv">
+              <span>그래서 두 달간 사장님들을 만나뵀습니다</span>
+            </div>
+            <p className="bz-whyfind">
+              최선을 다하는 사장님임에도 <b>고객 만족이 떨어지는 이유</b>가 있었습니다.
+            </p>
+          </FadeInSection>
+
+          <div className="bz-whycards">
+            {LEAD_FINDINGS.map((f, i) => (
+              <FadeInSection key={f.tag} delay={280 + i * 110}>
+                <div className="bz-whycard">
+                  <span className="bz-whycardic">
+                    <f.Icon size={17} />
+                  </span>
+                  <div className="bz-whycardtag">{f.tag}</div>
+                  <div className="bz-whycardbody">{f.body}</div>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+
+          <FadeInSection delay={640}>
+            <p className="bz-whyend">
+              <Sparkles size={15} /> 사장님들의 문제를 해결하고, 고객 만족을 위해
+              <b> AnimAI Biz를 만들었습니다.</b>
+            </p>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ───────── 2 · 같은 고객 (카드 4/7) ───────── */}
+      <section className="bz-sec bz-same">
+        <span className="bz-num">02 / 09</span>
+        <div className="bz-wrap">
+          <FadeInSection>
+            <div className="bz-samehead">
+              <span className="bz-eyebrow">AnimAI는</span>
+              <h2 className="bz-h2">
+                모든 반려인의 반려생활을 만드는
+                <br />
+                <span className="bz-accent">AI 플랫폼</span>입니다.
+              </h2>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={120}>
+            <div className="bz-samerow">
+              <div className="bz-samecard">
+                <span className="bz-sameic">
+                  <Store size={20} />
+                </span>
+                <div className="bz-samelabel">사장님</div>
               </div>
-              <p className="bz-finalnote">앱 계정으로 신청하시면, 1~2일 검수 후 문자로 안내드립니다.</p>
+              <div className="bz-samelink">
+                <Heart size={18} />
+                <span>같은 고객</span>
+              </div>
+              <div className="bz-samecard">
+                <span className="bz-sameic">
+                  <PawPrint size={20} />
+                </span>
+                <div className="bz-samelabel">AnimAI</div>
+              </div>
+            </div>
+            <p className="bz-samesub">
+              사장님과 AnimAI는 <b>같은 고객(= 반려인)</b>을 바라봅니다.
+            </p>
+          </FadeInSection>
+
+          <FadeInSection delay={240}>
+            <div className="bz-samebox">
+              사장님의 어려움을 <b>AI로 먼저 풀어드리는 것</b>,
+              <br />
+              그것이 고객에게 <b>좋은 업체</b>를 경험하게 하는 길이라고 생각했습니다.
             </div>
           </FadeInSection>
         </div>
       </section>
+
+      {/* ───────── 3 · 3가지 솔루션 (카드 5/7) ───────── */}
+      <section className="bz-sec bz-surface bz-sol3">
+        <span className="bz-num">03 / 09</span>
+        <div className="bz-wrap">
+          <FadeInSection>
+            <div className="bz-samehead">
+              <span className="bz-eyebrow">그래서, 이렇게</span>
+              <h2 className="bz-h2">솔루션을 제공합니다.</h2>
+            </div>
+          </FadeInSection>
+
+          <div className="bz-sol3grid">
+            {SOL3.map((it, i) => (
+              <FadeInSection key={it.title} delay={i * 120}>
+                <div className="bz-sol3card">
+                  <span className="bz-sol3num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="bz-sol3ic">
+                    <it.Icon size={19} />
+                  </span>
+                  <h3 className="bz-sol3title">{it.title}</h3>
+                  <p className="bz-sol3body">{it.body}</p>
+                  {it.note && <p className="bz-sol3note">{it.note}</p>}
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+
+          <FadeInSection delay={380}>
+            <div className="bz-sol3end">
+              고객은 더 편하게 <b>좋은 업체</b>를 만나고,
+              <br />
+              사장님은 <b>본업</b>에 더 집중하게 됩니다.
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ───────── 4 · 지금 입점하시면 두 가지 혜택 ─────────
+          홍보(❶)로 들어와서 대시보드(❷)를 '덤'으로 만나게 하는 지점.
+          프로그램이 주인공이 아니라 입점의 부가 혜택으로 읽히도록 순서 고정. */}
+      <section className="bz-sec bz-benefit">
+        <span className="bz-num">04 / 09</span>
+        <div className="bz-wrap">
+          <FadeInSection>
+            <div className="bz-samehead">
+              <span className="bz-eyebrow">지금 입점하시면</span>
+              <h2 className="bz-h2">
+                <span className="bz-accent">두 가지</span>를 평생 무료로 드립니다.
+              </h2>
+            </div>
+          </FadeInSection>
+
+          {/* 혜택 ❶ — 앱 노출 */}
+          <FadeInSection delay={120}>
+            <div className="bz-bfrow">
+              <div className="bz-bftext">
+                <span className="bz-bfnum">혜택 1</span>
+                <h3 className="bz-bftitle">
+                  평생 앱 내 <span className="bz-accent">무료 노출</span>
+                </h3>
+                <p className="bz-bfdesc">
+                  반려인만 모인 앱에서 우리 가게가 검색·추천되고,
+                  <b> 고객 문의와 예약까지</b> 바로 연결됩니다.
+                </p>
+                <div className="bz-bfchips">
+                  <span className="bz-bfchip">앱 내 노출</span>
+                  <span className="bz-bfchip">고객 문의</span>
+                  <span className="bz-bfchip">예약 연결</span>
+                </div>
+              </div>
+              <div className="bz-bfvis">
+                <AdExposeSolution />
+              </div>
+            </div>
+          </FadeInSection>
+
+          {/* 혜택 ❷ — 대시보드 */}
+          <FadeInSection delay={200}>
+            <div className="bz-bfrow bz-bfrev">
+              <div className="bz-bftext">
+                <span className="bz-bfnum">혜택 2</span>
+                <h3 className="bz-bftitle">
+                  AI 솔루션 대시보드 <span className="bz-accent">평생 무료</span>
+                </h3>
+                <p className="bz-bfdesc">
+                  예약·결제·고객관리를 한 페이지에서.
+                  <b> 지금 쓰시던 방식은 그대로</b> 두셔도 됩니다.
+                </p>
+                <div className="bz-bfchips">
+                  <span className="bz-bfchip">예약 관리</span>
+                  <span className="bz-bfchip">토스 결제</span>
+                  <span className="bz-bfchip">고객 관리</span>
+                  <span className="bz-bfchip">AI 마케팅</span>
+                </div>
+              </div>
+              <div className="bz-bfvis">
+                <HeroSolution />
+              </div>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={300}>
+            <div className="bz-bfcta">
+              <a href={APPLY_URL} className="bz-btn bz-btnlg">
+                무료로 입점하기 <ArrowRight size={18} />
+              </a>
+              <Link className="bz-btndemo bz-btndemolg" href="/demo">
+                <Play size={18} /> 데모 체험하기
+              </Link>
+            </div>
+            <p className="bz-bfnote">
+              기존 프로그램에서 데이터 이관을 원하시면 <b>cs@vitanima.kr</b> 로 문의해 주세요.
+            </p>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ───────── 대시보드 상세 (접힘) ─────────
+          대시보드를 '펼쳐야 보이는 것'으로 두어, 프로그램이 주인공이 아니라
+          입점의 부가 혜택으로 읽히게 한다. */}
+      <section className="bz-foldcue">
+        <div className="bz-wrap bz-center">
+          <p className="bz-foldq">AI 대시보드에 대해 더 알고 싶으신가요?</p>
+          <button
+            type="button"
+            className="bz-foldbtn"
+            onClick={() => setDashOpen((v) => !v)}
+            aria-expanded={dashOpen}
+          >
+            {dashOpen ? "접기" : "대시보드 자세히 보기"}
+            <ChevronDown size={18} className={dashOpen ? "bz-foldrot" : ""} />
+          </button>
+        </div>
+      </section>
+
+      {dashOpen && (
+        <div className="bz-folded">
+        {/* ───────── 5 · 결제 ───────── */}
+        <ProblemSolution
+          num="05"
+          problem={{
+            eyebrow: "이런 고민 있으셨죠",
+            title: (
+              <>
+                예약과 결제, 고객 관리가
+                <br />
+                서로 따로 움직입니다.
+              </>
+            ),
+            visual: <PayProblem />,
+          }}
+          solution={{
+            eyebrow: "AnimAI Biz는",
+            title: (
+              <>
+                결제부터 정산까지
+                <br />
+                <span className="bz-accent">한 화면에서</span> 끝납니다.
+              </>
+            ),
+            body: (
+              <>
+                <b>토스 단말기와 연동</b>되어, 결제하면 매출과 이용권 차감까지 대시보드에 자동으로
+                기록됩니다.
+              </>
+            ),
+            visual: <PaySolution />,
+          }}
+        />
+
+        {/* ───────── 6 · 알림장 ───────── */}
+        <ProblemSolution
+          num="06"
+          surface
+          problem={{
+            eyebrow: "이런 고민 있으셨죠",
+            title: (
+              <>
+                사진 찍고, 알림장 쓰고,
+                <br />
+                카톡으로 <span className="bz-probac">매번 직접</span> 보내고…
+              </>
+            ),
+            visual: <TalkProblem />,
+          }}
+          solution={{
+            eyebrow: "AnimAI Biz는",
+            title: (
+              <>
+                사진만 올리면,
+                <br />
+                <span className="bz-accent">알림장이 완성</span>됩니다.
+              </>
+            ),
+            body: (
+              <>
+                AI가 알림장을 작성하고, 전송 한 번으로 <b>고객별 알림장 페이지</b>가 자동으로
+                생성·전달됩니다.
+              </>
+            ),
+            visual: <TalkSolution />,
+          }}
+        />
+
+        {/* ───────── 7 · 마케팅 ───────── */}
+        <ProblemSolution
+          num="07"
+          problem={{
+            eyebrow: "이런 고민 있으셨죠",
+            title: (
+              <>
+                광고는 올려야 하는데…
+                <br />
+                <span className="bz-probac">어떤 내용</span>으로 만들지.
+              </>
+            ),
+            visual: <MktProblem />,
+          }}
+          solution={{
+            eyebrow: "AnimAI Biz는",
+            title: (
+              <>
+                우리 동네 데이터로,
+                <br />
+                <span className="bz-accent">AI가 대신</span> 만듭니다.
+              </>
+            ),
+            body: (
+              <>
+                동네 고객의 수요 통계를 바탕으로 <b>광고·인스타 게시글</b>은 물론, 이벤트와 한 달 운영
+                계획까지 제안합니다.
+              </>
+            ),
+            visual: <MktSolution />,
+          }}
+        />
+
+        {/* ───────── 8 · 앱 고객 혜택 ───────── */}
+        <section className="bz-sec bz-surface" id="bz-s5">
+          <span className="bz-num">08 / 09</span>
+          <div className="bz-wrap bz-grid2">
+            <FadeInSection>
+              <div className="bz-appphone">
+                <div className="bz-appnotch" />
+                <div className="bz-appscreen">
+                  <ImgFade
+                    images={PHOTO.app}
+                    className="bz-phfade"
+                    imgClassName="bz-fadeimg"
+                    alt="AnimAI 앱 화면 — 예약·고객·매출 관리"
+                  />
+                </div>
+              </div>
+            </FadeInSection>
+            <div>
+              <FadeInSection>
+                <span className="bz-eyebrow">AnimAI 앱 고객이라면</span>
+              </FadeInSection>
+              <FadeInSection delay={100}>
+                <h2 className="bz-h2">
+                  고객이 앱을 쓰면,
+                  <br />
+                  운영이 한층 <span className="bz-accent">수월해집니다.</span>
+                </h2>
+              </FadeInSection>
+              <div className="bz-benefits">
+                {[
+                  {
+                    Icon: QrCode,
+                    h: "QR 포인트 적립",
+                    p: "방문 시 QR 한 번으로 Paw 포인트가 쌓여 재방문을 부릅니다.",
+                  },
+                  {
+                    Icon: Ticket,
+                    h: "이용권·구매 이력",
+                    p: "잔여 횟수와 내역이 고객 앱에 그대로 표시됩니다.",
+                  },
+                  {
+                    Icon: Bell,
+                    h: "다음 일정 자동 알림",
+                    p: "미용 주기·다음 예약을 앱이 먼저 안내합니다.",
+                  },
+                  {
+                    Icon: BookHeart,
+                    h: "알림장 기록 보관",
+                    p: "보낸 알림장이 고객의 일기장에 추억으로 쌓입니다.",
+                  },
+                  {
+                    Icon: Bot,
+                    h: "문의 AI 1차 응대",
+                    p: "고객 문의에 AI가 먼저 응대해 놓치지 않습니다.",
+                  },
+                ].map((d, i) => (
+                  <FadeInSection key={i} delay={120 + i * 70}>
+                    <div className="bz-bcard">
+                      <div className="bz-bic">
+                        <d.Icon size={18} color="#3b82f6" />
+                      </div>
+                      <div>
+                        <div className="bz-bh">{d.h}</div>
+                        <div className="bz-bp">{d.p}</div>
+                      </div>
+                    </div>
+                  </FadeInSection>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ───────── 9 · 요금제 + 무료 + CTA ───────── */}
+        <section className="bz-sec bz-plans" id="bz-s6">
+          <span className="bz-num">09 / 09</span>
+          <div className="bz-wrap">
+            <div className="bz-center">
+              <FadeInSection>
+                <span className="bz-eyebrow bz-warm">요금제</span>
+              </FadeInSection>
+              <FadeInSection delay={100}>
+                <h2 className="bz-h2">
+                  지금 시작하면, <span className="bz-free">전부 무료입니다.</span>
+                </h2>
+              </FadeInSection>
+            </div>
+            <FadeInSection delay={150}>
+              <div className="bz-freebar">
+                <Gift size={22} color="#ff6b35" style={{ flex: "none" }} />
+                <span>
+                  <b>출시 기념</b> — 라이트플랜 <b>평생 무료</b>(원가 월 <s>9,900원</s>) +{" "}
+                  <b>14일간 베이직 플랜 무료 체험</b>. 유료 플랜은 지금 <b>출시 기념 50% 할인가</b>로
+                  시작하실 수 있어요. 무료체험 이후 원하실 경우 카드결제 후 원하는 플랜을 이용하실 수 있어요.
+                </span>
+              </div>
+              <div className="bz-ptable">
+                <div className="bz-pcard">
+                  <span className="bz-badge bz-bwarm">출시 기념</span>
+                  <div className="bz-pn">라이트</div>
+                  <div className="bz-pp">
+                    <span className="bz-was">9,900원</span>
+                    <span className="bz-free">무료</span>
+                  </div>
+                  <div className="bz-pu">평생 무료 🎉</div>
+                  <div className="bz-pd">
+                    예약·고객 관리
+                    <br />
+                    토스 단말기 결제·매출
+                    <br />
+                    예약 확정·취소 알림톡
+                    <br />
+                    시·구 단위 입점 노출
+                  </div>
+                </div>
+                <div className="bz-pcard">
+                  <div className="bz-pn">베이직</div>
+                  <div className="bz-pp">
+                    <span className="bz-wasprice">29,900원</span>
+                    <span className="bz-salerow">
+                      <span className="bz-saletag">50%</span>
+                      <span className="bz-price">14,950원</span>
+                    </span>
+                  </div>
+                  <div className="bz-pu">하루 500원 꼴</div>
+                  <div className="bz-pd">
+                    라이트 +<br />
+                    AI 알림장
+                    <br />
+                    AI 문의 자동응답
+                    <br />
+                    할인쿠폰 발행
+                  </div>
+                </div>
+                <div className="bz-pcard bz-hot">
+                  <span className="bz-badge">추천</span>
+                  <div className="bz-pn">프로</div>
+                  <div className="bz-pp">
+                    <span className="bz-wasprice">59,900원</span>
+                    <span className="bz-salerow">
+                      <span className="bz-saletag">50%</span>
+                      <span className="bz-price">29,950원</span>
+                    </span>
+                  </div>
+                  <div className="bz-pu">하루 1,000원 꼴</div>
+                  <div className="bz-pd">
+                    라이트·베이직 +<br />
+                    AI 광고 콘텐츠 (무제한)
+                    <br />
+                    반려동물 트렌드 리포트
+                    <br />
+                    AnimAI 앱 광고 (시도·주3)
+                  </div>
+                </div>
+                <div className="bz-pcard bz-soon">
+                  <span className="bz-badge bz-bsoon">출시 예정</span>
+                  <div className="bz-pn">맥스</div>
+                  <div className="bz-pp">
+                    <span className="bz-wasprice">79,900원</span>
+                    <span className="bz-salerow">
+                      <span className="bz-saletag">50%</span>
+                      <span className="bz-price">39,950원</span>
+                    </span>
+                  </div>
+                  <div className="bz-pu">하루 1,300원 꼴</div>
+                  <div className="bz-pd">
+                    라이트·베이직·프로 +<br />
+                    전담 AI 에이전트
+                    <br />
+                    매일 영업·매출 보고
+                    <br />
+                    AnimAI 앱 광고 (전국·주5)
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+            <FadeInSection delay={250}>
+              <div className="bz-center" style={{ marginTop: 36 }}>
+                <div className="bz-ctarow">
+                  <a
+                    href={APPLY_URL}
+                    className="bz-btn bz-btnlg"
+                  >
+                    [출시기념] 평생 무료로 시작하기 <ArrowRight size={18} />
+                  </a>
+                  <Link className="bz-btndemo bz-btndemolg" href="/demo">
+                    <Play size={18} /> 데모 체험하기
+                  </Link>
+                  <Link className="bz-btn2" href="/plans">
+                    요금제 자세히 보기 <ArrowRight size={16} />
+                  </Link>
+                </div>
+                <p className="bz-finalnote">앱 계정으로 신청하시면, 1~2일 검수 후 문자로 안내드립니다.</p>
+              </div>
+            </FadeInSection>
+          </div>
+        </section>        </div>
+      )}
+
     </>
   );
 }
@@ -497,190 +718,74 @@ const LEAD_FINDINGS = [
   },
 ];
 
-const LEAD_STEP_MS = 1000; // 카드 등장 간격
-const LEAD_READ_MS = 9000; // 마지막 카드 등장 후 읽는 시간 → 총 3s + 9s = 12s
+const LEAD_READ_MS = 9000;
+
+// 카드 5/7 — "그래서, 이렇게 솔루션을 제공합니다"
+// 순서가 중요: ①홍보(진입 이유) → ②운영(대시보드 첫 등장) → ③의견(함께 만든다)
+const SOL3 = [
+  {
+    Icon: Megaphone,
+    title: "광고 · 팔로우 개척",
+    body: "앱에서 AI로 검색되고 노출되어, 고객이 우리 가게를 만나는 문턱을 낮춥니다.",
+  },
+  {
+    Icon: LayoutDashboard,
+    title: "AI 운영 솔루션",
+    body: "예약·결제·마케팅을 따로 하던 일을 한 페이지에서. 무료 AI 대시보드로 모았습니다.",
+    note: "* AI 기능 이용 비용만 소정 금액 별도",
+  },
+  {
+    Icon: MessageSquare,
+    title: "의견 청취",
+    body: "사장님의 의견과 요청을 받아, 서비스와 프로그램을 함께 만들어 갑니다.",
+  },
+]; // 마지막 카드 등장 후 읽는 시간 → 총 3s + 9s = 12s
 
 function Hero() {
-  const [phase, setPhase] = useState<"problem" | "solution">("problem");
-  // LEAD(고객 요청 훅) — 문제카드 3장 순차 등장 후 자동 fold. [다시 보기]로 재확장.
-  // "우리가 좋은 프로그램 만들었다"(공급 시점) → "고객이 요청하고, 사장님 현장에서
-  // 원인을 발견했다"(수요 시점) 로 전환. 실제 콜 응답률이 올라간 프레임.
-  const [leadOpen, setLeadOpen] = useState(true);
-  const [leadDismissed, setLeadDismissed] = useState(false); // 유저가 직접 닫았으면 자동 재개 안 함
-  const [leadStep, setLeadStep] = useState(0); // 0 → 1 → 2 → 3 (등장한 카드 수)
-  const ref = useRef<HTMLElement>(null);
-  const timer = useRef<number | undefined>(undefined);
-  const leadTimer = useRef<number | undefined>(undefined);
-
-  // 카드 순차 등장 → 마지막 카드 후 LEAD_READ_MS 뒤 fold
-  useEffect(() => {
-    if (!leadOpen || leadDismissed) return;
-    const timers: number[] = [];
-    LEAD_FINDINGS.forEach((_, i) => {
-      timers.push(
-        window.setTimeout(() => setLeadStep(i + 1), LEAD_STEP_MS * (i + 1))
-      );
-    });
-    leadTimer.current = window.setTimeout(
-      () => setLeadOpen(false),
-      LEAD_STEP_MS * LEAD_FINDINGS.length + LEAD_READ_MS
-    );
-    timers.push(leadTimer.current);
-    return () => timers.forEach((t) => window.clearTimeout(t));
-  }, [leadOpen, leadDismissed]);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setPhase("problem");
-          window.clearTimeout(timer.current);
-          timer.current = window.setTimeout(() => setPhase("solution"), 3500);
-        } else {
-          window.clearTimeout(timer.current);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      window.clearTimeout(timer.current);
-    };
-  }, []);
+  // 히어로는 '연결·홍보'만 말한다 (프로그램 언급 0).
+  // 이전의 phase 전환 / LEAD 자동 fold 로직은 제거 —
+  // "왜 만들었나"는 아래 01 섹션으로, 프로그램은 04 혜택❷ 이후로 이동.
 
   return (
-    <section className="bz-sec bz-hero" ref={ref}>
-      <span className="bz-num">01 / 06</span>
-      {/* LEAD는 그리드 밖 = 전체폭.
-          좌측 컬럼(bz-pstext)에 두면 폭에 눌려 세로로 길쭉해지고 CTA가 아래로 밀림 */}
-      <div className="bz-wrap bz-leadwrap">
-        {/* ─── LEAD · 고객 요청 훅 (8초 후 자동 fold) ─── */}
-        {leadOpen ? (
-          <div className="bz-hlead">
-            <div className="bz-hleadhead">
-              <h2 className="bz-hleadtitle">왜 사장님 버전을 만들었나요?</h2>
-              <button
-                type="button"
-                className="bz-hleadclose"
-                onClick={() => {
-                  setLeadOpen(false);
-                  setLeadDismissed(true);
-                }}
-              >
-                접기
-              </button>
-            </div>
-
-            <div className="bz-hleadtag">
-              <MessageCircle size={13} /> 애니마이 유저가 가장 많이 요청한 것
-            </div>
-            <div className="bz-hleadquotes">
-              <div className="bz-hleadq">
-                <span className="bz-hleadqnum">1</span>
-                “동네 좋은 미용실·유치원 <b>추천</b>받고 싶어요”
-              </div>
-              <div className="bz-hleadq">
-                <span className="bz-hleadqnum">2</span>
-                “이용권 내역·알림장 내용이 <b>틀릴때가 많고,</b> 카톡으로 받으니 불편해요”
-              </div>
-            </div>
-
-            {/* 발견 — 입점 사장님들을 만나며 알게 된 것 */}
-            <div className="bz-hleaddiv">
-              <span>그래서 두달간 사장님들을 만나뵀습니다</span>
-            </div>
-            <p className="bz-hleadfind">
-              최선을 다하는 사장님임에도 <b>고객 만족이 떨어지는 이유</b>가 있었습니다.
-            </p>
-
-            <div className="bz-hleadcards">
-              {LEAD_FINDINGS.map((f, i) => (
-                <div
-                  key={f.tag}
-                  className={`bz-hleadcard${leadStep > i ? " on" : ""}`}
-                >
-                  <span className="bz-hleadcardic">
-                    <f.Icon size={15} />
-                  </span>
-                  <div>
-                    <div className="bz-hleadcardtag">{f.tag}</div>
-                    <div className="bz-hleadcardbody">{f.body}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p
-              className={`bz-hleadconc${
-                leadStep >= LEAD_FINDINGS.length ? " on" : ""
-              }`}
-            >
-              <Sparkles size={14} /> 사장님들의 문제를 해결하고, 고객만족을 위해
-              <b> AnimAI Biz를 만들었습니다.</b>
-            </p>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="bz-hleadfold"
-            onClick={() => setLeadOpen(true)}
-            aria-label="고객 요청 다시 보기"
-          >
-            <MessageCircle size={13} />
-            <span className="bz-hleadfoldtxt">
-              왜 사장님 버전을 만들었나요? — 고객 요청에서 시작했습니다
-            </span>
-            <span className="bz-hleadfoldmore">다시 보기</span>
-          </button>
-        )}
-      </div>
-
+    <section className="bz-sec bz-hero">
+      <span className="bz-num">HERO</span>
       <div className="bz-wrap bz-grid2">
         <div className="bz-pstext">
           <div className="bz-bizbrand">
-            <div className="bz-eyebrow">사장님을 위한 운영 솔루션</div>
+            <div className="bz-eyebrow">반려동물 가게를 위한</div>
             <div className="bz-bizrow">
               <span className="bz-bizlogo">🐾</span>
               <span className="bz-bizname">AnimAI Biz</span>
-              <span className="bz-bizfree">무료</span>
+              <span className="bz-bizfree">입점 무료</span>
             </div>
-            <div className="bz-bizdesc">펫 유치원·미용실을 위한 올인원 관리 프로그램</div>
+            <div className="bz-bizdesc">우리 가게를 반려인 고객에게 알리는 가장 확실한 방법</div>
           </div>
-          <div className="bz-phasewrap bz-herowrap">
-            <div className={`bz-phase${phase === "problem" ? " on" : ""}`}>
-              <h1 className="bz-h1">
-                예약·결제·매출 관리,
-                <br />
-                <span className="bz-accent">몇 개의 프로그램</span>을 쓰세요?
-              </h1>
-            </div>
-            <div className={`bz-phase${phase === "solution" ? " on" : ""}`}>
-              {/* SEO: 한 페이지 h1은 1개 — 아래 문구는 h2로 (bz-h1 스타일 유지) */}
-              <h2 className="bz-h1">
-                이 모두를 <span className="bz-free">한 곳에</span> 모았습니다.
-                <br />
-                무료로 시작하세요.
-              </h2>
-            </div>
+          {/* ⚠️ 히어로는 '연결·홍보'만 말한다. 프로그램 얘기는 아래 '다리' 섹션부터.
+              (프로그램을 먼저 꺼내면 "대체 프로그램" 프레임에 갇혀 유입이 좁아짐) */}
+          <div className="bz-herowrap">
+            <h1 className="bz-h1">
+              <span className="bz-accent">AI로 아이를 키우는 반려인</span>이,
+              <br />
+              동네 가게를 찾고 있습니다.
+            </h1>
+            <p className="bz-herolead">
+              반려인이 <b>매일 아이에 대해 물어보고 대화하는 앱</b>에서 홍보하세요.
+            </p>
           </div>
           <div className="bz-herocta">
             <a href={APPLY_URL} className="bz-btn">
-              [출시기념] 평생 무료로 시작하기 <ArrowRight size={18} />
+              무료로 입점하기 <ArrowRight size={18} />
             </a>
             <Link className="bz-btndemo" href="/demo">
               <Play size={18} /> 데모 체험하기
             </Link>
           </div>
           <div className="bz-feats">
-            <span className="bz-featlabel">하나로 관리</span>
-            <span className="bz-feat">예약</span>
-            <span className="bz-feat">결제</span>
-            <span className="bz-feat">고객 관리</span>
-            <span className="bz-feat">매출</span>
-            <span className="bz-feat">AI 마케팅</span>
+            <span className="bz-featlabel">앱에서 노출</span>
+            <span className="bz-feat">AI 추천</span>
+            <span className="bz-feat">동네 검색</span>
+            <span className="bz-feat">업체 상세</span>
+            <span className="bz-feat">예약 연결</span>
           </div>
           <div className="bz-trust2">
             전국 <b>17,000곳</b> 펫 시설 등록 중
@@ -688,11 +793,10 @@ function Hero() {
         </div>
 
         <div className="bz-psvisual bz-herovis">
-          <div className={`bz-vis${phase === "problem" ? " on" : ""}`}>
-            <HeroProblem />
-          </div>
-          <div className={`bz-vis${phase === "solution" ? " on" : ""}`}>
-            <HeroSolution />
+          {/* 히어로 비주얼도 '연결·홍보' — 대시보드가 아니라 반려인이 보는 앱 화면.
+              (기존 HeroProblem/HeroSolution 은 아래 '다리' 섹션에서 계속 사용) */}
+          <div className="bz-vis on">
+            <HeroAppShot />
           </div>
         </div>
       </div>
@@ -967,7 +1071,7 @@ function ProblemSolution({
 
   return (
     <section className={`bz-sec bz-ps${surface ? " bz-surface" : ""}`} ref={ref}>
-      <span className="bz-num">{num ? `${num} / 06` : ""}</span>
+      <span className="bz-num">{num ? `${num} / 09` : ""}</span>
       <div className="bz-wrap bz-grid2">
         <div className="bz-pstext">
           <div className="bz-phasewrap">
@@ -1170,27 +1274,6 @@ function MktSolution() {
   );
 }
 
-// 앱 광고 노출 — 문제: 어디에 광고할지 (상표권 회피 위해 로고 대신 채널명 텍스트칩)
-function AdChannelProblem() {
-  return (
-    <div className="bz-snsmess">
-      <div className="bz-snsicon bz-insta">
-        <Camera size={24} color="#fff" />
-      </div>
-      <div className="bz-snsicon bz-band" style={{ background: "#03c75a" }}>
-        N
-      </div>
-      <div className="bz-snsicon bz-news" style={{ background: "#f97316" }}>
-        <Users size={22} color="#fff" />
-      </div>
-      <div className="bz-snsicon bz-yt" style={{ background: "#5f6368" }}>
-        <Search size={22} color="#fff" />
-      </div>
-      <div className="bz-snscenter">어디에 광고하지?</div>
-    </div>
-  );
-}
-
 // 앱 광고 노출 — 해결: 반려인이 실제로 보는 앱 화면 (자동 노출)
 function AdExposeSolution() {
   return (
@@ -1210,6 +1293,29 @@ function AdExposeSolution() {
           className="bz-adshot"
           imgClassName="bz-adfadeimg"
           alt="AnimAI 앱에서 업체가 노출되는 화면 — 홈·검색·상세"
+        />
+      </div>
+    </div>
+  );
+}
+
+// 히어로 전용 — 혜택❶의 AdExposeSolution 과 같은 앱 화면이지만 라벨을 달리해
+// 스크롤 시 같은 카드가 두 번 나오는 중복감을 줄인다.
+function HeroAppShot() {
+  return (
+    <div className="bz-mktsol">
+      <div className="bz-mktcard">
+        <span className="bz-mktic" style={{ background: "#fff1e8" }}>
+          <Search size={14} color="#f97316" />
+        </span>
+        반려인이 지금 보고 있는 화면
+      </div>
+      <div className="bz-adshotwrap">
+        <ImgFade
+          images={PHOTO.adexpose}
+          className="bz-adshot"
+          imgClassName="bz-adfadeimg"
+          alt="AnimAI 앱에서 반려인이 동네 업체를 찾는 화면"
         />
       </div>
     </div>
@@ -1496,6 +1602,102 @@ const BZ_CSS = `
 .bz-hero{flex-direction:column;justify-content:center;align-items:stretch}
 @media(max-width:900px){.bz-hero{justify-content:flex-start}}
 .bz-herowrap{margin:0}
+/* ── 01 왜 만들었나 (LEAD 섹션화) ── */
+.bz-whyquotes{display:flex;flex-direction:column;gap:12px;max-width:760px;margin:0 auto}
+.bz-whyq{position:relative;padding-left:30px;font-size:clamp(15px,1.9vw,17.5px);font-weight:700;color:#0f172a;line-height:1.6;word-break:keep-all}
+.bz-whyq b{color:#ff6b35}
+.bz-whyqnum{position:absolute;left:0;top:4px;width:21px;height:21px;border-radius:50%;background:#ff6b35;color:#fff;font-size:11.5px;font-weight:800;display:grid;place-items:center}
+.bz-whydiv{display:flex;align-items:center;gap:12px;margin:30px auto 14px;max-width:760px;font-size:12px;font-weight:800;color:#94a3b8}
+.bz-whydiv::before,.bz-whydiv::after{content:"";flex:1;height:1px;background:#e5e7eb}
+.bz-whyfind{text-align:center;font-size:clamp(15px,1.9vw,18px);font-weight:700;color:#0f172a;margin-bottom:22px;word-break:keep-all}
+.bz-whyfind b{color:#ff6b35}
+.bz-whycards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:0 auto}
+.bz-whycard{height:100%;background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px 18px;box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.bz-whycardic{width:36px;height:36px;border-radius:11px;background:#fff1e8;color:#ff6b35;display:grid;place-items:center;margin-bottom:12px}
+.bz-whycardtag{font-size:14.5px;font-weight:800;color:#0f172a;margin-bottom:5px;letter-spacing:-.02em}
+.bz-whycardbody{font-size:13.2px;line-height:1.6;color:#64748b;font-weight:500;word-break:keep-all}
+.bz-whyend{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:30px;text-align:center;font-size:clamp(14.5px,1.8vw,17px);color:#475569;font-weight:600;word-break:keep-all}
+.bz-whyend b{color:#0f172a;font-weight:900}
+.bz-whyend svg{color:#ff6b35;flex:none}
+
+/* ── 04 두 가지 혜택 ── */
+.bz-bfrow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:center;margin-bottom:56px}
+.bz-bfrev .bz-bftext{order:2}
+.bz-bfrev .bz-bfvis{order:1}
+.bz-bfnum{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:#ff6b35;border-radius:999px;padding:4px 12px;margin-bottom:14px}
+.bz-bftitle{font-size:clamp(21px,3vw,30px);font-weight:800;color:#0f172a;letter-spacing:-.03em;line-height:1.3;margin-bottom:14px}
+.bz-bfdesc{font-size:clamp(14px,1.8vw,16.5px);line-height:1.68;color:#64748b;font-weight:500;word-break:keep-all}
+.bz-bfdesc b{color:#0f172a;font-weight:800}
+.bz-bfchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.bz-bfchip{font-size:12.5px;font-weight:700;color:#ff6b35;background:#fff1e8;border:1px solid #ffe0cd;border-radius:999px;padding:6px 13px}
+.bz-bfvis{display:flex;justify-content:center}
+.bz-bfcta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.bz-bfnote{margin-top:18px;text-align:center;font-size:12.5px;color:#94a3b8;font-weight:500;word-break:keep-all}
+.bz-bfnote b{color:#64748b;font-weight:800}
+
+/* ── 대시보드 폴드 ── */
+.bz-foldcue{padding:56px 24px;background:#f8fafc;border-top:1px solid #e5e7eb}
+.bz-center{text-align:center}
+.bz-foldq{font-size:clamp(16px,2.1vw,20px);font-weight:800;color:#0f172a;margin-bottom:18px;letter-spacing:-.02em}
+.bz-foldbtn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #cbd5e1;border-radius:999px;padding:13px 26px;font-size:14.5px;font-weight:800;color:#334155;cursor:pointer;font-family:inherit;transition:.2s}
+.bz-foldbtn:hover{border-color:#ff6b35;color:#ff6b35}
+.bz-foldrot{transform:rotate(180deg);transition:transform .3s}
+.bz-folded{animation:bz-foldin .45s ease both}
+@keyframes bz-foldin{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+
+@media(max-width:900px){
+  .bz-whycards{grid-template-columns:1fr}
+  .bz-bfrow{grid-template-columns:1fr;gap:26px;margin-bottom:44px}
+  .bz-bfrev .bz-bftext{order:1}
+  .bz-bfrev .bz-bfvis{order:2}
+}
+
+/* 히어로 리드 — 프로그램 아닌 '연결·홍보' 문장 */
+.bz-herolead{margin-top:18px;font-size:clamp(15px,1.9vw,18px);line-height:1.6;color:#475569;font-weight:500;word-break:keep-all}
+.bz-herolead b{color:#0f172a;font-weight:800}
+
+/* ── 02 같은 고객 (카드 4/7) ── */
+.bz-samehead{text-align:center;margin-bottom:38px}
+.bz-samerow{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,44px);flex-wrap:wrap}
+.bz-samecard{display:flex;flex-direction:column;align-items:center;gap:10px;background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:22px 30px;box-shadow:0 10px 28px rgba(15,23,42,.06);min-width:132px}
+.bz-sameic{width:44px;height:44px;border-radius:13px;background:#fff1e8;color:#ff6b35;display:grid;place-items:center}
+.bz-samelabel{font-size:15px;font-weight:800;color:#0f172a}
+.bz-samelink{display:flex;flex-direction:column;align-items:center;gap:5px;color:#ff6b35;font-size:12.5px;font-weight:800}
+.bz-samesub{margin-top:20px;text-align:center;font-size:clamp(15px,1.9vw,18px);color:#475569;font-weight:500}
+.bz-samesub b{color:#0f172a;font-weight:800}
+.bz-samebox{margin:32px auto 0;max-width:720px;background:#ff6b35;color:#fff;border-radius:20px;padding:26px 30px;text-align:center;font-size:clamp(14.5px,1.8vw,17px);line-height:1.68;font-weight:600;box-shadow:0 18px 40px rgba(255,107,53,.22);word-break:keep-all}
+.bz-samebox b{font-weight:900}
+
+/* ── 03 3가지 솔루션 (카드 5/7) ── */
+.bz-sol3grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
+.bz-sol3card{position:relative;height:100%;background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:24px 22px 22px;box-shadow:0 10px 28px rgba(15,23,42,.05)}
+.bz-sol3num{position:absolute;top:20px;right:22px;font-size:13px;font-weight:900;color:#ffcdb8}
+.bz-sol3ic{width:40px;height:40px;border-radius:12px;background:#fff1e8;color:#ff6b35;display:grid;place-items:center;margin-bottom:14px}
+.bz-sol3title{font-size:17px;font-weight:800;color:#0f172a;margin-bottom:8px;letter-spacing:-.02em}
+.bz-sol3body{font-size:13.8px;line-height:1.62;color:#64748b;font-weight:500;word-break:keep-all}
+.bz-sol3note{margin-top:9px;font-size:11.5px;color:#94a3b8;font-weight:600}
+.bz-sol3end{margin:34px auto 0;max-width:760px;text-align:center;font-size:clamp(15px,1.9vw,18px);line-height:1.66;color:#475569;font-weight:600;word-break:keep-all}
+.bz-sol3end b{color:#ff6b35;font-weight:900}
+
+/* ── 다리 · 프로그램은 그대로 (카드 7/7) ── */
+.bz-bridge{background:linear-gradient(180deg,#fff,#fff7f2)}
+.bz-bridgehead{text-align:center;margin-bottom:34px}
+.bz-bridgesub{margin-top:16px;font-size:clamp(14.5px,1.8vw,17px);color:#64748b;font-weight:500;word-break:keep-all}
+.bz-bridgesub b{color:#0f172a;font-weight:800}
+.bz-bridgesteps{display:flex;flex-direction:column;gap:12px;max-width:640px;margin:0 auto}
+.bz-bridgestep{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #ffe0cd;border-radius:16px;padding:18px 20px;box-shadow:0 8px 24px rgba(255,107,53,.07)}
+.bz-bridgestep.on{border-color:#ff6b35;box-shadow:0 12px 30px rgba(255,107,53,.16)}
+.bz-bridgenum{flex:none;width:28px;height:28px;border-radius:9px;background:#f1f5f9;color:#64748b;font-size:14px;font-weight:900;display:grid;place-items:center}
+.bz-bridgestep.on .bz-bridgenum{background:#ff6b35;color:#fff}
+.bz-bridgetitle{font-size:15.5px;font-weight:800;color:#0f172a;margin-bottom:4px;letter-spacing:-.02em}
+.bz-bridgedesc{font-size:13px;color:#64748b;font-weight:500;line-height:1.55;word-break:keep-all}
+.bz-bridgenote{margin-top:24px;text-align:center;font-size:12.5px;color:#94a3b8;font-weight:500;word-break:keep-all}
+.bz-bridgenote b{color:#64748b;font-weight:800}
+@media(max-width:900px){
+  .bz-sol3grid{grid-template-columns:1fr}
+  .bz-samerow{gap:14px}
+  .bz-samecard{padding:18px 24px;min-width:112px}
+}
 .bz-bizbrand{margin-bottom:22px}
 .bz-bizrow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .bz-bizlogo{font-size:23px}
