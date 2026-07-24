@@ -23,7 +23,6 @@ import {
   TrendingUp,
   MapPin,
   CalendarDays,
-  Search,
   Users,
   MessageCircle,
   Megaphone,
@@ -1196,16 +1195,11 @@ function TalkProblem() {
   );
 }
 
-// 알림장 — 해결: 사장님 대시보드 알림장 화면 (브라우저 목업 = 가로 이미지 원 비율 맞춤)
+// 알림장 — 해결: 사장님 대시보드 알림장 화면
+// (브라우저 목업 껍데기 제거 — 옛 도메인 노출 + 불필요한 장식)
 function TalkSolution() {
   return (
-    <div className="bz-mktbrowser">
-      <div className="bz-mktbar">
-        <span className="bz-mktdot" />
-        <span className="bz-mktdot" />
-        <span className="bz-mktdot" />
-        <span className="bz-mkturl">gangji-manage.kr</span>
-      </div>
+    <div className="bz-shotcard">
       <ImgFade
         images={PHOTO.notice}
         className="bz-shotwrap"
@@ -1253,15 +1247,7 @@ function MktSolution() {
         "여름 모질관리 이벤트" 광고
         <span className="bz-mktstat">생성됨</span>
       </div>
-      <div className="bz-browser bz-mktbrowser">
-        <div className="bz-bar">
-          <i />
-          <i />
-          <i />
-          <span className="bz-url">
-            <BarChart3 size={11} style={{ verticalAlign: "-1px" }} /> 통계 · AI 마케팅
-          </span>
-        </div>
+      <div className="bz-shotcard">
         <ImgFade
           images={PHOTO.stat}
           className="bz-shotwrap"
@@ -1303,12 +1289,6 @@ function AdExposeSolution() {
 function HeroAppShot() {
   return (
     <div className="bz-mktsol">
-      <div className="bz-mktcard">
-        <span className="bz-mktic" style={{ background: "#fff1e8" }}>
-          <Search size={14} color="#f97316" />
-        </span>
-        반려인이 지금 보고 있는 화면
-      </div>
       <div className="bz-adshotwrap">
         <ImgFade
           images={PHOTO.adexpose}
@@ -1377,13 +1357,7 @@ function ImgFade({
 function DashboardMock({ images }: { images: string[] }) {
   const [allFailed, setAllFailed] = useState(false);
   return (
-    <div className="bz-browser">
-      <div className="bz-bar">
-        <i />
-        <i />
-        <i />
-        <span className="bz-url">gangji-manage.kr</span>
-      </div>
+    <div className="bz-shotcard">
       {!allFailed ? (
         <ImgFade
           images={images}
@@ -1586,6 +1560,24 @@ const BZ_CSS = `
 .bz-btndemo{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:17px;padding:16px 32px;border-radius:16px;cursor:pointer;text-decoration:none;transition:.15s;background:#3b82f6;color:#fff;box-shadow:0 8px 24px rgba(59,130,246,.30);border:none;font-family:inherit}
 .bz-btndemo:hover{background:#2563eb;transform:translateY(-1px)}
 .bz-btndemolg{font-size:18px;padding:18px 40px}
+/* CTA 두 버튼 시각 크기 맞추기
+   - 주황 .bz-btn 에만 margin-top:30px 이 있어 나란히 놓일 때 높이가 어긋남
+   - 글자 수 차이("무료로 입점하기 →" vs "▷ 데모 체험하기")로 파란 쪽이 커 보임
+     → 같은 행에 놓일 때는 두 버튼을 동일 규격 + 균등 분배로 고정 */
+.bz-herocta .bz-btn,.bz-bfcta .bz-btn{margin-top:0}
+.bz-herocta .bz-btn,.bz-herocta .bz-btndemo,
+.bz-bfcta .bz-btn,.bz-bfcta .bz-btndemo{
+  justify-content:center;font-size:17px;padding:16px 28px;line-height:1.2
+}
+@media(max-width:600px){
+  /* 모바일: 두 버튼을 같은 폭으로 반씩 — 크기 착시 제거 */
+  .bz-herocta,.bz-bfcta{gap:10px;flex-wrap:nowrap}
+  .bz-herocta .bz-btn,.bz-herocta .bz-btndemo,
+  .bz-bfcta .bz-btn,.bz-bfcta .bz-btndemo{
+    flex:1 1 0;min-width:0;font-size:15px;padding:15px 12px;gap:6px;white-space:nowrap
+  }
+}
+
 .bz-herocta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:30px}
 .bz-herocta .bz-btn{margin-top:0}
 @media(max-width:600px){.bz-btndemo{font-size:15px;padding:14px 26px}.bz-btndemolg{font-size:15px;padding:15px 28px}.bz-herocta{margin-top:24px}}
@@ -1927,6 +1919,7 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;scroll-padding-top:80px
 
 /* browser/dashboard */
 .bz-browser{background:#fff;border:1px solid #e8edf3;border-radius:16px;overflow:hidden;box-shadow:0 22px 56px rgba(15,23,42,.13)}
+.bz-shotcard{background:#fff;border:1px solid #e8edf3;border-radius:16px;overflow:hidden;box-shadow:0 22px 56px rgba(15,23,42,.13);width:100%}
 .bz-mktbrowser{width:100%}
 .bz-bar{background:#f1f5f9;padding:10px 13px;display:flex;gap:6px;align-items:center;border-bottom:1px solid #e8edf3}
 .bz-bar i{width:10px;height:10px;border-radius:50%;background:#cbd5e1}

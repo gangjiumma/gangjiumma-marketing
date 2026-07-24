@@ -41,6 +41,25 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.animai.kr" },
 };
 
+// ─────────────────────────────────────────────────────────────
+// 홈 전용 스크롤 스냅 — 섹션이 한 화면씩 딱 붙어 넘어가게 (business 와 동일 규격)
+//
+// ⚠️ globals.css 가 아니라 이 페이지 안에서만 적용한다.
+//    html{scroll-snap-type} 은 전역이라, globals 에 넣으면 약관·plans 같은
+//    긴 텍스트 페이지까지 스냅이 걸려 읽기가 망가진다.
+// ⚠️ HeroChat / HeroCinema 는 자체 슬라이드·영상 로직이 있어 스냅 대상에서 제외.
+// ⚠️ 끄고 싶으면 아래 html{...} 줄만 지우면 원복됨.
+// ─────────────────────────────────────────────────────────────
+const HOME_SNAP_CSS = `
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;scroll-padding-top:80px}
+@media(max-width:768px){html{scroll-padding-top:64px}}
+/* 스냅 대상은 클래스로 명시 — 컴포넌트가 내부에서 무엇을 렌더하든 영향받지 않게.
+   (main > section 같은 구조 의존 셀렉터는 HeroChat/HeroCinema 내부 마크업이
+    바뀌면 조용히 깨진다) */
+.snap-sec{scroll-snap-align:start;scroll-snap-stop:always}
+@media (prefers-reduced-motion:reduce){html{scroll-snap-type:none}}
+`;
+
 const DOWNLOAD_URL = "https://gangjiumma.github.io/gangjiumma_app_download/";
 
 // 앱 사용 흐름 4단계 (히어로 아래 간단 디렉팅)
@@ -81,37 +100,20 @@ const TOTAL_SIGNUPS = 6024;
 export default function Home() {
   return (
     <>
+      <style dangerouslySetInnerHTML={{ __html: HOME_SNAP_CSS }} />
       <ScrollProgressBar />
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 1. HERO — 영상 채팅 (내 아이를 아는 AE에게 물어보세요)   */}
       {/* ═════════════════════════════════════════════════════ */}
-      <HeroChat />
-
-      {/* ═════════════════════════════════════════════════════ */}
-      {/* 1-1. 리브랜딩 밴드 — SEO "강쥐엄마" 검색 자산 회수    */}
-      {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white py-6 md:py-8" aria-label="브랜드 안내">
-        <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
-          <div className="inline-flex items-center gap-2 flex-wrap justify-center px-4 py-2 rounded-full bg-brand-tint50 border border-brand-tint200 text-sm md:text-base font-medium text-ink-2">
-            <span aria-hidden>🐾</span>
-            <span>
-              <b className="text-brand font-black">AnimAI</b>
-              <span className="text-ink-3 font-normal"> (애니마이)</span>
-              <span className="mx-2 text-ink-3">·</span>
-              <span>
-                <b className="text-ink-1 font-bold">강쥐엄마</b>
-                <span className="text-ink-3 font-normal">의 새 이름이에요</span>
-              </span>
-            </span>
-          </div>
-        </div>
-      </section>
+      <div className="snap-sec">
+        <HeroChat />
+      </div>
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 1-2. HERO 합류 — 시네마 끝 → 다운로드 (카운터 유지)     */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="relative bg-white pt-16 md:pt-24 pb-20 md:pb-28">
+      <section className="snap-sec relative bg-white pt-16 md:pt-24 pb-20 md:pb-28">
         <div className="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
           {/* 사용 흐름 4단계 — 순차 페이드인 */}
           <FadeInSection>
@@ -159,7 +161,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 3. 차별점 — 우리 아이를 기억하는 AI                     */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-surface-subtle py-16 md:py-24">
+      <section className="snap-sec bg-surface-subtle py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-10 md:mb-14">
@@ -230,7 +232,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 3-2. 전환 다리 — AI 위에, 일상을 더 든든하게            */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white py-16 md:py-24">
+      <section className="snap-sec bg-white py-16 md:py-24">
         <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             <p className="text-sm md:text-base text-brand font-bold mb-3">AI로 시작되는 건강한 반려생활</p>
@@ -274,7 +276,7 @@ export default function Home() {
       {/* 4. 기록 ⭐ — 우리 아이의 하루하루를 기록해요 (특별 블록)  */}
       {/* ═════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 md:py-28 overflow-hidden"
+        className="snap-sec relative py-20 md:py-28 overflow-hidden"
         style={{ background: "linear-gradient(160deg, #3a2410 0%, #7a3b14 58%, #c14a12 100%)" }}
       >
         <div className="relative max-w-4xl mx-auto px-5 md:px-8 text-center text-white">
@@ -323,7 +325,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 5. 매일 쓰는 기능 — 산책·놀이·건강·예약                */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white py-16 md:py-24">
+      <section className="snap-sec bg-white py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
@@ -378,7 +380,7 @@ export default function Home() {
       {/* ═════════════════════════════════════════════════════ */}
       {/* 6. 동네·커뮤니티 — 혼자가 아니에요                       */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-brand-tint50 py-20 md:py-28">
+      <section className="snap-sec bg-brand-tint50 py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
@@ -425,39 +427,37 @@ export default function Home() {
             </FadeInSection>
           </div>
         </div>
-      </section>
 
-      {/* ═════════════════════════════════════════════════════ */}
-      {/* 7. Paw — 함께한 시간이 쌓여요                            */}
-      {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-white py-16 md:py-20">
-        <div className="max-w-3xl mx-auto px-5 md:px-8">
-          <FadeInSection>
-            <div className="bg-brand-tint50 rounded-3xl p-8 md:p-10 border border-brand-tint200 text-center">
-              <div className="w-12 h-12 rounded-2xl bg-white border border-brand-tint200 flex items-center justify-center mx-auto mb-4">
-                <PawPrint className="w-6 h-6 text-brand" strokeWidth={2.1} />
+          {/* Paw — 함께한 시간이 쌓여요 (동네·커뮤니티와 한 섹션으로 통합) */}
+          <div className="mt-10 md:mt-14 max-w-3xl mx-auto">
+            <FadeInSection>
+              <div className="bg-white rounded-3xl p-8 md:p-10 border border-brand-tint200 shadow-soft text-center">
+                <div className="w-12 h-12 rounded-2xl bg-brand-tint50 border border-brand-tint200 flex items-center justify-center mx-auto mb-4">
+                  <PawPrint className="w-6 h-6 text-brand" strokeWidth={2.1} />
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-2 leading-snug">
+                  함께한 시간이 쌓여요
+                </h3>
+                <p className="text-base text-ink-3 leading-relaxed">
+                  출석·산책·놀이·기록·퀴즈로 모은 <span className="text-brand font-bold">Paw(포)인트</span>,
+                  동네 업체·행사·상품 할인으로 쓸 수 있어요.
+                </p>
               </div>
-              <h3 className="text-xl md:text-2xl font-black text-ink-1 mb-2 leading-snug">
-                함께한 시간이 쌓여요
-              </h3>
-              <p className="text-base text-ink-3 leading-relaxed">
-                출석·산책·놀이·기록·퀴즈로 모은 <span className="text-brand font-bold">Paw(포)인트</span>,
-                동네 업체·행사·상품 할인으로 쓸 수 있어요.
-              </p>
-            </div>
-          </FadeInSection>
-        </div>
+            </FadeInSection>
+          </div>
       </section>
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 7-2. 감성 마무리 — 2016 시네마 (유한성·앞으로의 10년)   */}
       {/* ═════════════════════════════════════════════════════ */}
-      <HeroCinema />
+      <div className="snap-sec">
+        <HeroCinema />
+      </div>
 
       {/* ═════════════════════════════════════════════════════ */}
       {/* 8. 최종 CTA                                            */}
       {/* ═════════════════════════════════════════════════════ */}
-      <section className="bg-brand-tint50 py-24 md:py-32">
+      <section className="snap-sec bg-brand-tint50 py-24 md:py-32">
         <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
           <FadeInSection>
             <h2 className="text-3xl md:text-5xl font-black text-ink-1 tracking-tightest leading-tight">

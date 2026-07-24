@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Store, Compass } from "lucide-react";
+import { Store } from "lucide-react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,18 +27,10 @@ export default function Header() {
           AnimAI
         </Link>
 
-        {/* 우측 버튼 그룹 */}
+        {/* 우측 버튼 그룹
+            ⚠️ 펫페어 가이드(/pet-guide) 버튼은 제거됨 (2026.07). 지난 이벤트라 상시 노출 불필요.
+               페이지 자체는 살아있으므로 필요 시 배너·링크로 다시 연결하면 됨. */}
         <div className="flex items-center gap-2 md:gap-3">
-          {/* 펫페어 가이드 (/pet-guide) — 케이펫페어 수원 AI 부스 가이드 (지난 이벤트, 기록 유지) */}
-          <Link
-            href="/pet-guide"
-            aria-label="펫페어 가이드"
-            className="inline-flex items-center gap-1.5 px-3 md:px-5 py-2 md:py-2.5 rounded-3xl border border-brand bg-white text-brand text-sm md:text-base font-bold hover:bg-brand-tint50 transition-all duration-200"
-          >
-            <Compass size={17} strokeWidth={2.5} />
-            <span className="hidden sm:inline">펫페어 가이드</span>
-          </Link>
-
           {/* AnimAI Biz — 사장님 솔루션 입점 안내 (/business) */}
           <Link
             href="/business"
