@@ -57,6 +57,11 @@ html{scroll-snap-type:y mandatory;scroll-behavior:smooth;scroll-padding-top:80px
    (main > section 같은 구조 의존 셀렉터는 HeroChat/HeroCinema 내부 마크업이
     바뀌면 조용히 깨진다) */
 .snap-sec{scroll-snap-align:start;scroll-snap-stop:always}
+/* ⚠️ 푸터는 layout.tsx 에서 <main> 바깥에 렌더돼 스냅 대상이 아니었다.
+   mandatory 라 붙을 지점이 없으면 마지막 섹션으로 되튕겨 푸터에 도달을 못 함.
+   align:end = 푸터 바닥을 화면 바닥에 맞춤(푸터는 화면보다 작아 start 면 아래가 빔).
+   stop:normal = 여기서 강제로 한 번 멈추지 않게. */
+footer{scroll-snap-align:end;scroll-snap-stop:normal}
 @media (prefers-reduced-motion:reduce){html{scroll-snap-type:none}}
 `;
 
