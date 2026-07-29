@@ -10,11 +10,30 @@ export default function Footer() {
             <div className="text-2xl font-black text-brand">AnimAI</div>
             <p className="text-ink-4 text-base">매일 더 가까이, 더 오래</p>
             <p className="text-ink-4 text-xs">Animal + AI · 구 강쥐엄마</p>
+            <p className="text-ink-4 text-xs">
+              AnimAI는{" "}
+              <a
+                href="https://www.vitanima.kr"
+                target="_blank"
+                rel="noreferrer"
+                className="underline underline-offset-2 hover:text-white transition-colors"
+              >
+                ㈜비타니마
+              </a>
+              가 만듭니다
+            </p>
           </div>
 
           {/* 회사 정보 — 토스페이먼츠 심사 필수 6항목 모두 노출 */}
           <div className="flex flex-col gap-1.5 text-sm text-ink-4 md:text-right">
-            <div className="font-bold text-white text-base mb-1">(주)비타니마</div>
+            <a
+              href="https://www.vitanima.kr"
+              target="_blank"
+              rel="noreferrer"
+              className="font-bold text-white text-base mb-1 hover:text-brand transition-colors"
+            >
+              (주)비타니마 ↗
+            </a>
             <div>대표 김훈기 | 개인정보관리책임자 김훈기</div>
             <div>사업자등록번호 284-88-02356</div>
             <div>통신판매업신고번호 제2026-인천연수구-1470호</div>
@@ -25,6 +44,14 @@ export default function Footer() {
               className="hover:text-white transition-colors mt-1"
             >
               cs@vitanima.kr
+            </a>
+            <a
+              href="https://www.vitanima.kr"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              회사 소개 vitanima.kr
             </a>
           </div>
         </div>
